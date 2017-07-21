@@ -1,0 +1,37 @@
+{
+  "scripts": {
+    "install": "lerna bootstrap",
+    "clean": "lerna clean --yes",
+    "publish": "lerna publish --canary",
+    "lint": "eslint .",
+    "dep-check": "lerna run dep-check",
+    "dep-sec": "lerna run dep-sec",
+    "test-sim": "lerna run test --scope qiskit-sim",
+    "test-cli": "lerna run test --scope qiskit-cli",
+    "test-qasm": "lerna run test --scope qiskit-qasm",
+    "test": "lerna run test",
+    "posttest": "npm run lint && npm run dep-check && npm run dep-sec",
+    "bundle-qasm": "browserify -u packages/qiskit-qasm/index.js -p [ browserify-banner --file dist/banner.txt ] -s qiskitQasm . > dist/qiskit-qasm.js",
+    "bundle-sim": "browserify -u packages/qiskit-sim/index.js -p [ browserify-banner --file dist/banner.txt ] -s qiskit . > dist/qiskit",
+    "bundle": "npm run bundle-qasm && npm run bundle-sim",
+    "browser": "static-server -i example.html dist"
+  },
+  "devDependencies": {
+    "browserify": "^14.4.0",
+    "browserify-banner": "^1.0.5",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb-base": "^11.2.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-json": "^1.2.0",
+    "lerna": "^2.0.0",
+    "mocha": "^3.4.2",
+    "npm-check": "github:tomfun/npm-check#feature/exclude-folders-from-scan",
+    "nsp": "^2.1.0",
+    "static-server": "^2.0.4"
+  },
+  "engines": {
+    "node": ">=6",
+    "npm": ">=3"
+  },
+  "private": true
+}

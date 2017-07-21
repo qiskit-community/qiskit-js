@@ -1,0 +1,47 @@
+{
+  "name": "qiskit-qasm",
+  "version": "0.1.0",
+  "description": "Quantum Information Software Kit OpenQASM library",
+  "author": {
+    "name": "IBM RESEARCH",
+    "url": "http://research.ibm.com"
+  },
+  "homepage": "https://github.ibm.com/IBMResearch/qiskit.js",
+  "contributors": [
+    "https://github.ibm.com/IBMResearch/qiskit.js/graphs/contributors"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.ibm.com/IBMResearch/qiskit.js"
+  },
+  "scripts": {
+    "dep-check": "npm-check",
+    "dep-sec": "nsp check",
+    "test": "mocha --recursive test"
+  },
+  "keywords": [
+    "quantum",
+    "computing",
+    "information",
+    "qasm",
+    "openqasm",
+    "parser",
+    "compiler",
+    "unroller",
+    "qiskit",
+    "IBM"
+  ],
+  "bugs": {
+    "url": "https://github.ibm.com/IBMResearch/qiskit.js/issues"
+  },
+  "dependencies": {
+    "jison": "^0.4.17",
+    "lodash": "^4.17.4"
+  },
+  "engines": {
+    "node": ">=6",
+    "npm": ">=3"
+  },
+  "license": "Apache-2.0",
+  "private": true
+}

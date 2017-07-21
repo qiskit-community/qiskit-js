@@ -1,0 +1,16 @@
+{
+  "extends": "airbnb-base",
+
+  "rules": {
+    "strict": ["off"],
+    "max-len": ["warn", 100, 2]
+  },
+
+  "plugins": ["json"],
+  
+  "env": {
+      "mocha": true,
+      "node": true
+  }
+
+}

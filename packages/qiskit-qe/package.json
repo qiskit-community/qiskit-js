@@ -1,0 +1,45 @@
+{
+  "name": "qiskit-qe",
+  "version": "0.1.0",
+  "description": "Quantum Information Software library to use the Quantum Experience",
+  "author": {
+    "name": "IBM RESEARCH",
+    "url": "http://research.ibm.com"
+  },
+  "homepage": "https://github.ibm.com/IBMResearch/qiskit.js",
+  "contributors": [
+    "https://github.ibm.com/IBMResearch/qiskit.js/graphs/contributors"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.ibm.com/IBMResearch/qiskit.js"
+  },
+  "scripts": {
+    "dep-check": "npm-check",
+    "dep-sec": "nsp check",
+    "test": "mocha --recursive test"
+  },
+  "keywords": [
+    "quantum",
+    "experience",
+    "computing",
+    "information",
+    "qasm",
+    "openqasm",
+    "qiskit",
+    "IBM"
+  ],
+  "bugs": {
+    "url": "https://github.ibm.com/IBMResearch/qiskit.js/issues"
+  },
+  "dependencies": {
+    "lodash": "^4.17.4",
+    "request-promise-native": "^1.0.4"
+  },
+  "engines": {
+    "node": ">=6",
+    "npm": ">=3"
+  },
+  "license": "Apache-2.0",
+  "private": true
+}

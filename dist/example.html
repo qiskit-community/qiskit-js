@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>qiskit.js</title>
+  <script src="./qiskit.js"></script>
+
+  <style>
+    #ide {
+      display: flex;
+      width: 40em;
+    }
+    #code {
+      background-color: lightblue;
+      padding: 2em;
+    }
+    #result {
+      flex: 1;
+      background-color: lightgreen;
+      padding: 2em;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>qiskit.js sim</h1>
+  <div id="version">v:</div>
+
+  <button>Run</button>
+  <div id="ide">
+    <pre id="code">CODE</pre>
+    <pre id="result">RESULT</pre>
+  </div>
+
+  <script>
+    const circuit = {
+      header: {
+        number_of_qubits: 6,
+        qubit_labels: [
+          ['q', 0],
+          ['q', 1],
+          ['q', 2],
+          ['r', 0],
+          ['r', 1],
+          ['r', 2]
+        ],
+        number_of_clbits: 6,
+        clbit_labels: [
+          ['c', 3],
+          ['d', 3]
+        ]
+      },
+      operations: [
+        {
+          params: [1.5707963267948966, 0.0, 3.141592653589793],
+          name: 'U',
+          qubits: [0]
+        },
+        {
+          params: [1.5707963267948966, 0.0, 3.141592653589793],
+          name: 'U',
+          qubits: [1]
+        },
+        {
+          params: [1.5707963267948966, 0.0, 3.141592653589793],
+          name: 'U',
+          qubits: [2]
+        },
+        {
+          name: 'CX',
+          qubits: [0, 3]
+        },
+        {
+          name: 'CX',
+          qubits: [1, 4]
+        },
+        {
+          name: 'CX',
+          qubits: [2, 5]
+        },
+        {
+          name: 'barrier',
+          qubits: [0, 1, 2]
+        },
+        {
+          clbits: [0],
+          name: 'measure',
+          qubits: [0]
+        },
+        {
+          clbits: [1],
+          name: 'measure',
+          qubits: [1]
+        },
+        {
+          clbits: [2],
+          name: 'measure',
+          qubits: [2]
+        },
+        {
+          clbits: [3],
+          name: 'measure',
+          qubits: [3]
+        },
+        {
+          clbits: [4],
+          name: 'measure',
+          qubits: [4]
+        },
+        {
+          clbits: [5],
+          name: 'measure',
+          qubits: [5]
+        }
+      ]
+    };
+
+
+    document.addEventListener('DOMContentLoaded', function(event) {
+      if (!qiskit) {
+        alert('qiskit is not present :(');
+        return;
+      }
+
+      console.log('qiskit is present ;)');
+
+      console.log('Version:');qiski
+      console.log(qiskit.version);
+
+      const version = document.getElementById('version');
+      version.innerHTML = `${version.innerHTML} ${qiskit.version}`;
+
+      const code = document.getElementById('code');
+      code.innerHTML = JSON.stringify(circuit, undefined, 2);
+
+      const result = document.getElementById('result');
+      const button = document.querySelector('button');
+      button.onclick = () => {
+        let resSim;
+
+        console.log('Sim started');
+        try {
+          resSim = qiskit.sim.run(circuit);
+          console.log('Sim done:', resSim);
+          result.innerHTML = JSON.stringify(resSim, undefined, 2);
+        } catch (err) {
+          console.log('Error:');
+          console.error(err);
+          alert(`Error: ${err.message}`);
+        }
+      };
+    });
+  </script>
+
+</body>
+</html>

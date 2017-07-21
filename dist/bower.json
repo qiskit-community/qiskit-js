@@ -1,0 +1,13 @@
+{
+  "name": "qiskit",
+  "authors": ["IBM RESEARCH <http://research.ibm.com>"],
+  "description": "Quantum Information simulator",
+  "main": "qiskit",
+  "license": "Apache-2.0",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "example.html",
+    "banner.txt"
+  ]
+}
