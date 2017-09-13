@@ -8,6 +8,7 @@
 
 'use strict';
 
+const fs = require('fs');
 const path = require('path');
 
 const math = require('mathjs');
@@ -17,6 +18,7 @@ const utils = require('../utils');
 const logger = require('../logger');
 
 const dbg = utils.dbg(__filename);
+const readFile = utils.promisify(fs.readFile);
 
 
 exports.command = 'sim <circuit> [unrolled]';
@@ -54,7 +56,7 @@ exports.handler = (argv) => {
   const pathCode = path.resolve(process.cwd(), argv.circuit);
 
   logger.info(`${logger.emoji('mag')} Reading the circuit file: ${pathCode}`);
-  utils.readFile(pathCode, 'utf8')
+  readFile(pathCode, 'utf8')
   .then((code) => {
     logger.info('Parsing the code file ...');
 

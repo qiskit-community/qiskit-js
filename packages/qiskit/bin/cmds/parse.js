@@ -8,13 +8,14 @@
 
 'use strict';
 
+const fs = require('fs');
 const path = require('path');
 
 const qiskit = require('../..');
 const utils = require('../utils');
 const logger = require('../logger');
 
-
+const readFile = utils.promisify(fs.readFile);
 const dbg = utils.dbg(__filename);
 
 
@@ -40,7 +41,9 @@ exports.handler = (argv) => {
 
   const pathCode = path.resolve(process.cwd(), argv.circuit);
 
-  utils.readFile(pathCode, 'utf8')
+  // TODO: "async" still not suported by yargs:
+  // https://github.com/yargs/yargs/issues/510
+  readFile(pathCode, 'utf8')
   .then((code) => { logger.json(qiskit.qasm.parse(code)); })
   .catch((err) => {
     logger.error('Reading the circuit file', err);

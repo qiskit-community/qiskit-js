@@ -53,6 +53,7 @@
     "qiskit-qasm": "^0.1.0",
     "qiskit-qe": "^0.1.0",
     "qiskit-sim": "^0.1.0",
+    "qiskit-utils": "^0.1.0",
     "yargs": "^8.0.2"
   },
   "engines": {

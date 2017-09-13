@@ -1,0 +1,49 @@
+{
+  "name": "qiskit-utils",
+  "version": "0.1.0",
+  "description": "Quantum Information Software utils library",
+  "author": {
+    "name": "IBM RESEARCH",
+    "url": "http://research.ibm.com"
+  },
+  "homepage": "https://github.ibm.com/IBMResearch/qiskit.js",
+  "contributors": [
+    "https://github.ibm.com/IBMResearch/qiskit.js/graphs/contributors"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.ibm.com/IBMResearch/qiskit.js"
+  },
+  "scripts": {
+    "dep-check": "npm-check",
+    "dep-sec": "nsp check",
+    "test": "mocha --recursive test"
+  },
+  "keywords": [
+    "quantum",
+    "experience",
+    "computing",
+    "information",
+    "utils",
+    "helpers",
+    "qiskit",
+    "IBM"
+  ],
+  "bugs": {
+    "url": "https://github.ibm.com/IBMResearch/qiskit.js/issues"
+  },
+  "dependencies": {
+    "debug": "^3.0.0",
+    "es6-promisify": "^5.0.0",
+    "lodash": "^4.17.4",
+    "request": "^2.81.0",
+    "request-promise-native": "^1.0.4",
+    "validator": "^8.1.0"
+  },
+  "engines": {
+    "node": ">=6",
+    "npm": ">=3"
+  },
+  "license": "Apache-2.0",
+  "private": true
+}

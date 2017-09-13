@@ -8,6 +8,7 @@
 
 'use strict';
 
+const fs = require('fs');
 const path = require('path');
 
 const qiskit = require('../..');
@@ -16,6 +17,7 @@ const logger = require('../logger');
 
 
 const dbg = utils.dbg(__filename);
+const readFile = utils.promisify(fs.readFile);
 
 
 exports.command = 'unroll <circuit>';
@@ -40,7 +42,7 @@ exports.handler = (argv) => {
 
   const pathCode = path.resolve(process.cwd(), argv.circuit);
 
-  utils.readFile(pathCode, 'utf8')
+  readFile(pathCode, 'utf8')
   .then((code) => { logger.json(qiskit.sim.unroll(code)); })
   .catch((err) => {
     logger.error('Reading the circuit file', err);

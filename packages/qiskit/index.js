@@ -12,7 +12,8 @@
 
 const qasm = require('qiskit-qasm');
 const sim = require('qiskit-sim');
-const qe = require('qiskit-qe');
+const Qe = require('qiskit-qe');
+const utils = require('qiskit-utils');
 
 const version = require('./package').version;
 
@@ -21,5 +22,6 @@ module.exports = {
   version,
   qasm,
   sim,
-  qe,
+  Qe,
+  utils,
 };
