@@ -74,12 +74,13 @@
   function launchError(line, msg) {
       const err = new Error('qasm:' + msg);
       err.line = line;
-      console.log('ppppppppppppppppppppppppppppppppppp');
-      console.log(err);
-      console.log('********');
-      // TODO: Use QasmError
-    //   process.exit()
 
+      // TODO: Drop, only to debug 
+      //console.log('------------------------');
+      //console.log(err);
+      //console.log('------------------------');
+
+      // TODO: Use QasmError  
       throw err;
   }
 
