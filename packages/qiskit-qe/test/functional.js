@@ -11,60 +11,121 @@
 'use strict';
 
 const assert = require('assert');
+const utils = require('qiskit-utils');
 
-const qe = require('..');
+const Qe = require('..');
 const pkgInfo = require('../package');
 
+const expErrRegex = {
+  formatUri: /URI format expected/,
+  formatStr: /String format expected/,
+};
 
-// const qasm = 'IBMQASM 2.0;\n' +
-//              'include "qelib1.inc";\n' +
-//              'qreg q[5];\n' +
-//              'creg c[5];\n' +
-//              'u2(-4*pi/3,2*pi) q[0];\n' +
-//              'u2(-3*pi/2,2*pi) q[0];\n' +
-//              'u3(-pi,0,-pi) q[0];\n' +
-//              'u3(-pi,0,-pi/2) q[0];\n' +
-//              'u2(pi,-pi/2) q[0];\n' +
-//              'u3(-pi,0,-pi/2) q[0];\n' +
-//              'measure q -> c;';
+const opts = {};
+// To support the integration environment (Travis) without exposing sensitive data.
+// TODO:
+// - Use spies to check all request are ok for develop environment.
+if (process.env.QE_TOKEN) { opts.token = process.env.QE_TOKEN; }
+if (process.env.QE_URI) { opts.uri = process.env.QE_URI; }
 
-// const qasms = [
-//   { qasm },
-//   { qasm: 'IBMQASM 2.0;\n' +
-//           'include "qelib1.inc";\n' +
-//           'qreg q[5];\n' +
-//           'creg c[5];\n' +
-//           'x q[0];\n' +
-//           'measure q -> c;' },
-// ];
+const qe = new Qe(opts);
 
 
-describe('qe:version', () => {
-  it('should return the package version', () => assert.equal(qe.version, pkgInfo.version));
+describe('qe:version', () =>
+  it('should return the package version', () => assert.equal(qe.version, pkgInfo.version)));
+
+
+describe('qe:new', () => {
+  it('should fail if invalid URI format', () =>
+    assert.throws(() => new Qe({ uri: 'a' }), expErrRegex.formatUri));
+
+  it('should fail if invalid token format', () =>
+    assert.throws(() => new Qe({ token: 1 }), expErrRegex.formatStr));
 });
 
 
-// TODO: Get it from an env var
-// const token = 'TOKENHERE';
+describe('qe:getToken', () => {
+  it('should fail any request if no logged (404)', async () => {
+    await utils.throwsAsync(() => qe.backends(), /AUTHORIZATION_REQUIRED/);
+  });
 
-describe('qe:checkToken', () => {
-  it('should return the token associated info', () => {
-    // const res = qe.checkToken(token);
-    // console.log(res);
+  it('should return the user info with a valid login', async () => {
+    const res = await qe.getToken(opts.token);
 
-    assert.ok(true);
+    assert.deepEqual(Object.keys(res), ['ttl', 'created', 'userId', 'token']);
+    assert.equal(typeof res.ttl, 'number');
+    assert.ok(typeof res.created === 'string');
+    assert.ok(typeof res.userId === 'string');
+    assert.ok(typeof res.token === 'string');
+  });
+
+  it('should set the token properly', async () => {
+    assert.equal(typeof qe.token, 'string');
+  });
+});
+
+
+describe('qe:backends', () => {
+  it('should return the online backends info', async () => {
+    const res = await qe.backends();
+
+    assert.equal(res.length, 10);
+    assert.equal(Object.keys(res[0]).length, 9);
+    assert.equal(res[0].name, 'Device Real5Qv1');
+    assert.equal(res[0].status, 'on');
+    assert.equal(res[0].serialNumber, 'Real5Qv1');
+    assert.equal(res[0].description, 'Device Real5Qv1');
+    assert.equal(res[0].id, 'a2c1087a5a34e3def29c724d8299b447');
+    assert.equal(res[0].topologyId, '250e969c6b9e68aa2a045ffbceb3ac33');
+    assert.equal(res[0].simulator, false);
+    assert.equal(res[0].nQubits, 5);
+    assert.equal(res[0].couplingMap.length, 6);
+  });
+});
+
+
+describe('qe:backendSims', () => {
+  it('should return the online backends (which are simulators) info', async () => {
+    const res = await qe.backendSims();
+
+    assert.equal(res.length, 1);
+    assert.equal(Object.keys(res[0]).length, 9);
+    assert.equal(res[0].name, 'ibmqx_qasm_simulator');
+    assert.equal(res[0].status, 'on');
+    assert.equal(res[0].serialNumber, 'ibmqx_qasm_simulator');
+    assert.equal(res[0].description, 'online qasm simulator');
+    assert.equal(res[0].id, '4575265c19372392522a392842adc0e3');
+    assert.equal(res[0].gateSet, 'u1,u2,u3,cx');
+    assert.equal(res[0].topologyId, '250e969c6b9e68aa2a045ffbceb3ac33');
+    assert.equal(res[0].simulator, true);
+    assert.equal(res[0].nQubits, 24);
+  });
+});
+
+
+describe('qe:credits', () => {
+  it('should return the info of my credits in the platform', async () => {
+    const res = await qe.credits();
+
+    assert.deepEqual(Object.keys(res), [
+      'institution',
+      'status',
+      'blocked',
+      'rolesObj',
+      'credit',
+      'additionalData',
+      'creationDate',
+      'username',
+      'email',
+      'emailVerified',
+      'id',
+      'userTypeId',
+      'firstName',
+    ]);
   });
 });
 
 // TODO: original library tests
-//
-// def test_api_auth_token(self):
-//     '''
-//     Authentication with Quantum Experience Platform
-//     '''
-//     api = IBMQuantumExperience(API_TOKEN)
-//     credential = api.check_credentials()
-//     self.assertTrue(credential)
 
 // def test_api_last_codes(self):
 //     '''
@@ -156,19 +217,3 @@ describe('qe:checkToken', () => {
 //     api = IBMQuantumExperience(API_TOKEN)
 //     parameters = api.backend_parameters()
 //     self.assertIsNotNone(parameters)
-
-// def test_api_backends_availables(self):
-//     '''
-//     Check the backends availables
-//     '''
-//     api = IBMQuantumExperience(API_TOKEN)
-//     backends = api.available_backends()
-//     self.assertGreaterEqual(len(backends), 2)
-
-// def test_api_backend_simulators_available(self):
-//     '''
-//     Check the backend simulators available
-//     '''
-//     api = IBMQuantumExperience(API_TOKEN)
-//     backends = api.available_backend_simulators()
-//     self.assertGreaterEqual(len(backends), 1)

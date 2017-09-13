@@ -10,9 +10,12 @@
 
 'use strict';
 
+const utils = require('qiskit-utils');
 
-module.exports = (token) => {
-  if (!token) { throw new Error('Required parameter: token'); }
+const pkgName = require('../package.json').name;
 
-  return token;
-};
+
+utils.dbg = fullPath => utils.debug(`${pkgName}:${utils.pathToTag(fullPath)}`);
+
+
+module.exports = utils;

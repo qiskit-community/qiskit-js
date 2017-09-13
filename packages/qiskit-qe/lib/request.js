@@ -12,25 +12,30 @@
 
 const rp = require('request-promise-native');
 
-// const baseUri = 'https://quantumexperience.ng.bluemix.net/api';
 
-module.exports = (uri, opts) => {
+module.exports = (uri, opts = {}) => {
   if (!uri) { throw new Error('Required parameter: uri'); }
 
   const cfg = {
     uri,
-    // qs: {},
+    qs: {},
     headers: {
-      // TODO: Monitor this
+      // TODO: Monitor this in the backend.
       'User-Agent': 'qiskit.js',
     },
     json: true,
   };
 
-  if (opts.token) {
-    // -> uri + '?access_token=xxxxx%20xxxxx'
-    cfg.qs = { access_token: opts.token };
+  if (opts.body) {
+    cfg.method = 'POST';
+    cfg.body = opts.body;
   }
 
+  // -> uri + '?access_token=xxxxx%20xxxxx'
+  if (opts.token) {
+    cfg.qs.access_token = opts.token;
+  }
+
+  // TODO: Massage the errors here.
   return rp(cfg);
 };
