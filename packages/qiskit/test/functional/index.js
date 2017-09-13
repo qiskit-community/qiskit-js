@@ -19,12 +19,13 @@ const pkgInfo = require('../../../qiskit-sim/package');
 
 
 describe('qiskit:api', () => {
-  it('should include all subpackages', () =>
-    assert.deepEqual(Object.keys(qiskit), ['version', 'qasm', 'sim', 'qe']));
+  it('should include all documented items', () =>
+    assert.deepEqual(Object.keys(qiskit), ['version', 'qasm', 'sim', 'Qe', 'utils']));
 
   it('should return the the correct result for its methods', () =>
     assert.equal(qiskit.version, pkgInfo.version));
 
-  it('should return the correct result for any subpackage', () =>
+  // We only check one for convenience.
+  it('should return the correct result for any item', () =>
     assert.equal(qiskit.sim.version, pkgInfo.version));
 });

@@ -19,15 +19,15 @@ const parse = require('../lib/parse');
 const QasmError = require('../lib/QasmError');
 
 
-// TODO: It starts to be quite bit -> create a folder with a file for any "describe".
+// TODO: It starts to be quite big -> create a folder with a file for any "describe".
 
-describe.skip('qasm:version', () => {
-  it('should return the package version', () => assert.equal(qasm.version, pkgInfo.version));
-});
+describe('qasm:version', () =>
+  it('should return the package version', () => assert.equal(qasm.version, pkgInfo.version)));
 
 
 describe('qasm:parse', () => {
-  it.skip('should fail without param', () => {
+  // TODO: Implement
+  it('should fail without param', () => {
     assert.throws(
       () => { parse(); },
       // eslint-disable-next-line comma-dangle
@@ -41,18 +41,16 @@ describe('qasm:parse', () => {
     { type: 'x', identifiers: [{ name: 'q', index: '0' }] },
     { type: 'measure', qreg: { name: 'q' }, creg: { name: 'c' } },
   ];
-  const circuitSimple = 'qreg q[5];\n' +
-                        'creg c[5];\n' +
-                        'gate foo q { U(0,0,0) q; }\n' +
-                        'foo q[0];';
+  const circuitSimple = 'qreg q[1];\n' +
+                        'creg c[1];\n' +
+                        'measure q->c;\n';
 
-  it('should work with with "IBMQASM 2.0" as version header', () => {
+  // TODO: Review the spec.
+  it.skip('should work with "IBMQASM 2.0" as version header', () => {
     const circuit = `IBMQASM 2.0;\n${circuitSimple}`;
 
-    console.log('---------------')
-    console.log(parse(circuit))
-    assert.ok(true);
-    // assert.deepEqual(parse(circuit), expected);
+    const res = parse(circuit);
+    assert.deepEqual(res, expected);
   });
 
   it.skip('should work with with "OPENQASM 2.0" as version header', () => {
@@ -107,9 +105,10 @@ describe('qasm:parse', () => {
   });
 });
 
+
 // TODO: Test for comments.
 
-describe.skip('qasm:QasmError', () => {
+describe('qasm:QasmError', () => {
   it('should return the error with a message and all options', () => {
     const msg = 'test msg';
     const opts = {
