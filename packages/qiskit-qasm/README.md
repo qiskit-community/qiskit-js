@@ -37,11 +37,11 @@ console.log(util.inspect(parse(circuit), { depth: null }));
 
 :eyes: Full specification.
 
-### `version -> versionRes`
+### `version`
 
-Get the actual version of the library.
+The actual version of the library.
 
-- `versionRes` (string) - Version number.
+- `version` (string) - Version number.
 
 ### `parse(circuit) -> circuitJson`
 
@@ -61,7 +61,7 @@ Custom QASM error class.
   - `text` (string) - Text extracted from where the error happened.
   - `token` (string) - Identifier found where the error happened.
   - `expected` (string) - Regular expresion for supported values.
-- `Error` (Error) - A common JS error including also next fields:
+- `error` (Error) - A common JS error including also next fields:
   - `name` (string) - Error name ("QasmError").
   - `message` (string) - Error message.
   - `stack` (string) - Error stack.

@@ -38,9 +38,10 @@ const circuit = fs.readFileSync('./example.qasm', 'utf8');
 
 :eyes: Full specification.
 
-### `version -> versionRes`
+### `version`
 
-Get the actual version of the library.
+The actual version of the library.
 
+- `version` (string) - Version number.
 
 TODO FROM HERE

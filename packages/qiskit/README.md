@@ -59,26 +59,32 @@ console.log(qiskit.sim.version);
 
 :eyes: Full specification.
 
-### `version -> versionRes`
+### `version`
 
-Get the actual version of the library.
+The actual version of the library.
 
-- `versionRes` (string) - Version number.
+- `version` (string) - Version number.
 
-### `qiskit.qasm -> qasmLib`
+### `qasm`
 
 A wrapper fot the [`qiskit-qasm`](../qiskit-qasm) project.
 
-- `qasmLib` (object) - The same object provided in the original library.
+- `qasm` (object) - The same object provided in the original library.
 
-### `qiskit.sim -> sim`
+### `sim`
 
 A wrapper fot the [`qiskit-sim`](../qiskit-sim) project.
 
 - `sim` (object) - The same object provided in the original library.
 
-### `qiskit.qe -> qe`
+### `qe`
 
 A wrapper fot the [`qiskit-qe`](../qiskit-qe) project.
 
 - `qe` (object) - The same object provided in the original library.
+
+### `utils`
+
+A wrapper fot the [`qiskit-qe`](../qiskit-utils) project.
+
+- `utils` (object) - The same object provided in the original library.

@@ -40,11 +40,11 @@ console.log(res);
 
 :eyes: Full specification.
 
-### `version -> versionRes`
+### `version`
 
-Get the actual version of the library.
+The actual version of the library.
 
-- `versionRes` (string) - Version number.
+- `version` (string) - Version number.
 
 ### `unroll(circuit) -> circuitUnrolled`
 
@@ -57,22 +57,22 @@ Get the extended representation of the circuit for this simulator.
 
 Apply a single-qubit gate.
 
-- `gate` ([Math.js matrix](http://mathjs.org/docs/datatypes/matrices.html)) - Single-qubit gate to apply.
+- `gate` (object, [Math.js matrix](http://mathjs.org/docs/datatypes/matrices.html)) - Single-qubit gate to apply.
 - `qubit` - Qubit to apply on, counts from 0. Order is q_{n-1} ... otimes q_1 otimes q_0.
 - `nQubits` (number) - Number of qubits of the system.
-- `state` (Math.js matrix) - Internal state of the simulator before the gate.
-- `stateNew` (Math.js matrix) - Internal state of the simulator after the gate.
+- `state` (object, Math.js matrix) - Internal state of the simulator before the gate.
+- `stateNew` (object, Math.js matrix) - Internal state of the simulator after the gate.
 
 ### `gateTwo(gate, qubit0, qubit1, nQubits, state) -> stateNew`
 
 Apply a two-qubit gate.
 
-- `gate` (Math.js matrix) - Two-qubit gate to apply.
+- `gate` (object, Math.js matrix) - Two-qubit gate to apply.
 - `qubit0` - First qubit (control), counts from 0.
 - `qubit1` - Second qubit (target).
 - `nQubits` (number) - Number of qubits of the system.
-- `state` (Math.js matrix) - Internal state of the simulator before the gate.
-- `stateNew` (Math.js matrix) - Internal state of the simulator after the gate.
+- `state` (object, Math.js matrix) - Internal state of the simulator before the gate.
+- `stateNew` (object, Math.js matrix) - Internal state of the simulator after the gate.
 
 ### `run(circuit) -> result`
 
@@ -81,4 +81,4 @@ Run a simulation.
 - `circuit` (string) - QASM circuit representation. For now only an "unrolled" (intermediate, JSON format) version of them is accepted.
 - `result` (object):
   - `drops` (array) - Not supported (omitted) operations present in the circuit.
-  - `state` (Math.js matrix) - Internal state of the simulator after the run.
+  - `state` (object, Math.js matrix) - Internal state of the simulator after the run.
