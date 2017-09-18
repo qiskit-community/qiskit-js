@@ -88,6 +88,6 @@ Get the information of all available backends.
 Get the information of all available backends.
 
 - `info` (object): Including next fields:
-  - promotional (number): Not rechargeable credits (one use), only through promotions.
-  - remaining (number): Available credits. Automaticall recharged when the user executions has finished.
-  - maxUserType (number): Max number of allowed credits for this type of user.
+  - `promotional` (number): Not rechargeable credits (one use), only through promotions.
+  - `remaining` (number): Available credits. Automaticall recharged when the user executions has finished.
+  - `maxUserType` (number): Max number of allowed credits for this type of user.
