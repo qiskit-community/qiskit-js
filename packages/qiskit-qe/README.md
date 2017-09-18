@@ -1,4 +1,4 @@
-# QISKit.js OpenQASM
+# QISKit.js Quantum Experience
 
 :atom_symbol: Quantum Information Software Kit library to use the [Quamtum Experience](https://quantumexperience.ng.bluemix.net).
 
@@ -18,25 +18,39 @@ npm i -g IBMResearch/qiskit.js
 
 ## Use
 
-:pencil: You can visit the complete example [in this test](./test/functional/index.js).
+:pencil: You can visit more advanced examples in the [test folder](test).
 
 ```js
-const qe = require('qiskit').qe;
+const Qe = require('qiskit').Qe;
 // TODO: When published to npm
-// const qe = require('qiskit-qe');
+// const Qe = require('qiskit-qe');
+
+const qe = new Qe({});
 
 console.log('Version');
 console.log(qe.version);
 
-const circuit = fs.readFileSync('./example.qasm', 'utf8');
+await qe.login('YOUR_PERSONAL_TOKEN_HERE')
 
-// TODO
-// console.log(util.inspect(parse(circuit), { depth: null }));
+const backends = await qe.backends();
+console.log(backends);
 ```
 
 ## API
 
 :eyes: Full specification.
+
+### `Qe(opts) -> qe`
+
+The constructor accepts next option:
+
+- `token` (string) - Long term access token, see next point.
+
+### `token`
+
+The long term access token being used, ie: to avoid the re-connection (login) in a worker.
+
+- `token` (string) - Token.
 
 ### `version`
 
@@ -44,4 +58,36 @@ The actual version of the library.
 
 - `version` (string) - Version number.
 
-TODO FROM HERE
+### `async login(personalToken) -> nfo`
+
+Get a long term access token using the QE personal, you can get it [here](https://quantumexperience.ng.bluemix.net/qx/account).
+
+- `info` (object): New token and its metadata:
+  - `token` (string) - New long term access token.
+  - `ttl` (number) - Time to live (in seconds).
+  - `created` (string) - When the account was created.
+  - `userId` (string)
+
+### `async backends() -> info`
+
+Get the information of all available backends.
+
+- `info` ([object]): A list of objects with next fields:
+  - `name` (string) - Descriptive name of the device.
+  - `status` (string) - If it´s "on" or "off".
+  - `serialNumber` (string)
+  - `description` (string)
+  - `id` (string)
+  - `topologyId` (string)
+  - `simulator` (boolean): To mark the simulators.
+  - `nQubits` (number): Number of Qubits the device has.
+  - `couplingMap` ([[number]]): To show how the Qubits are connected in this device.
+
+### `async credits() -> info`
+
+Get the information of all available backends.
+
+- `info` (object): Including next fields:
+  - promotional (number): Not rechargeable credits (one use), only through promotions.
+  - remaining (number): Available credits. Automaticall recharged when the user executions has finished.
+  - maxUserType (number): Max number of allowed credits for this type of user.

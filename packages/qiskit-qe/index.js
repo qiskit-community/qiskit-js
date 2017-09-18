@@ -22,17 +22,18 @@ const defaults = {
   // uri = 'https://quantumexperience.ng.bluemix.net/api';
   uri: 'http://localhost:6007/api/v0',
 };
+const msgLoginBefore = 'Please login before'
 
 
 function checkUri(uri) {
-  if (!utils.validator.isURL(uri)) {
+  if (!uri || !utils.validator.isURL(uri)) {
     throw new Error('URI format expected');
   }
 }
 
 
 function checkString(str) {
-  if (typeof str !== 'string') {
+  if (!str || typeof str !== 'string') {
     throw new Error('String format expected');
   }
 }
@@ -62,7 +63,7 @@ class Qe {
   }
 
 
-  async getToken(tokenPersonal) {
+  async login(tokenPersonal) {
     dbg('Getting a long term token');
     checkString(tokenPersonal);
 
@@ -81,48 +82,51 @@ class Qe {
   }
 
 
-  async getLastCodes() {
-    dbg('Getting last user codes');
-
-    const res = await request(`${this.uri}/users/loginWithToken`, {
-      body: { apiToken: this.token },
-    });
-
-    this.token = res.id;
-    this.userId = res.userId;
-
-    // Massaging the response.
-    res.token = res.id;
-    delete res.id;
-
-    return res;
-  }
-
-  async backends() {
-    dbg('Getting the available backends');
-    const res = await request(`${this.uri}/Backends`, { token: this.token });
-
-    // TODO: Add a test for this when we have spies for develop environemnt.
-    // At the integration environment all the returned ones are 'on'.
-    return utils.filter(res, el => el.status === 'on');
-  }
-
-
-  async backendSims() {
-    dbg('Getting the available backend simulators');
-
-    const res = await request(`${this.uri}/Backends`, { token: this.token });
-
-    return utils.filter(res, el => el.status === 'on' && el.simulator === true);
-  }
-
-
   async credits() {
     dbg('Getting user credits info');
 
+    if (!this.token || !this.userId) { throw new Error(msgLoginBefore); }
+
     const res = await request(`${this.uri}/users/${this.userId}`, { token: this.token });
 
-    return res;
+    const creditInfo = res.credit;
+
+    if (creditInfo) {
+      delete res.credit.promotionalCodesUsed;
+      delete res.credit.lastRefill;
+    }
+
+    return creditInfo;
+  }
+
+
+  async lastCodes() {
+    dbg('Getting last user codes');
+
+    if (!this.token || !this.userId) { throw new Error(msgLoginBefore); }
+
+    return await request(`${this.uri}/users/${this.userId}/codes/lastest`, { token: this.token });    
+  }
+
+
+  async backends(onlySims = false) {
+    dbg('Getting the available backends', { onlySims });
+
+    if (!this.token) { throw new Error(msgLoginBefore); }
+
+    let res = await request(`${this.uri}/Backends`, { token: this.token });
+
+    // TODO: Add a test for this when we have spies for develop environemnt.
+    // At the integration environment all the returned ones are 'on'.
+    res = utils.filter(res, el => el.status === 'on');
+
+    if (onlySims) {
+      dbg('Returning only the simulators');      
+
+      return utils.filter(res, el => el.status === 'on' && el.simulator === true);      
+    } else {
+      return res;
+    }
   }
 }
 

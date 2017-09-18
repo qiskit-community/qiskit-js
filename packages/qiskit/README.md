@@ -77,11 +77,11 @@ A wrapper fot the [`qiskit-sim`](../qiskit-sim) project.
 
 - `sim` (object) - The same object provided in the original library.
 
-### `qe`
+### `Qe`
 
 A wrapper fot the [`qiskit-qe`](../qiskit-qe) project.
 
-- `qe` (object) - The same object provided in the original library.
+- `Qe` (object) - The same constructor provided in the original library.
 
 ### `utils`
 

@@ -16,16 +16,17 @@ const utils = require('qiskit-utils');
 const Qe = require('..');
 const pkgInfo = require('../package');
 
+
 const expErrRegex = {
   formatUri: /URI format expected/,
   formatStr: /String format expected/,
 };
-
+let tokenPersonal;
 const opts = {};
 // To support the integration environment (Travis) without exposing sensitive data.
 // TODO:
 // - Use spies to check all request are ok for develop environment.
-if (process.env.QE_TOKEN) { opts.token = process.env.QE_TOKEN; }
+if (process.env.QE_TOKEN) { tokenPersonal = process.env.QE_TOKEN; }
 if (process.env.QE_URI) { opts.uri = process.env.QE_URI; }
 
 const qe = new Qe(opts);
@@ -44,13 +45,13 @@ describe('qe:new', () => {
 });
 
 
-describe('qe:getToken', () => {
+describe('qe:login', () => {
   it('should fail any request if no logged (404)', async () => {
-    await utils.throwsAsync(() => qe.backends(), /AUTHORIZATION_REQUIRED/);
+    await utils.throwsAsync(() => qe.backends(), /Please login before/);
   });
 
   it('should return the user info with a valid login', async () => {
-    const res = await qe.getToken(opts.token);
+    const res = await qe.login(tokenPersonal);
 
     assert.deepEqual(Object.keys(res), ['ttl', 'created', 'userId', 'token']);
     assert.equal(typeof res.ttl, 'number');
@@ -61,7 +62,9 @@ describe('qe:getToken', () => {
 
   it('should set the token properly', async () => {
     assert.equal(typeof qe.token, 'string');
+    assert.notEqual(qe.token.length, 0);
   });
+
 });
 
 
@@ -81,12 +84,9 @@ describe('qe:backends', () => {
     assert.equal(res[0].nQubits, 5);
     assert.equal(res[0].couplingMap.length, 6);
   });
-});
 
-
-describe('qe:backendSims', () => {
-  it('should return the online backends (which are simulators) info', async () => {
-    const res = await qe.backendSims();
+  it('should allow to ask only for simulators info', async () => {
+    const res = await qe.backends(true);
 
     assert.equal(res.length, 1);
     assert.equal(Object.keys(res[0]).length, 9);
@@ -107,23 +107,14 @@ describe('qe:credits', () => {
   it('should return the info of my credits in the platform', async () => {
     const res = await qe.credits();
 
-    assert.deepEqual(Object.keys(res), [
-      'institution',
-      'status',
-      'blocked',
-      'rolesObj',
-      'credit',
-      'additionalData',
-      'creationDate',
-      'username',
-      'email',
-      'emailVerified',
-      'id',
-      'userTypeId',
-      'firstName',
-    ]);
+    assert.equal(Object.keys(res).length, 3);
+    assert.deepEqual(Object.keys(res), ['promotional', 'remaining', 'maxUserType']);
+    assert.equal(typeof res.promotional, 'number');
+    assert.equal(typeof res.remaining, 'number');
+    assert.equal(typeof res.maxUserType, 'number');
   });
 });
+
 
 // TODO: original library tests
 
