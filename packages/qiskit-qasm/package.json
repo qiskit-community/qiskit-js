@@ -36,7 +36,8 @@
   },
   "dependencies": {
     "jison": "^0.4.17",
-    "lodash": "^4.17.4"
+    "lodash": "^4.17.4",
+    "qiskit-utils": "^0.1.0"
   },
   "engines": {
     "node": ">=6",

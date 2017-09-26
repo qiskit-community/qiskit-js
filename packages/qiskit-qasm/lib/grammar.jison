@@ -25,6 +25,7 @@
 "IBMQASM"               return 'IBMQASM'
 "OPENQASM"              return 'IBMQASM'
 "include"               return 'include'
+"\"qelib1.inc\""        return 'QELIB.INC'
 "qreg"                  return 'QREG'
 "creg"                  return 'CREG'
 "CX"                    return 'CX'
@@ -189,7 +190,12 @@ MainProgram
     ;
 
 IbmDefinition
-    : IBMQASM REAL ';'
+    : IBMQASM REAL ';' Include
+    | IBMQASM REAL ';'
+    ;
+
+Include
+    : 'include' 'QELIB.INC' ';' // TODO: Support include in parser
     ;
 
 Library
