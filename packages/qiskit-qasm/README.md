@@ -28,9 +28,11 @@ const qasm = require('qiskit').qasm;
 console.log('Version');
 console.log(qasm.version);
 
+const parser = new qasm.Parser();
+
 const circuit = fs.readFileSync('./example.qasm', 'utf8');
 
-console.log(util.inspect(parse(circuit), { depth: null }));
+console.log(util.inspect(parser.parse(circuit), { depth: null }));
 ```
 
 ## API
@@ -43,14 +45,20 @@ The actual version of the library.
 
 - `version` (string) - Version number.
 
-### `parse(circuit) -> circuitJson`
+### `Parser(opts) -> parser`
+
+The constructor accepts next option:
+
+- `core` (boolean) - To include core libraries. (default: true)
+
+### `parser.parse(circuit) -> circuitJson`
 
 Get the intermediate representation of the circuit using the OpenQASM parser.
 
 - `circuit` (string) - QASM circuit representation.
 - `circuitJson` (object): The same information in JSON format.
 
-### `qasm.QasmError(msg, opts) -> error`
+### `QasmError(msg, opts) -> error`
 
 Custom QASM error class.
 
