@@ -114,7 +114,39 @@ describe('qasm:parse', () => {
       { type: 'x', identifiers: [{ name: 'q', index: '0' }] },
       { type: 'measure', qreg: { name: 'q' }, creg: { name: 'c' } },
     ];
+    assert.deepEqual(parser.parse(circuit), expectedC);
+  });
 
+  it('should work with RESET', () => {
+    parser = new Parser();
+    const circuit = 'IBMQASM 2.0;\n' +
+                    'qreg q[1];\n' +
+                    'creg c[1];\n' +
+                    'reset q[0];';
+
+    const res = parser.parse(circuit);
+    console.log(res);
+    const expectedReset = [
+      { type: 'qubit', identifier: 'q', number: '1' },
+      { type: 'clbit', identifier: 'c', number: '1' },
+      { type: 'reset', qreg: { name: 'q', index: '0' } },
+    ];
+    assert.deepEqual(res, expectedReset);
+  });
+
+  // TODO: Should fail (qreg invalid)
+  it.skip('should fail with "include"', () => {
+    parser = new Parser();
+    const circuit = 'OPENQASM 2.0;\n' +
+                    'qreg q[1];\n' +
+                    'creg c[1];\n' +
+                    'x q[1];\n';
+
+    const expectedC = [
+      { type: 'qubit', identifier: 'q', number: '1' },
+      { type: 'clbit', identifier: 'c', number: '1' },
+      { type: 'x', identifiers: [{ name: 'q', index: '1' }] },
+    ];
     assert.deepEqual(parser.parse(circuit), expectedC);
   });
 });

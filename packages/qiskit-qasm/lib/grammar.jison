@@ -32,6 +32,7 @@
 "U"                     return 'U'
 "measure"               return 'MEASURE'
 "barrier"               return 'BARRIER'
+"reset"                 return 'RESET'
 "->"                    return '->'
 ";"                     return ';'
 ","                     return ','
@@ -117,6 +118,13 @@
     return {
       type: 'barrier',
       identifiers
+    }
+  }
+
+  function buildReset(qreg) {
+    return {
+      type: 'reset',
+      qreg
     }
   }
 
@@ -374,7 +382,7 @@ QOperation
     // | opaque
     | Measure
     | Barrier
-    // | reset
+    | Reset
     // | if
     ;
 
@@ -430,4 +438,8 @@ IdList
         $$ = $IdList;
         $$.push($Id);
       }
+    ;
+
+Reset
+    : RESET Primary { $$ = buildReset($2); }
     ;
