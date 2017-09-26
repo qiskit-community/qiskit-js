@@ -10,6 +10,7 @@
 
 'use strict';
 
+
 const assert = require('assert');
 const utils = require('qiskit-utils');
 
@@ -64,7 +65,6 @@ describe('qe:login', () => {
     assert.equal(typeof qe.token, 'string');
     assert.notEqual(qe.token.length, 0);
   });
-
 });
 
 
@@ -72,17 +72,23 @@ describe('qe:backends', () => {
   it('should return the online backends info', async () => {
     const res = await qe.backends();
 
-    assert.equal(res.length, 10);
-    assert.equal(Object.keys(res[0]).length, 9);
-    assert.equal(res[0].name, 'Device Real5Qv1');
-    assert.equal(res[0].status, 'on');
-    assert.equal(res[0].serialNumber, 'Real5Qv1');
-    assert.equal(res[0].description, 'Device Real5Qv1');
-    assert.equal(res[0].id, 'a2c1087a5a34e3def29c724d8299b447');
-    assert.equal(res[0].topologyId, '250e969c6b9e68aa2a045ffbceb3ac33');
-    assert.equal(res[0].simulator, false);
-    assert.equal(res[0].nQubits, 5);
-    assert.equal(res[0].couplingMap.length, 6);
+    assert.equal(res.length, 4);
+    assert.deepEqual(Object.keys(res[0]), [
+      'name',
+      'version',
+      'status',
+      'serialNumber',
+      'description',
+      'onlineDate',
+      'chipName',
+      'id',
+      'topologyId',
+      'url',
+      'basisGates',
+      'simulator',
+      'nQubits',
+      'couplingMap',
+    ]);
   });
 
   it('should allow to ask only for simulators info', async () => {
@@ -103,11 +109,75 @@ describe('qe:backends', () => {
 });
 
 
+describe('qe:backendCalibration', () => {
+  it('should return the calibration info for the' +
+     'default backend if no parameter', async () => {
+    const res = await qe.backendCalibration();
+
+    assert.deepEqual(Object.keys(res), ['lastUpdateDate', 'qubits', 'multiQubitGates']);
+    assert.equal(typeof res.lastUpdateDate, 'string');
+    assert.equal(typeof res.qubits, 'object');
+    assert.equal(typeof res.multiQubitGates, 'object');
+  });
+
+  it('should return the calibration info for the selected backend', async () => {
+    // We use a non existent one because we can´t know in advance the returned values here.
+    // TODO: The API should return an error in this case.
+    const res = await qe.backendCalibration('nonexistent');
+
+    assert.deepEqual(Object.keys(res), []);
+  });
+});
+
+
+describe('qe:backendParameters', () => {
+  it('should return the parameters info for the' +
+     'default backend if no parameter', async () => {
+    const res = await qe.backendParameters();
+
+    assert.deepEqual(Object.keys(res), [
+      'lastUpdateDate',
+      'fridgeParameters',
+      'qubits',
+    ]);
+    assert.equal(typeof res.lastUpdateDate, 'string');
+    assert.equal(typeof res.fridgeParameters, 'object');
+    assert.equal(typeof res.qubits, 'object');
+  });
+
+  it('should return the parameters info for the selected backend', async () => {
+    // We use a non existent one because we can´t know in advance the returned values here.
+    // TODO: The API should return an error in this case.
+    const res = await qe.backendParameters('nonexistent');
+
+    assert.deepEqual(Object.keys(res), []);
+  });
+});
+
+
+describe('qe:queueStatus', () => {
+  it('should return the status of the queue the default backend if no parameter', async () => {
+    const res = await qe.queueStatus();
+
+    assert.deepEqual(Object.keys(res), ['state', 'busy']);
+    assert.equal(typeof res.state, 'boolean');
+    assert.equal(typeof res.busy, 'boolean');
+  });
+
+  it('should return the queue info for the selected backend', async () => {
+    // We use a non existent one because we can´t know in advance the returned values here.
+    // TODO: The API should return an error in this case.
+    const res = await qe.queueStatus('nonexistent');
+
+    assert.equal(res, undefined);
+  });
+});
+
+
 describe('qe:credits', () => {
   it('should return the info of my credits in the platform', async () => {
     const res = await qe.credits();
 
-    assert.equal(Object.keys(res).length, 3);
     assert.deepEqual(Object.keys(res), ['promotional', 'remaining', 'maxUserType']);
     assert.equal(typeof res.promotional, 'number');
     assert.equal(typeof res.remaining, 'number');
@@ -116,14 +186,18 @@ describe('qe:credits', () => {
 });
 
 
+describe('qe:lastCodes', () => {
+  it('should return the code used in the last executions by this user', async () => {
+    const res = await qe.lastCodes();
+
+    assert.equal(typeof res, 'object');
+    // TODO: We can check more because, for now we don´t have any execution or code.
+  });
+});
+
+
 // TODO: original library tests
 
-// def test_api_last_codes(self):
-//     '''
-//     Check last code by user authenticated
-//     '''
-//     api = IBMQuantumExperience(API_TOKEN)
-//     self.assertIsNotNone(api.get_last_codes())
 
 // def test_api_run_experiment(self):
 //     '''
@@ -184,27 +258,3 @@ describe('qe:credits', () => {
 //     api = IBMQuantumExperience(API_TOKEN)
 //     jobs = api.get_jobs(2)
 //     self.assertEqual(len(jobs), 2)
-
-// def test_api_backend_status(self):
-//     '''
-//     Check the status of a real chip
-//     '''
-//     api = IBMQuantumExperience(API_TOKEN)
-//     is_available = api.backend_status()
-//     self.assertIsNotNone(is_available)
-
-// def test_api_backend_calibration(self):
-//     '''
-//     Check the calibration of a real chip
-//     '''
-//     api = IBMQuantumExperience(API_TOKEN)
-//     calibration = api.backend_calibration()
-//     self.assertIsNotNone(calibration)
-
-// def test_api_backend_parameters(self):
-//     '''
-//     Check the parameters of calibration of a real chip
-//     '''
-//     api = IBMQuantumExperience(API_TOKEN)
-//     parameters = api.backend_parameters()
-//     self.assertIsNotNone(parameters)

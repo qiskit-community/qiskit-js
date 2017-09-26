@@ -68,10 +68,11 @@ Get a long term access token using the QE personal, you can get it [here](https:
   - `created` (string) - When the account was created.
   - `userId` (string)
 
-### `async backends() -> info`
+### `async backends(onlySims) -> info`
 
 Get the information of all available backends.
 
+- `onylSims` (boolean): To get only info of the simulators. (default: false)
 - `info` ([object]): A list of objects with next fields:
   - `name` (string) - Descriptive name of the device.
   - `status` (string) - If it´s "on" or "off".
@@ -83,6 +84,35 @@ Get the information of all available backends.
   - `nQubits` (number): Number of Qubits the device has.
   - `couplingMap` ([[number]]): To show how the Qubits are connected in this device.
 
+### `async backendCalibration(name) -> info`
+
+Get latest calibration stats for a backend.
+
+- `name` (string): Name of the backend to inspect. (default: `ibmqx2`)
+- `info` (object): Including next fields:
+  - `lastUpdateDate` (string): Date of the last read.
+  - `qubits` ([object]): Error in each qubit.
+  - `multiQubitGates:` ([object]): Error in each gate.
+
+### `async backendParameters(name) -> info`
+
+Get the latest parameters stats of the backend (more recent values that the ones returned by the `backendCalibration` method).
+
+- `name` (string): Name of the backend to inspect. (default: `ibmqx2`)
+- `info` (object): Including next fields:
+  - `lastUpdateDate` (string): Date of the last read.
+  - `fridgeParameters` (string): Information about the cooler.
+  - `qubits` ([object]): Error in each qubit.
+
+### `async queueStatus(name) -> info`
+
+Get the status of a backend queue. Token not needed.
+
+- `name` (string): Name of the backend to inspect. (default: `ibmqx2`)
+- `info` (object): Including next fields:
+  - `state` (boolean): If the queue is up or down.
+  - `busy` (boolean): Due to internal reasons, sometimes a queue is stopped.
+
 ### `async credits() -> info`
 
 Get the information of all available backends.
@@ -91,3 +121,12 @@ Get the information of all available backends.
   - `promotional` (number): Not rechargeable credits (one use), only through promotions.
   - `remaining` (number): Available credits. Automaticall recharged when the user executions has finished.
   - `maxUserType` (number): Max number of allowed credits for this type of user.
+
+### `async lastCodes() -> codes`
+
+Get the source code of the last executions for this user.
+
+- `codes` ([object]): Including next fields:
+  - `name` (string): Human friendly identifier.
+  - `id` (string): Database identifier.
+  - `executions` ([string]): Identifiers for the executions of this code.

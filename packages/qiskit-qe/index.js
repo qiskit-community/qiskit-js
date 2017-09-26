@@ -22,7 +22,7 @@ const defaults = {
   // uri = 'https://quantumexperience.ng.bluemix.net/api';
   uri: 'http://localhost:6007/api/v0',
 };
-const msgLoginBefore = 'Please login before'
+const msgLoginBefore = 'Please login before';
 
 
 function checkUri(uri) {
@@ -100,15 +100,6 @@ class Qe {
   }
 
 
-  async lastCodes() {
-    dbg('Getting last user codes');
-
-    if (!this.token || !this.userId) { throw new Error(msgLoginBefore); }
-
-    return await request(`${this.uri}/users/${this.userId}/codes/lastest`, { token: this.token });    
-  }
-
-
   async backends(onlySims = false) {
     dbg('Getting the available backends', { onlySims });
 
@@ -121,13 +112,50 @@ class Qe {
     res = utils.filter(res, el => el.status === 'on');
 
     if (onlySims) {
-      dbg('Returning only the simulators');      
+      dbg('Returning only the simulators');
 
-      return utils.filter(res, el => el.status === 'on' && el.simulator === true);      
-    } else {
-      return res;
+      return utils.filter(res, el => el.status === 'on' && el.simulator === true);
     }
+
+    return res;
   }
+
+
+  async backendCalibration(name = 'ibmqx2') {
+    dbg('Getting the calibration info', { name });
+
+    return request(`${this.uri}/Backends/${name}/calibration`);
+  }
+
+
+  async backendParameters(name = 'ibmqx2') {
+    dbg('Getting the parameters info', { name });
+
+    return request(`${this.uri}/Backends/${name}/parameters`);
+  }
+
+
+  async queueStatus(name = 'ibmqx2') {
+    dbg('Getting the status of the queue for', { name });
+
+    return request(`${this.uri}/Backends/${name}/queue/status`);
+  }
+
+  // TODO: async getCode(id)
+
+  async lastCodes() {
+    dbg('Getting last user codes');
+
+    if (!this.token || !this.userId) { throw new Error(msgLoginBefore); }
+
+    const res = await request(`${this.uri}/users/${this.userId}/codes/lastest`, {
+      token: this.token,
+      qs: { includeExecutions: true },
+    });
+
+    return res.codes;
+  }
+
 }
 
 
