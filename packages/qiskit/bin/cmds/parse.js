@@ -40,11 +40,12 @@ exports.handler = (argv) => {
   dbg('Starting, args', argv);
 
   const pathCode = path.resolve(process.cwd(), argv.circuit);
+  const parser = new qiskit.qasm.Parser();
 
   // TODO: "async" still not suported by yargs:
   // https://github.com/yargs/yargs/issues/510
   readFile(pathCode, 'utf8')
-    .then((code) => { logger.json(qiskit.qasm.parse(code)); })
+    .then((code) => { logger.json(parser.parse(code)); })
     .catch((err) => {
       logger.error('Reading the circuit file', err);
       process.exit(1);
