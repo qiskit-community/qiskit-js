@@ -110,7 +110,7 @@ describe('qe:queueStatus', () => {
     // TODO: The API should return an error in this case.
     const res = await qe.queueStatus('nonexistent');
 
-    assert.equal(res, undefined);
+    assert.deepEqual(res, {});
   });
 });
 

@@ -85,11 +85,11 @@ class Qe {
   async queueStatus(name = defaultBackend) {
     dbg('Getting the status of the queue for', { name });
 
-    return request(`${this.uri}/Backends/${name}/queue/status`);
-    //const res = request(`${this.uri}/Backends/${name}/queue/status`);
     // TODO: The API returns undefined if the backend doesn´t exists.
     // Using empty object to be consistent with parameters and calibration.
-    //return res || {};
+    // return request(`${this.uri}/Backends/${name}/queue/status`);
+    const res = await request(`${this.uri}/Backends/${name}/queue/status`);
+    return res || {};
   }
 
 
