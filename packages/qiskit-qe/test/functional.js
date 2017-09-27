@@ -21,6 +21,7 @@ const pkgInfo = require('../package');
 const expErrRegex = {
   formatUri: /URI format expected/,
   formatStr: /String format expected/,
+  loginBefore: /Please use "login" before/,
 };
 let tokenPersonal;
 const opts = {};
@@ -115,8 +116,18 @@ describe('qe:queueStatus', () => {
 
 
 describe('qe:login', () => {
-  it('should fail any request if no logged (404)', async () => {
-    await utils.throwsAsync(() => qe.backends(), /Please use "login" before/);
+  // TODO: Move next 3 to each respective section when we have the logout
+  // endpoint (still not available in he API).
+  it('should fail any request if no logged (404) - backends', async () => {
+    await utils.throwsAsync(() => qe.backends(), expErrRegex.loginBefore);
+  });
+
+  it('should fail any request if no logged (404) - lastCodes', async () => {
+    await utils.throwsAsync(() => qe.lastCodes(), expErrRegex.loginBefore);
+  });
+
+  it('should fail any request if no logged (404) - credits', async () => {
+    await utils.throwsAsync(() => qe.credits(), expErrRegex.loginBefore);
   });
 
   it('should return the user info with a valid login', async () => {
