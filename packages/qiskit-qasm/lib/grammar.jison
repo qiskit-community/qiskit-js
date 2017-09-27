@@ -25,12 +25,14 @@
 "IBMQASM"               return 'IBMQASM'
 "OPENQASM"              return 'IBMQASM'
 "include"               return 'include'
+"\"qelib1.inc\""        return 'QELIB.INC'
 "qreg"                  return 'QREG'
 "creg"                  return 'CREG'
 "CX"                    return 'CX'
 "U"                     return 'U'
 "measure"               return 'MEASURE'
 "barrier"               return 'BARRIER'
+"reset"                 return 'RESET'
 "->"                    return '->'
 ";"                     return ';'
 ","                     return ','
@@ -119,6 +121,13 @@
     }
   }
 
+  function buildReset(qreg) {
+    return {
+      type: 'reset',
+      qreg
+    }
+  }
+
   function buildMeasure(qreg, creg) {
     return {
       type: 'measure',
@@ -189,7 +198,12 @@ MainProgram
     ;
 
 IbmDefinition
-    : IBMQASM REAL ';'
+    : IBMQASM REAL ';' Include
+    | IBMQASM REAL ';'
+    ;
+
+Include
+    : 'include' 'QELIB.INC' ';' // TODO: Support include in parser
     ;
 
 Library
@@ -368,7 +382,7 @@ QOperation
     // | opaque
     | Measure
     | Barrier
-    // | reset
+    | Reset
     // | if
     ;
 
@@ -424,4 +438,8 @@ IdList
         $$ = $IdList;
         $$.push($Id);
       }
+    ;
+
+Reset
+    : RESET Primary { $$ = buildReset($2); }
     ;

@@ -10,13 +10,12 @@
 
 'use strict';
 
-const Parser = require('./lib/Parser');
-const QasmError = require('./lib/QasmError');
-const version = require('./package').version;
+const utils = require('qiskit-utils');
+
+const pkgName = require('../package.json').name;
 
 
-module.exports = {
-  version,
-  Parser,
-  QasmError,
-};
+utils.dbg = fullPath => utils.debug(`${pkgName}:${utils.pathToTag(fullPath)}`);
+
+
+module.exports = utils;
