@@ -22,7 +22,9 @@ const defaults = {
   // uri = 'https://quantumexperience.ng.bluemix.net/api';
   uri: 'http://localhost:6007/api/v0',
 };
-const msgLoginBefore = 'Please login before';
+const defaultBackend = 'ibmqx4';
+// To avoid requests that are going to fail to the API.
+const errLoginBefore = 'Please use "login" before';
 
 
 function checkUri(uri) {
@@ -63,6 +65,34 @@ class Qe {
   }
 
 
+  // Token not needed.
+
+
+  async backendCalibration(name = defaultBackend) {
+    dbg('Getting the calibration info', { name });
+
+    return request(`${this.uri}/Backends/${name}/calibration`);
+  }
+
+
+  async backendParameters(name = defaultBackend) {
+    dbg('Getting the parameters info', { name });
+
+    return request(`${this.uri}/Backends/${name}/parameters`);
+  }
+
+
+  async queueStatus(name = defaultBackend) {
+    dbg('Getting the status of the queue for', { name });
+
+    return request(`${this.uri}/Backends/${name}/queue/status`);
+    //const res = request(`${this.uri}/Backends/${name}/queue/status`);
+    // TODO: The API returns undefined if the backend doesn´t exists.
+    // Using empty object to be consistent with parameters and calibration.
+    //return res || {};
+  }
+
+
   async login(tokenPersonal) {
     dbg('Getting a long term token');
     checkString(tokenPersonal);
@@ -82,10 +112,13 @@ class Qe {
   }
 
 
+  // Token needed.
+
+
   async credits() {
     dbg('Getting user credits info');
 
-    if (!this.token || !this.userId) { throw new Error(msgLoginBefore); }
+    if (!this.token || !this.userId) { throw new Error(errLoginBefore); }
 
     const res = await request(`${this.uri}/users/${this.userId}`, { token: this.token });
 
@@ -103,7 +136,7 @@ class Qe {
   async backends(onlySims = false) {
     dbg('Getting the available backends', { onlySims });
 
-    if (!this.token) { throw new Error(msgLoginBefore); }
+    if (!this.token || !this.userId) { throw new Error(errLoginBefore); }
 
     let res = await request(`${this.uri}/Backends`, { token: this.token });
 
@@ -120,33 +153,12 @@ class Qe {
     return res;
   }
 
-
-  async backendCalibration(name = 'ibmqx2') {
-    dbg('Getting the calibration info', { name });
-
-    return request(`${this.uri}/Backends/${name}/calibration`);
-  }
-
-
-  async backendParameters(name = 'ibmqx2') {
-    dbg('Getting the parameters info', { name });
-
-    return request(`${this.uri}/Backends/${name}/parameters`);
-  }
-
-
-  async queueStatus(name = 'ibmqx2') {
-    dbg('Getting the status of the queue for', { name });
-
-    return request(`${this.uri}/Backends/${name}/queue/status`);
-  }
-
   // TODO: async getCode(id)
 
   async lastCodes() {
     dbg('Getting last user codes');
 
-    if (!this.token || !this.userId) { throw new Error(msgLoginBefore); }
+    if (!this.token || !this.userId) { throw new Error(errLoginBefore); }
 
     const res = await request(`${this.uri}/users/${this.userId}/codes/lastest`, {
       token: this.token,

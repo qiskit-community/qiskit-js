@@ -46,67 +46,7 @@ describe('qe:new', () => {
 });
 
 
-describe('qe:login', () => {
-  it('should fail any request if no logged (404)', async () => {
-    await utils.throwsAsync(() => qe.backends(), /Please login before/);
-  });
-
-  it('should return the user info with a valid login', async () => {
-    const res = await qe.login(tokenPersonal);
-
-    assert.deepEqual(Object.keys(res), ['ttl', 'created', 'userId', 'token']);
-    assert.equal(typeof res.ttl, 'number');
-    assert.ok(typeof res.created === 'string');
-    assert.ok(typeof res.userId === 'string');
-    assert.ok(typeof res.token === 'string');
-  });
-
-  it('should set the token properly', async () => {
-    assert.equal(typeof qe.token, 'string');
-    assert.notEqual(qe.token.length, 0);
-  });
-});
-
-
-describe('qe:backends', () => {
-  it('should return the online backends info', async () => {
-    const res = await qe.backends();
-
-    assert.equal(res.length, 4);
-    assert.deepEqual(Object.keys(res[0]), [
-      'name',
-      'version',
-      'status',
-      'serialNumber',
-      'description',
-      'onlineDate',
-      'chipName',
-      'id',
-      'topologyId',
-      'url',
-      'basisGates',
-      'simulator',
-      'nQubits',
-      'couplingMap',
-    ]);
-  });
-
-  it('should allow to ask only for simulators info', async () => {
-    const res = await qe.backends(true);
-
-    assert.equal(res.length, 1);
-    assert.equal(Object.keys(res[0]).length, 9);
-    assert.equal(res[0].name, 'ibmqx_qasm_simulator');
-    assert.equal(res[0].status, 'on');
-    assert.equal(res[0].serialNumber, 'ibmqx_qasm_simulator');
-    assert.equal(res[0].description, 'online qasm simulator');
-    assert.equal(res[0].id, '4575265c19372392522a392842adc0e3');
-    assert.equal(res[0].gateSet, 'u1,u2,u3,cx');
-    assert.equal(res[0].topologyId, '250e969c6b9e68aa2a045ffbceb3ac33');
-    assert.equal(res[0].simulator, true);
-    assert.equal(res[0].nQubits, 24);
-  });
-});
+// No token needed.
 
 
 describe('qe:backendCalibration', () => {
@@ -170,6 +110,72 @@ describe('qe:queueStatus', () => {
     const res = await qe.queueStatus('nonexistent');
 
     assert.equal(res, undefined);
+  });
+});
+
+
+describe('qe:login', () => {
+  it('should fail any request if no logged (404)', async () => {
+    await utils.throwsAsync(() => qe.backends(), /Please use "login" before/);
+  });
+
+  it('should return the user info with a valid login', async () => {
+    const res = await qe.login(tokenPersonal);
+
+    assert.deepEqual(Object.keys(res), ['ttl', 'created', 'userId', 'token']);
+    assert.equal(typeof res.ttl, 'number');
+    assert.ok(typeof res.created === 'string');
+    assert.ok(typeof res.userId === 'string');
+    assert.ok(typeof res.token === 'string');
+  });
+
+  it('should set the token properly', async () => {
+    assert.equal(typeof qe.token, 'string');
+    assert.notEqual(qe.token.length, 0);
+  });
+});
+
+
+// Token needed.
+
+
+describe('qe:backends', () => {
+  it('should return the online backends info', async () => {
+    const res = await qe.backends();
+
+    assert.equal(res.length, 4);
+    assert.deepEqual(Object.keys(res[0]), [
+      'name',
+      'version',
+      'status',
+      'serialNumber',
+      'description',
+      'onlineDate',
+      'chipName',
+      'id',
+      'topologyId',
+      'url',
+      'basisGates',
+      'simulator',
+      'nQubits',
+      'couplingMap',
+    ]);
+  });
+
+  it('should allow to ask only for simulators info', async () => {
+    const res = await qe.backends(true);
+
+    assert.equal(res.length, 1);
+    assert.equal(Object.keys(res[0]).length, 9);
+    assert.equal(res[0].name, 'ibmqx_qasm_simulator');
+    assert.equal(res[0].status, 'on');
+    assert.equal(res[0].serialNumber, 'ibmqx_qasm_simulator');
+    assert.equal(res[0].description, 'online qasm simulator');
+    assert.equal(res[0].id, '4575265c19372392522a392842adc0e3');
+    assert.equal(res[0].gateSet, 'u1,u2,u3,cx');
+    assert.equal(res[0].topologyId, '250e969c6b9e68aa2a045ffbceb3ac33');
+    assert.equal(res[0].simulator, true);
+    assert.equal(res[0].nQubits, 24);
   });
 });
 

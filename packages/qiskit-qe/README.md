@@ -58,32 +58,6 @@ The actual version of the library.
 
 - `version` (string) - Version number.
 
-### `async login(personalToken) -> nfo`
-
-Get a long term access token using the QE personal, you can get it [here](https://quantumexperience.ng.bluemix.net/qx/account).
-
-- `info` (object): New token and its metadata:
-  - `token` (string) - New long term access token.
-  - `ttl` (number) - Time to live (in seconds).
-  - `created` (string) - When the account was created.
-  - `userId` (string)
-
-### `async backends(onlySims) -> info`
-
-Get the information of all available backends.
-
-- `onylSims` (boolean): To get only info of the simulators. (default: false)
-- `info` ([object]): A list of objects with next fields:
-  - `name` (string) - Descriptive name of the device.
-  - `status` (string) - If it´s "on" or "off".
-  - `serialNumber` (string)
-  - `description` (string)
-  - `id` (string)
-  - `topologyId` (string)
-  - `simulator` (boolean): To mark the simulators.
-  - `nQubits` (number): Number of Qubits the device has.
-  - `couplingMap` ([[number]]): To show how the Qubits are connected in this device.
-
 ### `async backendCalibration(name) -> info`
 
 Get latest calibration stats for a backend.
@@ -106,12 +80,38 @@ Get the latest parameters stats of the backend (more recent values that the ones
 
 ### `async queueStatus(name) -> info`
 
-Get the status of a backend queue. Token not needed.
+Get the status of a backend queue.
 
 - `name` (string): Name of the backend to inspect. (default: `ibmqx2`)
 - `info` (object): Including next fields:
   - `state` (boolean): If the queue is up or down.
   - `busy` (boolean): Due to internal reasons, sometimes a queue is stopped.
+
+### `async login(personalToken) -> info`
+
+Get a long term access token using the QE personal, you can get it [here](https://quantumexperience.ng.bluemix.net/qx/account). This method should be called before the ones included here from this point.
+
+- `info` (object): New token and its metadata:
+  - `token` (string) - New long term access token.
+  - `ttl` (number) - Time to live (in seconds).
+  - `created` (string) - When the account was created.
+  - `userId` (string).
+
+### `async backends(onlySims) -> info`
+
+Get the information of all available chips and simulators.
+
+- `onylSims` (boolean): To get only info of the simulators. (default: false)
+- `info` ([object]): A list of objects with next fields:
+  - `name` (string) - Descriptive name of the device.
+  - `status` (string) - If it´s "on" or "off".
+  - `serialNumber` (string)
+  - `description` (string)
+  - `id` (string)
+  - `topologyId` (string)
+  - `simulator` (boolean): To mark the simulators.
+  - `nQubits` (number): Number of Qubits the device has.
+  - `couplingMap` ([[number]]): To show how the Qubits are connected in this device.
 
 ### `async credits() -> info`
 
