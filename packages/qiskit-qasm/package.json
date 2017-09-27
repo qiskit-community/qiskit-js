@@ -17,6 +17,7 @@
   "scripts": {
     "dep-check": "npm-check",
     "dep-sec": "nsp check",
+    "dep-fix": "npm-check -u",
     "test": "mocha --recursive test"
   },
   "keywords": [
@@ -35,8 +36,7 @@
     "url": "https://github.ibm.com/IBMResearch/qiskit.js/issues"
   },
   "dependencies": {
-    "jison": "^0.4.17",
-    "lodash": "^4.17.4",
+    "jison": "^0.4.18",
     "qiskit-utils": "^0.1.0"
   },
   "engines": {

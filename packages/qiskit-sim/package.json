@@ -17,6 +17,7 @@
   "scripts": {
     "dep-check": "npm-check",
     "dep-sec": "nsp check",
+    "dep-fix": "npm-check -u",
     "test": "mocha --recursive test"
   },
   "keywords": [
@@ -36,10 +37,10 @@
     "url": "https://github.ibm.com/IBMResearch/qiskit.js/issues"
   },
   "dependencies": {
-    "debug": "^2.2.0",
+    "debug": "^3.1.0",
     "es6-promisify": "^5.0.0",
     "lodash": "^4.17.4",
-    "mathjs": "^3.14.2",
+    "mathjs": "^3.16.3",
     "qiskit-qasm": "^0.1.0"
   },
   "engines": {

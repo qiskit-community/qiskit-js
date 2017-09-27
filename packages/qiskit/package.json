@@ -20,6 +20,7 @@
   "scripts": {
     "dep-check": "npm-check",
     "dep-sec": "nsp check",
+    "dep-fix": "npm-check -u",
     "test": "mocha --recursive test"
   },
   "keywords": [
@@ -44,17 +45,14 @@
   },
   "dependencies": {
     "cli-color": "^1.2.0",
-    "debug": "^2.6.8",
-    "es6-promisify": "^5.0.0",
-    "lodash": "^4.17.4",
-    "mathjs": "^3.14.2",
+    "mathjs": "^3.16.3",
     "node-emoji": "^1.7.0",
     "prettyjson": "^1.2.1",
     "qiskit-qasm": "^0.1.0",
     "qiskit-qe": "^0.1.0",
     "qiskit-sim": "^0.1.0",
     "qiskit-utils": "^0.1.0",
-    "yargs": "^8.0.2"
+    "yargs": "^9.0.1"
   },
   "engines": {
     "node": ">=6",

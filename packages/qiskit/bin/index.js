@@ -18,8 +18,10 @@ const qiskit = require('..');
 
 // eslint-disable-next-line no-unused-expressions
 yargs
-  .version(qiskit.version)
+  // TODO: Not needed in v9, confirms
+  // .version(qiskit.version)
   .commandDir('./cmds')
   .demandCommand()
-  .help()
+  // TODO: Not needed in v9, confirms
+  // .help()
   .argv;
