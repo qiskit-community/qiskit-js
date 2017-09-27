@@ -21,6 +21,7 @@ const pkgInfo = require('../package');
 const expErrRegex = {
   formatUri: /URI format expected/,
   formatStr: /String format expected/,
+  formatBool: /Boolean format expected/,
   loginBefore: /Please use "login" before/,
 };
 let tokenPersonal;
@@ -62,6 +63,10 @@ describe('qe:version', () =>
 
 
 describe('qe:calibration', () => {
+  it('should fail if bad format in the "name" parameter', async () => {
+    await utils.throwsAsync(() => qe.calibration(1), expErrRegex.formatStr);
+  });
+
   it('should return the calibration info for the' +
      'default backend if no parameter', async () => {
     const res = await qe.calibration();
@@ -83,6 +88,10 @@ describe('qe:calibration', () => {
 
 
 describe('qe:parameters', () => {
+  it('should fail if bad format in the "name" parameter', async () => {
+    await utils.throwsAsync(() => qe.parameters(1), expErrRegex.formatStr);
+  });
+
   it('should return the parameters info for the' +
      'default backend if no parameter', async () => {
     const res = await qe.parameters();
@@ -108,6 +117,10 @@ describe('qe:parameters', () => {
 
 
 describe('qe:queues', () => {
+  it('should fail if bad format in the "name" parameter', async () => {
+    await utils.throwsAsync(() => qe.queues(1), expErrRegex.formatStr);
+  });
+
   it('should return the status of the queue the default backend if no parameter', async () => {
     const res = await qe.queues();
 
@@ -129,16 +142,20 @@ describe('qe:queues', () => {
 describe('qe:login', () => {
   // TODO: Move next 3 to each respective section when we have the logout
   // endpoint (still not available in he API).
-  it('should fail any request if no logged (404) - backends', async () => {
+  it('should fail if no logged (404) - backends', async () => {
     await utils.throwsAsync(() => qe.backends(), expErrRegex.loginBefore);
   });
 
-  it('should fail any request if no logged (404) - lastCodes', async () => {
+  it('should fail if no logged (404) - lastCodes', async () => {
     await utils.throwsAsync(() => qe.lastCodes(), expErrRegex.loginBefore);
   });
 
-  it('should fail any request if no logged (404) - credits', async () => {
+  it('should fail if no logged (404) - credits', async () => {
     await utils.throwsAsync(() => qe.credits(), expErrRegex.loginBefore);
+  });
+
+  it('should fail if bad format in the "token" parameter', async () => {
+    await utils.throwsAsync(() => qe.login(1), expErrRegex.formatStr);
   });
 
   it('should return the user info with a valid login', async () => {
@@ -182,6 +199,10 @@ describe('qe:backends', () => {
       'nQubits',
       'couplingMap',
     ]);
+  });
+
+  it('should fail if bad format in the "onlySim" parameter', async () => {
+    await utils.throwsAsync(() => qe.backends(1), expErrRegex.formatBool);
   });
 
   it('should allow to ask only for simulators info', async () => {
