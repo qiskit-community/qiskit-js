@@ -125,7 +125,6 @@ describe('qasm:parse', () => {
                     'reset q[0];';
 
     const res = parser.parse(circuit);
-    console.log(res);
     const expectedReset = [
       { type: 'qubit', identifier: 'q', number: '1' },
       { type: 'clbit', identifier: 'c', number: '1' },
