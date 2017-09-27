@@ -29,7 +29,7 @@ const errLoginBefore = 'Please use "login" before';
 
 // function parseNumber(num, min, max) {
 //   if (!num || typeof num !== 'number') {
-//     throw new Error(`Number format expected: ${num}`);    
+//     throw new Error(`Number format expected: ${num}`);
 //   }
 
 //   if ((min && num < min) || (max && num > max)) {
