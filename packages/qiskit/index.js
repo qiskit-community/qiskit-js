@@ -15,7 +15,7 @@ const sim = require('qiskit-sim');
 const Qe = require('qiskit-qe');
 const utils = require('qiskit-utils');
 
-const version = require('./package').version;
+const { version } = require('./package');
 
 
 module.exports = {

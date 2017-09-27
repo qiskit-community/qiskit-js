@@ -21,7 +21,7 @@ const debug = require('debug');
 const promisify = require('es6-promisify');
 const validator = require('validator');
 
-const version = require('./package.json').version;
+const { version } = require('./package.json');
 
 
 function pathToTag(fullPath) {
@@ -45,8 +45,8 @@ async function throwsAsync(block, errorRexp) {
     if (errorRexp) {
       assert.throws(() => { throw e; }, errorRexp);
     }
-   // We need this return because we're catching the thrown error,
-   // if not, the next assert.fail would be reached when the regexp matches.
+    // We need this return because we're catching the thrown error,
+    // if not, the next assert.fail would be reached when the regexp matches.
     return;
   }
 

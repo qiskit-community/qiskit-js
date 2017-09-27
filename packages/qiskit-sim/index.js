@@ -14,7 +14,7 @@ const unroll = require('./lib/unroll');
 const gateSingle = require('./lib/gateSingle');
 const gateTwo = require('./lib/gateTwo');
 const run = require('./lib/run');
-const version = require('./package').version;
+const { version } = require('./package');
 
 
 module.exports = {

@@ -21,7 +21,7 @@ npm i -g IBMResearch/qiskit.js
 :pencil: You can visit the complete example [in this test](./test/functional/index.js).
 
 ```js
-const utils = require('qiskit').utils;
+const { utils } = require('qiskit');
 // TODO: When published to npm
 // const utils = require('qiskit-utils');
 

@@ -13,7 +13,7 @@
 const assert = require('assert');
 
 const utils = require('..');
-const version = require('../package').version;
+const { version } = require('../package');
 
 
 function multiIncludes(text, values) {

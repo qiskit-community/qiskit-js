@@ -57,39 +57,39 @@ exports.handler = (argv) => {
 
   logger.info(`${logger.emoji('mag')} Reading the circuit file: ${pathCode}`);
   readFile(pathCode, 'utf8')
-  .then((code) => {
-    logger.info('Parsing the code file ...');
+    .then((code) => {
+      logger.info('Parsing the code file ...');
 
-    let codeParsed;
-    try {
-      codeParsed = JSON.parse(code);
-    } catch (err) {
-      logger.error('Parsing the circuit file', err);
+      let codeParsed;
+      try {
+        codeParsed = JSON.parse(code);
+      } catch (err) {
+        logger.error('Parsing the circuit file', err);
+        process.exit(1);
+      }
+
+      logger.info(`\n${logger.emoji('computer')} Starting the simulation ...`);
+      logger.time();
+      const resSim = qiskit.sim.run(codeParsed);
+      logger.timeEnd();
+
+      logger.info(`\n${logger.emoji('ok_hand')} Finised, result:`);
+      if (resSim && resSim.state) {
+        const stateJson = resSim.state.toJSON();
+        logger.bold(stateJson.data);
+        logger.info('\nState |psi> = U|0>:');
+        const quantumState = math.chain(math.zeros(stateJson.size[0]))
+          .multiply(math.complex(1, 0))
+          .done();
+        quantumState.set([0], 1);
+
+        logger.bold(math.multiply(resSim.state, quantumState));
+        logger.info('\nExtra info:');
+        logger.json({ size: stateJson.size });
+      }
+    })
+    .catch((err) => {
+      logger.error('Reading the circuit file', err);
       process.exit(1);
-    }
-
-    logger.info(`\n${logger.emoji('computer')} Starting the simulation ...`);
-    logger.time();
-    const resSim = qiskit.sim.run(codeParsed);
-    logger.timeEnd();
-
-    logger.info(`\n${logger.emoji('ok_hand')} Finised, result:`);
-    if (resSim && resSim.state) {
-      const stateJson = resSim.state.toJSON();
-      logger.bold(stateJson.data);
-      logger.info('\nState |psi> = U|0>:');
-      const quantumState = math.chain(math.zeros(stateJson.size[0]))
-                                .multiply(math.complex(1, 0))
-                                .done();
-      quantumState.set([0], 1);
-
-      logger.bold(math.multiply(resSim.state, quantumState));
-      logger.info('\nExtra info:');
-      logger.json({ size: stateJson.size });
-    }
-  })
-  .catch((err) => {
-    logger.error('Reading the circuit file', err);
-    process.exit(1);
-  });
+    });
 };

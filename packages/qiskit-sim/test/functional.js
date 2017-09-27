@@ -142,8 +142,8 @@ describe('sim:run', () => {
     // To avoid these last operations to the users.
     // If not we should provide an "utils" module with easy methods to get this info.
     const quantumState = math.chain(math.zeros(stateJson.size[0]))
-                              .multiply(math.complex(1, 0))
-                              .done();
+      .multiply(math.complex(1, 0))
+      .done();
     quantumState.set([0], 1);
 
     const state0 = math.multiply(res.state, quantumState).toJSON();

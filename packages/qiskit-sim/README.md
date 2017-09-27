@@ -21,7 +21,7 @@ npm i -g IBMResearch/qiskit.js
 :pencil: You can visit the complete example [in this test](./test/functional/run.js).
 
 ```js
-const sim = require('qiskit').sim;
+const { sim } = require('qiskit');
 // TODO: When published to npm
 // const sim = require('qiskit-sim');
 

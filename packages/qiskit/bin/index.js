@@ -13,7 +13,7 @@
 
 const yargs = require('yargs');
 
-const qiskit = require('..');
+// const qiskit = require('..');
 
 
 // eslint-disable-next-line no-unused-expressions

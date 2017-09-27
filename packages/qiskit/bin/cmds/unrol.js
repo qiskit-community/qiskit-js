@@ -43,9 +43,9 @@ exports.handler = (argv) => {
   const pathCode = path.resolve(process.cwd(), argv.circuit);
 
   readFile(pathCode, 'utf8')
-  .then((code) => { logger.json(qiskit.sim.unroll(code)); })
-  .catch((err) => {
-    logger.error('Reading the circuit file', err);
-    process.exit(1);
-  });
+    .then((code) => { logger.json(qiskit.sim.unroll(code)); })
+    .catch((err) => {
+      logger.error('Reading the circuit file', err);
+      process.exit(1);
+    });
 };

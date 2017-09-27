@@ -44,9 +44,9 @@ exports.handler = (argv) => {
   // TODO: "async" still not suported by yargs:
   // https://github.com/yargs/yargs/issues/510
   readFile(pathCode, 'utf8')
-  .then((code) => { logger.json(qiskit.qasm.parse(code)); })
-  .catch((err) => {
-    logger.error('Reading the circuit file', err);
-    process.exit(1);
-  });
+    .then((code) => { logger.json(qiskit.qasm.parse(code)); })
+    .catch((err) => {
+      logger.error('Reading the circuit file', err);
+      process.exit(1);
+    });
 };

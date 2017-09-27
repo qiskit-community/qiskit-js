@@ -11,7 +11,7 @@
 'use strict';
 
 // const checkToken = require('./lib/checkToken');
-const version = require('./package').version;
+const { version } = require('./package');
 const utils = require('./lib/utils');
 const request = require('./lib/request');
 
@@ -167,7 +167,6 @@ class Qe {
 
     return res.codes;
   }
-
 }
 
 

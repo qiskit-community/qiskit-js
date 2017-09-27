@@ -12,7 +12,7 @@
 
 const Parser = require('./lib/Parser');
 const QasmError = require('./lib/QasmError');
-const version = require('./package').version;
+const { version } = require('./package');
 
 
 module.exports = {

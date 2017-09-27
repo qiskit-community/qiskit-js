@@ -21,7 +21,7 @@ npm i -g IBMResearch/qiskit.js
 :pencil: You can visit more advanced examples in the [test folder](test).
 
 ```js
-const Qe = require('qiskit').Qe;
+const { Qe } = require('qiskit');
 // TODO: When published to npm
 // const Qe = require('qiskit-qe');
 

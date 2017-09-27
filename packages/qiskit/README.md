@@ -5,7 +5,6 @@
 
 :atom_symbol: [Quantum Information Software Kit](https://developer.ibm.com/open/openprojects/qiskit) in pure JavaScript. Main package, including all the tools.
 
-
 ## Install
 
 :coffee: Install [Node.js](https://nodejs.org/download) and then:
@@ -17,7 +16,6 @@ npm i -g IBMResearch/qiskit.js
 # TODO: When published in npm.
 # npm i -g qiskit
 ```
-
 
 ## Use
 

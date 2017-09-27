@@ -22,11 +22,11 @@ const complex = math.complex(1, 0);
 
 module.exports = (gate, qubit, nQubits, state) => {
   const temp1 = math.chain(math.eye(math.pow(2, nQubits - qubit - 1)))
-                          .multiply(complex)
-                          .done();
+    .multiply(complex)
+    .done();
   const temp2 = math.chain(math.eye(math.pow(2, qubit)))
-                          .multiply(complex)
-                          .done();
+    .multiply(complex)
+    .done();
   const enlargeOpt = math.kron(temp1, math.kron(gate, temp2));
 
   return math.multiply(enlargeOpt, state);

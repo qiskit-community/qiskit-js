@@ -12,12 +12,13 @@
 
 const qasm = require('qiskit-qasm');
 
-const parse = qasm.parse;
+const { Parser } = qasm;
+const parser = new Parser({});
 // const QasmError = qasm.QasmError;
 
 
 module.exports = (circuitQasm) => {
-  const parsed = parse(circuitQasm);
+  const parsed = parser.parse(circuitQasm);
 
 
   // TODO FROM HERE

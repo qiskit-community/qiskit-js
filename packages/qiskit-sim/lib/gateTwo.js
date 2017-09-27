@@ -73,7 +73,9 @@ module.exports = (gate, qubit0, qubit1, numQbits, state) => {
   // eslint-disable-next-line no-bitwise
   const enlargeOpt = math.zeros(1 << numQbits, 1 << numQbits);
 
-  dbg('Starting "addUnitaryTwo" with opions', { gate, qubit0, qubit1, numQbits });
+  dbg('Starting "addUnitaryTwo" with opions', {
+    gate, qubit0, qubit1, numQbits,
+  });
 
   dbg('\n\nState before\n\n');
   dbg(state.toString());

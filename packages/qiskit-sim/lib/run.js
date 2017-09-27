@@ -69,8 +69,8 @@ module.exports = (circuit) => {
   }
 
   let state = math.chain(math.eye(math.pow(2, numQbits)))
-                          .multiply(complex)
-                          .done();
+    .multiply(complex)
+    .done();
 
   // TODO: Use an iterator for huge circuits.
   dbg('Starting iterations over ops', { numOperations, numQbits });
@@ -84,7 +84,9 @@ module.exports = (circuit) => {
       const phi = op.params[1];
       const lam = op.params[2];
 
-      dbg('"U" gate detected', { qubit, theta, phi, lam });
+      dbg('"U" gate detected', {
+        qubit, theta, phi, lam,
+      });
 
       const m11 = math.cos(theta / 2.0);
 
@@ -97,8 +99,8 @@ module.exports = (circuit) => {
       const m22 = math.multiply(math.exp(math.add(n1jNphi, n1jNlam)), math.cos(theta / 2.0));
 
       const gate = math.matrix([
-          [m11, m12],
-          [m21, m22],
+        [m11, m12],
+        [m21, m22],
       ]);
 
       dbg('New gate created');

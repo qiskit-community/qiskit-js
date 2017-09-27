@@ -21,7 +21,7 @@ npm i -g IBMResearch/qiskit.js
 :pencil: You can visit the complete example [in this test](./test/functional/parse.js).
 
 ```js
-const qasm = require('qiskit').qasm;
+const { qasm } = require('qiskit');
 // TODO: When published to npm
 // const qasm = require('qiskit-qasm');
 
