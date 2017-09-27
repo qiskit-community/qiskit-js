@@ -68,21 +68,21 @@ class Qe {
   // Token not needed.
 
 
-  async backendCalibration(name = defaultBackend) {
+  async calibration(name = defaultBackend) {
     dbg('Getting the calibration info', { name });
 
     return request(`${this.uri}/Backends/${name}/calibration`);
   }
 
 
-  async backendParameters(name = defaultBackend) {
+  async parameters(name = defaultBackend) {
     dbg('Getting the parameters info', { name });
 
     return request(`${this.uri}/Backends/${name}/parameters`);
   }
 
 
-  async queueStatus(name = defaultBackend) {
+  async queues(name = defaultBackend) {
     dbg('Getting the status of the queue for', { name });
 
     // TODO: The API returns undefined if the backend doesn´t exists.

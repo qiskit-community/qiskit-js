@@ -58,7 +58,7 @@ The actual version of the library.
 
 - `version` (string) - Version number.
 
-### `async backendCalibration(name) -> info`
+### `async calibration(name) -> info`
 
 Get latest calibration stats for a backend.
 
@@ -68,7 +68,7 @@ Get latest calibration stats for a backend.
   - `qubits` ([object]): Error in each qubit.
   - `multiQubitGates:` ([object]): Error in each gate.
 
-### `async backendParameters(name) -> info`
+### `async parameters(name) -> info`
 
 Get the latest parameters stats of the backend (more recent values that the ones returned by the `backendCalibration` method).
 
@@ -78,7 +78,7 @@ Get the latest parameters stats of the backend (more recent values that the ones
   - `fridgeParameters` (string): Information about the cooler.
   - `qubits` ([object]): Error in each qubit.
 
-### `async queueStatus(name) -> info`
+### `async queues(name) -> info`
 
 Get the status of a backend queue.
 

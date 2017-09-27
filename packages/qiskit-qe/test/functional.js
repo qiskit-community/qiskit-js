@@ -50,10 +50,10 @@ describe('qe:new', () => {
 // No token needed.
 
 
-describe('qe:backendCalibration', () => {
+describe('qe:calibration', () => {
   it('should return the calibration info for the' +
      'default backend if no parameter', async () => {
-    const res = await qe.backendCalibration();
+    const res = await qe.calibration();
 
     assert.deepEqual(Object.keys(res), ['lastUpdateDate', 'qubits', 'multiQubitGates']);
     assert.equal(typeof res.lastUpdateDate, 'string');
@@ -64,17 +64,17 @@ describe('qe:backendCalibration', () => {
   it('should return the calibration info for the selected backend', async () => {
     // We use a non existent one because we can´t know in advance the returned values here.
     // TODO: The API should return an error in this case.
-    const res = await qe.backendCalibration('nonexistent');
+    const res = await qe.calibration('nonexistent');
 
     assert.deepEqual(Object.keys(res), []);
   });
 });
 
 
-describe('qe:backendParameters', () => {
+describe('qe:parameters', () => {
   it('should return the parameters info for the' +
      'default backend if no parameter', async () => {
-    const res = await qe.backendParameters();
+    const res = await qe.parameters();
 
     assert.deepEqual(Object.keys(res), [
       'lastUpdateDate',
@@ -89,16 +89,16 @@ describe('qe:backendParameters', () => {
   it('should return the parameters info for the selected backend', async () => {
     // We use a non existent one because we can´t know in advance the returned values here.
     // TODO: The API should return an error in this case.
-    const res = await qe.backendParameters('nonexistent');
+    const res = await qe.parameters('nonexistent');
 
     assert.deepEqual(Object.keys(res), []);
   });
 });
 
 
-describe('qe:queueStatus', () => {
+describe('qe:queues', () => {
   it('should return the status of the queue the default backend if no parameter', async () => {
-    const res = await qe.queueStatus();
+    const res = await qe.queues();
 
     assert.deepEqual(Object.keys(res), ['state', 'busy']);
     assert.equal(typeof res.state, 'boolean');
@@ -108,7 +108,7 @@ describe('qe:queueStatus', () => {
   it('should return the queue info for the selected backend', async () => {
     // We use a non existent one because we can´t know in advance the returned values here.
     // TODO: The API should return an error in this case.
-    const res = await qe.queueStatus('nonexistent');
+    const res = await qe.queues('nonexistent');
 
     assert.deepEqual(res, {});
   });
