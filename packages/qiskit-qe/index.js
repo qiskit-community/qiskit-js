@@ -27,17 +27,34 @@ const defaultBackend = 'ibmqx4';
 const errLoginBefore = 'Please use "login" before';
 
 
-function checkUri(uri) {
-  if (!uri || !utils.validator.isURL(uri)) {
-    throw new Error('URI format expected');
+// function parseNumber(num, min, max) {
+//   if (!num || typeof num !== 'number') {
+//     throw new Error(`Number format expected: ${num}`);    
+//   }
+
+//   if ((min && num < min) || (max && num > max)) {
+//     throw new Error(`Out of range: ${num}`);
+//   }
+
+//   return num;
+// }
+
+
+function parseString(str) {
+  if (!str || typeof str !== 'string') {
+    throw new Error(`String format expected: ${str}`);
   }
+
+  return str;
 }
 
 
-function checkString(str) {
-  if (!str || typeof str !== 'string') {
-    throw new Error('String format expected');
+function parseBool(value) {
+  if (!value || typeof value !== 'boolean') {
+    throw new Error(`Boolean format expected: ${value}`);
   }
+
+  return value;
 }
 
 
@@ -46,22 +63,13 @@ class Qe {
     dbg('Starting', opts);
 
     this.version = version;
-
     if (opts.uri) {
-      dbg('Setting the passed URI');
-      checkUri(opts.uri);
       this.uri = opts.uri;
     } else {
       this.uri = defaults.uri;
     }
-
-    // Filled when a login is correctly made. ("login" method)
-    // but it can be passed/set.
-    if (opts.token) {
-      dbg('Setting the passed token');
-      checkString(opts.token);
-      this.token = opts.token;
-    }
+    // "token" is also set after a successful login.
+    if (opts.token) { this.token = opts.token; }
   }
 
 
@@ -71,34 +79,40 @@ class Qe {
   async calibration(name = defaultBackend) {
     dbg('Getting the calibration info', { name });
 
-    return request(`${this.uri}/Backends/${name}/calibration`);
+    const backName = parseString(name);
+
+    return request(`${this.uri}/Backends/${backName}/calibration`);
   }
 
 
   async parameters(name = defaultBackend) {
     dbg('Getting the parameters info', { name });
 
-    return request(`${this.uri}/Backends/${name}/parameters`);
+    const backName = parseString(name);
+
+    return request(`${this.uri}/Backends/${backName}/parameters`);
   }
 
 
   async queues(name = defaultBackend) {
     dbg('Getting the status of the queue for', { name });
 
+    const backName = parseString(name);
+
     // TODO: The API returns undefined if the backend doesn´t exists.
     // Using empty object to be consistent with parameters and calibration.
     // return request(`${this.uri}/Backends/${name}/queue/status`);
-    const res = await request(`${this.uri}/Backends/${name}/queue/status`);
+    const res = await request(`${this.uri}/Backends/${backName}/queue/status`);
     return res || {};
   }
 
 
   async login(tokenPersonal) {
     dbg('Getting a long term token');
-    checkString(tokenPersonal);
+    const t = parseString(tokenPersonal);
 
     const res = await request(`${this.uri}/users/loginWithToken`, {
-      body: { apiToken: tokenPersonal },
+      body: { apiToken: t },
     });
 
     this.token = res.id;
@@ -144,7 +158,7 @@ class Qe {
     // At the integration environment all the returned ones are 'on'.
     res = utils.filter(res, el => el.status === 'on');
 
-    if (onlySims) {
+    if (onlySims && parseBool(onlySims)) {
       dbg('Returning only the simulators');
 
       return utils.filter(res, el => el.status === 'on' && el.simulator === true);
@@ -152,6 +166,45 @@ class Qe {
 
     return res;
   }
+
+
+  // async run(qasm, opts) {
+  //   dbg('Running experiment ...');
+
+  //   checkString(qasm);
+
+  //   // let seed = opts.seed || null;
+
+  //   let { shots, timeout } = opts;
+
+  //   if (shots) {
+  //     checkNumber(shots, 0, 8192);
+  //   } else {
+  //     shots = 1024;
+  //   }
+
+  //   if (timeout) {
+  //     checkNumber(timeout, 0, 8192);
+  //   } else {
+  //     timeout = 120;
+  //   }
+
+  //   if (opts.name) { checkString(opts.name); }
+
+  //   const res = await request(`${this.uri}/codes/execute`, {
+  //     token: this.token,
+  //     body: {
+  //       qasm,
+  //       backend: opts.backend || defaultBackend,
+  //       name: opts.name || null,
+  //       shots,
+  //       timeout,
+  //     },
+  //   });
+
+  //   return res;
+  // }
+
 
   // TODO: async getCode(id)
 

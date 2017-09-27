@@ -25,26 +25,37 @@ const expErrRegex = {
 };
 let tokenPersonal;
 const opts = {};
+const { version } = pkgInfo;
+
 // To support the integration environment (Travis) without exposing sensitive data.
 // TODO:
 // - Use spies to check all request are ok for develop environment.
 if (process.env.QE_TOKEN) { tokenPersonal = process.env.QE_TOKEN; }
 if (process.env.QE_URI) { opts.uri = process.env.QE_URI; }
 
-const qe = new Qe(opts);
+let qe;
+
+
+describe('qe:new', () => {
+  it('should work without options', () => {
+    const qe2 = new Qe();
+    assert.equal(qe2.version, version);
+  });
+
+  it('should work with empty options', () => {
+    const qe2 = new Qe({});
+    assert.equal(qe2.version, version);
+  });
+
+  it('should work with options', () => {
+    qe = new Qe(opts);
+    assert.equal(qe.version, version);
+  });
+});
 
 
 describe('qe:version', () =>
   it('should return the package version', () => assert.equal(qe.version, pkgInfo.version)));
-
-
-describe('qe:new', () => {
-  it('should fail if invalid URI format', () =>
-    assert.throws(() => new Qe({ uri: 'a' }), expErrRegex.formatUri));
-
-  it('should fail if invalid token format', () =>
-    assert.throws(() => new Qe({ token: 1 }), expErrRegex.formatStr));
-});
 
 
 // No token needed.

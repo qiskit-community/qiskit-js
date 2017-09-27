@@ -48,7 +48,7 @@ The constructor accepts next option:
 
 ### `token`
 
-The long term access token being used, ie: to avoid the re-connection (login) in a worker.
+To force the long term access token, ie: to avoid the re-connection (login) in a worker.
 
 - `token` (string) - Token.
 
