@@ -90,7 +90,7 @@ Get the status of a backend queue.
 
 ### `async login(personalToken) -> info`
 
-Get a long term access token using the QE personal, you can get it [here](https://quantumexperience.ng.bluemix.net/qx/account). This method should be called before the ones included here from this point.
+Get a long term access token using the QE personal, you can get it [here](https://quantumexperience.ng.bluemix.net/qx/account). **This method should be called before the rest ones documented from this point**.
 
 - `info` (object): New token and its metadata:
   - `token` (string) - New long term access token.
@@ -143,11 +143,11 @@ Run a batch of circuits in any of the avaliable backends. This method can genera
 
 - `circuits` ([object]): Batch of circuits. Being "object":
   - `qasm` (string): Circuit in OpenQASM. The unique mandatory field.
-  - `name`: (default: null)
+  - `name`
   - `shots`: Only to overwrite this parameter defined in "opts" for this piece of code.
   - `seed`: Same than "shots".
 - `opts`
-  - `backend
+  - `backend`
   - `shots`
   - `seed`
   - `maxCredits`
