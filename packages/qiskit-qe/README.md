@@ -17,17 +17,19 @@ npm i qiskit-qe
 :pencil: You can visit more advanced examples in the [test folder](test).
 
 ```js
+'use strict';
+
 const Qe = require('qiskit-qe');
+
 
 const qe = new Qe({});
 
 console.log('Version');
 console.log(qe.version);
 
-await qe.login('YOUR_PERSONAL_TOKEN_HERE')
-
-const backends = await qe.backends();
-console.log(backends);
+qe.login('YOUR_PERSONAL_TOKEN_HERE')
+  .then(() => qe.backends())
+  .then(backs => console.log(backs));
 ```
 
 ## API
