@@ -15,6 +15,7 @@ const utilsTest = require('../../../utils-test');
 
 const Qe = require('..');
 const pkgInfo = require('../package');
+const expErrRegex = require('./errorRe');
 
 
 function checkJob(res) {
@@ -44,22 +45,9 @@ function checkJob(res) {
   }
 }
 
-
-const expErrRegex = {
-  formatUri: /URI format expected/,
-  formatStr: /String format expected/,
-  formatBool: /Boolean format expected/,
-  formatNumber: /Number format expected/,
-  formatArr: /Array format expected/,
-  formatObj: /Object format expected/,
-  loginBefore: /Please use "login" before/,
-  outRange: /Out of range/,
-  badQasm: /QASM_NOT_VALID/,
-};
 let tokenPersonal;
 const { version } = pkgInfo;
 let qe;
-
 // To support the integration environment (Travis) without exposing sensitive data.
 // TODO:
 // - Use spies to check all request are ok for develop environment.

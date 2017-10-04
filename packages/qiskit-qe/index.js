@@ -10,87 +10,17 @@
 
 'use strict';
 
-// TODO: REVIEW ALL REQUESTS TO SEE IF WE CAN ASK ONLY THE FIELDS WE NEED
-// const checkToken = require('./lib/checkToken');
 const { version } = require('./package');
 const utils = require('./lib/utils');
 const request = require('./lib/request');
+const massageJob = require('./lib/massageJob');
+const parser = require('./lib/parser');
 const cfg = require('./cfg.json');
 
 
 const dbg = utils.dbg(__filename);
 // To avoid requests that are going to fail to the API.
 const errLoginBefore = 'Please use "login" before';
-
-
-// TODO: Move the parsers out of here.
-
-function parseNumber(num, min, max) {
-  if (!num || typeof num !== 'number') {
-    throw new Error(`Number format expected: ${num}`);
-  }
-
-  if (((min || min === 0) && num < min) || (max && num > max)) {
-    throw new Error(`Out of range: ${num}`);
-  }
-
-  return num;
-}
-
-
-function parseString(str) {
-  if (!str || typeof str !== 'string') {
-    throw new Error(`String format expected: ${str}`);
-  }
-
-  return str;
-}
-
-
-function parseBool(value) {
-  if (!value || typeof value !== 'boolean') {
-    throw new Error(`Boolean format expected: ${value}`);
-  }
-
-  return value;
-}
-
-
-function massageJob(resJob) {
-  dbg('Massaging the result ...', resJob);
-
-  const result = {
-    id: resJob.id,
-    backend: resJob.backend.name,
-    shots: resJob.shots,
-    creationDate: resJob.creationDate,
-    usedCredits: resJob.usedCredits,
-    status: resJob.status,
-    // eslint-disable-next-line arrow-body-style
-    circuits: utils.map(resJob.qasms, (el) => {
-      const massaged = {
-        qasm: el.qasm,
-        execution: {
-          id: el.executionId,
-          status: el.status,
-        },
-      };
-
-      if (el.name) { massaged.name = el.name; }
-      if (el.shots) { massaged.shots = el.shots; }
-      if (el.seed) { massaged.seed = el.seed; }
-      if (el.result) { massaged.result = el.result; }
-
-      return massaged;
-    }),
-  };
-
-  if (resJob.maxCredits) { result.maxCredits = resJob.maxCredits; }
-  if (resJob.seed) { result.seed = resJob.seed; }
-
-  dbg('Massaged ...', result);
-  return result;
-}
 
 
 class Qe {
@@ -110,7 +40,7 @@ class Qe {
   async calibration(name = cfg.defaults.backend.reads) {
     dbg('Getting the calibration info', { name });
 
-    const backName = parseString(name);
+    const backName = parser.string(name);
 
     return request(`${this.uri}/Backends/${backName}/calibration`);
   }
@@ -119,7 +49,7 @@ class Qe {
   async parameters(name = cfg.defaults.backend.reads) {
     dbg('Getting the parameters info', { name });
 
-    const backName = parseString(name);
+    const backName = parser.string(name);
 
     return request(`${this.uri}/Backends/${backName}/parameters`);
   }
@@ -128,7 +58,7 @@ class Qe {
   async queues(name = cfg.defaults.backend.reads) {
     dbg('Getting the status of the queue for', { name });
 
-    const backName = parseString(name);
+    const backName = parser.string(name);
 
     // TODO: The API returns undefined if the backend doesn´t exists.
     // Using empty object to be consistent with parameters and calibration.
@@ -141,7 +71,7 @@ class Qe {
   async login(tokenPersonal) {
     dbg('Getting a long term token');
 
-    const t = parseString(tokenPersonal);
+    const t = parser.string(tokenPersonal);
 
     const res = await request(`${this.uri}/users/loginWithToken`, {
       body: { apiToken: t },
@@ -203,7 +133,7 @@ class Qe {
     // TODO: This endpoint doesn´t allow the filter param.
     res = utils.filter(res, el => el.status === 'on');
 
-    if (onlySims && parseBool(onlySims)) {
+    if (onlySims && parser.bool(onlySims)) {
       dbg('Returning only the simulators');
 
       return utils.filter(res, el => el.status === 'on' && el.simulator === true);
@@ -219,7 +149,7 @@ class Qe {
     if (!this.token || !this.userId) { throw new Error(errLoginBefore); }
 
     dbg('Parsing mandatory params ...', { circuit });
-    let qasm = parseString(circuit);
+    let qasm = parser.string(circuit);
     // TODO: Dirty trick because the API adds this line again.
     qasm = qasm.replace('IBMQASM 2.0;', '').replace('OPENQASM 2.0;', '');
 
@@ -227,7 +157,7 @@ class Qe {
 
     let backend;
     if (opts.backend) {
-      backend = parseString(opts.backend);
+      backend = parser.string(opts.backend);
     } else {
       backend = cfg.defaults.backend.run;
     }
@@ -240,13 +170,13 @@ class Qe {
       },
     };
     if (opts.shots) {
-      reqOpts.body.shots = parseNumber(opts.shots, cfg.limits.shots[0], cfg.limits.shots[1]);
+      reqOpts.body.shots = parser.number(opts.shots, cfg.limits.shots[0], cfg.limits.shots[1]);
     } else {
       reqOpts.body.shots = cfg.defaults.shots;
     }
-    if (opts.seed) { reqOpts.body.seed = parseString(opts.seed); }
-    if (opts.maxCredits) { reqOpts.body.maxCredits = parseNumber(opts.maxCredits, 0); }
-    if (opts.name) { reqOpts.body.qasms[0].name = parseString(opts.name); }
+    if (opts.seed) { reqOpts.body.seed = parser.string(opts.seed); }
+    if (opts.maxCredits) { reqOpts.body.maxCredits = parser.number(opts.maxCredits, 0); }
+    if (opts.name) { reqOpts.body.qasms[0].name = parser.string(opts.name); }
 
     dbg('Making the request ...', reqOpts);
     const res = await request(`${this.uri}/Jobs`, reqOpts);
@@ -279,13 +209,13 @@ class Qe {
           throw new Error(`Object format expected: ${el}`);
         }
         const parsed = {
-          qasm: parseString(el.qasm).replace('IBMQASM 2.0;', '').replace('OPENQASM 2.0;', ''),
+          qasm: parser.string(el.qasm).replace('IBMQASM 2.0;', '').replace('OPENQASM 2.0;', ''),
         };
         if (el.shots) {
-          parsed.shots = parseNumber(el.shots, cfg.limits.shots[0], cfg.limits.shots[1]);
+          parsed.shots = parser.number(el.shots, cfg.limits.shots[0], cfg.limits.shots[1]);
         }
-        if (el.seed) { parsed.seed = parseString(el.seed); }
-        if (el.name) { parsed.name = parseString(el.name); }
+        if (el.seed) { parsed.seed = parser.string(el.seed); }
+        if (el.name) { parsed.name = parser.string(el.name); }
 
         return parsed;
       });
@@ -295,14 +225,14 @@ class Qe {
 
     let backend;
     if (opts.backend) {
-      backend = parseString(opts.backend);
+      backend = parser.string(opts.backend);
     } else {
       backend = cfg.defaults.backend.run;
     }
 
     let shots;
     if (opts.shots) {
-      shots = parseNumber(opts.shots, cfg.limits.shots[0], cfg.limits.shots[1]);
+      shots = parser.number(opts.shots, cfg.limits.shots[0], cfg.limits.shots[1]);
     } else {
       // eslint-disable-next-line prefer-destructuring
       shots = cfg.defaults.shots;
@@ -317,9 +247,9 @@ class Qe {
       },
     };
 
-    if (opts.seed) { reqOpts.body.seed = parseString(opts.seed); }
+    if (opts.seed) { reqOpts.body.seed = parser.string(opts.seed); }
 
-    if (opts.maxCredits) { reqOpts.body.maxCredits = parseNumber(opts.maxCredits, 0); }
+    if (opts.maxCredits) { reqOpts.body.maxCredits = parser.number(opts.maxCredits, 0); }
 
     dbg('Making the request ...', reqOpts);
     const res = await request(`${this.uri}/Jobs`, reqOpts);
@@ -338,7 +268,7 @@ class Qe {
 
     if (!this.token) { throw new Error(errLoginBefore); }
 
-    const res = await request(`${this.uri}/Jobs/${parseString(id)}`, { token: this.token });
+    const res = await request(`${this.uri}/Jobs/${parser.string(id)}`, { token: this.token });
 
     return massageJob(res);
   }
@@ -353,8 +283,8 @@ class Qe {
       token: this.token,
       filter: { order: 'creationDate DESC' },
     };
-    if (limit) { reqOpts.filter.limit = parseNumber(limit, 0); }
-    if (skip) { reqOpts.filter.skip = parseNumber(skip, 0); }
+    if (limit) { reqOpts.filter.limit = parser.number(limit, 0); }
+    if (skip) { reqOpts.filter.skip = parser.number(skip, 0); }
 
     const res = await request(`${this.uri}/Jobs`, reqOpts);
 
