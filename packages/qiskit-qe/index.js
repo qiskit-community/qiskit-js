@@ -98,11 +98,8 @@ class Qe {
     dbg('Starting', opts);
 
     this.version = version;
-    if (opts.uri) {
-      this.uri = opts.uri;
-    } else {
-      this.uri = cfg.uri;
-    }
+    this.uri = process.env.QE_URI || cfg.uri;
+
     // "token" is also set after a successful login.
     if (opts.token) { this.token = opts.token; }
   }

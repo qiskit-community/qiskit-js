@@ -10,7 +10,6 @@
 
 'use strict';
 
-
 const assert = require('assert');
 const utilsTest = require('../../../utils-test');
 
@@ -58,27 +57,21 @@ const expErrRegex = {
   badQasm: /QASM_NOT_VALID/,
 };
 let tokenPersonal;
-const opts = {};
 const { version } = pkgInfo;
+let qe;
 
 // To support the integration environment (Travis) without exposing sensitive data.
 // TODO:
 // - Use spies to check all request are ok for develop environment.
 if (process.env.QE_TOKEN) { tokenPersonal = process.env.QE_TOKEN; }
-if (process.env.QE_URI) { opts.uri = process.env.QE_URI; }
-
-let qe;
 
 
 describe('qe:new', () => {
   it('should work without options', () =>
     assert.equal(new Qe().version, version));
 
-  it('should work with empty options', () =>
-    assert.equal(new Qe({}).version, version));
-
-  it('should work with options', () => {
-    qe = new Qe(opts);
+  it('should work with empty options', () => {
+    qe = new Qe({});
 
     assert.equal(qe.version, version);
   });
