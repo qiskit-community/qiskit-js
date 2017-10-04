@@ -27,15 +27,9 @@ describe('utils:api', () => {
       'version',
       'debug',
       'pathToTag',
-      'validator',
-      'promisify',
-      'throwsAsync',
     ]));
   });
 
   it('should return the the correct result for its methods', () =>
     assert.equal(utils.version, version));
-
-  it('should return the correct result for any item', () =>
-    assert.equal(utils.validator.isBoolean('true'), true));
 });

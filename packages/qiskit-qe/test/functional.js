@@ -12,17 +12,50 @@
 
 
 const assert = require('assert');
-const utils = require('qiskit-utils');
+const utilsTest = require('../../../utils-test');
 
 const Qe = require('..');
 const pkgInfo = require('../package');
+
+
+function checkJob(res) {
+  assert.deepEqual(Object.keys(res), [
+    'id', 'backend', 'shots', 'creationDate',
+    'usedCredits', 'status', 'circuits',
+  ]);
+  assert.equal(typeof res.id, 'string');
+  assert.equal(typeof res.backend, 'string');
+  assert.equal(typeof res.shots, 'number');
+  assert.equal(typeof res.creationDate, 'string');
+  assert.equal(typeof res.usedCredits, 'number');
+  assert.equal(typeof res.status, 'string');
+  assert.equal(res.circuits.length, 1);
+  assert.deepEqual(Object.keys(res.circuits[0]), ['qasm', 'execution']);
+  assert.equal(typeof res.circuits[0].qasm, 'string');
+  assert.deepEqual(Object.keys(res.circuits[0].execution), ['id', 'status']);
+  assert.equal(typeof res.circuits[0].execution.id, 'string');
+  assert.equal(typeof res.circuits[0].execution.status, 'string');
+  // Maybe it has not finished.
+  if (res.circuits[0].execution.result) {
+    assert.deepEqual(Object.keys(res.circuits[0].execution.result), ['date', 'data']);
+    assert.equal(typeof res.circuits[0].execution.result.date, 'string');
+    assert.deepEqual(Object.keys(res.circuits[0].execution.result.data), ['time', 'count']);
+    assert.equal(typeof res.circuits[0].execution.result.data.time, 'string');
+    assert.equal(typeof res.circuits[0].execution.result.data.count, 'object');
+  }
+}
 
 
 const expErrRegex = {
   formatUri: /URI format expected/,
   formatStr: /String format expected/,
   formatBool: /Boolean format expected/,
+  formatNumber: /Number format expected/,
+  formatArr: /Array format expected/,
+  formatObj: /Object format expected/,
   loginBefore: /Please use "login" before/,
+  outRange: /Out of range/,
+  badQasm: /QASM_NOT_VALID/,
 };
 let tokenPersonal;
 const opts = {};
@@ -62,7 +95,7 @@ describe('qe:version', () =>
 
 describe('qe:calibration', () => {
   it('should fail if bad format in the "name" parameter', async () =>
-    utils.throwsAsync(() => qe.calibration(1), expErrRegex.formatStr));
+    utilsTest.throwsAsync(() => qe.calibration(1), expErrRegex.formatStr));
 
   it('should return the calibration info for the' +
      'default backend if no parameter', async () => {
@@ -83,7 +116,7 @@ describe('qe:calibration', () => {
 
 describe('qe:parameters', () => {
   it('should fail if bad format in the "name" parameter', async () =>
-    utils.throwsAsync(() => qe.parameters(1), expErrRegex.formatStr));
+    utilsTest.throwsAsync(() => qe.parameters(1), expErrRegex.formatStr));
 
   it('should return the parameters info for the' +
      'default backend if no parameter', async () => {
@@ -108,14 +141,15 @@ describe('qe:parameters', () => {
 
 describe('qe:queues', () => {
   it('should fail if bad format in the "name" parameter', async () =>
-    utils.throwsAsync(() => qe.queues(1), expErrRegex.formatStr));
+    utilsTest.throwsAsync(() => qe.queues(1), expErrRegex.formatStr));
 
   it('should return the status of the queue the default backend if no parameter', async () => {
     const res = await qe.queues();
 
-    assert.deepEqual(Object.keys(res), ['state', 'busy']);
+    assert.deepEqual(Object.keys(res), ['state', 'busy', 'lengthQueue']);
     assert.equal(typeof res.state, 'boolean');
     assert.equal(typeof res.busy, 'boolean');
+    assert.equal(typeof res.lengthQueue, 'number');
   });
 
   // We use a non existent one because we can´t know in advance the returned values here.
@@ -126,8 +160,12 @@ describe('qe:queues', () => {
 
 
 describe('qe:login', () => {
+  it('should fail if "token" parameter no present', async () =>
+    // TODO: Emit proper error.
+    utilsTest.throwsAsync(() => qe.login(), expErrRegex.formatStr));
+
   it('should fail if bad format in the "token" parameter', async () =>
-    utils.throwsAsync(() => qe.login(1), expErrRegex.formatStr));
+    utilsTest.throwsAsync(() => qe.login(1), expErrRegex.formatStr));
 
   it('should return the user info with a valid login', async () => {
     const res = await qe.login(tokenPersonal);
@@ -148,10 +186,41 @@ describe('qe:login', () => {
 
 // Token needed.
 
+describe('qe:backend', () => {
+  it('should fail if no logged', async () =>
+    utilsTest.throwsAsync(() => new Qe().backend(), expErrRegex.loginBefore));
+
+  it('should return a backends info', async () => {
+    const res = await qe.backend();
+
+    assert.deepEqual(Object.keys(res), [
+      'name',
+      'version',
+      'status',
+      'serialNumber',
+      'description',
+      'onlineDate',
+      'chipName',
+      'id',
+      'topologyId',
+      'url',
+      'basisGates',
+      'simulator',
+      'nQubits',
+      'couplingMap',
+    ]);
+  });
+
+  // We use a non existent one because we can´t know in advance the returned values here.
+  // TODO: The API should return an error in this case.
+  it('should return the queue info for the selected backend', async () =>
+    assert.deepEqual(await qe.backend('nonexistent'), {}));
+});
+
 
 describe('qe:backends', () => {
   it('should fail if no logged', async () =>
-    utils.throwsAsync(() => new Qe().backends(), expErrRegex.loginBefore));
+    utilsTest.throwsAsync(() => new Qe().backends(), expErrRegex.loginBefore));
 
   it('should return the online backends info', async () => {
     const res = await qe.backends();
@@ -176,7 +245,7 @@ describe('qe:backends', () => {
   });
 
   it('should fail if bad format in the "onlySim" parameter', async () =>
-    utils.throwsAsync(() => qe.backends(1), expErrRegex.formatBool));
+    utilsTest.throwsAsync(() => qe.backends(1), expErrRegex.formatBool));
 
   it('should allow to ask only for simulators info', async () => {
     const res = await qe.backends(true);
@@ -198,7 +267,7 @@ describe('qe:backends', () => {
 
 describe('qe:credits', () => {
   it('should fail if no logged', async () =>
-    utils.throwsAsync(() => new Qe().credits(), expErrRegex.loginBefore));
+    utilsTest.throwsAsync(() => new Qe().credits(), expErrRegex.loginBefore));
 
   it('should return the info of my credits in the platform', async () => {
     const res = await qe.credits();
@@ -211,75 +280,207 @@ describe('qe:credits', () => {
 });
 
 
-describe('qe:lastCodes', () => {
-  it('should fail if no logged', async () =>
-    utils.throwsAsync(() => new Qe().lastCodes(), expErrRegex.loginBefore));
+const circuit = 'OPENQASM 2.0;' +
+'include "qelib1.inc";' +
+'qreg q[1];' +
+'creg c[1];' +
+'measure q -> c;';
+// To use in the Job endpoint related tests.
+let jobId;
 
-  // TODO: We can check more because, for now we don´t have any execution or code.
-  it('should return the code used in the last executions by this user', async () =>
-    assert.equal(typeof await qe.lastCodes(), 'object'));
+describe('qe:run', () => {
+  it('should fail if no logged', async () =>
+    utilsTest.throwsAsync(() => new Qe().run('a'), expErrRegex.loginBefore));
+
+  it('should fail if "circuit" parameter no present', async () =>
+    // TODO: Emit proper error.
+    utilsTest.throwsAsync(() => qe.run(), expErrRegex.formatStr));
+
+  it('should fail if bad format in the "circuit" parameter', async () =>
+    utilsTest.throwsAsync(() => qe.run(1), expErrRegex.formatStr));
+
+  it('should fail if bad format in the "backend" option', async () =>
+    utilsTest.throwsAsync(() => qe.run('a', { backend: 1 }), expErrRegex.formatStr));
+
+  it('should fail if bad format in the "name" option', async () =>
+    utilsTest.throwsAsync(() => qe.run('a', { name: 1 }), expErrRegex.formatStr));
+
+  it('should fail if bad format in the "shots" option', async () =>
+    utilsTest.throwsAsync(() => qe.run('a', { shots: 'a' }), expErrRegex.formatNumber));
+
+  it('should fail if under min. in the "shots" option', async () =>
+    utilsTest.throwsAsync(() => qe.run('a', { shots: -1 }), expErrRegex.outRange));
+
+  it('should fail if over max. in the "shots" option', async () =>
+    utilsTest.throwsAsync(() => qe.run('a', { shots: 8193 }), expErrRegex.outRange));
+
+  it('should fail if bad format in the "seed" option', async () =>
+    utilsTest.throwsAsync(() => qe.run('a', { seed: 1 }), expErrRegex.formatStr));
+
+  it('should fail if bad format in the "maxCredits" option', async () =>
+    utilsTest.throwsAsync(() => qe.run('a', { maxCredits: 'a' }), expErrRegex.formatNumber));
+
+  it('should fail if under min. in the "maxCredits" option', async () =>
+    utilsTest.throwsAsync(() => qe.run('a', { maxCredits: -1 }), expErrRegex.outRange));
+
+  it('should fail if a controlled API error', async () =>
+    utilsTest.throwsAsync(() => qe.run('a'), expErrRegex.badQasm));
+
+  it('should return the run info for a valid circuit', async () => {
+    const res = await qe.run(circuit);
+    jobId = res.id;
+
+    assert.deepEqual(Object.keys(res), ['id', 'status', 'name']);
+    assert.equal(typeof res.id, 'string');
+    assert.equal(typeof res.status, 'string');
+  });
 });
 
 
-// TODO: original library tests
+describe('qe:runBatch', () => {
+  it('should fail if no logged', async () =>
+    utilsTest.throwsAsync(() => new Qe().runBatch('a'), expErrRegex.loginBefore));
+
+  it('should fail if "circuits" parameter no present', async () =>
+    // TODO: Emit proper error.
+    utilsTest.throwsAsync(() => qe.runBatch(), expErrRegex.formatArr));
+
+  it('should fail if bad format in the "circuits" parameter', async () =>
+    utilsTest.throwsAsync(() => qe.runBatch(1), expErrRegex.formatArr));
+
+  it('should fail if empty "circuits" parameter', async () =>
+    utilsTest.throwsAsync(() => qe.runBatch([]), expErrRegex.formatArr));
+
+  it('should fail if bad format on the elements of "circuits"', async () =>
+    utilsTest.throwsAsync(() => qe.runBatch([1]), expErrRegex.formatObj));
+
+  it('should fail if "qasm" subfield not present', async () =>
+    utilsTest.throwsAsync(() => qe.runBatch([{}]), expErrRegex.formatStr));
+
+  it('should fail if bad format in the "qasm" subfield', async () =>
+    utilsTest.throwsAsync(() => qe.runBatch([{ qasm: 1 }]), expErrRegex.formatStr));
+
+  it('should fail if bad format in the "shots" subfield', async () =>
+    utilsTest.throwsAsync(() =>
+      qe.runBatch([{ qasm: 'a', shots: 'a' }]), expErrRegex.formatNumber));
+
+  it('should fail if under min. in the "shots" subfield', async () =>
+    utilsTest.throwsAsync(() =>
+      qe.runBatch([{ qasm: 'a', shots: -1 }]), expErrRegex.outRange));
+
+  it('should fail if over max. in the "shots" subfield', async () =>
+    utilsTest.throwsAsync(() =>
+      qe.runBatch([{ qasm: 'a', shots: 8193 }]), expErrRegex.outRange));
+
+  it('should fail if bad format in the "seed" subfield', async () =>
+    utilsTest.throwsAsync(() =>
+      qe.runBatch([{ qasm: 'a', seed: 1 }]), expErrRegex.formatStr));
+
+  it('should fail if bad format in the "name" subfield', async () =>
+    utilsTest.throwsAsync(() =>
+      qe.runBatch([{ qasm: 'a', name: 1 }]), expErrRegex.formatStr));
+
+  it('should fail if bad format in the "backend" option', async () =>
+    utilsTest.throwsAsync(() =>
+      qe.runBatch(([{ qasm: 'a' }], { backend: 1 }), expErrRegex.formatStr)));
+
+  it('should fail if bad format in the "name" option', async () =>
+    utilsTest.throwsAsync(() =>
+      qe.runBatch(([{ qasm: 'a' }], { name: 1 }), expErrRegex.formatStr)));
+
+  it('should fail if bad format in the "shots" option', async () =>
+    utilsTest.throwsAsync(() =>
+      qe.runBatch(([{ qasm: 'a' }], { shots: 'a' }), expErrRegex.formatNumber)));
+
+  it('should fail if under min. in the "shots" option', async () =>
+    utilsTest.throwsAsync(() =>
+      qe.runBatch(([{ qasm: 'a' }], { shots: -1 }), expErrRegex.outRange)));
+
+  it('should fail if over max. in the "shots" option', async () =>
+    utilsTest.throwsAsync(() =>
+      qe.runBatch(([{ qasm: 'a' }], { shots: 8193 }), expErrRegex.outRange)));
+
+  it('should fail if bad format in the "seed" option', async () =>
+    utilsTest.throwsAsync(() =>
+      qe.runBatch(([{ qasm: 'a' }], { seed: 1 }), expErrRegex.formatStr)));
+
+  it('should fail if bad format in the "maxCredits" option', async () =>
+    utilsTest.throwsAsync(() =>
+      qe.runBatch(([{ qasm: 'a' }], { maxCredits: 'a' }), expErrRegex.formatNumber)));
+
+  it('should fail if under min. in the "maxCredits" option', async () =>
+    utilsTest.throwsAsync(() =>
+      qe.runBatch(([{ qasm: 'a' }], { maxCredits: -1 }), expErrRegex.formatStr)));
+
+  it('should fail if a controlled API error', async () =>
+    utilsTest.throwsAsync(() =>
+      qe.runBatch(([{ qasm: 'a' }]), expErrRegex.badQasm)));
+
+  it('should return the run info for a valid batch of circuits', async () => {
+    const res = await qe.runBatch([{ qasm: circuit }]);
+
+    assert.deepEqual(Object.keys(res), ['id', 'status']);
+    assert.equal(typeof res.id, 'string');
+    assert.equal(res.status, 'RUNNING');
+  });
+});
 
 
-// def test_api_run_experiment(self):
-//     '''
-//     Check run an experiment by user authenticated
-//     '''
-//     api = IBMQuantumExperience(API_TOKEN)
-//     backend = api.available_backend_simulators()[0]['name']
-//     shots = 1
-//     experiment = api.run_experiment(qasm, backend, shots)
-//     self.assertIsNotNone(experiment['status'])
+describe('qe:job', () => {
+  it('should fail if no logged', async () =>
+    utilsTest.throwsAsync(() => new Qe().job(), expErrRegex.loginBefore));
 
-// def test_api_run_experiment_with_seed(self):
-//     '''
-//     Check run an experiment with seed by user authenticated
-//     '''
-//     api = IBMQuantumExperience(API_TOKEN)
-//     backend = api.available_backend_simulators()[0]['name']
-//     shots = 1
-//     seed = 815
-//     experiment = api.run_experiment(qasm, backend, shots, seed=seed)
-//     self.assertEqual(int(experiment['result']['extraInfo']['seed']), seed)
+  it('should fail if "id" parameter no present', async () =>
+    utilsTest.throwsAsync(() => qe.job(), expErrRegex.formatStr));
 
-// def test_api_run_experiment_fail_backend(self):
-//     '''
-//     Check run an experiment by user authenticated is not run because the
-//     backend does not exist
-//     '''
-//     api = IBMQuantumExperience(API_TOKEN)
-//     backend = '5qreal'
-//     shots = 1
-//     self.assertRaises(BadBackendError,
-//                       api.run_experiment, qasm, backend, shots)
+  it('should fail if bad format in the "id" parameter', async () =>
+    utilsTest.throwsAsync(() => qe.job(1), expErrRegex.formatStr));
 
-// def test_api_run_job(self):
-//     '''
-//     Check run an job by user authenticated
-//     '''
-//     api = IBMQuantumExperience(API_TOKEN)
-//     backend = 'simulator'
-//     shots = 1
-//     job = api.run_job(qasms, backend, shots)
-//     self.assertIsNotNone(job['status'])
+  it('should return the info for a valid job', async () => {
+    const res = await qe.job(jobId);
 
-// def test_api_run_job_fail_backend(self):
-//     '''
-//     Check run an job by user authenticated is not run because the backend
-//     does not exist
-//     '''
-//     api = IBMQuantumExperience(API_TOKEN)
-//     backend = 'real5'
-//     shots = 1
-//     self.assertRaises(BadBackendError, api.run_job, qasms, backend, shots)
+    checkJob(res);
+  });
+});
 
-// def test_api_get_jobs(self):
-//     '''
-//     Check get jobs by user authenticated
-//     '''
-//     api = IBMQuantumExperience(API_TOKEN)
-//     jobs = api.get_jobs(2)
-//     self.assertEqual(len(jobs), 2)
+
+let oldId;
+describe('qe:jobs', () => {
+  it('should fail if no logged', async () =>
+    utilsTest.throwsAsync(() => new Qe().jobs(), expErrRegex.loginBefore));
+
+  it('should fail if bad format in the "limit" option', async () =>
+    utilsTest.throwsAsync(() => qe.jobs('a'), expErrRegex.formatNumber));
+
+  it('should fail if under min. in the "limit" option', async () =>
+    utilsTest.throwsAsync(() => qe.jobs(-1), expErrRegex.outRange));
+
+  it('should fail if bad format in the "offset" option', async () =>
+    utilsTest.throwsAsync(() => qe.jobs(1, 'a'), expErrRegex.formatNumber));
+
+  it('should fail if under min. in the "offset" option', async () =>
+    utilsTest.throwsAsync(() => qe.jobs(1, -1), expErrRegex.outRange));
+
+  it('should return all jobs info without parameters', async () => {
+    const res = await qe.jobs();
+
+    assert.ok(res.length > 1);
+    checkJob(res[0]);
+  });
+
+  it('should return selected number of jobs info with "limit" parameter', async () => {
+    const res = await qe.jobs(1);
+
+    assert.equal(res.length, 1);
+    checkJob(res[0]);
+    oldId = res[0].id;
+  });
+
+  it('should skip selected number of jobs info with "offset" parameter', async () => {
+    const res = await qe.jobs(1, 1);
+
+    assert.equal(res.length, 1);
+    checkJob(res[0]);
+    assert.notEqual(res[0].id, oldId);
+  });
+});

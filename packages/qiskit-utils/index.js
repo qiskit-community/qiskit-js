@@ -10,16 +10,13 @@
 
 'use strict';
 
-
-// TODO: Repeated code in qiskit bin, qiskit-utils package needed?
-const assert = require('assert');
 const path = require('path');
 
-// Lodash as base.
+// Lodash as base. TODO: Maybe not needed anymore.
 const utils = require('lodash');
 const debug = require('debug');
+// TODO: Use the native one.
 const promisify = require('es6-promisify');
-const validator = require('validator');
 
 const { version } = require('./package.json');
 
@@ -35,32 +32,11 @@ function pathToTag(fullPath) {
 }
 
 
-// The easiest way to play with promises in Mocha:
-// https://wietse.loves.engineering/testing-promises-with-mocha-90df8b7d2e35
-async function throwsAsync(block, errorRexp) {
-  try {
-    await block();
-  } catch (e) {
-    // To be consistent with the Node.js "assert.throws" behavior we reuse it.
-    if (errorRexp) {
-      assert.throws(() => { throw e; }, errorRexp);
-    }
-    // We need this return because we're catching the thrown error,
-    // if not, the next assert.fail would be reached when the regexp matches.
-    return;
-  }
-
-  assert.fail('Missing expected exception');
-}
-
-
 // Exposed stuff.
 utils.version = version;
 utils.pathToTag = pathToTag;
 utils.debug = debug;
 utils.promisify = promisify;
-utils.validator = validator;
-utils.throwsAsync = throwsAsync;
 
 
 module.exports = utils;
