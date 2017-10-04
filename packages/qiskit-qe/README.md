@@ -9,11 +9,7 @@ Please visit the [main repository](https://github.ibm.com/IBMResearch/qiskit.js)
 :coffee: Install [Node.js](https://nodejs.org/download) and then:
 
 ```sh
-# Install (or upgrade) the module.
-npm i -g IBMResearch/qiskit.js
-
-# TODO: When published in npm.
-# npm i -g qiskit-qe
+npm i qiskit-qe
 ```
 
 ## Use
@@ -21,9 +17,7 @@ npm i -g IBMResearch/qiskit.js
 :pencil: You can visit more advanced examples in the [test folder](test).
 
 ```js
-const { Qe } = require('qiskit');
-// TODO: When published to npm
-// const Qe = require('qiskit-qe');
+const Qe = require('qiskit-qe');
 
 const qe = new Qe({});
 
