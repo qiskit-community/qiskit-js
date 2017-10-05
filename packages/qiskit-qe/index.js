@@ -116,8 +116,8 @@ class Qe {
 
     // TODO: The API returns undefined if the backend doesn´t exists.
     // Using empty object to be consistent with parameters and calibration.
-    // return  request(`${this.uri}/Backends/${name}`, { token: this.token });
-    const res = await request(`${this.uri}/Backends/${name}`, { token: this.token });
+    // return  request(`${this.uri}/Backends/${parser.string(name)}`, { token: this.token });
+    const res = await request(`${this.uri}/Backends/${parser.string(name)}`, { token: this.token });
 
     return res || {};
   }
@@ -127,13 +127,13 @@ class Qe {
     dbg('Getting the available backends', { onlySims });
 
     if (!this.token) { throw new Error(errLoginBefore); }
+    if (onlySims) { parser.bool(onlySims); }
 
     let res = await request(`${this.uri}/Backends`, { token: this.token });
-
     // TODO: This endpoint doesn´t allow the filter param.
     res = utils.filter(res, el => el.status === 'on');
 
-    if (onlySims && parser.bool(onlySims)) {
+    if (onlySims) {
       dbg('Returning only the simulators');
 
       return utils.filter(res, el => el.status === 'on' && el.simulator === true);
@@ -201,7 +201,7 @@ class Qe {
 
     let qasms;
     if (!circuits || !utils.isArray(circuits) || utils.isEmpty(circuits)) {
-      throw new Error(`Array format expected: ${circuits}`);
+      throw new Error(`Array format expected, found: ${circuits}`);
     } else {
       qasms = utils.map(circuits, (el) => {
         // TODO: Dirty trick because the API adds this line again.

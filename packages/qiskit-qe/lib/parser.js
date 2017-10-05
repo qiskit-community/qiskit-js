@@ -13,11 +13,11 @@
 
 module.exports.number = (num, min, max) => {
   if (!num || typeof num !== 'number') {
-    throw new Error(`Number format expected: ${num}`);
+    throw new Error(`Number format expected, found: ${num}`);
   }
 
   if (((min || min === 0) && num < min) || (max && num > max)) {
-    throw new Error(`Out of range: ${num}`);
+    throw new Error(`Out of range, found: ${num}`);
   }
 
   return num;
@@ -26,7 +26,7 @@ module.exports.number = (num, min, max) => {
 
 module.exports.string = (str) => {
   if (!str || typeof str !== 'string') {
-    throw new Error(`String format expected: ${str}`);
+    throw new Error(`String format expected, found: ${str}`);
   }
 
   return str;
@@ -35,7 +35,7 @@ module.exports.string = (str) => {
 
 module.exports.bool = (value) => {
   if (!value || typeof value !== 'boolean') {
-    throw new Error(`Boolean format expected: ${value}`);
+    throw new Error(`Boolean format expected, found: ${value}`);
   }
 
   return value;

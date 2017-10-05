@@ -134,7 +134,7 @@ describe('qasm:parse', () => {
   });
 
   // TODO: Should fail (qreg invalid)
-  it.skip('should fail with "include"', () => {
+  it('should fail with "include"', () => {
     parser = new Parser();
     const circuit = 'OPENQASM 2.0;\n' +
                     'qreg q[1];\n' +
