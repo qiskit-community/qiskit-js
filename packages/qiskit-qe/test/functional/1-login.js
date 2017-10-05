@@ -17,9 +17,6 @@ const Qe = require('../..');
 const expErrRegex = require('../errorRe');
 
 
-process.env.QE_URI = 'https://qe-api-dev.mybluemix.net/api/v0';
-
-
 const qe = new Qe();
 global.qiskitTest = {
   // To reuse in the rest of test files of this folder and avoid multiple re-login.
