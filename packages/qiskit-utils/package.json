@@ -36,8 +36,7 @@
   "dependencies": {
     "debug": "^3.1.0",
     "es6-promisify": "^5.0.0",
-    "lodash": "^4.17.4",
-    "validator": "^8.2.0"
+    "lodash": "^4.17.4"
   },
   "engines": {
     "node": ">=6",

@@ -29,7 +29,7 @@ function assertComm(re, result) {
 }
 
 
-describe('qiskit:cli', () => {
+describe.skip('qiskit:cli', () => {
   it('should fail if no params', () =>
     assert.throws(() => exec(comm), reGot0));
 
