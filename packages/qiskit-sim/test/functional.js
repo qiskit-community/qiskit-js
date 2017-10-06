@@ -14,15 +14,12 @@
 
 const assert = require('assert');
 
-const math = require('mathjs');
-
 const sim = require('..');
 const circuit = require('../../../circuits/unrolled/example.json');
 const pkgInfo = require('../package');
 
 
 const res = sim.run(circuit);
-const stateJson = res.state.toJSON();
 
 
 describe('sim:version', () => {
@@ -32,6 +29,7 @@ describe('sim:version', () => {
 
 describe('sim:run', () => {
   it('should work with the example file', () => {
+    const stateJson = res.state.toJSON();
     const expectedDrops = [
       { name: 'barrier', qubits: [0, 1, 2] },
       { clbits: [0], name: 'measure', qubits: [0] },
@@ -138,18 +136,19 @@ describe('sim:run', () => {
       { re: 0.3535533905932737, im: 0 },
     ];
 
-    // TODO: Better here or inside the library? which option has more sense?
-    // To avoid these last operations to the users.
-    // If not we should provide an "utils" module with easy methods to get this info.
-    const quantumState = math.chain(math.zeros(stateJson.size[0]))
-      .multiply(math.complex(1, 0))
-      .done();
-    quantumState.set([0], 1);
-
-    const state0 = math.multiply(res.state, quantumState).toJSON();
+    const state0 = sim.state0(res.state);
 
     assert.deepEqual(state0.size, [64]);
     assert.deepEqual(state0.data, expected);
+  });
+
+
+  it('should fail if a circuit is not passed', () => {
+    assert.throws(
+      () => { sim.run(); },
+      // eslint-disable-next-line comma-dangle
+      /Empty circuit/
+    );
   });
 
 
