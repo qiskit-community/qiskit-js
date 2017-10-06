@@ -42,6 +42,7 @@ The actual version of the library.
 
 ### `unroll(circuit) -> circuitUnrolled`
 
+**NOTE: Method still not implemented**
 Get the extended representation of the circuit for this simulator.
 
 - `circuit` (string) - QASM circuit representation.

@@ -21,7 +21,6 @@ npm i qiskit-qe
 
 const Qe = require('qiskit-qe');
 
-
 const qe = new Qe({});
 
 console.log('Version');
@@ -86,7 +85,7 @@ Get the status of a backend queue.
 
 ### `async login(personalToken) -> info`
 
-Get a long term access token using the QE personal, you can get it [here](https://quantumexperience.ng.bluemix.net/qx/account). **This method should be called before the rest ones documented from this point**.
+Get a long term access token using the QE personal one, you can get it [here](https://quantumexperience.ng.bluemix.net/qx/account). **This method should be called before the rest ones documented from this point**.
 
 - `info` (object): New token and its metadata:
   - `token` (string) - New long term access token.

@@ -17,7 +17,7 @@ If you want to learn more about Quantum Computing, you're invited to visit our [
 
 :handbag: This repository include next tools. Please visit the specific documentation you need:
 
-- [qiskit](./packages/qiskit): Meta-package, documented in this file. It also includes a command line client, which is your friend if you want to play with some circuits (in the Quantum Experience or the local simulator) without having to write any line of code.
+- [qiskit](./packages/qiskit): Meta-package, documented in this file. It also includes a command line client, which is your friend if you want to play with some OpenQASM circuits (in the Quantum Experience or the local simulator) without having to use any other programming language.
 - [qiskit-qasm](./packages/qiskit-qasm): [OpenQASM](https://github.com/IBM/qiskit-openqasm) library, including the parser.
 - [qiskit-qe](./packages/qiskit-qe): Send circuits to the Quantum Experience.
 - [qiskit-sim](./packages/qiskit-sim): Local simulator for OpenQASM circuits.
