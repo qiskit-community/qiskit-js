@@ -8,25 +8,35 @@
 
 'use strict';
 
+const prompt = require('prompt');
+
 const qiskit = require('../..');
 const logger = require('../lib/logger');
 const storage = require('../lib/storage');
+const utils = require('../lib/utils');
 
 
-exports.command = 'qe-login <token>';
+const getToken = utils.promisify(prompt.get);
+const promptSchema = {
+  properties: {
+    personalToken: {
+      type: 'string',
+      hidden: true,
+      message: 'Quantum Experience personal token, you can get' +
+      ' it here: https://quantumexperience.ng.bluemix.net/qx/account',
+      required: true,
+    },
+  },
+};
+
+
+exports.command = 'qe-login [printToken]';
 
 exports.aliases = ['ql'];
 
 exports.desc = 'Get a long term access token';
 
 exports.builder = {
-  // TODO: Use this to ask for it: (to avoid showing the pasted token)
-  // https://www.npmjs.com/package/prompt
-  token: {
-    desc: 'Quantum Experience personal token, you can get' +
-          ' it here: https://quantumexperience.ng.bluemix.net/qx/account',
-    type: 'string',
-  },
   printToken: {
     desc: 'To show the returned long term token in the console',
     type: 'boolean',
@@ -38,25 +48,33 @@ exports.builder = {
 exports.handler = (argv) => {
   logger.title(qiskit.version);
 
-  global.qiskit.qe.login(argv.token)
-    .then((res) => {
-      logger.resultHead();
+  prompt.start();
+  getToken(promptSchema)
+    .then((entered) => {
+      global.qiskit.qe.login(entered.personalToken)
+        .then((res) => {
+          logger.resultHead();
 
-      if (!argv.printToken) { delete res.token; }
+          if (!argv.printToken) { delete res.token; }
 
-      logger.json(res);
+          logger.json(res);
 
-      storage.setItem('token', res.token)
-        .then(() => {
-          logger.regular('\nLong term token correctly stored for future uses');
+          storage.setItem('token', res.token)
+            .then(() => {
+              logger.regular('\nLong term token correctly stored for future uses');
+            })
+            .catch((err) => {
+              logger.error('Storing the new long term token', err);
+              process.exit(1);
+            });
         })
         .catch((err) => {
-          logger.error('Storing the new long term token', err);
+          logger.error('Making the request', err);
           process.exit(1);
         });
     })
     .catch((err) => {
-      logger.error('Making the request', err);
+      logger.error('Prompting for the personal token', err);
       process.exit(1);
     });
 };
