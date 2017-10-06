@@ -38,7 +38,7 @@ describe('qe:login', () => {
   // https://github.com/mochajs/mocha/issues/1856
   // it('should return the user info with a valid login', async () => {
   it('should return the user info with a valid login', async function t() {
-    if (!process.env.QE_URI || !process.env.QE_TOKEN) {
+    if (!process.env.QE_TOKEN) {
       // Dirty trick to allow the tests which don´t need the API to run.
       qe.token = 'notvalid';
       qe.userId = 'notvalid';
@@ -46,7 +46,7 @@ describe('qe:login', () => {
       /* eslint-disable no-console */
       console.log('\n\n\n\t-------------------------------------------------------------');
       console.log('\tWARNING');
-      console.log('\tQE_URI and/or QE_TOKEN env vars not found, so skipping some of them.');
+      console.log('\tQE_TOKEN env var not found, so skipping integration tests.');
       console.log('\t-------------------------------------------------------------\n\n\n');
 
       /* eslint-enable no-console */
