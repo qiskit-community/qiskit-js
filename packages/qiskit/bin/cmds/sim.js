@@ -12,8 +12,8 @@ const fs = require('fs');
 const path = require('path');
 
 const qiskit = require('../..');
-const utils = require('../utils');
-const logger = require('../logger');
+const utils = require('../lib/utils');
+const logger = require('../lib/logger');
 
 
 const dbg = utils.dbg(__filename);
@@ -70,16 +70,20 @@ exports.handler = (argv) => {
       }
 
       logger.info(`\n${logger.emoji('computer')} Starting the simulation ...`);
-      // logger.time();
-      const resSim = qiskit.sim.run(codeParsed);
-      // const resSim = qiskit.sim.run(circuit2);
-      // logger.timeEnd();
+      let resSim;
+      logger.time();
+      try {
+        resSim = qiskit.sim.run(codeParsed);
+        logger.timeEnd();
+      } catch (err) {
+        logger.error('Simulating the circuit', err);
+        process.exit(1);
+      }
 
-      logger.info(`\n${logger.emoji('ok_hand')} Finised, result:`);
+      logger.resultHead();
       if (resSim && resSim.state) {
         const stateJson = resSim.state.toJSON();
         logger.bold(stateJson.data);
-
 
         logger.info('\nState |psi> = U|0>:');
         const state0 = qiskit.sim.state0(resSim.state);

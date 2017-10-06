@@ -45,7 +45,10 @@
   },
   "dependencies": {
     "cli-color": "^1.2.0",
+    "home-or-tmp": "^3.0.0",
+    "keypress": "^0.2.1",
     "node-emoji": "^1.7.0",
+    "node-persist": "^2.1.0",
     "prettyjson": "^1.2.1",
     "qiskit-qasm": "^0.1.0",
     "qiskit-qe": "^0.1.0",

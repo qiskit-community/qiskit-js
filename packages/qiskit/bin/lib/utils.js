@@ -12,7 +12,7 @@
 
 const utils = require('qiskit-utils');
 
-const pkgName = require('../package.json').name;
+const pkgName = require('../../package.json').name;
 
 
 utils.dbg = fullPath => utils.debug(`${pkgName}:${utils.pathToTag(fullPath)}`);

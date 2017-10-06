@@ -10,18 +10,28 @@
 
 'use strict';
 
-
 const yargs = require('yargs');
 
-// const qiskit = require('..');
+const qiskit = require('..');
+const logger = require('./lib/logger');
+const storage = require('./lib/storage');
 
 
-// eslint-disable-next-line no-unused-expressions
-yargs
-  // TODO: Not needed in v9, confirms
-  // .version(qiskit.version)
-  .commandDir('./cmds')
-  .demandCommand()
-  // TODO: Not needed in v9, confirms
-  // .help()
-  .argv;
+// To share it among the different QE related commands.
+global.qiskit = { qe: new qiskit.Qe() };
+
+storage.getItem('token')
+  .then((token) => {
+    if (token) { global.qiskit.qe.token = token; }
+
+    // Starting the console cli.
+    // eslint-disable-next-line no-unused-expressions
+    yargs
+      .commandDir('./cmds')
+      .demandCommand()
+      .argv;
+  })
+  .catch((err) => {
+    logger.error('Looking for a long term token', err);
+    process.exit(1);
+  });
