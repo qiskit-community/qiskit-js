@@ -47,6 +47,7 @@ The constructor accepts next option:
 
 ### `parser.parse(circuit) -> circuitJson`
 
+**NOTE: Method still partially implemented**
 Get the intermediate representation of the circuit using the OpenQASM parser.
 
 - `circuit` (string) - QASM circuit representation.
