@@ -12,21 +12,21 @@ const qiskit = require('../..');
 const logger = require('../logger');
 
 
-exports.command = 'qe <circuit> <key>';
+exports.command = 'qe-run <circuit> <key>';
 
 exports.aliases = ['q'];
 
 exports.desc = 'Send the circuit to the Quantum Experience' +
-                   ' (https://quantumexperience.ng.bluemix.net)';
+                ' (https://quantumexperience.ng.bluemix.net)';
 
 exports.builder = {
   circuit: {
-    desc: 'Path to the file with the code of the circuit',
+    desc: 'Path to the file with the code of the circuit (OpenQASM)',
     type: 'string',
     normalize: true,
   },
-  key: { describe: 'Your QE API key' },
 };
+
 
 // exports.handler = (argv) => {
 exports.handler = () => {

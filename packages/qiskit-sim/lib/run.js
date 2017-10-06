@@ -52,6 +52,8 @@ const toDrop = ['measure', 'barrier', 'reset'];
 module.exports = (circuit) => {
   dbg(`Simulator started: ${circuit}`);
 
+  if (!circuit) { throw new Error('Empty circuit'); }
+
   const drops = [];
   // TODO: For QASM we need to unroll it before.
   // const circuitUnrolled = unroll(circuit)
@@ -63,10 +65,8 @@ module.exports = (circuit) => {
   }
 
   let numOperations = 0;
-  if (circuit.operations) {
-    // TODO: Add check "isArray"?
-    numOperations = circuit.operations.length;
-  }
+  // TODO: Add check "isArray"?
+  if (circuit.operations) { numOperations = circuit.operations.length; }
 
   let state = math.chain(math.eye(math.pow(2, numQbits)))
     .multiply(complex)

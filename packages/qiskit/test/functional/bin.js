@@ -21,7 +21,8 @@ const pkgInfo = require('../../package');
 
 const reGot0 = /Not enough non-option arguments: got 0/;
 const reGot1 = /Not enough non-option arguments: got 1/;
-const reNotSup = /Regular QASM circuits are still not supported/;
+const reNotSupQasm = /Regular QASM circuits are still not supported/;
+const reNotSup = /Format not supported/;
 
 
 function assertComm(re, result) {
@@ -29,7 +30,7 @@ function assertComm(re, result) {
 }
 
 
-describe.skip('qiskit:cli', () => {
+describe('qiskit:bin', () => {
   it('should fail if no params', () =>
     assert.throws(() => exec(comm), reGot0));
 
@@ -38,7 +39,7 @@ describe.skip('qiskit:cli', () => {
 
   it('should work for "--help"', () =>
     assertComm(
-      /Commands:\nparse<circuit>ParsethecircuittoourintermediateJSONformat\n\[aliases:p\]/,
+      /Commands:\nparse<circuit>ParsethecircuittoourIR/,
       // eslint-disable-next-line comma-dangle
       exec(`${comm} --help`)
     ));
@@ -57,27 +58,24 @@ describe.skip('qiskit:cli', () => {
     assertComm(
       /State\|psi>=U|0>:\[0.35355339059327384,0/,
       // eslint-disable-next-line comma-dangle
-      exec(`${comm} sim ../../circuits/unrolled/example.json true`)
+      exec(`${comm} sim ../../circuits/unrolled/example.json`)
     );
   }).timeout(5000);
 
   it('should fail for "sim" command without arguments', () =>
     assert.throws(() => exec(`${comm} sim`), reGot0));
 
-  it('should fail for "sim" command with non-unrolled circuits', () => {
-    assert.throws(() => exec(`${comm} sim whatever`), reNotSup);
+  it('should fail for "sim" command with non-unrolled QASM circuits', () => {
+    assert.throws(() => exec(`${comm} sim whatever.qasm`), reNotSupQasm);
   });
 
+  it('should fail for "sim" command with non any other format', () => {
+    assert.throws(() => exec(`${comm} sim whatever.png`), reNotSup);
+  });
 
-  // TODO: qe, unroll working
-
-
-  it('should fail for "unroll" command without arguments', () =>
-    assert.throws(() => exec(`${comm} unroll`), reGot0));
-
-  it('should fail for "qe" command without arguments', () =>
+  it.skip('should fail for "qe" command without arguments', () =>
     assert.throws(() => exec(`${comm} qe`), reGot0));
 
-  it('should fail for "qe" command with only one argument', () =>
+  it.skip('should fail for "qe" command with only one argument', () =>
     assert.throws(() => exec(`${comm} qe whatever`), reGot1));
 });

@@ -11,17 +11,15 @@
 const fs = require('fs');
 const path = require('path');
 
-const math = require('mathjs');
-
 const qiskit = require('../..');
 const utils = require('../utils');
 const logger = require('../logger');
 
+
 const dbg = utils.dbg(__filename);
 const readFile = utils.promisify(fs.readFile);
 
-
-exports.command = 'sim <circuit> [unrolled]';
+exports.command = 'sim <circuit>';
 
 exports.aliases = ['s'];
 
@@ -31,14 +29,10 @@ exports.builder = {
   circuit: {
     // Accepted options:
     // https://github.com/yargs/yargs/blob/master/docs/api.md#optionskey-opt
-    desc: 'Path to the file with the code of the circuit',
+    desc: 'Path to the file with the code of the circuit. ' +
+          'It supports OpenQASM (.qasm) or unrolled IR (.json)',
     type: 'string',
     normalize: true,
-  },
-  unrolled: {
-    default: false,
-    desc: 'The passed circuit is already unrolled',
-    type: 'boolean',
   },
 };
 
@@ -47,9 +41,16 @@ exports.handler = (argv) => {
 
   dbg('Starting, args', argv);
 
-  if (!argv.unrolled) {
+  const extension = path.extname(argv.circuit);
+
+  if (extension === '.qasm') {
     logger.error('Regular QASM circuits are still not supported' +
                 ', please use the option "unrolled" with false for now');
+    process.exit(1);
+  }
+
+  if (!extension || extension !== '.json') {
+    logger.error('Format not supported');
     process.exit(1);
   }
 
@@ -69,21 +70,21 @@ exports.handler = (argv) => {
       }
 
       logger.info(`\n${logger.emoji('computer')} Starting the simulation ...`);
-      logger.time();
+      // logger.time();
       const resSim = qiskit.sim.run(codeParsed);
-      logger.timeEnd();
+      // const resSim = qiskit.sim.run(circuit2);
+      // logger.timeEnd();
 
       logger.info(`\n${logger.emoji('ok_hand')} Finised, result:`);
       if (resSim && resSim.state) {
         const stateJson = resSim.state.toJSON();
         logger.bold(stateJson.data);
-        logger.info('\nState |psi> = U|0>:');
-        const quantumState = math.chain(math.zeros(stateJson.size[0]))
-          .multiply(math.complex(1, 0))
-          .done();
-        quantumState.set([0], 1);
 
-        logger.bold(math.multiply(resSim.state, quantumState));
+
+        logger.info('\nState |psi> = U|0>:');
+        const state0 = qiskit.sim.state0(resSim.state);
+        logger.bold(state0);
+
         logger.info('\nExtra info:');
         logger.json({ size: stateJson.size });
       }

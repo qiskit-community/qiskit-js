@@ -23,11 +23,12 @@ exports.command = 'parse <circuit>';
 
 exports.aliases = ['p'];
 
-exports.desc = 'Parse the circuit to our intermediate JSON format';
+// TODO: Put a name to our IR.
+exports.desc = 'Parse the circuit to our IR (intermediate representation - JSON format).';
 
 exports.builder = {
   circuit: {
-    desc: 'Path to the file with the code of the circuit',
+    desc: 'Path to the file with the code of the circuit (OpenQASM)',
     type: 'string',
     normalize: true,
   },
@@ -36,6 +37,7 @@ exports.builder = {
 
 exports.handler = (argv) => {
   logger.title(qiskit.version);
+  logger.bold('\n\nWARNING: Partial implementetation for now\n\n');
 
   dbg('Starting, args', argv);
 

@@ -33,3 +33,18 @@ describe('utils:api', () => {
   it('should return the the correct result for its methods', () =>
     assert.equal(utils.version, version));
 });
+
+
+describe('sim:utils:pathToTag', () => {
+  // We can use this function here to get the name of this file
+  // because we're testing it.
+  it('should work with a valid file name', () =>
+    assert.equal('index', utils.pathToTag('./a/b/c/index.js')));
+
+
+  it('should fail with an invalid file name', () => assert.throws(
+    () => { utils.pathToTag('a'); },
+    // eslint-disable-next-line comma-dangle
+    /Not valid path/
+  ));
+});
