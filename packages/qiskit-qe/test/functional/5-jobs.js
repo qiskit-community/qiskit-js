@@ -10,6 +10,7 @@
 
 'use strict';
 
+
 const assert = require('assert');
 const utilsTest = require('../../../../utils-test');
 
@@ -33,7 +34,7 @@ function checkJob(res) {
   assert.equal(typeof res.usedCredits, 'number');
   assert.equal(typeof res.status, 'string');
   assert.equal(res.circuits.length, 1);
-  assert.deepEqual(Object.keys(res.circuits[0]), ['qasm', 'execution']);
+  assert.deepEqual(Object.keys(res.circuits[0]), ['qasm', 'execution', 'result']);
   assert.equal(typeof res.circuits[0].qasm, 'string');
   assert.deepEqual(Object.keys(res.circuits[0].execution), ['id', 'status']);
   assert.equal(typeof res.circuits[0].execution.id, 'string');

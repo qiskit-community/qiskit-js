@@ -69,7 +69,7 @@ describe('qiskit:bin', () => {
     assert.throws(() => exec(`${comm} sim whatever.qasm`), reNotSupQasm);
   });
 
-  it('should fail for "sim" command with non any other format', () => {
+  it('should fail for "sim" command with any other format', () => {
     assert.throws(() => exec(`${comm} sim whatever.png`), reNotSup);
   });
 
