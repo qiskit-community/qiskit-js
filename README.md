@@ -30,8 +30,9 @@ If you want to learn more about Quantum Computing, you're invited to visit our [
 :coffee: Install [Node.js](https://nodejs.org/download) v8 and then:
 
 ```sh
-# Install (or upgrade) the module.
-npm i -g IBMResearch/qiskit.js
+git clone git@github.ibm.com:IBMResearch/qiskit.js.git
+cd qiskit.js
+npm i
 
 # TODO: When published to npm.
 # npm i -g qiskit
@@ -44,21 +45,10 @@ npm i -g IBMResearch/qiskit.js
 :rocket: The command line client allows to play with the circuits without having to use any language API.
 
 ```sh
-Commands:
-  parse <circuit>           Parse the circuit to our intermediate JSON format [aliases: p]
-  qe <circuit> <key>        Send the circuit to the Quantum Experience (https://quantumexperience.ng.bluemix.net) [aliases: q]
-  sim <circuit> [unrolled]  Simulate the circuit using the unitary simulator [aliases: s]
-  unroll <circuit>          Extend the circuit with the unitary simulator unroller [aliases: u]
-```
+node packages/qiskit/bin --help
 
-```sh
-qiskitjs -h
-
-qiskitjs sim ./circuits/example.qasm
-qiskitjs sim ./circuits/unrolled/example.json true
-qiskitjs qe ./circuits/example.qasm
-qiskitjs parse ./circuits/example.qasm
-qiskitjs unroll ./circuits/example.qasm
+# TODO: When published to npm.
+# qiskitjs --help
 ```
 
 ### Programatically
@@ -66,7 +56,9 @@ qiskitjs unroll ./circuits/example.qasm
 :pencil: As you can see in the next section, we have to use it like in the rest of independent modules. The only difference is we need to select the proper field of the main object before.
 
 ```js
-const qiskit = require('qiskit');
+const qiskit = require('./');
+// TODO: When published to npm.
+// const qiskit = require('qiskit');
 
 console.log('Simulator version');
 console.log(qiskit.sim.version);
