@@ -52,14 +52,13 @@ Commands:
 ```
 
 ```sh
-qiskit.js -h
+qiskitjs -h
 
-qiskit.js sim ./circuits/example.qasm
-qiskit.js sim ./circuits/unrolled/example.json true
-qiskit.js qe ./circuits/example.qasm
-qiskit.js parse ./circuits/example.qasm
-qiskit.js unroll ./circuits/example.qasm
-
+qiskitjs sim ./circuits/example.qasm
+qiskitjs sim ./circuits/unrolled/example.json true
+qiskitjs qe ./circuits/example.qasm
+qiskitjs parse ./circuits/example.qasm
+qiskitjs unroll ./circuits/example.qasm
 ```
 
 ### Programatically

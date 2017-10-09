@@ -15,7 +15,7 @@
     "url": "https://github.ibm.com/IBMResearch/qisim.js"
   },
   "bin": {
-    "qiskit.js": "./bin/index.js"
+    "qiskitjs": "./bin/index.js"
   },
   "scripts": {
     "dep-check": "npm-check",
