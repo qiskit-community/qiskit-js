@@ -76,25 +76,25 @@ The actual version of the library.
 
 ### `qasm`
 
-A wrapper fot the [`qiskit-qasm`](../qiskit-qasm) project.
+A wrapper fot the [`qiskit-qasm`](./packages/qiskit-qasm) project.
 
 - `qasm` (object) - The same object provided in the original library.
 
 ### `sim`
 
-A wrapper fot the [`qiskit-sim`](../qiskit-sim) project.
+A wrapper fot the [`qiskit-sim`](./packages/qiskit-sim) project.
 
 - `sim` (object) - The same object provided in the original library.
 
 ### `Qe`
 
-A wrapper fot the [`qiskit-qe`](../qiskit-qe) project.
+A wrapper fot the [`qiskit-qe`](./packages/qiskit-qe) project.
 
 - `Qe` (object) - The same constructor provided in the original library.
 
 ### `utils`
 
-A wrapper fot the [`qiskit-qe`](../qiskit-utils) project.
+A wrapper fot the [`qiskit-qe`](./packages/qiskit-utils) project.
 
 - `utils` (object) - The same object provided in the original library.
 
