@@ -6,7 +6,7 @@ Please visit the [main repository](https://github.ibm.com/IBMResearch/qiskit.js)
 
 ## Install
 
-:coffee: Install [Node.js](https://nodejs.org/download) and then:
+:coffee: Install [Node.js](https://nodejs.org/download) v8 and then:
 
 ```sh
 npm i qiskit-qasm

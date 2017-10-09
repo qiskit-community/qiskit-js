@@ -26,7 +26,7 @@ If you want to learn more about Quantum Computing, you're invited to visit our [
 
 ## Install
 
-:coffee: Install [Node.js](https://nodejs.org/download) and then:
+:coffee: Install [Node.js](https://nodejs.org/download) v8 and then:
 
 ```sh
 # Install (or upgrade) the module.

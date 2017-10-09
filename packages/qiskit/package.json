@@ -58,8 +58,8 @@
     "yargs": "^9.0.1"
   },
   "engines": {
-    "node": ">=6",
-    "npm": ">=3"
+    "node": ">=8",
+    "npm": ">=5"
   },
   "license": "Apache-2.0",
   "private": true
