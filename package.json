@@ -14,9 +14,9 @@
     "test-utils": "lerna run test --scope qiskit-utils",
     "test": "lerna run test",
     "pretest": "npm run lint && npm run dep-check",
-    "bundle-qasm": "browserify -u packages/qiskit-qasm/index.js -p [ browserify-banner --file dist/banner.txt ] -s qiskitQasm . > dist/qiskit-qasm.js",
-    "bundle-sim": "browserify -u packages/qiskit-sim/index.js -p [ browserify-banner --file dist/banner.txt ] -s qiskitSim . > dist/qiskit-sim",
-    "bundle-qe": "browserify -u packages/qiskit-qe/index.js -p [ browserify-banner --file dist/banner.txt ] -s qiskitQe . > dist/qiskit-qe.js",
+    "bundle-qasm": "browserify packages/qiskit-qasm/index.js -p [ browserify-banner --file dist/banner.txt ] -s qiskitQasm > dist/qiskit-qasm.js",
+    "bundle-sim": "browserify packages/qiskit-sim/index.js -p [ browserify-banner --file dist/banner.txt ] -s qiskitSim > dist/qiskit-sim.js",
+    "bundle-qe": "browserify packages/qiskit-qe/index.js -p [ browserify-banner --file dist/banner.txt ] -s qiskitQe > dist/qiskit-qe.js",
     "bundle": "npm run bundle-qasm && npm run bundle-sim && npm run bundle-qe",
     "browser": "static-server -i example.html dist"
   },

@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8"/>
   <title>qiskit.js</title>
-  <script src="./qiskit.js"></script>
+  <script src="./qiskit-sim.js"></script>
 
   <style>
     #ide {
@@ -119,15 +119,15 @@
 
 
     document.addEventListener('DOMContentLoaded', function(event) {
-      if (!qiskit) {
+      if (!qiskitSim) {
         alert('qiskit is not present :(');
         return;
       }
 
       console.log('qiskit is present ;)');
 
-      console.log('Version:');qiski
-      console.log(qiskit.version);
+      console.log('Version:')
+      console.log(qiskitSim.version);
 
       const version = document.getElementById('version');
       version.innerHTML = `${version.innerHTML} ${qiskit.version}`;
@@ -142,7 +142,7 @@
 
         console.log('Sim started');
         try {
-          resSim = qiskit.sim.run(circuit);
+          resSim = qiskitSim.run(circuit);
           console.log('Sim done:', resSim);
           result.innerHTML = JSON.stringify(resSim, undefined, 2);
         } catch (err) {
