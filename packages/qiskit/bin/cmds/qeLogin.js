@@ -55,12 +55,11 @@ exports.handler = (argv) => {
         .then((res) => {
           logger.resultHead();
 
-          if (!argv.printToken) { delete res.token; }
-
-          logger.json(res);
-
           storage.setItem('token', res.token)
             .then(() => {
+              if (!argv.printToken) { delete res.token; }
+
+              logger.json(res);
               logger.regular('\nLong term token correctly stored for future uses');
             })
             .catch((err) => {
