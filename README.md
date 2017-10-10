@@ -6,7 +6,7 @@
 
 :atom_symbol: [Quantum Information Software Kit](https://developer.ibm.com/open/openprojects/qiskit) in pure JavaScript.
 
-:bulb: This project born as a clone (in JS) of [its big brother](https://github.com/IBM/qisim.js-sdk-py).
+:bulb: This project born as a clone (in JS) of [its big brother](https://github.com/QISKit/qiskit-sdk-py).
 
 ## Philosophy
 
