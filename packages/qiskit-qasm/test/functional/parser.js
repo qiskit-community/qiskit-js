@@ -148,4 +148,50 @@ describe('qasm:parse', () => {
     ];
     assert.deepEqual(parser.parse(circuit), expectedC);
   });
+
+  it('should work with OPAQUE gate (1)', () => {
+    parser = new Parser();
+    const circuit = 'OPENQASM 2.0;\n' +
+                    'qreg q[1];\n' +
+                    'creg c[1];\n' +
+                    'opaque myOpaque a,b,c;';
+
+    const expectedC = [
+      { type: 'qubit', identifier: 'q', number: '1' },
+      { type: 'clbit', identifier: 'c', number: '1' },
+      { type: 'opaque', gateScope: undefined, bitList: ['a', 'b', 'c'], gateIdList: undefined }
+    ];
+    assert.deepEqual(parser.parse(circuit), expectedC);
+  });
+
+
+  it('should work with OPAQUE gate (2)', () => {
+    parser = new Parser();
+    const circuit = 'OPENQASM 2.0;\n' +
+                    'qreg q[1];\n' +
+                    'creg c[1];\n' +
+                    'opaque myOpaque () a,b,c;';
+
+    const expectedC = [
+      { type: 'qubit', identifier: 'q', number: '1' },
+      { type: 'clbit', identifier: 'c', number: '1' },
+      { type: 'opaque', gateScope: undefined, bitList: ['a', 'b', 'c'], gateIdList: undefined }
+    ];
+    assert.deepEqual(parser.parse(circuit), expectedC);
+  });
+
+  it('should work with OPAQUE gate (3)', () => {
+    parser = new Parser();
+    const circuit = 'OPENQASM 2.0;\n' +
+                    'qreg q[1];\n' +
+                    'creg c[1];\n' +
+                    'opaque myOpaque (x,y) a,b,c;';
+
+    const expectedC = [
+      { type: 'qubit', identifier: 'q', number: '1' },
+      { type: 'clbit', identifier: 'c', number: '1' },
+      { type: 'opaque', gateScope: undefined, bitList: ['a', 'b', 'c'], gateIdList: undefined, gateIdList: [ 'x', 'y' ] }
+    ];
+    assert.deepEqual(parser.parse(circuit), expectedC);
+  });
 });
