@@ -22,7 +22,7 @@ const dbg = utils.dbg(__filename);
 // const QasmError = require('./QasmError');
 
 // TODO: Do async?
-const bnf = fs.readFileSync(path.resolve(__dirname, './grammar.jison'), 'utf8');
+const bnf = fs.readFileSync(path.resolve(__dirname, 'grammar.jison'), 'utf8');
 let parser;
 
 class Parser {

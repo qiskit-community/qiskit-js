@@ -28,13 +28,14 @@
 // to have state. Moreover maybe we need to emit events, see TODOs below.
 
 const math = require('mathjs');
+// const qasm = require('qiskit-qasm');
 
 const utils = require('./utils');
-// const unroll = require('./qasm/unroll');
 const gateSingle = require('./gateSingle');
 const gateTwo = require('./gateTwo');
+// const unroll = require('./unroll');
 
-
+// const parser = new qasm.Parser({});
 const dbg = utils.dbg(__filename);
 const complex = math.complex(1, 0);
 // TODO: Why? Different CX matrix than in the web, which is the correct one?
@@ -55,8 +56,11 @@ module.exports = (circuit) => {
   if (!circuit) { throw new Error('Empty circuit'); }
 
   const drops = [];
-  // TODO: For QASM we need to unroll it before.
-  // const circuitUnrolled = unroll(circuit)
+  // For QASM we need to parse it before.
+  // const circuit = parser.parse(circuitQasm);
+  // TODO: Also unroll it.
+  // const circuitIR = qasm.parse(circuitQasm)
+  // const circuit = unroll(circuitIR)
 
   let numQbits = 0;
   // TODO: Add check "isInt"?

@@ -21,6 +21,7 @@
     "browser": "static-server -i example.html dist"
   },
   "devDependencies": {
+    "brfs": "^1.4.3",
     "browserify": "^14.4.0",
     "browserify-banner": "^1.0.5",
     "eslint": "^4.7.2",
@@ -37,5 +38,8 @@
     "node": ">=8",
     "npm": ">=5"
   },
-  "private": true
+  "private": true,
+  "dependencies": {
+    "brfs-babel": "^1.0.0"
+  }
 }

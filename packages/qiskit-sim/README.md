@@ -40,12 +40,12 @@ The actual version of the library.
 
 - `version` (string) - Version number.
 
-### `unroll(circuit) -> circuitUnrolled`
+### `unroll(circuitIr) -> circuitUnrolled`
 
 **NOTE: Method still not implemented**
 Get the extended representation of the circuit for this simulator.
 
-- `circuit` (string) - QASM circuit representation.
+- `circuitIr` (object) - QASM circuit in the parser generated intermediate representation (JSON).
 - `circuitUnrolled` (object): Extended (also JSON) circuit.
 
 ### `gateSingle(gate, qubit, nQubits, stateOld) -> stateNew`

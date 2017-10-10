@@ -130,7 +130,7 @@
       console.log(qiskitSim.version);
 
       const version = document.getElementById('version');
-      version.innerHTML = `${version.innerHTML} ${qiskit.version}`;
+      version.innerHTML = `${version.innerHTML} ${qiskitSim.version}`;
 
       const code = document.getElementById('code');
       code.innerHTML = JSON.stringify(circuit, undefined, 2);

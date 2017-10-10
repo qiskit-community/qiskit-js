@@ -10,7 +10,6 @@
 
 'use strict';
 
-const unroll = require('./lib/unroll');
 const gateSingle = require('./lib/gateSingle');
 const gateTwo = require('./lib/gateTwo');
 const run = require('./lib/run');
@@ -22,7 +21,6 @@ module.exports = {
   version,
   gateSingle,
   gateTwo,
-  unroll,
   run,
   state0,
 };
