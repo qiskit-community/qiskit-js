@@ -6,11 +6,12 @@
     "max-len": ["warn", 100, 2]
   },
 
-  "plugins": ["json"],
+  "plugins": ["json", "jest"],
   
   "env": {
       "mocha": true,
-      "node": true
+      "node": true,
+      "jest/globals": true
   }
 
 }
