@@ -1,0 +1,206 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`qasm:parse should fail with "include" 1`] = `
+Array [
+  Object {
+    "identifier": "q",
+    "number": "1",
+    "type": "qubit",
+  },
+  Object {
+    "identifier": "c",
+    "number": "1",
+    "type": "clbit",
+  },
+  Object {
+    "identifiers": Array [
+      Object {
+        "index": "1",
+        "name": "q",
+      },
+    ],
+    "type": "x",
+  },
+]
+`;
+
+exports[`qasm:parse should work with "IBMQASM 2.0" as version header 1`] = `
+Array [
+  Object {
+    "identifier": "q",
+    "number": "1",
+    "type": "qubit",
+  },
+  Object {
+    "identifier": "c",
+    "number": "1",
+    "type": "clbit",
+  },
+  Object {
+    "creg": Object {
+      "name": "c",
+    },
+    "qreg": Object {
+      "name": "q",
+    },
+    "type": "measure",
+  },
+]
+`;
+
+exports[`qasm:parse should work with "include" 1`] = `
+Array [
+  Object {
+    "identifier": "q",
+    "number": "5",
+    "type": "qubit",
+  },
+  Object {
+    "identifier": "c",
+    "number": "5",
+    "type": "clbit",
+  },
+  Object {
+    "identifiers": Array [
+      Object {
+        "index": "0",
+        "name": "q",
+      },
+    ],
+    "type": "x",
+  },
+  Object {
+    "creg": Object {
+      "name": "c",
+    },
+    "qreg": Object {
+      "name": "q",
+    },
+    "type": "measure",
+  },
+]
+`;
+
+exports[`qasm:parse should work with OPAQUE gate (1) 1`] = `
+Array [
+  Object {
+    "identifier": "q",
+    "number": "1",
+    "type": "qubit",
+  },
+  Object {
+    "identifier": "c",
+    "number": "1",
+    "type": "clbit",
+  },
+  Object {
+    "bitList": Array [
+      "a",
+      "b",
+      "c",
+    ],
+    "gateIdList": undefined,
+    "gateScope": undefined,
+    "type": "opaque",
+  },
+]
+`;
+
+exports[`qasm:parse should work with OPAQUE gate (2) 1`] = `
+Array [
+  Object {
+    "identifier": "q",
+    "number": "1",
+    "type": "qubit",
+  },
+  Object {
+    "identifier": "c",
+    "number": "1",
+    "type": "clbit",
+  },
+  Object {
+    "bitList": Array [
+      "a",
+      "b",
+      "c",
+    ],
+    "gateIdList": undefined,
+    "gateScope": undefined,
+    "type": "opaque",
+  },
+]
+`;
+
+exports[`qasm:parse should work with OPAQUE gate (3) 1`] = `
+Array [
+  Object {
+    "identifier": "q",
+    "number": "1",
+    "type": "qubit",
+  },
+  Object {
+    "identifier": "c",
+    "number": "1",
+    "type": "clbit",
+  },
+  Object {
+    "bitList": Array [
+      "a",
+      "b",
+      "c",
+    ],
+    "gateIdList": Array [
+      "x",
+      "y",
+    ],
+    "gateScope": undefined,
+    "type": "opaque",
+  },
+]
+`;
+
+exports[`qasm:parse should work with RESET 1`] = `
+Array [
+  Object {
+    "identifier": "q",
+    "number": "1",
+    "type": "qubit",
+  },
+  Object {
+    "identifier": "c",
+    "number": "1",
+    "type": "clbit",
+  },
+  Object {
+    "qreg": Object {
+      "index": "0",
+      "name": "q",
+    },
+    "type": "reset",
+  },
+]
+`;
+
+exports[`qasm:parse should work with with "OPENQASM 2.0" as version header 1`] = `
+Array [
+  Object {
+    "identifier": "q",
+    "number": "1",
+    "type": "qubit",
+  },
+  Object {
+    "identifier": "c",
+    "number": "1",
+    "type": "clbit",
+  },
+  Object {
+    "creg": Object {
+      "name": "c",
+    },
+    "qreg": Object {
+      "name": "q",
+    },
+    "type": "measure",
+  },
+]
+`;

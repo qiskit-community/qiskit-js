@@ -40,11 +40,11 @@ describe('qasm:parse', () => {
   //   { type: 'x', identifiers: [{ name: 'q', index: '0' }] },
   //   { type: 'measure', qreg: { name: 'q' }, creg: { name: 'c' } },
   // ];
-  const expected = [
-    { type: 'qubit', identifier: 'q', number: '1' },
-    { type: 'clbit', identifier: 'c', number: '1' },
-    { type: 'measure', qreg: { name: 'q' }, creg: { name: 'c' } },
-  ];
+  // const expected = [
+  //   { type: 'qubit', identifier: 'q', number: '1' },
+  //   { type: 'clbit', identifier: 'c', number: '1' },
+  //   { type: 'measure', qreg: { name: 'q' }, creg: { name: 'c' } },
+  // ];
   const circuitSimple = 'qreg q[1];\n' +
                         'creg c[1];\n' +
                         'measure q->c;\n';
@@ -54,15 +54,14 @@ describe('qasm:parse', () => {
     parser = new Parser();
     const circuit = `IBMQASM 2.0;\n${circuitSimple}`;
 
-    const res = parser.parse(circuit);
-    assert.deepEqual(res, expected);
+    expect(parser.parse(circuit)).toMatchSnapshot();
   });
 
   it('should work with with "OPENQASM 2.0" as version header', () => {
     parser = new Parser();
     const circuit = `OPENQASM 2.0;\n${circuitSimple}`;
 
-    assert.deepEqual(parser.parse(circuit), expected);
+    expect(parser.parse(circuit)).toMatchSnapshot();
   });
 
   it('should fail with any other version header', () => {
@@ -108,13 +107,7 @@ describe('qasm:parse', () => {
                     'x q[0];\n' +
                     'measure q -> c;';
 
-    const expectedC = [
-      { type: 'qubit', identifier: 'q', number: '5' },
-      { type: 'clbit', identifier: 'c', number: '5' },
-      { type: 'x', identifiers: [{ name: 'q', index: '0' }] },
-      { type: 'measure', qreg: { name: 'q' }, creg: { name: 'c' } },
-    ];
-    assert.deepEqual(parser.parse(circuit), expectedC);
+    expect(parser.parse(circuit)).toMatchSnapshot();
   });
 
   it('should work with RESET', () => {
@@ -124,13 +117,7 @@ describe('qasm:parse', () => {
                     'creg c[1];\n' +
                     'reset q[0];';
 
-    const res = parser.parse(circuit);
-    const expectedReset = [
-      { type: 'qubit', identifier: 'q', number: '1' },
-      { type: 'clbit', identifier: 'c', number: '1' },
-      { type: 'reset', qreg: { name: 'q', index: '0' } },
-    ];
-    assert.deepEqual(res, expectedReset);
+    expect(parser.parse(circuit)).toMatchSnapshot();
   });
 
   // TODO: Should fail (qreg invalid)
@@ -141,12 +128,7 @@ describe('qasm:parse', () => {
                     'creg c[1];\n' +
                     'x q[1];\n';
 
-    const expectedC = [
-      { type: 'qubit', identifier: 'q', number: '1' },
-      { type: 'clbit', identifier: 'c', number: '1' },
-      { type: 'x', identifiers: [{ name: 'q', index: '1' }] },
-    ];
-    assert.deepEqual(parser.parse(circuit), expectedC);
+    expect(parser.parse(circuit)).toMatchSnapshot();
   });
 
   it('should work with OPAQUE gate (1)', () => {
@@ -156,12 +138,7 @@ describe('qasm:parse', () => {
                     'creg c[1];\n' +
                     'opaque myOpaque a,b,c;';
 
-    const expectedC = [
-      { type: 'qubit', identifier: 'q', number: '1' },
-      { type: 'clbit', identifier: 'c', number: '1' },
-      { type: 'opaque', gateScope: undefined, bitList: ['a', 'b', 'c'], gateIdList: undefined }
-    ];
-    assert.deepEqual(parser.parse(circuit), expectedC);
+    expect(parser.parse(circuit)).toMatchSnapshot();
   });
 
 
@@ -172,12 +149,7 @@ describe('qasm:parse', () => {
                     'creg c[1];\n' +
                     'opaque myOpaque () a,b,c;';
 
-    const expectedC = [
-      { type: 'qubit', identifier: 'q', number: '1' },
-      { type: 'clbit', identifier: 'c', number: '1' },
-      { type: 'opaque', gateScope: undefined, bitList: ['a', 'b', 'c'], gateIdList: undefined }
-    ];
-    assert.deepEqual(parser.parse(circuit), expectedC);
+    expect(parser.parse(circuit)).toMatchSnapshot();
   });
 
   it('should work with OPAQUE gate (3)', () => {
@@ -187,11 +159,6 @@ describe('qasm:parse', () => {
                     'creg c[1];\n' +
                     'opaque myOpaque (x,y) a,b,c;';
 
-    const expectedC = [
-      { type: 'qubit', identifier: 'q', number: '1' },
-      { type: 'clbit', identifier: 'c', number: '1' },
-      { type: 'opaque', gateScope: undefined, bitList: ['a', 'b', 'c'], gateIdList: undefined, gateIdList: [ 'x', 'y' ] }
-    ];
-    assert.deepEqual(parser.parse(circuit), expectedC);
+    expect(parser.parse(circuit)).toMatchSnapshot();
   });
 });
