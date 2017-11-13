@@ -33,6 +33,7 @@
 "measure"               return 'MEASURE'
 "barrier"               return 'BARRIER'
 "reset"                 return 'RESET'
+"opaque"                return 'OPAQUE'
 "->"                    return '->'
 ";"                     return ';'
 ","                     return ','
@@ -136,6 +137,14 @@
     }
   }
   
+  function buildOpaque(name, gateScope, bitList, gateIdList) {
+    return {
+      type: 'opaque',
+      gateScope,
+      bitList,
+      gateIdList
+    }
+  }
 
   function buildGate(name, identifiers, params, qelib, line) {
     const gate = {
@@ -379,7 +388,7 @@ Unary
 
 QOperation
     : UnitaryOperation
-    // | opaque
+    | Opaque
     | Measure
     | Barrier
     | Reset
@@ -443,3 +452,10 @@ IdList
 Reset
     : RESET Primary { $$ = buildReset($2); }
     ;
+
+Opaque
+    : OPAQUE Id GateScope BitList { $$ = buildOpaque($Id, $GateScope, $BitList); }
+    | OPAQUE Id GateScope '(' ')' BitList { $$ = buildOpaque($Id, $GateScope, $BitList); }
+    | OPAQUE Id GateScope '(' GateIdList ')' BitList { $$ = buildOpaque($Id, $GateScope, $BitList, $GateIdList); }
+    ;
+
