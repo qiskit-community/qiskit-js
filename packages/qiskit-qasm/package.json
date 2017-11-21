@@ -18,7 +18,7 @@
     "dep-check": "npm-check",
     "dep-sec": "nsp check",
     "dep-fix": "npm-check -u",
-    "test": "mocha --recursive test"
+    "test": "jest --verbose test"
   },
   "keywords": [
     "quantum",
