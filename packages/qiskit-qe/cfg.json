@@ -1,6 +1,6 @@
 {
   "defaults": {
-    "uri": "https://qe-api-dev.mybluemix.net/api/v0",
+    "uri": "https://qe.mybluemix.net/api/v0",
     "backend": {
       "run": "simulator",
       "reads": "ibmqx4"
