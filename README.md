@@ -100,4 +100,4 @@ A wrapper fot the [`qiskit-qe`](./packages/qiskit-utils) project.
 
 ## Contributing
 
-:sunglasses: If you'd like to help please take a look to our [contribution guidelines](https://github.com/IBMResearch/contributing).
+:sunglasses: If you'd like to help please take a look to our [contribution guidelines](./CONTRIBUTING.md).
