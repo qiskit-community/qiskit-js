@@ -39,7 +39,7 @@ describe('qiskit:bin', () => {
 
   it('should work for "--help"', () =>
     assertComm(
-      /Commands:\nparse<circuit>ParsethecircuittoourIR/,
+      /parse<circuit>ParsethecircuittoourIR/,
       // eslint-disable-next-line comma-dangle
       exec(`${comm} --help`)
     ));
