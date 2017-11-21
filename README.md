@@ -121,4 +121,4 @@ QISKit is released under the [Apache license, v2.0](https://www.apache.org/licen
 
 ## Do you want to help?
 
-:sunglasses: If you'd like to help please take a look to our [contribution guidelines](https://github.com/IBMResearch/contributing).
+:sunglasses: If you'd like to help please take a look to our [contribution guidelines](./CONTRIBUTING.md).
