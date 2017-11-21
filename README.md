@@ -14,7 +14,7 @@
 
 If you want to learn more about Quantum Computing, you're invited to visit our [Quamtum Experience](https://quantumexperience.ng.bluemix.net) project.
 
-## Tools
+## Structure
 
 :handbag: This repository include next tools. Please visit the specific documentation you need:
 
@@ -98,6 +98,27 @@ A wrapper fot the [`qiskit-qe`](./packages/qiskit-utils) project.
 
 - `utils` (object) - The same object provided in the original library.
 
-## Contributing
+## Authors (alphabetical)
+
+Ismael Faro, Jesus Perez, Jorge Carballo.
+
+Original code (Python) authors are reflected [in the project repo](https://github.com/QISKit/qiskit-sdk-py#authors-alphabetical).
+
+In future releases, anyone who contributes code to this project can include their name here.
+
+## Other QISKit projects
+
+- [Python QISKit](https://github.com/QISKit/qiskit-sdk-py.git>)
+- [ibmqx backend information](https://github.com/QISKit/ibmqx-backend-information): Information about the different IBM Q experience backends.
+- [ibmqx user guide](https://github.com/QISKit/ibmqx-user-guides): The users guides for the IBM Q experience.
+- [OpenQasm](https://github.com/QISKit/openqasm): Examples and tools for the OpenQASM intermediate representation.
+- [Python API](https://github.com/QISKit/qiskit-api-py): API Client to use IBM Q experience in Python.
+- [Tutorials](https://github.com/QISKit/qiskit-tutorial): Jupyter notebooks for using QISKit.
+
+## License
+
+QISKit is released under the [Apache license, v2.0](https://www.apache.org/licenses/LICENSE-2.0).
+
+## Do you want to help?
 
 :sunglasses: If you'd like to help please take a look to our [contribution guidelines](https://github.com/IBMResearch/contributing).
