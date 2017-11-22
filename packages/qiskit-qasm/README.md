@@ -9,7 +9,7 @@ Please visit the [main repository](https://github.ibm.com/IBMResearch/qiskit.js)
 :coffee: Install [Node.js](https://nodejs.org/download) v8 and then:
 
 ```sh
-npm i qiskit-qasm
+npm i @qiskit/qasm
 ```
 
 ## Use
@@ -17,7 +17,7 @@ npm i qiskit-qasm
 :pencil: You can visit the complete example [in this test](./test/functional/parse.js).
 
 ```js
-const qasm = require('qiskit-qasm');
+const qasm = require('@qiskit/qasm');
 
 console.log('Version');
 console.log(qasm.version);

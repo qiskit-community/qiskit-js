@@ -18,19 +18,19 @@ If you want to learn more about Quantum Computing, you're invited to visit our [
 
 :handbag: This repository include next tools. Please visit the specific documentation you need:
 
-- [qiskit](./packages/qiskit): Meta-package, documented in this file. It also includes a command line client, which is your friend if you want to play with some OpenQASM circuits (in the Quantum Experience or the local simulator) without having to use any other programming language.
-- [qiskit-qasm](./packages/qiskit-qasm): [OpenQASM](https://github.com/IBM/qiskit-openqasm) library, including the parser.
-- [qiskit-qe](./packages/qiskit-qe): Send circuits to the Quantum Experience.
-- [qiskit-sim](./packages/qiskit-sim): Local simulator for OpenQASM circuits.
-- [qiskit-utils](./packages/qiskit-utils): Helpers shared among all packages.
-- [qiskit for the browser](./dist): A bundled version with the same stuff ready to be used in the browser.
+- [@qiskit/cli](./packages/qiskit): Meta-package, documented in this file. It also includes a command line client, which is your friend if you want to play with some OpenQASM circuits (in the Quantum Experience or the local simulator) without having to use any other programming language.
+- [@qiskit/qasm](./packages/qiskit-qasm): [OpenQASM](https://github.com/IBM/qiskit-openqasm) library, including the parser.
+- [@qiskit/qe](./packages/qiskit-qe): Send circuits to the Quantum Experience.
+- [@qiskit/sim](./packages/qiskit-sim): Local simulator for OpenQASM circuits.
+- [@qiskit/utils](./packages/qiskit-utils): Helpers shared among all packages.
+- [QISKit for the browser](./dist): A bundled version with the same stuff ready to be used in the browser.
 
 ## Install
 
 :coffee: Install [Node.js](https://nodejs.org/download) v8 and then:
 
 ```sh
-npm i -g qiskit
+npm i -g @qiskit/cli
 ```
 
 ## Use
@@ -48,10 +48,10 @@ qiskitjs --help
 :pencil: As you can see in the next section, we have to use it like in the rest of independent modules. The only difference is we need to select the proper field of the main object before.
 
 ```js
-const qiskit = require('qiskit');
+const qiskitCli = require('@qiskit/cli');
 
 console.log('Simulator version');
-console.log(qiskit.sim.version);
+console.log(qiskitCli.sim.version);
 ```
 
 ## API

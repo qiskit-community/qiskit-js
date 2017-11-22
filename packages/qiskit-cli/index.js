@@ -10,10 +10,10 @@
 
 'use strict';
 
-const qasm = require('qiskit-qasm');
-const sim = require('qiskit-sim');
-const Qe = require('qiskit-qe');
-const utils = require('qiskit-utils');
+const qasm = require('@qiskit/qasm');
+const sim = require('@qiskit/sim');
+const Qe = require('@qiskit/qe');
+const utils = require('@qiskit/utils');
 
 const { version } = require('./package');
 

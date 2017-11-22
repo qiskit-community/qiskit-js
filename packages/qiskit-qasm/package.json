@@ -1,5 +1,5 @@
 {
-  "name": "qiskit-qasm",
+  "name": "@qiskit/qasm",
   "version": "0.1.0",
   "description": "Quantum Information Software Kit OpenQASM library",
   "author": {
@@ -37,7 +37,7 @@
   },
   "dependencies": {
     "jison": "^0.4.18",
-    "qiskit-utils": "^0.1.0"
+    "@qiskit/utils": "^0.1.0"
   },
   "engines": {
     "node": ">=8",

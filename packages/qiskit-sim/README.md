@@ -9,7 +9,7 @@ Please visit the [main repository](https://github.ibm.com/IBMResearch/qiskit.js)
 :coffee: Install [Node.js](https://nodejs.org/download) v8 and then:
 
 ```sh
-npm i qiskit-sim
+npm i @qiskit/sim
 ```
 
 ## Use
@@ -17,7 +17,7 @@ npm i qiskit-sim
 :pencil: You can visit the complete example [in this test](./test/functional/run.js).
 
 ```js
-const sim = require('qiskit-sim');
+const sim = require('@qiskit/sim');
 
 console.log('Version');
 console.log(sim.version);

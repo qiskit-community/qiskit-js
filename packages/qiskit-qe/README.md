@@ -9,7 +9,7 @@ Please visit the [main repository](https://github.ibm.com/IBMResearch/qiskit.js)
 :coffee: Install [Node.js](https://nodejs.org/download) v8 and then:
 
 ```sh
-npm i qiskit-qe
+npm i @qiskit/qe
 ```
 
 ## Use
@@ -19,7 +19,7 @@ npm i qiskit-qe
 ```js
 'use strict';
 
-const Qe = require('qiskit-qe');
+const Qe = require('@qiskit/qe');
 
 const qe = new Qe({});
 

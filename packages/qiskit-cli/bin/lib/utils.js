@@ -10,7 +10,7 @@
 
 'use strict';
 
-const utils = require('qiskit-utils');
+const utils = require('@qiskit/utils');
 
 const pkgName = require('../../package.json').name;
 
