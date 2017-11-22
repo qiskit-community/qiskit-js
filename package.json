@@ -2,7 +2,7 @@
   "scripts": {
     "install": "lerna bootstrap",
     "clean": "lerna clean --yes",
-    "publish": "lerna publish --canary",
+    "publish": "npm i && lerna publish --canary",
     "lint": "eslint .",
     "dep-check": "npm-check && lerna run dep-check",
     "dep-sec": "lerna run dep-sec",
@@ -13,7 +13,7 @@
     "test-sim": "lerna run test --scope qiskit-sim",
     "test-utils": "lerna run test --scope qiskit-utils",
     "test": "lerna run test",
-    "pretest": "npm run lint && npm run dep-check",
+    "pretest": "npm i && npm run lint && npm run dep-check",
     "bundle-qasm": "browserify packages/qiskit-qasm/index.js -p [ browserify-banner --file dist/banner.txt ] -s qiskitQasm > dist/qiskit-qasm.js",
     "bundle-sim": "browserify packages/qiskit-sim/index.js -p [ browserify-banner --file dist/banner.txt ] -s qiskitSim > dist/qiskit-sim.js",
     "bundle-qe": "browserify packages/qiskit-qe/index.js -p [ browserify-banner --file dist/banner.txt ] -s qiskitQe > dist/qiskit-qe.js",
