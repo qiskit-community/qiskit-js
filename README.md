@@ -30,12 +30,7 @@ If you want to learn more about Quantum Computing, you're invited to visit our [
 :coffee: Install [Node.js](https://nodejs.org/download) v8 and then:
 
 ```sh
-git clone git@github.ibm.com:IBMResearch/qiskit.js.git
-cd qiskit.js
-npm i
-
-# TODO: When published to npm.
-# npm i -g qiskit
+npm i -g qiskit
 ```
 
 ## Use
@@ -45,10 +40,7 @@ npm i
 :rocket: The command line client allows to play with the circuits without having to use any language API.
 
 ```sh
-node packages/qiskit/bin --help
-
-# TODO: When published to npm.
-# qiskitjs --help
+qiskitjs --help
 ```
 
 ### Programatically
@@ -56,9 +48,7 @@ node packages/qiskit/bin --help
 :pencil: As you can see in the next section, we have to use it like in the rest of independent modules. The only difference is we need to select the proper field of the main object before.
 
 ```js
-const qiskit = require('./');
-// TODO: When published to npm.
-// const qiskit = require('qiskit');
+const qiskit = require('qiskit');
 
 console.log('Simulator version');
 console.log(qiskit.sim.version);
@@ -100,13 +90,15 @@ A wrapper fot the [`qiskit-qe`](./packages/qiskit-utils) project.
 
 ## Authors (alphabetical)
 
-Ismael Faro, Jesus Perez, Jorge Carballo.
+:alien: Ismael Faro, Jesús Pérez, Jorge Carballo.
 
-Original code (Python) authors are reflected [in the project repo](https://github.com/QISKit/qiskit-sdk-py#authors-alphabetical).
+Original code (Python) authors [here](https://github.com/QISKit/qiskit-sdk-py#authors-alphabetical).
 
 In future releases, anyone who contributes code to this project can include their name here.
 
 ## Other QISKit projects
+
+:school_satchel:
 
 - [Python QISKit](https://github.com/QISKit/qiskit-sdk-py.git>)
 - [ibmqx backend information](https://github.com/QISKit/ibmqx-backend-information): Information about the different IBM Q experience backends.
@@ -117,7 +109,7 @@ In future releases, anyone who contributes code to this project can include thei
 
 ## License
 
-QISKit is released under the [Apache license, v2.0](https://www.apache.org/licenses/LICENSE-2.0).
+:penguin: QISKit is released under the [Apache license, v2.0](https://www.apache.org/licenses/LICENSE-2.0).
 
 ## Do you want to help?
 
