@@ -2,7 +2,7 @@
   "scripts": {
     "install": "lerna bootstrap",
     "clean": "lerna clean --yes",
-    "publish": "npm i && lerna publish --canary",
+    "publish": "npm i && lerna publish",
     "lint": "eslint .",
     "dep-check": "npm-check && lerna run dep-check",
     "dep-sec": "lerna run dep-sec",
