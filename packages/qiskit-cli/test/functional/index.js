@@ -15,7 +15,8 @@ const assert = require('assert');
 const qiskit = require('../..');
 
 
-const pkgInfo = require('../../../qiskit-sim/package');
+const pkgInfo = require('../../package');
+const pkgInfoSim = require('../../../qiskit-sim/package');
 
 
 describe('qiskit:api', () => {
@@ -27,5 +28,5 @@ describe('qiskit:api', () => {
 
   // We only check one for convenience.
   it('should return the correct result for any item', () =>
-    assert.equal(qiskit.sim.version, pkgInfo.version));
+    assert.equal(qiskit.sim.version, pkgInfoSim.version));
 });
