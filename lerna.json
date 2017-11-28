@@ -6,7 +6,6 @@
   ],
   "publishConfig": {
     "ignore": [
-      "*.md",
       "test/**"
     ]
   }
