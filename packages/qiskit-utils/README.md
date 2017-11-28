@@ -9,7 +9,7 @@ Please visit the [main repository](https://github.ibm.com/IBMResearch/qiskit.js)
 :coffee: Install [Node.js](https://nodejs.org/download) v8 and then:
 
 ```sh
-npm i qiskit-utils
+npm i @qiskit/utils
 ```
 
 ## Use
@@ -17,7 +17,7 @@ npm i qiskit-utils
 :pencil: You can visit the complete example [in this test](./test/functional/index.js).
 
 ```js
-const utils = require('qiskit-utils');
+const utils = require('@qiskit/utils');
 
 console.log('Version');
 console.log(utils.version);

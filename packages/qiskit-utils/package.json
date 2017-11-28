@@ -1,5 +1,5 @@
 {
-  "name": "qiskit-utils",
+  "name": "@qiskit/utils",
   "version": "0.1.0",
   "description": "Quantum Information Software utils library",
   "author": {

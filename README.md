@@ -18,24 +18,19 @@ If you want to learn more about Quantum Computing, you're invited to visit our [
 
 :handbag: This repository include next tools. Please visit the specific documentation you need:
 
-- [qiskit](./packages/qiskit): Meta-package, documented in this file. It also includes a command line client, which is your friend if you want to play with some OpenQASM circuits (in the Quantum Experience or the local simulator) without having to use any other programming language.
-- [qiskit-qasm](./packages/qiskit-qasm): [OpenQASM](https://github.com/IBM/qiskit-openqasm) library, including the parser.
-- [qiskit-qe](./packages/qiskit-qe): Send circuits to the Quantum Experience.
-- [qiskit-sim](./packages/qiskit-sim): Local simulator for OpenQASM circuits.
-- [qiskit-utils](./packages/qiskit-utils): Helpers shared among all packages.
-- [qiskit for the browser](./dist): A bundled version with the same stuff ready to be used in the browser.
+- [@qiskit/cli](./packages/qiskit): Meta-package, documented in this file. It also includes a command line client, which is your friend if you want to play with some OpenQASM circuits (in the Quantum Experience or the local simulator) without having to use any other programming language.
+- [@qiskit/qasm](./packages/qiskit-qasm): [OpenQASM](https://github.com/IBM/qiskit-openqasm) library, including the parser.
+- [@qiskit/qe](./packages/qiskit-qe): Send circuits to the Quantum Experience.
+- [@qiskit/sim](./packages/qiskit-sim): Local simulator for OpenQASM circuits.
+- [@qiskit/utils](./packages/qiskit-utils): Helpers shared among all packages.
+- [QISKit for the browser](./dist): A bundled version with the same stuff ready to be used in the browser.
 
 ## Install
 
 :coffee: Install [Node.js](https://nodejs.org/download) v8 and then:
 
 ```sh
-git clone git@github.ibm.com:IBMResearch/qiskit.js.git
-cd qiskit.js
-npm i
-
-# TODO: When published to npm.
-# npm i -g qiskit
+npm i -g @qiskit/cli
 ```
 
 ## Use
@@ -45,10 +40,7 @@ npm i
 :rocket: The command line client allows to play with the circuits without having to use any language API.
 
 ```sh
-node packages/qiskit/bin --help
-
-# TODO: When published to npm.
-# qiskitjs --help
+qiskitjs --help
 ```
 
 ### Programatically
@@ -56,12 +48,10 @@ node packages/qiskit/bin --help
 :pencil: As you can see in the next section, we have to use it like in the rest of independent modules. The only difference is we need to select the proper field of the main object before.
 
 ```js
-const qiskit = require('./');
-// TODO: When published to npm.
-// const qiskit = require('qiskit');
+const qiskitCli = require('@qiskit/cli');
 
 console.log('Simulator version');
-console.log(qiskit.sim.version);
+console.log(qiskitCli.sim.version);
 ```
 
 ## API
@@ -100,13 +90,15 @@ A wrapper fot the [`qiskit-qe`](./packages/qiskit-utils) project.
 
 ## Authors (alphabetical)
 
-Ismael Faro, Jesus Perez, Jorge Carballo.
+:alien: Ismael Faro, Jesús Pérez, Jorge Carballo.
 
-Original code (Python) authors are reflected [in the project repo](https://github.com/QISKit/qiskit-sdk-py#authors-alphabetical).
+Original code (Python) authors [here](https://github.com/QISKit/qiskit-sdk-py#authors-alphabetical).
 
 In future releases, anyone who contributes code to this project can include their name here.
 
 ## Other QISKit projects
+
+:school_satchel:
 
 - [Python QISKit](https://github.com/QISKit/qiskit-sdk-py.git>)
 - [ibmqx backend information](https://github.com/QISKit/ibmqx-backend-information): Information about the different IBM Q experience backends.
@@ -117,7 +109,7 @@ In future releases, anyone who contributes code to this project can include thei
 
 ## License
 
-QISKit is released under the [Apache license, v2.0](https://www.apache.org/licenses/LICENSE-2.0).
+:penguin: QISKit is released under the [Apache license, v2.0](https://www.apache.org/licenses/LICENSE-2.0).
 
 ## Do you want to help?
 

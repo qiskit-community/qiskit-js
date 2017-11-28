@@ -28,7 +28,7 @@
 // to have state. Moreover maybe we need to emit events, see TODOs below.
 
 const math = require('mathjs');
-// const qasm = require('qiskit-qasm');
+// const qasm = require('@qiskit/qasm');
 
 const utils = require('./utils');
 const gateSingle = require('./gateSingle');
