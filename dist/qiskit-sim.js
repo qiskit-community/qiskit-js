@@ -1,5 +1,5 @@
 /*!
- * Qiskit Sim v0.1.2 (November 28th 2017)
+ * Qiskit Sim v0.1.3 (November 28th 2017)
  * Quantum Information Software Kit simulator
  * https://github.com/QISKit/qiskit-sdk-js
  * @author  IBM RESEARCH (http://research.ibm.com)
@@ -78924,7 +78924,7 @@ module.exports = E;
 },{}],568:[function(require,module,exports){
 module.exports={
   "name": "@qiskit/sim",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Quantum Information Software Kit simulator",
   "author": {
     "name": "IBM RESEARCH",
@@ -78961,7 +78961,6 @@ module.exports={
     "url": "https://github.com/QISKit/qiskit-sdk-js/issues"
   },
   "dependencies": {
-    "@qiskit/qasm": "^0.1.2",
     "debug": "^3.1.0",
     "es6-promisify": "^5.0.0",
     "lodash": "^4.17.4",

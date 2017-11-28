@@ -1,5 +1,5 @@
 /*!
- * Qiskit Qasm v0.1.2 (November 28th 2017)
+ * Qiskit Qasm v0.1.3 (November 28th 2017)
  * Quantum Information Software Kit OpenQASM library
  * https://github.com/QISKit/qiskit-sdk-js
  * @author  IBM RESEARCH (http://research.ibm.com)
@@ -5974,34 +5974,29 @@ if (typeof module !== 'undefined' && require.main === module) {
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"./package.json":18,"estraverse":20,"esutils":23,"source-map":31}],18:[function(require,module,exports){
 module.exports={
-  "_args": [
-    [
-      "escodegen@1.3.3",
-      "/home/baguira/src/qiskit-sdk-js/packages/qiskit-qasm"
-    ]
-  ],
-  "_from": "escodegen@1.3.3",
+  "_from": "escodegen@1.3.x",
   "_id": "escodegen@1.3.3",
   "_inBundle": false,
   "_integrity": "sha1-8CQBb1qI4Eb9EgBQVek5gC5sXyM=",
   "_location": "/escodegen",
   "_phantomChildren": {},
   "_requested": {
-    "type": "version",
+    "type": "range",
     "registry": true,
-    "raw": "escodegen@1.3.3",
+    "raw": "escodegen@1.3.x",
     "name": "escodegen",
     "escapedName": "escodegen",
-    "rawSpec": "1.3.3",
+    "rawSpec": "1.3.x",
     "saveSpec": null,
-    "fetchSpec": "1.3.3"
+    "fetchSpec": "1.3.x"
   },
   "_requiredBy": [
     "/jison"
   ],
   "_resolved": "https://registry.npmjs.org/escodegen/-/escodegen-1.3.3.tgz",
-  "_spec": "1.3.3",
-  "_where": "/home/baguira/src/qiskit-sdk-js/packages/qiskit-qasm",
+  "_shasum": "f024016f5a88e046fd12005055e939802e6c5f23",
+  "_spec": "escodegen@1.3.x",
+  "_where": "/home/baguira/src/qiskit-sdk-js/packages/qiskit-qasm/node_modules/jison",
   "bin": {
     "esgenerate": "./bin/esgenerate.js",
     "escodegen": "./bin/escodegen.js"
@@ -6009,12 +6004,14 @@ module.exports={
   "bugs": {
     "url": "https://github.com/Constellation/escodegen/issues"
   },
+  "bundleDependencies": false,
   "dependencies": {
     "esprima": "~1.1.1",
     "estraverse": "~1.5.0",
     "esutils": "~1.0.0",
     "source-map": "~0.1.33"
   },
+  "deprecated": false,
   "description": "ECMAScript code generator",
   "devDependencies": {
     "bluebird": "~1.2.0",
@@ -10836,34 +10833,29 @@ parseStatement: true, parseSourceElement: true */
 
 },{"./code":21,"./keyword":22}],24:[function(require,module,exports){
 module.exports={
-  "_args": [
-    [
-      "jison-lex@0.3.4",
-      "/home/baguira/src/qiskit-sdk-js/packages/qiskit-qasm"
-    ]
-  ],
-  "_from": "jison-lex@0.3.4",
+  "_from": "jison-lex@0.3.x",
   "_id": "jison-lex@0.3.4",
   "_inBundle": false,
   "_integrity": "sha1-gcoo2E+ESZ36jFlNzePYo/Jux6U=",
   "_location": "/jison-lex",
   "_phantomChildren": {},
   "_requested": {
-    "type": "version",
+    "type": "range",
     "registry": true,
-    "raw": "jison-lex@0.3.4",
+    "raw": "jison-lex@0.3.x",
     "name": "jison-lex",
     "escapedName": "jison-lex",
-    "rawSpec": "0.3.4",
+    "rawSpec": "0.3.x",
     "saveSpec": null,
-    "fetchSpec": "0.3.4"
+    "fetchSpec": "0.3.x"
   },
   "_requiredBy": [
     "/jison"
   ],
   "_resolved": "https://registry.npmjs.org/jison-lex/-/jison-lex-0.3.4.tgz",
-  "_spec": "0.3.4",
-  "_where": "/home/baguira/src/qiskit-sdk-js/packages/qiskit-qasm",
+  "_shasum": "81ca28d84f84499dfa8c594dcde3d8a3f26ec7a5",
+  "_spec": "jison-lex@0.3.x",
+  "_where": "/home/baguira/src/qiskit-sdk-js/packages/qiskit-qasm/node_modules/jison",
   "author": {
     "name": "Zach Carter",
     "email": "zach@carter.name",
@@ -10876,10 +10868,12 @@ module.exports={
     "url": "http://github.com/zaach/jison-lex/issues",
     "email": "jison@librelist.com"
   },
+  "bundleDependencies": false,
   "dependencies": {
     "lex-parser": "0.1.x",
     "nomnom": "1.5.2"
   },
+  "deprecated": false,
   "description": "lexical analyzer generator used by jison",
   "devDependencies": {
     "test": "0.4.4"
@@ -13625,33 +13619,28 @@ if (typeof exports !== 'undefined')
 
 },{}],29:[function(require,module,exports){
 module.exports={
-  "_args": [
-    [
-      "jison@0.4.18",
-      "/home/baguira/src/qiskit-sdk-js/packages/qiskit-qasm"
-    ]
-  ],
-  "_from": "jison@0.4.18",
+  "_from": "jison@^0.4.18",
   "_id": "jison@0.4.18",
   "_inBundle": false,
   "_integrity": "sha512-FKkCiJvozgC7VTHhMJ00a0/IApSxhlGsFIshLW6trWJ8ONX2TQJBBz6DlcO1Gffy4w9LT+uL+PA+CVnUSJMF7w==",
   "_location": "/jison",
   "_phantomChildren": {},
   "_requested": {
-    "type": "version",
+    "type": "range",
     "registry": true,
-    "raw": "jison@0.4.18",
+    "raw": "jison@^0.4.18",
     "name": "jison",
     "escapedName": "jison",
-    "rawSpec": "0.4.18",
+    "rawSpec": "^0.4.18",
     "saveSpec": null,
-    "fetchSpec": "0.4.18"
+    "fetchSpec": "^0.4.18"
   },
   "_requiredBy": [
     "/"
   ],
   "_resolved": "https://registry.npmjs.org/jison/-/jison-0.4.18.tgz",
-  "_spec": "0.4.18",
+  "_shasum": "c68a6a54bfe7028fa40bcfc6cc8bbd9ed291f502",
+  "_spec": "jison@^0.4.18",
   "_where": "/home/baguira/src/qiskit-sdk-js/packages/qiskit-qasm",
   "author": {
     "name": "Zach Carter",
@@ -13665,6 +13654,7 @@ module.exports={
     "url": "http://github.com/zaach/jison/issues",
     "email": "jison@librelist.com"
   },
+  "bundleDependencies": false,
   "dependencies": {
     "JSONSelect": "0.4.0",
     "cjson": "0.3.0",
@@ -13675,6 +13665,7 @@ module.exports={
     "lex-parser": "~0.1.3",
     "nomnom": "1.5.2"
   },
+  "deprecated": false,
   "description": "A parser generator with Bison's API",
   "devDependencies": {
     "browserify": "2.x.x",
@@ -16751,7 +16742,7 @@ define(function (require, exports, module) {
 },{"amdefine":12}],41:[function(require,module,exports){
 module.exports={
   "name": "@qiskit/qasm",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Quantum Information Software Kit OpenQASM library",
   "author": {
     "name": "IBM RESEARCH",
@@ -16787,7 +16778,7 @@ module.exports={
     "url": "https://github.com/QISKit/qiskit-sdk-js/issues"
   },
   "dependencies": {
-    "@qiskit/utils": "^0.1.2",
+    "@qiskit/utils": "^0.1.3",
     "jison": "^0.4.18"
   },
   "engines": {
@@ -35843,7 +35834,7 @@ function plural(ms, n, name) {
 },{}],50:[function(require,module,exports){
 module.exports={
   "name": "@qiskit/utils",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Quantum Information Software utils library",
   "author": {
     "name": "IBM RESEARCH",
