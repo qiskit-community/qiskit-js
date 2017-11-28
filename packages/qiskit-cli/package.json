@@ -1,6 +1,6 @@
 {
   "name": "@qiskit/cli",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "description": "Quantum Information Software Kit, command line client",
   "author": {
     "name": "IBM RESEARCH",
