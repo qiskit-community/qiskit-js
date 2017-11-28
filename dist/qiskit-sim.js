@@ -1,5 +1,5 @@
 /*!
- * Qiskit Sim v0.1.0 (November 22nd 2017)
+ * Qiskit Sim v0.1.0 (November 28th 2017)
  * Quantum Information Software Kit simulator
  * https://github.ibm.com/IBMResearch/qiskit.js
  * @author  IBM RESEARCH (http://research.ibm.com)

@@ -1,5 +1,5 @@
 /*!
- * Qiskit Qe v0.1.0 (November 22nd 2017)
+ * Qiskit Qe v0.1.0 (November 28th 2017)
  * Quantum Information Software library to use the Quantum Experience
  * https://github.ibm.com/IBMResearch/qiskit.js
  * @author  IBM RESEARCH (http://research.ibm.com)

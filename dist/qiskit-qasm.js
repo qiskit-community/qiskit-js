@@ -1,5 +1,5 @@
 /*!
- * Qiskit Qasm v0.1.0 (November 22nd 2017)
+ * Qiskit Qasm v0.1.0 (November 28th 2017)
  * Quantum Information Software Kit OpenQASM library
  * https://github.ibm.com/IBMResearch/qiskit.js
  * @author  IBM RESEARCH (http://research.ibm.com)
