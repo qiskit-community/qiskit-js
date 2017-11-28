@@ -1,7 +1,7 @@
 /*!
- * Qiskit Sim v0.1.0 (November 28th 2017)
+ * Qiskit Sim v0.1.2 (November 28th 2017)
  * Quantum Information Software Kit simulator
- * https://github.ibm.com/IBMResearch/qiskit.js
+ * https://github.com/QISKit/qiskit-sdk-js
  * @author  IBM RESEARCH (http://research.ibm.com)
  * @license Apache-2.0
  */
@@ -78924,19 +78924,19 @@ module.exports = E;
 },{}],568:[function(require,module,exports){
 module.exports={
   "name": "@qiskit/sim",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "Quantum Information Software Kit simulator",
   "author": {
     "name": "IBM RESEARCH",
     "url": "http://research.ibm.com"
   },
-  "homepage": "https://github.ibm.com/IBMResearch/qiskit.js",
+  "homepage": "https://github.com/QISKit/qiskit-sdk-js",
   "contributors": [
-    "https://github.ibm.com/IBMResearch/qiskit.js/graphs/contributors"
+    "https://github.com/QISKit/qiskit-sdk-js/graphs/contributors"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.ibm.com/IBMResearch/qiskit.js"
+    "url": "https://github.com/QISKit/qiskit-sdk-js"
   },
   "scripts": {
     "dep-check": "npm-check",
@@ -78958,21 +78958,23 @@ module.exports={
     "IBM"
   ],
   "bugs": {
-    "url": "https://github.ibm.com/IBMResearch/qiskit.js/issues"
+    "url": "https://github.com/QISKit/qiskit-sdk-js/issues"
   },
   "dependencies": {
+    "@qiskit/qasm": "^0.1.2",
     "debug": "^3.1.0",
     "es6-promisify": "^5.0.0",
     "lodash": "^4.17.4",
-    "mathjs": "^3.17.0",
-    "@qiskit/qasm": "^0.1.0"
+    "mathjs": "^3.17.0"
   },
   "engines": {
     "node": ">=8",
     "npm": ">=5"
   },
   "license": "Apache-2.0",
-  "private": true
+  "publishConfig": {
+    "access": "public"
+  }
 }
 
 },{}]},{},[7])(7)

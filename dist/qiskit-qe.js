@@ -1,7 +1,7 @@
 /*!
- * Qiskit Qe v0.1.0 (November 28th 2017)
+ * Qiskit Qe v0.1.2 (November 28th 2017)
  * Quantum Information Software library to use the Quantum Experience
- * https://github.ibm.com/IBMResearch/qiskit.js
+ * https://github.com/QISKit/qiskit-sdk-js
  * @author  IBM RESEARCH (http://research.ibm.com)
  * @license Apache-2.0
  */
@@ -70452,19 +70452,19 @@ WError.prototype.cause = function we_cause(c)
 },{"assert-plus":241,"core-util-is":249,"extsprintf":255,"util":186}],373:[function(require,module,exports){
 module.exports={
   "name": "@qiskit/qe",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "Quantum Information Software library to use the Quantum Experience",
   "author": {
     "name": "IBM RESEARCH",
     "url": "http://research.ibm.com"
   },
-  "homepage": "https://github.ibm.com/IBMResearch/qiskit.js",
+  "homepage": "https://github.com/QISKit/qiskit-sdk-js",
   "contributors": [
-    "https://github.ibm.com/IBMResearch/qiskit.js/graphs/contributors"
+    "https://github.com/QISKit/qiskit-sdk-js/graphs/contributors"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.ibm.com/IBMResearch/qiskit.js"
+    "url": "https://github.com/QISKit/qiskit-sdk-js"
   },
   "scripts": {
     "dep-check": "npm-check",
@@ -70483,10 +70483,10 @@ module.exports={
     "IBM"
   ],
   "bugs": {
-    "url": "https://github.ibm.com/IBMResearch/qiskit.js/issues"
+    "url": "https://github.com/QISKit/qiskit-sdk-js/issues"
   },
   "dependencies": {
-    "@qiskit/utils": "^0.1.0",
+    "@qiskit/utils": "^0.1.2",
     "request": "^2.83.0",
     "request-promise-native": "^1.0.5"
   },
@@ -70495,7 +70495,9 @@ module.exports={
     "npm": ">=5"
   },
   "license": "Apache-2.0",
-  "private": true
+  "publishConfig": {
+    "access": "public"
+  }
 }
 
 },{}],374:[function(require,module,exports){
@@ -89536,19 +89538,19 @@ function plural(ms, n, name) {
 },{}],382:[function(require,module,exports){
 module.exports={
   "name": "@qiskit/utils",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "Quantum Information Software utils library",
   "author": {
     "name": "IBM RESEARCH",
     "url": "http://research.ibm.com"
   },
-  "homepage": "https://github.ibm.com/IBMResearch/qiskit.js",
+  "homepage": "https://github.com/QISKit/qiskit-sdk-js",
   "contributors": [
-    "https://github.ibm.com/IBMResearch/qiskit.js/graphs/contributors"
+    "https://github.com/QISKit/qiskit-sdk-js/graphs/contributors"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.ibm.com/IBMResearch/qiskit.js"
+    "url": "https://github.com/QISKit/qiskit-sdk-js"
   },
   "scripts": {
     "dep-check": "npm-check",
@@ -89567,7 +89569,7 @@ module.exports={
     "IBM"
   ],
   "bugs": {
-    "url": "https://github.ibm.com/IBMResearch/qiskit.js/issues"
+    "url": "https://github.com/QISKit/qiskit-sdk-js/issues"
   },
   "dependencies": {
     "debug": "^3.1.0",
@@ -89579,7 +89581,9 @@ module.exports={
     "npm": ">=5"
   },
   "license": "Apache-2.0",
-  "private": true
+  "publishConfig": {
+    "access": "public"
+  }
 }
 
 },{}]},{},[190])(190)

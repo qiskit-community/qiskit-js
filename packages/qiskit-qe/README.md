@@ -2,7 +2,7 @@
 
 :atom_symbol: Quantum Information Software Kit library to use the [Quamtum Experience](https://quantumexperience.ng.bluemix.net).
 
-Please visit the [main repository](https://github.ibm.com/IBMResearch/qiskit.js) of the project to know about the rest of the tools.
+Please visit the [main repository](https://github.com/QISKit/qiskit-sdk-js) of the project to know about the rest of the tools.
 
 ## Install
 

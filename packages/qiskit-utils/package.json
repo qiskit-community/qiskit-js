@@ -6,13 +6,13 @@
     "name": "IBM RESEARCH",
     "url": "http://research.ibm.com"
   },
-  "homepage": "https://github.ibm.com/IBMResearch/qiskit.js",
+  "homepage": "https://github.com/QISKit/qiskit-sdk-js",
   "contributors": [
-    "https://github.ibm.com/IBMResearch/qiskit.js/graphs/contributors"
+    "https://github.com/QISKit/qiskit-sdk-js/graphs/contributors"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.ibm.com/IBMResearch/qiskit.js"
+    "url": "https://github.com/QISKit/qiskit-sdk-js"
   },
   "scripts": {
     "dep-check": "npm-check",
@@ -31,7 +31,7 @@
     "IBM"
   ],
   "bugs": {
-    "url": "https://github.ibm.com/IBMResearch/qiskit.js/issues"
+    "url": "https://github.com/QISKit/qiskit-sdk-js/issues"
   },
   "dependencies": {
     "debug": "^3.1.0",
