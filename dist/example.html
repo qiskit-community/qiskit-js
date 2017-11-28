@@ -5,6 +5,7 @@
   <meta charset="utf-8"/>
   <title>qiskit.js</title>
   <script src="./qiskit-sim.js"></script>
+  <script src="./qiskit-qe.js"></script>
 
   <style>
     #ide {
@@ -25,8 +26,18 @@
 
 <body>
 
-  <h1>qiskit.js sim</h1>
+  <h2>qiskit.js QE</h1>
+  <div id="versionQe">v:</div>
+  <div id="backends">Default backends queue info:</div>
+
+  <h2>qiskit.js sim</h1>
   <div id="version">v:</div>
+  
+  <button>Run</button>
+  <div id="ide">
+    <pre id="code">CODE</pre>
+    <pre id="result">RESULT</pre>
+  </div>
 
   <button>Run</button>
   <div id="ide">
@@ -120,17 +131,37 @@
 
     document.addEventListener('DOMContentLoaded', function(event) {
       if (!qiskitSim) {
-        alert('qiskit is not present :(');
+        alert('qiskit-sim is not present :(');
+        return;
+      }
+
+      if (!qiskitSim) {
+        alert('qiskit-qe is not present :(');
         return;
       }
 
       console.log('qiskit is present ;)');
 
-      console.log('Version:')
+      console.log('Sim version:')
       console.log(qiskitSim.version);
+
+      const qe = new QiskitQe();
+      console.log('QE version:')
+      console.log(qe.version);
 
       const version = document.getElementById('version');
       version.innerHTML = `${version.innerHTML} ${qiskitSim.version}`;
+
+      const versionQe = document.getElementById('versionQe');
+      versionQe.innerHTML = `${versionQe.innerHTML} ${qe.version}`;
+
+      console.log('Making a check request to QE ...');
+      qe.queues()
+      .then(data => {
+        console.log(data);
+        const backends = document.getElementById('backends');
+        backends.innerHTML = `${backends.innerHTML} ${JSON.stringify(data)}`;
+      });
 
       const code = document.getElementById('code');
       code.innerHTML = JSON.stringify(circuit, undefined, 2);
