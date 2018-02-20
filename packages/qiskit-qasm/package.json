@@ -47,8 +47,5 @@
     "transform": [
       "brfs"
     ]
-  },
-  "publishConfig": {
-    "access": "public"
   }
 }
