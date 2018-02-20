@@ -8,15 +8,16 @@
 
 'use strict';
 
+const util = require('util');
+
 const prompt = require('prompt');
 
 const qiskit = require('../..');
 const logger = require('../lib/logger');
 const storage = require('../lib/storage');
-const utils = require('../lib/utils');
 
 
-const getToken = utils.promisify(prompt.get);
+const getToken = util.promisify(prompt.get);
 const promptSchema = {
   properties: {
     personalToken: {

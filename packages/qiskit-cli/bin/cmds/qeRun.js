@@ -10,13 +10,13 @@
 
 const fs = require('fs');
 const path = require('path');
+const util = require('util');
 
 const qiskit = require('../..');
 const logger = require('../lib/logger');
-const utils = require('../lib/utils');
 
 
-const readFile = utils.promisify(fs.readFile);
+const readFile = util.promisify(fs.readFile);
 
 
 exports.command = 'qe-run <circuit> [backend] [shots] [name] [seed] [maxCredits]';

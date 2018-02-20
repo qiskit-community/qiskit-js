@@ -10,33 +10,12 @@
 
 'use strict';
 
-
-const path = require('path');
-
-// Lodash as base.
-const utils = require('lodash');
-const debug = require('debug');
-const promisify = require('es6-promisify');
+const utils = require('@qiskit/utils');
 
 const pkgName = require('../package.json').name;
 
 
-function pathToTag(fullPath) {
-  const res = path.basename(fullPath, '.js');
-
-  if (!res || res === fullPath) {
-    throw new Error('Not valid path');
-  } else {
-    return res;
-  }
-}
-
-
-utils.pathToTag = pathToTag;
-
-utils.dbg = fullPath => debug(`${pkgName}:${pathToTag(fullPath)}`);
-
-utils.promisify = promisify;
+utils.dbg = fullPath => utils.debug(`${pkgName}:${utils.pathToTag(fullPath)}`);
 
 
 module.exports = utils;
