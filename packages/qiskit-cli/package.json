@@ -60,8 +60,5 @@
     "node": ">=8",
     "npm": ">=5"
   },
-  "license": "Apache-2.0",
-  "publishConfig": {
-    "access": "public"
-  }
+  "license": "Apache-2.0"
 }
