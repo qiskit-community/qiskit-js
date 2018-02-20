@@ -14,17 +14,17 @@
 // TODO: Repeated code in qiskit bin, qiskit-utils package needed?
 const assert = require('assert');
 
+// eslint-disable-next-line import/no-extraneous-dependencies
+const shot = require('snap-shot-it');
 
-// The easiest way to play with promises in Mocha:
-// https://wietse.loves.engineering/testing-promises-with-mocha-90df8b7d2e35
-// ### `throwsAsync(block, errRegex) -> promise`
-//
+
 // A custom version of [assert.throws](https://nodejs.org/api/assert.html#
 // assert_assert_throws_block_error_message) with async (through promises) support.
 //
 // - `block` (function) - Piece of code (returning a promise) to be checked.
 // - `errRegex` (object) - Regular expresion to confirm the expected error.
-
+//
+// Ref: https://wietse.loves.engineering/testing-promises-with-mocha-90df8b7d2e35
 async function throwsAsync(block, errorRexp) {
   try {
     await block();
@@ -42,4 +42,4 @@ async function throwsAsync(block, errorRexp) {
 }
 
 
-module.exports = { throwsAsync };
+module.exports = { throwsAsync, shot };
