@@ -1,6 +1,6 @@
 {
   "name": "@qiskit/qasm",
-  "version": "0.1.3",
+  "version": "0.1.5",
   "description": "Quantum Information Software Kit OpenQASM library",
   "author": {
     "name": "IBM RESEARCH",
@@ -35,7 +35,7 @@
     "url": "https://github.com/QISKit/qiskit-sdk-js/issues"
   },
   "dependencies": {
-    "@qiskit/utils": "^0.1.3",
+    "@qiskit/utils": "^0.1.5",
     "jison": "^0.4.18"
   },
   "engines": {
