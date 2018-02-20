@@ -10,6 +10,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const util = require('util');
 
 const qiskit = require('../..');
 const utils = require('../lib/utils');
@@ -17,7 +18,7 @@ const logger = require('../lib/logger');
 
 
 const dbg = utils.dbg(__filename);
-const readFile = utils.promisify(fs.readFile);
+const readFile = util.promisify(fs.readFile);
 
 exports.command = 'sim <circuit>';
 

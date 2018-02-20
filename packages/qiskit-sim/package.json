@@ -15,9 +15,8 @@
     "url": "https://github.com/QISKit/qiskit-sdk-js"
   },
   "scripts": {
-    "dep-check": "npm-check",
+    "dep-check": "depcheck",
     "dep-sec": "nsp check",
-    "dep-fix": "npm-check -u",
     "test": "mocha --recursive test"
   },
   "keywords": [
@@ -37,9 +36,7 @@
     "url": "https://github.com/QISKit/qiskit-sdk-js/issues"
   },
   "dependencies": {
-    "debug": "^3.1.0",
-    "es6-promisify": "^5.0.0",
-    "lodash": "^4.17.4",
+    "@qiskit/utils": "^0.1.3",
     "mathjs": "^3.17.0"
   },
   "engines": {

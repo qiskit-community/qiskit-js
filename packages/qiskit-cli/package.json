@@ -18,9 +18,8 @@
     "qiskitjs": "./bin/index.js"
   },
   "scripts": {
-    "dep-check": "npm-check",
+    "dep-check": "depcheck",
     "dep-sec": "nsp check",
-    "dep-fix": "npm-check -u",
     "test": "mocha --recursive test"
   },
   "keywords": [

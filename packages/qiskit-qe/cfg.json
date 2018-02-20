@@ -1,6 +1,6 @@
 {
   "defaults": {
-    "uri": "https://qe.mybluemix.net/api/v0",
+    "uri": "https://quantumexperience.ng.bluemix.net/api",
     "backend": {
       "run": "simulator",
       "reads": "ibmqx4"

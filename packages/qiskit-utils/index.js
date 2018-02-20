@@ -12,11 +12,8 @@
 
 const path = require('path');
 
-// Lodash as base. TODO: Maybe not needed anymore.
 const utils = require('lodash');
 const debug = require('debug');
-// TODO: Use the native one.
-const promisify = require('es6-promisify');
 
 const { version } = require('./package.json');
 
@@ -36,7 +33,6 @@ function pathToTag(fullPath) {
 utils.version = version;
 utils.pathToTag = pathToTag;
 utils.debug = debug;
-utils.promisify = promisify;
 
 
 module.exports = utils;

@@ -15,10 +15,9 @@
     "url": "https://github.com/QISKit/qiskit-sdk-js"
   },
   "scripts": {
-    "dep-check": "npm-check",
+    "dep-check": "depcheck",
     "dep-sec": "nsp check",
-    "dep-fix": "npm-check -u",
-    "test": "jest --verbose test"
+    "test": "mocha --recursive --timeout 8000 test"
   },
   "keywords": [
     "quantum",

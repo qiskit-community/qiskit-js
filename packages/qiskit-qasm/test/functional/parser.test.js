@@ -16,6 +16,8 @@ const assert = require('assert');
 const qasm = require('../..');
 const pkgInfo = require('../../package');
 const Parser = require('../../lib/Parser');
+const utilsTest = require('../../../../utils-test');
+
 
 let parser;
 
@@ -54,14 +56,14 @@ describe('qasm:parse', () => {
     parser = new Parser();
     const circuit = `IBMQASM 2.0;\n${circuitSimple}`;
 
-    expect(parser.parse(circuit)).toMatchSnapshot();
+    utilsTest.shot(parser.parse(circuit));
   });
 
   it('should work with with "OPENQASM 2.0" as version header', () => {
     parser = new Parser();
     const circuit = `OPENQASM 2.0;\n${circuitSimple}`;
 
-    expect(parser.parse(circuit)).toMatchSnapshot();
+    utilsTest.shot(parser.parse(circuit));
   });
 
   it('should fail with any other version header', () => {
@@ -107,7 +109,7 @@ describe('qasm:parse', () => {
                     'x q[0];\n' +
                     'measure q -> c;';
 
-    expect(parser.parse(circuit)).toMatchSnapshot();
+    utilsTest.shot(parser.parse(circuit));
   });
 
   it('should work with RESET', () => {
@@ -117,7 +119,7 @@ describe('qasm:parse', () => {
                     'creg c[1];\n' +
                     'reset q[0];';
 
-    expect(parser.parse(circuit)).toMatchSnapshot();
+    utilsTest.shot(parser.parse(circuit));
   });
 
   // TODO: Should fail (qreg invalid)
@@ -128,7 +130,7 @@ describe('qasm:parse', () => {
                     'creg c[1];\n' +
                     'x q[1];\n';
 
-    expect(parser.parse(circuit)).toMatchSnapshot();
+    utilsTest.shot(parser.parse(circuit));
   });
 
   it('should work with OPAQUE gate (1)', () => {
@@ -138,7 +140,7 @@ describe('qasm:parse', () => {
                     'creg c[1];\n' +
                     'opaque myOpaque a,b,c;';
 
-    expect(parser.parse(circuit)).toMatchSnapshot();
+    utilsTest.shot(parser.parse(circuit));
   });
 
 
@@ -149,7 +151,7 @@ describe('qasm:parse', () => {
                     'creg c[1];\n' +
                     'opaque myOpaque () a,b,c;';
 
-    expect(parser.parse(circuit)).toMatchSnapshot();
+    utilsTest.shot(parser.parse(circuit));
   });
 
   it('should work with OPAQUE gate (3)', () => {
@@ -159,6 +161,6 @@ describe('qasm:parse', () => {
                     'creg c[1];\n' +
                     'opaque myOpaque (x,y) a,b,c;';
 
-    expect(parser.parse(circuit)).toMatchSnapshot();
+    utilsTest.shot(parser.parse(circuit));
   });
 });
