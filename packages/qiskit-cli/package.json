@@ -1,6 +1,6 @@
 {
   "name": "@qiskit/cli",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Quantum Information Software Kit, command line client",
   "author": {
     "name": "IBM RESEARCH",
@@ -43,10 +43,10 @@
     "url": "https://github.com/QISKit/qiskit-sdk-js/issues"
   },
   "dependencies": {
-    "@qiskit/qasm": "^0.1.2",
-    "@qiskit/qe": "^0.1.2",
-    "@qiskit/sim": "^0.1.2",
-    "@qiskit/utils": "^0.1.2",
+    "@qiskit/qasm": "^0.1.5",
+    "@qiskit/qe": "^0.1.5",
+    "@qiskit/sim": "^0.1.5",
+    "@qiskit/utils": "^0.1.5",
     "cli-color": "^1.2.0",
     "home-or-tmp": "^3.0.0",
     "keypress": "^0.2.1",
