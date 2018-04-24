@@ -22,7 +22,7 @@ const dbg = utils.dbg(__filename);
 module.exports.version = version;
 
 
-module.exports.random = async (token, userId, opts) => {
+module.exports.random = async (token, userId, opts = {}) => {
   dbg('Passed opts:', opts);
 
 
