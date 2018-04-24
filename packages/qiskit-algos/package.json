@@ -1,6 +1,6 @@
 {
   "name": "@qiskit/algos",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "Quantum Information algorithms for humans",
   "author": {
     "name": "IBM RESEARCH",
