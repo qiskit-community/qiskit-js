@@ -1,6 +1,6 @@
 {
   "name": "@qiskit/qe",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Quantum Information Software library to use the Quantum Experience",
   "author": {
     "name": "IBM RESEARCH",
@@ -33,7 +33,7 @@
     "url": "https://github.com/QISKit/qiskit-sdk-js/issues"
   },
   "dependencies": {
-    "@qiskit/utils": "^0.1.6",
+    "@qiskit/utils": "^0.1.7",
     "request": "^2.83.0",
     "request-promise-native": "^1.0.5"
   },
