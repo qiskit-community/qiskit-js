@@ -30,8 +30,9 @@ class Qe {
     this.version = version;
     this.uri = process.env.QE_URI || cfg.defaults.uri;
 
-    // "token" is also set after a successful login.
+    // Both are also set after a successful login.
     if (opts.token) { this.token = opts.token; }
+    if (opts.userId) { this.token = opts.userId; }
   }
 
 
@@ -64,6 +65,10 @@ class Qe {
     // Using empty object to be consistent with parameters and calibration.
     // return request(`${this.uri}/Backends/${name}/queue/status`);
     const res = await request(`${this.uri}/Backends/${backName}/queue/status`);
+
+    // The message is redundant with the status.
+    if (res && res.message) { delete res.message; }
+
     return res || {};
   }
 

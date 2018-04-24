@@ -74,9 +74,9 @@ describe('qe:queues', () => {
   it('should return the status of the queue the default backend if no parameter', async () => {
     const res = await qeNoToken.queues();
 
-    assert.deepEqual(Object.keys(res), ['state', 'busy', 'lengthQueue']);
+    assert.deepEqual(Object.keys(res), ['state', 'status', 'lengthQueue']);
     assert.equal(typeof res.state, 'boolean');
-    assert.equal(typeof res.busy, 'boolean');
+    assert.equal(typeof res.status, 'string');
     assert.equal(typeof res.lengthQueue, 'number');
   });
 
