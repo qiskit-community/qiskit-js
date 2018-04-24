@@ -22,7 +22,7 @@ If you want to learn more about Quantum Computing, you're invited to visit our [
 - [@qiskit/qasm](./packages/qiskit-qasm): [OpenQASM](https://github.com/IBM/qiskit-openqasm) library, including the parser.
 - [@qiskit/qe](./packages/qiskit-qe): Send circuits to the Quantum Experience.
 - [@qiskit/sim](./packages/qiskit-sim): Local simulator for OpenQASM circuits.
-- [@qiskit/algos](./packages/qiskit-sim): High level algorithms for easy use.
+- [@qiskit/algos](./packages/qiskit-algos): High level algorithms for easy use.
 - [@qiskit/utils](./packages/qiskit-utils): Helpers shared among all packages.
 - [QISKit for the browser](./dist): A bundled version with the same stuff ready to be used in the browser.
 
