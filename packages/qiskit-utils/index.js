@@ -14,6 +14,7 @@ const path = require('path');
 
 const utils = require('lodash');
 const debug = require('debug');
+const ayb = require('all-your-base');
 
 const { version } = require('./package.json');
 
@@ -33,6 +34,7 @@ function pathToTag(fullPath) {
 utils.version = version;
 utils.pathToTag = pathToTag;
 utils.debug = debug;
+utils.ayb = ayb;
 
 
 module.exports = utils;

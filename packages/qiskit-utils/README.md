@@ -45,3 +45,9 @@ To get a consistent tag among all the project debugging. So we use with the `deb
 
 - `fullPath` (string) - The full path of the file we're debugging.
 - `tag` (string) - The name of the file.
+
+### `ayb`
+
+A wrapper for [ayb](https://github.com/nerddiffer/all-your-base).
+
+- `ayb` (object) - The same object provided in the original library.

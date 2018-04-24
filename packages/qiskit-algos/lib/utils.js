@@ -1,3 +1,4 @@
+
 /*
   Copyright IBM Corp. 2017. All Rights Reserved.
 
@@ -10,20 +11,12 @@
 
 'use strict';
 
-const qasm = require('@qiskit/qasm');
-const sim = require('@qiskit/sim');
-const Qe = require('@qiskit/qe');
 const utils = require('@qiskit/utils');
-const algos = require('@qiskit/algos');
 
-const { version } = require('./package');
+const pkgName = require('../package.json').name;
 
 
-module.exports = {
-  version,
-  qasm,
-  sim,
-  Qe,
-  utils,
-  algos,
-};
+utils.dbg = fullPath => utils.debug(`${pkgName}:${utils.pathToTag(fullPath)}`);
+
+
+module.exports = utils;
