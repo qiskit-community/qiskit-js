@@ -47,6 +47,12 @@ To force the long term access token, ie: to avoid the re-connection (login) in a
 
 - `token` (string) - Token.
 
+### `userId`
+
+To force user idendifier, ie: to avoid the re-connection (login) in a worker.
+
+- `userId` (string) - User identifier.
+
 ### `version`
 
 The actual version of the library.
@@ -80,7 +86,7 @@ Get the status of a backend queue.
 - `name` (string): Name of the backend to inspect. (default: `ibmqx4`)
 - `info` (object): Including next fields:
   - `state` (boolean): If the queue is up or down.
-  - `busy` (boolean): Due to internal reasons, sometimes a queue is stopped.
+  - `status` (string): Actual status of the devices, ie: "busy", "calibration", etc.
   - `lengthQueue` (number): Number of jobs in the queue.
 
 ### `async login(personalToken) -> info`

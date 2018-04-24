@@ -1,7 +1,7 @@
 {
-  "name": "@qiskit/utils",
-  "version": "0.1.5",
-  "description": "Quantum Information Software utils library",
+  "name": "@qiskit/algos",
+  "version": "0.0.0",
+  "description": "Quantum Information algorithms for humans",
   "author": {
     "name": "IBM RESEARCH",
     "url": "http://research.ibm.com"
@@ -17,25 +17,25 @@
   "scripts": {
     "dep-check": "depcheck",
     "dep-sec": "nsp check",
-    "test": "mocha --recursive test"
+    "test": "mocha --recursive test --timeout 20000"
   },
   "keywords": [
     "quantum",
     "experience",
     "computing",
     "information",
-    "utils",
-    "helpers",
-    "qiskit",
+    "algorithms",
+    "random",
+    "shor",
+    "factor",
     "IBM"
   ],
   "bugs": {
     "url": "https://github.com/QISKit/qiskit-sdk-js/issues"
   },
   "dependencies": {
-    "all-your-base": "^0.3.0",
-    "debug": "^3.1.0",
-    "lodash": "^4.17.5"
+    "@qiskit/utils": "^0.1.5",
+    "@qiskit/qe": "^0.1.5"
   },
   "engines": {
     "node": ">=8",
