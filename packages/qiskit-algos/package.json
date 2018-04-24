@@ -1,6 +1,6 @@
 {
   "name": "@qiskit/algos",
-  "version": "0.0.0",
+  "version": "0.1.6",
   "description": "Quantum Information algorithms for humans",
   "author": {
     "name": "IBM RESEARCH",
@@ -34,8 +34,8 @@
     "url": "https://github.com/QISKit/qiskit-sdk-js/issues"
   },
   "dependencies": {
-    "@qiskit/utils": "^0.1.5",
-    "@qiskit/qe": "^0.1.5"
+    "@qiskit/qe": "^0.1.6",
+    "@qiskit/utils": "^0.1.6"
   },
   "engines": {
     "node": ">=8",
