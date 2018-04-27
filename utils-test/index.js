@@ -14,8 +14,10 @@
 // TODO: Repeated code in qiskit bin, qiskit-utils package needed?
 const assert = require('assert');
 
-// eslint-disable-next-line import/no-extraneous-dependencies
+/* eslint-disable import/no-extraneous-dependencies */
 const shot = require('snap-shot-it');
+const strip = require('strip-color');
+/* eslint-enable import/no-extraneous-dependencies */
 
 
 // A custom version of [assert.throws](https://nodejs.org/api/assert.html#
@@ -42,4 +44,4 @@ async function throwsAsync(block, errorRexp) {
 }
 
 
-module.exports = { throwsAsync, shot };
+module.exports = { throwsAsync, shot, strip };

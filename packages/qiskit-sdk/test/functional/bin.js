@@ -14,19 +14,19 @@ const path = require('path');
 const assert = require('assert');
 const exec = require('child_process').execSync;
 
-
 const binPath = path.resolve(__dirname, '../../bin/index.js');
 const comm = `node ${binPath}`;
 const pkgInfo = require('../../package');
+const utilsTest = require('../../../../utils-test');
+
 
 const reGot0 = /Not enough non-option arguments: got 0/;
-const reGot1 = /Not enough non-option arguments: got 1/;
 const reNotSupQasm = /Regular QASM circuits are still not supported/;
 const reNotSup = /Format not supported/;
 
 
 function assertComm(re, result) {
-  assert.ok(re.test(result.toString().replace(/ /g, '')));
+  assert.ok(re.test(utilsTest.strip(result.toString()).replace(/ /g, '')));
 }
 
 
@@ -73,9 +73,9 @@ describe('qiskit:bin', () => {
     assert.throws(() => exec(`${comm} sim whatever.png`), reNotSup);
   });
 
-  it.skip('should fail for "qe" command without arguments', () =>
-    assert.throws(() => exec(`${comm} qe`), reGot0));
+  it('should fail for "qe-job" command without arguments', () =>
+    assert.throws(() => exec(`${comm} qe-job`), reGot0));
 
-  it.skip('should fail for "qe" command with only one argument', () =>
-    assert.throws(() => exec(`${comm} qe whatever`), reGot1));
+  it('should fail for "qe-run" command without arguments', () =>
+    assert.throws(() => exec(`${comm} qe-run`), reGot0));
 });
