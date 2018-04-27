@@ -1,7 +1,7 @@
 {
-  "name": "@qiskit/cli",
+  "name": "@qiskit/sdk",
   "version": "0.1.8",
-  "description": "Quantum Information Software Kit, command line client",
+  "description": "Quantum Information Software Kit meta-package",
   "author": {
     "name": "IBM RESEARCH",
     "url": "http://research.ibm.com"

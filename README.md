@@ -16,9 +16,9 @@ If you want to learn more about Quantum Computing, you're invited to visit our [
 
 ## Structure
 
-:handbag: This repository include next tools. Please visit the specific documentation you need:
+:handbag: The components of this repository are exposed as these libraries:
 
-- @qiskit/cli: Meta-package, documented in this file. It includes a command line client, which is your friend if you want to play with some OpenQASM circuits (in the Quantum Experience or the local simulator) without having to use any other programming language. Moreover, all involved libraries are also provided:
+- @qiskit/sdk: Meta-package, documented in this file. It also includes a command line client, which is your friend if you want to play with some OpenQASM circuits (in the Quantum Experience or the local simulator) without having to use any other programming language.
 - [@qiskit/qasm](./packages/qiskit-qasm): [OpenQASM](https://github.com/IBM/qiskit-openqasm) stuff, including the parser.
 - [@qiskit/qe](./packages/qiskit-qe): To send circuits to the Quantum Experience.
 - [@qiskit/sim](./packages/qiskit-sim): Local simulator for OpenQASM circuits.
@@ -34,14 +34,14 @@ You can find a bundled version with the same stuff ready to be used in the brows
 :coffee: Install [Node.js](https://nodejs.org/download) v8 and then:
 
 ```sh
-npm i -g @qiskit/cli
+npm i -g @qiskit/sdk
 ```
 
 ## Use
 
 ### CLI
 
-:rocket: The command line client allows to play with the circuits without having to use any language API.
+:rocket: The command line client allows to play with the circuits without having to use any programming language API.
 
 ```sh
 qiskitjs --help
@@ -52,7 +52,7 @@ qiskitjs --help
 :pencil: As you can see in the next section, we have to use it like in the rest of independent modules. The only difference is we need to select the proper field of the main object before.
 
 ```js
-const qiskit = require('@qiskit/cli');
+const qiskit = require('@qiskit/sdk');
 
 console.log('Simulator version');
 console.log(qiskit.sim.version);
