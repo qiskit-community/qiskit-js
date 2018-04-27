@@ -4,7 +4,7 @@
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/)
 [![Build Status](https://travis-ci.org/QISKit/qiskit-sdk-js.svg?branch=master)](https://travis-ci.org/QISKit/qiskit-sdk-js)
 
-:atom_symbol: [Quantum Information Software Kit](https://developer.ibm.com/open/openprojects/qiskit) in pure JavaScript.
+:atom_symbol: [Quantum Information Software Kit](https://developer.ibm.com/open/openprojects/qiskit) for JavaScript.
 
 :bulb: This project born as a clone (in JS) of [its big brother](https://github.com/QISKit/qiskit-sdk-py).
 
@@ -18,13 +18,16 @@ If you want to learn more about Quantum Computing, you're invited to visit our [
 
 :handbag: This repository include next tools. Please visit the specific documentation you need:
 
-- @qiskit/cli: Meta-package, documented in this file. It also includes a command line client, which is your friend if you want to play with some OpenQASM circuits (in the Quantum Experience or the local simulator) without having to use any other programming language.
-- [@qiskit/qasm](./packages/qiskit-qasm): [OpenQASM](https://github.com/IBM/qiskit-openqasm) library, including the parser.
-- [@qiskit/qe](./packages/qiskit-qe): Send circuits to the Quantum Experience.
+- @qiskit/cli: Meta-package, documented in this file. It includes a command line client, which is your friend if you want to play with some OpenQASM circuits (in the Quantum Experience or the local simulator) without having to use any other programming language. Moreover, all involved libraries are also provided:
+- [@qiskit/qasm](./packages/qiskit-qasm): [OpenQASM](https://github.com/IBM/qiskit-openqasm) stuff, including the parser.
+- [@qiskit/qe](./packages/qiskit-qe): To send circuits to the Quantum Experience.
 - [@qiskit/sim](./packages/qiskit-sim): Local simulator for OpenQASM circuits.
 - [@qiskit/algos](./packages/qiskit-algos): High level algorithms for easy use.
 - [@qiskit/utils](./packages/qiskit-utils): Helpers shared among all packages.
-- [QISKit for the browser](./dist): A bundled version with the same stuff ready to be used in the browser.
+
+### QISKit for the browser
+
+You can find a bundled version with the same stuff ready to be used in the browser in the [dist](./dist) folder.
 
 ## Install
 
@@ -49,10 +52,10 @@ qiskitjs --help
 :pencil: As you can see in the next section, we have to use it like in the rest of independent modules. The only difference is we need to select the proper field of the main object before.
 
 ```js
-const qiskitCli = require('@qiskit/cli');
+const qiskit = require('@qiskit/cli');
 
 console.log('Simulator version');
-console.log(qiskitCli.sim.version);
+console.log(qiskit.sim.version);
 ```
 
 ## API
@@ -91,7 +94,7 @@ A wrapper fot the [`qiskit-qe`](./packages/qiskit-utils) project.
 
 ### `algos`
 
-A wrapper fot the [`qiskit-qe`](./packages/qiskit-algos) project.
+A wrapper fot the [`qiskit-algos`](./packages/qiskit-algos) project.
 
 - `algos` (object) - The same object provided in the original library.
 
