@@ -103,6 +103,15 @@ npm run deploy-develop
 npm run deploy-production
 ```
 
+## Releases
+
+For the libraries we have those to publish to npm. Both use [release-it](https://www.npmjs.com/package/release-it) under the hood:
+
+```sh
+npm run release
+npm run release-major
+```
+
 ## Metrics
 
 For HTTP API projects we use the [Node application metrics](https://developer.ibm.com/open/openprojects/node-application-metrics) dashboard.
