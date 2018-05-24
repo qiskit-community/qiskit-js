@@ -9,15 +9,22 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-* Following new dev guideline: code of conduct, file naming, issue/PR templates, etc.
-  * Prettier support.
 * Doc about how to make releases easier.
-* JS distribution files rebundled.
-* nsp dropped because now npm supports it natively.
 
 ### Changed
 
 * Minor typos in the README file.
+* Following new dev guideline: code of conduct, file naming, issue/PR templates, etc.
+  * Prettier support.
+* JS distribution files rebundled.
+
+### Deleted
+
+* nsp dropped because now npm supports it natively.
+
+### Security
+
+* Insecure dependencies updated.
 
 ## [0.1.9] - 2018-04-27
 
@@ -42,8 +49,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 
-* Updated the library "elasticsearch" to avoid insecure dependencies.
 * Good practices in the codebase, to respect new development guide.
+
+### Security
+
+* Updated the library "elasticsearch" to avoid insecure dependencies.
 
 ### Fixed
 
