@@ -16,21 +16,25 @@ const utilsTest = require('../../../../utils-test');
 const Qe = require('../..');
 const expErrRegex = require('../errorRe');
 
-
 // Already logged instance.
 const { qe } = global.qiskitTest;
-
 
 describe('qe:credits', () => {
   it('should fail if no logged', async () =>
     utilsTest.throwsAsync(() => new Qe().credits(), expErrRegex.loginBefore));
 
   it('should return the info of my credits in the platform', async function t() {
-    if (!global.qiskitTest.integration) { this.skip(); }
+    if (!global.qiskitTest.integration) {
+      this.skip();
+    }
 
     const res = await qe.credits();
 
-    assert.deepEqual(Object.keys(res), ['promotional', 'remaining', 'maxUserType']);
+    assert.deepEqual(Object.keys(res), [
+      'promotional',
+      'remaining',
+      'maxUserType',
+    ]);
     assert.equal(typeof res.promotional, 'number');
     assert.equal(typeof res.remaining, 'number');
     assert.equal(typeof res.maxUserType, 'number');

@@ -11,7 +11,6 @@
 const qiskit = require('../..');
 const logger = require('../lib/logger');
 
-
 exports.command = 'qe-backs [onlySims]';
 
 exports.aliases = ['qbs'];
@@ -26,16 +25,16 @@ exports.builder = {
   },
 };
 
-
-exports.handler = (argv) => {
+exports.handler = argv => {
   logger.title(qiskit.version);
 
-  global.qiskit.qe.backends(argv.onlySims)
-    .then((res) => {
+  global.qiskit.qe
+    .backends(argv.onlySims)
+    .then(res => {
       logger.resultHead();
       logger.chunks(res);
     })
-    .catch((err) => {
+    .catch(err => {
       logger.error('Making the request', err);
       process.exit(1);
     });

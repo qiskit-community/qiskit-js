@@ -16,56 +16,75 @@ const utilsTest = require('../../../../utils-test');
 const Qe = require('../..');
 const expErrRegex = require('../errorRe');
 
-
 // Token not needed.
 
 const qeNoToken = new Qe();
 
 describe('qe:calibration', () => {
   it('should fail if bad format in the "name" parameter', async () =>
-    utilsTest.throwsAsync(() => qeNoToken.calibration(1), expErrRegex.formatStr));
+    utilsTest.throwsAsync(
+      () => qeNoToken.calibration(1),
+      expErrRegex.formatStr,
+    ));
 
-  it('should return the calibration info for the' +
-     'default backend if no parameter', async () => {
-    const res = await qeNoToken.calibration();
+  it(
+    'should return the calibration info for the' +
+      'default backend if no parameter',
+    async () => {
+      const res = await qeNoToken.calibration();
 
-    assert.deepEqual(Object.keys(res), ['lastUpdateDate', 'qubits', 'multiQubitGates']);
-    assert.equal(typeof res.lastUpdateDate, 'string');
-    assert.equal(typeof res.qubits, 'object');
-    assert.equal(typeof res.multiQubitGates, 'object');
-  });
+      assert.deepEqual(Object.keys(res), [
+        'lastUpdateDate',
+        'qubits',
+        'multiQubitGates',
+      ]);
+      assert.equal(typeof res.lastUpdateDate, 'string');
+      assert.equal(typeof res.qubits, 'object');
+      assert.equal(typeof res.multiQubitGates, 'object');
+    },
+  );
 
   // We use a non existent one because we can´t know in advance the returned values here.
   // TODO: The API should return an error in this case.
   it('should return the calibration info for the selected backend', async () =>
-    assert.deepEqual(Object.keys(await qeNoToken.calibration('nonexistent')), []));
+    assert.deepEqual(
+      Object.keys(await qeNoToken.calibration('nonexistent')),
+      [],
+    ));
 });
-
 
 describe('qe:parameters', () => {
   it('should fail if bad format in the "name" parameter', async () =>
-    utilsTest.throwsAsync(() => qeNoToken.parameters(1), expErrRegex.formatStr));
+    utilsTest.throwsAsync(
+      () => qeNoToken.parameters(1),
+      expErrRegex.formatStr,
+    ));
 
-  it('should return the parameters info for the' +
-     'default backend if no parameter', async () => {
-    const res = await qeNoToken.parameters();
+  it(
+    'should return the parameters info for the' +
+      'default backend if no parameter',
+    async () => {
+      const res = await qeNoToken.parameters();
 
-    assert.deepEqual(Object.keys(res), [
-      'lastUpdateDate',
-      'fridgeParameters',
-      'qubits',
-    ]);
-    assert.equal(typeof res.lastUpdateDate, 'string');
-    assert.equal(typeof res.fridgeParameters, 'object');
-    assert.equal(typeof res.qubits, 'object');
-  });
+      assert.deepEqual(Object.keys(res), [
+        'lastUpdateDate',
+        'fridgeParameters',
+        'qubits',
+      ]);
+      assert.equal(typeof res.lastUpdateDate, 'string');
+      assert.equal(typeof res.fridgeParameters, 'object');
+      assert.equal(typeof res.qubits, 'object');
+    },
+  );
 
   // We use a non existent one because we can´t know in advance the returned values here.
   // TODO: The API should return an error in this case.
   it('should return the parameters info for the selected backend', async () =>
-    assert.deepEqual(Object.keys(await qeNoToken.parameters('nonexistent')), []));
+    assert.deepEqual(
+      Object.keys(await qeNoToken.parameters('nonexistent')),
+      [],
+    ));
 });
-
 
 describe('qe:queues', () => {
   it('should fail if bad format in the "name" parameter', async () =>
@@ -86,12 +105,10 @@ describe('qe:queues', () => {
     assert.deepEqual(await qeNoToken.queues('nonexistent'), {}));
 });
 
-
 // Token needed.
 
 // Already logged instance.
 const { qe } = global.qiskitTest;
-
 
 describe('qe:backend', () => {
   it('should fail if no logged', async () =>
@@ -101,7 +118,9 @@ describe('qe:backend', () => {
     utilsTest.throwsAsync(() => qe.backend(1), expErrRegex.formatStr));
 
   it('should return a backend with the default "name" parameter', async function t() {
-    if (!global.qiskitTest.integration) { this.skip(); }
+    if (!global.qiskitTest.integration) {
+      this.skip();
+    }
 
     const res = await qe.backend();
 
@@ -125,7 +144,9 @@ describe('qe:backend', () => {
   });
 
   it('should return a backend info for a valid "name" parameter', async function t() {
-    if (!global.qiskitTest.integration) { this.skip(); }
+    if (!global.qiskitTest.integration) {
+      this.skip();
+    }
 
     const name = 'ibmqx5';
     const res = await qe.backend(name);
@@ -152,19 +173,22 @@ describe('qe:backend', () => {
   // We use a non existent one because we can´t know in advance the returned values here.
   // TODO: The API should return an error in this case.
   it('should return the queue info for the selected backend', async function t() {
-    if (!global.qiskitTest.integration) { this.skip(); }
+    if (!global.qiskitTest.integration) {
+      this.skip();
+    }
 
     assert.deepEqual(await qe.backend('nonexistent'), {});
   });
 });
-
 
 describe('qe:backends', () => {
   it('should fail if no logged', async () =>
     utilsTest.throwsAsync(() => qeNoToken.backends(), expErrRegex.loginBefore));
 
   it('should return the online backends info', async function t() {
-    if (!global.qiskitTest.integration) { this.skip(); }
+    if (!global.qiskitTest.integration) {
+      this.skip();
+    }
 
     const res = await qe.backends();
 
@@ -191,7 +215,9 @@ describe('qe:backends', () => {
     utilsTest.throwsAsync(() => qe.backends(1), expErrRegex.formatBool));
 
   it('should allow to ask only for simulators info', async function t() {
-    if (!global.qiskitTest.integration) { this.skip(); }
+    if (!global.qiskitTest.integration) {
+      this.skip();
+    }
 
     const res = await qe.backends(true);
 

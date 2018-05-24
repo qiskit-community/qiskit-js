@@ -19,7 +19,6 @@ const math = require('mathjs');
 
 const utils = require('./utils');
 
-
 const dbg = utils.dbg(__filename);
 
 // TODO: Add tests.
@@ -46,7 +45,6 @@ function index1(b, i, k) {
   return res;
 }
 
-
 // Takes a bitstring k and inserts bits b1 as the i1th bit
 // and b2 as the i2th bit
 function index2(b1, i1, b2, i2, k) {
@@ -68,13 +66,15 @@ function index2(b1, i1, b2, i2, k) {
   return res;
 }
 
-
 module.exports = (gate, qubit0, qubit1, numQbits, state) => {
   // eslint-disable-next-line no-bitwise
   const enlargeOpt = math.zeros(1 << numQbits, 1 << numQbits);
 
   dbg('Starting "addUnitaryTwo" with opions', {
-    gate, qubit0, qubit1, numQbits,
+    gate,
+    qubit0,
+    qubit1,
+    numQbits,
   });
 
   dbg('\n\nState before\n\n');
@@ -94,7 +94,7 @@ module.exports = (gate, qubit0, qubit1, numQbits, state) => {
           for (let kk = 0; kk < 2; kk += 1) {
             const idx0 = index2(j, qubit0, k, qubit1, i);
             const idx1 = index2(jj, qubit0, kk, qubit1, i);
-            const newValue = gate.get([j + (2 * k), jj + (2 * kk)]);
+            const newValue = gate.get([j + 2 * k, jj + 2 * kk]);
 
             dbg('Turn for:', { idx0, idx1, newValue });
             enlargeOpt.set([idx0, idx1], newValue);

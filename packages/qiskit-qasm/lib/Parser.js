@@ -32,13 +32,18 @@ class Parser {
 
     if (opts.core !== false) {
       // TODO: Parse all core libraries (when we have more)
-      const qelib1 = fs.readFileSync(path.resolve(__dirname, '../core/qelib1.inc'), 'utf8');
+      const qelib1 = fs.readFileSync(
+        path.resolve(__dirname, '../core/qelib1.inc'),
+        'utf8',
+      );
       this.qelibParsed = parser.parse(qelib1);
     }
   }
 
   parse(circuit) {
-    if (!circuit) { throw new Error('Required param: circuit'); }
+    if (!circuit) {
+      throw new Error('Required param: circuit');
+    }
 
     let res;
 

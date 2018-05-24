@@ -19,36 +19,27 @@ const comm = `node ${binPath}`;
 const pkgInfo = require('../../package');
 const utilsTest = require('../../../../utils-test');
 
-
 const reGot0 = /Not enough non-option arguments: got 0/;
 const reNotSupQasm = /Regular QASM circuits are still not supported/;
 const reNotSup = /Format not supported/;
-
 
 function assertComm(re, result) {
   assert.ok(re.test(utilsTest.strip(result.toString()).replace(/ /g, '')));
 }
 
-
 describe('qiskit:bin', () => {
-  it('should fail if no params', () =>
-    assert.throws(() => exec(comm), reGot0));
+  it('should fail if no params', () => assert.throws(() => exec(comm), reGot0));
 
   it('should work for "--version"', () =>
     assertComm(new RegExp(pkgInfo.version), exec(`${comm} --version`)));
 
   it('should work for "--help"', () =>
-    assertComm(
-      /parse<circuit>ParsethecircuittoourIR/,
-      // eslint-disable-next-line comma-dangle
-      exec(`${comm} --help`)
-    ));
+    assertComm(/parse<circuit>ParsethecircuittoourIR/, exec(`${comm} --help`)));
 
   it('should work for "parse" command', () =>
     assertComm(
       /-\ntype:qubit\nidentifier:q\nnumber:3/,
-      // eslint-disable-next-line comma-dangle
-      exec(`${comm} parse ../../circuits/example.qasm`)
+      exec(`${comm} parse ../../circuits/example.qasm`),
     ));
 
   it('should fail for "parse" command without arguments', () =>
@@ -57,8 +48,7 @@ describe('qiskit:bin', () => {
   it('should work for "sim" command with unrolled circuits', () => {
     assertComm(
       /State\|psi>=U|0>:\[0.35355339059327384,0/,
-      // eslint-disable-next-line comma-dangle
-      exec(`${comm} sim ../../circuits/unrolled/example.json`)
+      exec(`${comm} sim ../../circuits/unrolled/example.json`),
     );
   }).timeout(5000);
 

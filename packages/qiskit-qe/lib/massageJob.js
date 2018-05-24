@@ -12,11 +12,9 @@
 
 const utils = require('./utils');
 
-
 const dbg = utils.dbg(__filename);
 
-
-module.exports = (resJob) => {
+module.exports = resJob => {
   dbg('Massaging the result ...', resJob);
 
   const result = {
@@ -26,8 +24,7 @@ module.exports = (resJob) => {
     creationDate: resJob.creationDate,
     usedCredits: resJob.usedCredits,
     status: resJob.status,
-    // eslint-disable-next-line arrow-body-style
-    circuits: utils.map(resJob.qasms, (el) => {
+    circuits: utils.map(resJob.qasms, el => {
       const massaged = {
         qasm: el.qasm,
         execution: {
@@ -36,17 +33,29 @@ module.exports = (resJob) => {
         },
       };
 
-      if (el.name) { massaged.name = el.name; }
-      if (el.shots) { massaged.shots = el.shots; }
-      if (el.seed) { massaged.seed = el.seed; }
-      if (el.result) { massaged.result = el.result; }
+      if (el.name) {
+        massaged.name = el.name;
+      }
+      if (el.shots) {
+        massaged.shots = el.shots;
+      }
+      if (el.seed) {
+        massaged.seed = el.seed;
+      }
+      if (el.result) {
+        massaged.result = el.result;
+      }
 
       return massaged;
     }),
   };
 
-  if (resJob.maxCredits) { result.maxCredits = resJob.maxCredits; }
-  if (resJob.seed) { result.seed = resJob.seed; }
+  if (resJob.maxCredits) {
+    result.maxCredits = resJob.maxCredits;
+  }
+  if (resJob.seed) {
+    result.seed = resJob.seed;
+  }
 
   dbg('Massaged ...', result);
   return result;

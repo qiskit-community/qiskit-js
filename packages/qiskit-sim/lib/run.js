@@ -49,11 +49,12 @@ const n1j = math.complex(0, 1);
 // Not supported ops.
 const toDrop = ['measure', 'barrier', 'reset'];
 
-
-module.exports = (circuit) => {
+module.exports = circuit => {
   dbg(`Simulator started: ${circuit}`);
 
-  if (!circuit) { throw new Error('Empty circuit'); }
+  if (!circuit) {
+    throw new Error('Empty circuit');
+  }
 
   const drops = [];
   // For QASM we need to parse it before.
@@ -70,16 +71,19 @@ module.exports = (circuit) => {
 
   let numOperations = 0;
   // TODO: Add check "isArray"?
-  if (circuit.operations) { numOperations = circuit.operations.length; }
+  if (circuit.operations) {
+    numOperations = circuit.operations.length;
+  }
 
-  let state = math.chain(math.eye(math.pow(2, numQbits)))
+  let state = math
+    .chain(math.eye(math.pow(2, numQbits)))
     .multiply(complex)
     .done();
 
   // TODO: Use an iterator for huge circuits.
   dbg('Starting iterations over ops', { numOperations, numQbits });
 
-  utils.each(circuit.operations, (op) => {
+  utils.each(circuit.operations, op => {
     dbg('Turn for op', op);
     // TODO: Check for name presence (and the rest needed fields) -> parsing error
     if (op.name === 'U') {
@@ -89,23 +93,29 @@ module.exports = (circuit) => {
       const lam = op.params[2];
 
       dbg('"U" gate detected', {
-        qubit, theta, phi, lam,
+        qubit,
+        theta,
+        phi,
+        lam,
       });
 
       const m11 = math.cos(theta / 2.0);
 
       const n1jNlam = math.multiply(n1j, lam);
-      const m12 = math.multiply(math.multiply(math.exp(n1jNlam), -1), math.sin(theta / 2.0));
+      const m12 = math.multiply(
+        math.multiply(math.exp(n1jNlam), -1),
+        math.sin(theta / 2.0),
+      );
 
       const n1jNphi = math.multiply(n1j, phi);
       const m21 = math.multiply(math.exp(n1jNphi), math.sin(theta / 2.0));
 
-      const m22 = math.multiply(math.exp(math.add(n1jNphi, n1jNlam)), math.cos(theta / 2.0));
+      const m22 = math.multiply(
+        math.exp(math.add(n1jNphi, n1jNlam)),
+        math.cos(theta / 2.0),
+      );
 
-      const gate = math.matrix([
-        [m11, m12],
-        [m21, m22],
-      ]);
+      const gate = math.matrix([[m11, m12], [m21, m22]]);
 
       dbg('New gate created');
       dbg(gate.toString());

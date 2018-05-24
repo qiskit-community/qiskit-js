@@ -16,9 +16,9 @@ const buildCircuits = require('./buildCircuits');
 
 const dbg = utils.debug(name);
 
-
-function buildParam(circuit) { return { qasm: circuit }; }
-
+function buildParam(circuit) {
+  return { qasm: circuit };
+}
 
 module.exports = async (token, userId, opts = {}) => {
   const len = opts.length || 16;

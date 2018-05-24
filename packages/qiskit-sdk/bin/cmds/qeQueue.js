@@ -11,7 +11,6 @@
 const qiskit = require('../..');
 const logger = require('../lib/logger');
 
-
 exports.command = 'qe-queue [backend]';
 
 exports.aliases = ['qu'];
@@ -26,16 +25,16 @@ exports.builder = {
   },
 };
 
-
-exports.handler = (argv) => {
+exports.handler = argv => {
   logger.title(qiskit.version);
 
-  global.qiskit.qe.queues(argv.backend)
-    .then((res) => {
+  global.qiskit.qe
+    .queues(argv.backend)
+    .then(res => {
       logger.resultHead();
       logger.json(res);
     })
-    .catch((err) => {
+    .catch(err => {
       logger.error('Making the request', err);
       process.exit(1);
     });

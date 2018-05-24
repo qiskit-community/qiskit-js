@@ -18,7 +18,6 @@ const ayb = require('all-your-base');
 
 const { version } = require('./package.json');
 
-
 function pathToTag(fullPath) {
   const res = path.basename(fullPath, '.js');
 
@@ -29,12 +28,10 @@ function pathToTag(fullPath) {
   }
 }
 
-
 // Exposed stuff.
 utils.version = version;
 utils.pathToTag = pathToTag;
 utils.debug = debug;
 utils.ayb = ayb;
-
 
 module.exports = utils;

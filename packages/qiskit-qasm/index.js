@@ -14,7 +14,6 @@ const Parser = require('./lib/Parser');
 const QasmError = require('./lib/QasmError');
 const { version } = require('./package');
 
-
 module.exports = {
   version,
   Parser,

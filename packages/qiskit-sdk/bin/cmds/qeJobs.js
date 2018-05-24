@@ -11,7 +11,6 @@
 const qiskit = require('../..');
 const logger = require('../lib/logger');
 
-
 exports.command = 'qe-jobs [limit] [offset]';
 
 exports.aliases = ['qjs'];
@@ -30,16 +29,16 @@ exports.builder = {
   },
 };
 
-
-exports.handler = (argv) => {
+exports.handler = argv => {
   logger.title(qiskit.version);
 
-  global.qiskit.qe.jobs(argv.limit, argv.offset)
-    .then((res) => {
+  global.qiskit.qe
+    .jobs(argv.limit, argv.offset)
+    .then(res => {
       logger.resultHead();
       logger.chunks(res);
     })
-    .catch((err) => {
+    .catch(err => {
       logger.error('Making the request', err);
       process.exit(1);
     });

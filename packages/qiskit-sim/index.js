@@ -16,7 +16,6 @@ const run = require('./lib/run');
 const state0 = require('./lib/state0');
 const { version } = require('./package');
 
-
 module.exports = {
   version,
   gateSingle,

@@ -18,7 +18,6 @@ const algos = require('@qiskit/algos');
 
 const { version } = require('./package');
 
-
 module.exports = {
   version,
   qasm,

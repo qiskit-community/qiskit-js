@@ -14,14 +14,12 @@ const assert = require('assert');
 
 const genBin = require('../lib/genBin');
 
-
 describe('algos:genBin', () => {
   it('should return a jobId', async function t() {
-    if (!global.qiskitTestAlgos || !global.qiskitTestAlgos.integration) { this.skip(); }
-    const res = await genBin(
-      process.env.QE_TOKEN,
-      process.env.USER_ID,
-    );
+    if (!global.qiskitTestAlgos || !global.qiskitTestAlgos.integration) {
+      this.skip();
+    }
+    const res = await genBin(process.env.QE_TOKEN, process.env.USER_ID);
 
     assert.equal(typeof res, 'string');
     assert.equal(res.length, 32);

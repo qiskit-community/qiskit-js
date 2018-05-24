@@ -17,10 +17,10 @@
 
 const math = require('mathjs');
 
-
 // TODO: Add to the documentation.
-module.exports = (state) => {
-  const quantumState = math.chain(math.zeros(state.toJSON().size[0]))
+module.exports = state => {
+  const quantumState = math
+    .chain(math.zeros(state.toJSON().size[0]))
     .multiply(math.complex(1, 0))
     .done();
   quantumState.set([0], 1);
