@@ -16,7 +16,6 @@
   },
   "scripts": {
     "dep-check": "depcheck",
-    "dep-sec": "nsp check",
     "test": "mocha --recursive test"
   },
   "keywords": [

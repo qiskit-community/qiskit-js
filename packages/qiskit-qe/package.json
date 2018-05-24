@@ -1,7 +1,8 @@
 {
   "name": "@qiskit/qe",
   "version": "0.1.9",
-  "description": "Quantum Information Software library to use the Quantum Experience",
+  "description":
+    "Quantum Information Software library to use the Quantum Experience",
   "author": {
     "name": "IBM RESEARCH",
     "url": "http://research.ibm.com"
@@ -16,7 +17,6 @@
   },
   "scripts": {
     "dep-check": "depcheck",
-    "dep-sec": "nsp check",
     "test": "mocha --recursive --timeout 8000 test"
   },
   "keywords": [
