@@ -30,6 +30,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fix
 
 * Main README and CONTRIBUTING files.
+* To support the new simulator name.
 
 ## [0.1.9] - 2018-04-27
 

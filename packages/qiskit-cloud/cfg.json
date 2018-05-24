@@ -1,0 +1,13 @@
+{
+  "defaults": {
+    "uri": "https://quantumexperience.ng.bluemix.net/api",
+    "backend": {
+      "run": "ibmq_qasm_simulator",
+      "reads": "ibmqx4"
+    },
+    "shots": 1
+  },
+  "limits": {
+    "shots": [0, 8192]
+  }
+}
