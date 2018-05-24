@@ -31,7 +31,7 @@ You can find a bundled version with the same stuff ready to be used in the brows
 
 ## Install
 
-:coffee: Install [Node.js](https://nodejs.org/download) v8 and then:
+:coffee: Install last [Node.js](https://nodejs.org/download) stable version (or LTS) and then:
 
 ```sh
 npm i -g @qiskit/sdk
