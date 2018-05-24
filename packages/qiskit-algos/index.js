@@ -7,7 +7,7 @@
 
 'use strict';
 
-const Qe = require('@qiskit/qe');
+const Cloud = require('@qiskit/cloud');
 
 const utils = require('./lib/utils');
 const genBin = require('./lib/genBin');
@@ -73,10 +73,10 @@ module.exports.random = async (token, userId, opts = {}) => {
 };
 
 module.exports.result = async (token, userId, jobId) => {
-  const qe = new Qe();
+  const cloud = new Cloud();
 
-  qe.token = token;
-  qe.userId = token;
+  cloud.token = token;
+  cloud.userId = token;
 
   if (!token || typeof token !== 'string') {
     throw new TypeError('The "token" parameter is mandatory (string)');
@@ -90,7 +90,7 @@ module.exports.result = async (token, userId, jobId) => {
     throw new TypeError('The "jobId" parameter is mandatory (string)');
   }
 
-  const res = await qe.job(jobId);
+  const res = await cloud.job(jobId);
 
   const result = { status: res.status.toLowerCase() };
 

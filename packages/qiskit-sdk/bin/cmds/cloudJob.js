@@ -11,32 +11,27 @@
 const qiskit = require('../..');
 const logger = require('../lib/logger');
 
-exports.command = 'qe-jobs [limit] [offset]';
+exports.command = 'cloud-job <id>';
 
-exports.aliases = ['qjs'];
+exports.aliases = ['cl'];
 
-exports.desc = 'Get all your jobs. Ordered by creation date';
+exports.desc = 'Get the info of a specific job';
 
 exports.builder = {
-  limit: {
-    desc: ' To get only info of the simulators',
-    type: 'number',
-    default: 50,
-  },
-  offset: {
-    desc: ' To get only info of the simulators',
-    type: 'number',
+  id: {
+    desc: 'Job identifier',
+    type: 'string',
   },
 };
 
 exports.handler = argv => {
   logger.title(qiskit.version);
 
-  global.qiskit.qe
-    .jobs(argv.limit, argv.offset)
+  global.qiskit.cloud
+    .job(argv.id)
     .then(res => {
       logger.resultHead();
-      logger.chunks(res);
+      logger.json(res);
     })
     .catch(err => {
       logger.error('Making the request', err);

@@ -11,28 +11,28 @@
 const qiskit = require('../..');
 const logger = require('../lib/logger');
 
-exports.command = 'qe-params [backend]';
+exports.command = 'cloud-backs [onlySims]';
 
-exports.aliases = ['qp'];
+exports.aliases = ['cbs'];
 
-exports.desc = 'Get latest parameter stats for a backend';
+exports.desc = 'Get latest calibration stats for a backend';
 
 exports.builder = {
-  backend: {
-    desc: 'Name of the backend to inspect',
-    type: 'string',
-    default: 'ibmqx4',
+  onlySims: {
+    desc: ' To get only info of the simulators',
+    type: 'boolean',
+    default: false,
   },
 };
 
 exports.handler = argv => {
   logger.title(qiskit.version);
 
-  global.qiskit.qe
-    .parameters(argv.backend)
+  global.qiskit.cloud
+    .backends(argv.onlySims)
     .then(res => {
       logger.resultHead();
-      logger.json(res);
+      logger.chunks(res);
     })
     .catch(err => {
       logger.error('Making the request', err);

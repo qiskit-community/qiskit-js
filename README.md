@@ -18,12 +18,12 @@ If you want to learn more about Quantum Computing, you're invited to visit our [
 
 :handbag: The components of this repository are exposed as these libraries:
 
-- @qiskit/sdk: Meta-package, documented in this file. It also includes a command line client, which is your friend if you want to play with some OpenQASM circuits (in the Quantum Experience or the local simulator) without having to use any other programming language.
-- [@qiskit/qasm](./packages/qiskit-qasm): [OpenQASM](https://github.com/IBM/qiskit-openqasm) stuff, including the parser.
-- [@qiskit/qe](./packages/qiskit-qe): To send circuits to the Quantum Experience.
-- [@qiskit/sim](./packages/qiskit-sim): Local simulator for OpenQASM circuits.
-- [@qiskit/algos](./packages/qiskit-algos): High level algorithms for easy use.
-- [@qiskit/utils](./packages/qiskit-utils): Helpers shared among all packages.
+* @qiskit/sdk: Meta-package, documented in this file. It also includes a command line client, which is your friend if you want to play with some OpenQASM circuits (in the Quantum Experience or the local simulator) without having to use any other programming language.
+* [@qiskit/qasm](./packages/qiskit-qasm): [OpenQASM](https://github.com/IBM/qiskit-openqasm) stuff, including the parser.
+* [@qiskit/cloud](./packages/qiskit-cloud): To send circuits to the Quantum Experience.
+* [@qiskit/sim](./packages/qiskit-sim): Local simulator for OpenQASM circuits.
+* [@qiskit/algos](./packages/qiskit-algos): High level algorithms for easy use.
+* [@qiskit/utils](./packages/qiskit-utils): Helpers shared among all packages.
 
 ### QISKit for the browser
 
@@ -66,37 +66,37 @@ console.log(qiskit.sim.version);
 
 The actual version of the library.
 
-- `version` (string) - Version number.
+* `version` (string) - Version number.
 
 ### `qasm`
 
 A wrapper fot the [`qiskit-qasm`](./packages/qiskit-qasm) project.
 
-- `qasm` (object) - The same object provided in the original library.
+* `qasm` (object) - The same object provided in the original library.
 
 ### `sim`
 
 A wrapper fot the [`qiskit-sim`](./packages/qiskit-sim) project.
 
-- `sim` (object) - The same object provided in the original library.
+* `sim` (object) - The same object provided in the original library.
 
-### `Qe`
+### `Cloud`
 
-A wrapper fot the [`qiskit-qe`](./packages/qiskit-qe) project.
+A wrapper fot the [`qiskit-cloud`](./packages/qiskit-cloud) project.
 
-- `Qe` (object) - The same constructor provided in the original library.
+* `Cloud` (object) - The same constructor provided in the original library.
 
 ### `utils`
 
-A wrapper fot the [`qiskit-qe`](./packages/qiskit-utils) project.
+A wrapper fot the [`qiskit-utils`](./packages/qiskit-utils) project.
 
-- `utils` (object) - The same object provided in the original library.
+* `utils` (object) - The same object provided in the original library.
 
 ### `algos`
 
 A wrapper fot the [`qiskit-algos`](./packages/qiskit-algos) project.
 
-- `algos` (object) - The same object provided in the original library.
+* `algos` (object) - The same object provided in the original library.
 
 ## Authors
 
@@ -108,12 +108,12 @@ Original code (Python) authors [here](https://github.com/QISKit/qiskit-sdk-py#au
 
 :school_satchel:
 
-- [Python QISKit](https://github.com/QISKit/qiskit-sdk-py.git>)
-- [ibmqx backend information](https://github.com/QISKit/ibmqx-backend-information): Information about the different IBM Q experience backends.
-- [ibmqx user guide](https://github.com/QISKit/ibmqx-user-guides): The users guides for the IBM Q experience.
-- [OpenQasm](https://github.com/QISKit/openqasm): Examples and tools for the OpenQASM intermediate representation.
-- [Python API](https://github.com/QISKit/qiskit-api-py): API Client to use IBM Q experience in Python.
-- [Tutorials](https://github.com/QISKit/qiskit-tutorial): Jupyter notebooks for using QISKit.
+* [Python QISKit](https://github.com/QISKit/qiskit-sdk-py.git>)
+* [ibmqx backend information](https://github.com/QISKit/ibmqx-backend-information): Information about the different IBM Q experience backends.
+* [ibmqx user guide](https://github.com/QISKit/ibmqx-user-guides): The users guides for the IBM Q experience.
+* [OpenQasm](https://github.com/QISKit/openqasm): Examples and tools for the OpenQASM intermediate representation.
+* [Python API](https://github.com/QISKit/qiskit-api-py): API Client to use IBM Q experience in Python.
+* [Tutorials](https://github.com/QISKit/qiskit-tutorial): Jupyter notebooks for using QISKit.
 
 ## License
 

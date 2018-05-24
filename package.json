@@ -5,12 +5,12 @@
     "publish": "npm i && lerna publish",
     "format": "prettier --write '**/*.js'",
     "precommit": "pretty-quick --staged",
-    "lint": "eslint .",
+    "lint": "npm run format && eslint .",
     "dep-check":
       "depcheck --ignore-dirs=dist --ignores='brfs,brfs-babel,browserify-banner,mocha,nsp,husky' && lerna run dep-check",
     "dep-sec": "lerna run dep-sec",
     "test-qasm": "lerna run test --scope @qiskit/qasm",
-    "test-qe": "lerna run test --scope @qiskit/qe",
+    "test-cloud": "lerna run test --scope @qiskit/cloud",
     "test-sdk": "lerna run test --scope @qiskit/sdk",
     "test-sim": "lerna run test --scope @qiskit/sim",
     "test-utils": "lerna run test --scope @qiskit/utils",
@@ -20,9 +20,10 @@
       "browserify packages/qiskit-qasm/index.js -p [ browserify-banner --file dist/banner.txt ] -s qiskitQasm > dist/qiskit-qasm.js",
     "bundle-sim":
       "browserify packages/qiskit-sim/index.js -p [ browserify-banner --file dist/banner.txt ] -s qiskitSim > dist/qiskit-sim.js",
-    "bundle-qe":
-      "browserify packages/qiskit-qe/index.js -p [ browserify-banner --file dist/banner.txt ] -s QiskitQe > dist/qiskit-qe.js",
-    "bundle": "npm run bundle-qasm && npm run bundle-sim && npm run bundle-qe",
+    "bundle-cloud":
+      "browserify packages/qiskit-cloud/index.js -p [ browserify-banner --file dist/banner.txt ] -s QiskitCloud > dist/qiskit-cloud.js",
+    "bundle":
+      "npm run bundle-qasm && npm run bundle-sim && npm run bundle-cloud",
     "browser": "static-server -i example.html dist"
   },
   "depcheck": "^0.6.9",

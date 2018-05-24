@@ -18,12 +18,12 @@ const expErrRegex = require('../errorRe');
 
 // Token not needed.
 
-const qeNoToken = new Qe();
+const cloudNoToken = new Qe();
 
-describe('qe:calibration', () => {
+describe('cloud:calibration', () => {
   it('should fail if bad format in the "name" parameter', async () =>
     utilsTest.throwsAsync(
-      () => qeNoToken.calibration(1),
+      () => cloudNoToken.calibration(1),
       expErrRegex.formatStr,
     ));
 
@@ -31,7 +31,7 @@ describe('qe:calibration', () => {
     'should return the calibration info for the' +
       'default backend if no parameter',
     async () => {
-      const res = await qeNoToken.calibration();
+      const res = await cloudNoToken.calibration();
 
       assert.deepEqual(Object.keys(res), [
         'lastUpdateDate',
@@ -48,15 +48,15 @@ describe('qe:calibration', () => {
   // TODO: The API should return an error in this case.
   it('should return the calibration info for the selected backend', async () =>
     assert.deepEqual(
-      Object.keys(await qeNoToken.calibration('nonexistent')),
+      Object.keys(await cloudNoToken.calibration('nonexistent')),
       [],
     ));
 });
 
-describe('qe:parameters', () => {
+describe('cloud:parameters', () => {
   it('should fail if bad format in the "name" parameter', async () =>
     utilsTest.throwsAsync(
-      () => qeNoToken.parameters(1),
+      () => cloudNoToken.parameters(1),
       expErrRegex.formatStr,
     ));
 
@@ -64,7 +64,7 @@ describe('qe:parameters', () => {
     'should return the parameters info for the' +
       'default backend if no parameter',
     async () => {
-      const res = await qeNoToken.parameters();
+      const res = await cloudNoToken.parameters();
 
       assert.deepEqual(Object.keys(res), [
         'lastUpdateDate',
@@ -81,17 +81,17 @@ describe('qe:parameters', () => {
   // TODO: The API should return an error in this case.
   it('should return the parameters info for the selected backend', async () =>
     assert.deepEqual(
-      Object.keys(await qeNoToken.parameters('nonexistent')),
+      Object.keys(await cloudNoToken.parameters('nonexistent')),
       [],
     ));
 });
 
-describe('qe:queues', () => {
+describe('cloud:queues', () => {
   it('should fail if bad format in the "name" parameter', async () =>
-    utilsTest.throwsAsync(() => qeNoToken.queues(1), expErrRegex.formatStr));
+    utilsTest.throwsAsync(() => cloudNoToken.queues(1), expErrRegex.formatStr));
 
   it('should return the status of the queue the default backend if no parameter', async () => {
-    const res = await qeNoToken.queues();
+    const res = await cloudNoToken.queues();
 
     assert.deepEqual(Object.keys(res), ['state', 'status', 'lengthQueue']);
     assert.equal(typeof res.state, 'boolean');
@@ -102,27 +102,30 @@ describe('qe:queues', () => {
   // We use a non existent one because we can´t know in advance the returned values here.
   // TODO: The API should return an error in this case.
   it('should return the queue info for the selected backend', async () =>
-    assert.deepEqual(await qeNoToken.queues('nonexistent'), {}));
+    assert.deepEqual(await cloudNoToken.queues('nonexistent'), {}));
 });
 
 // Token needed.
 
 // Already logged instance.
-const { qe } = global.qiskitTest;
+const { cloud } = global.qiskitTest;
 
-describe('qe:backend', () => {
+describe('cloud:backend', () => {
   it('should fail if no logged', async () =>
-    utilsTest.throwsAsync(() => qeNoToken.backend(), expErrRegex.loginBefore));
+    utilsTest.throwsAsync(
+      () => cloudNoToken.backend(),
+      expErrRegex.loginBefore,
+    ));
 
   it('should fail if bad format in the "name" parameter', async () =>
-    utilsTest.throwsAsync(() => qe.backend(1), expErrRegex.formatStr));
+    utilsTest.throwsAsync(() => cloud.backend(1), expErrRegex.formatStr));
 
   it('should return a backend with the default "name" parameter', async function t() {
     if (!global.qiskitTest.integration) {
       this.skip();
     }
 
-    const res = await qe.backend();
+    const res = await cloud.backend();
 
     assert.deepEqual(Object.keys(res), [
       'name',
@@ -149,7 +152,7 @@ describe('qe:backend', () => {
     }
 
     const name = 'ibmqx5';
-    const res = await qe.backend(name);
+    const res = await cloud.backend(name);
 
     assert.deepEqual(Object.keys(res), [
       'name',
@@ -177,20 +180,23 @@ describe('qe:backend', () => {
       this.skip();
     }
 
-    assert.deepEqual(await qe.backend('nonexistent'), {});
+    assert.deepEqual(await cloud.backend('nonexistent'), {});
   });
 });
 
-describe('qe:backends', () => {
+describe('cloud:backends', () => {
   it('should fail if no logged', async () =>
-    utilsTest.throwsAsync(() => qeNoToken.backends(), expErrRegex.loginBefore));
+    utilsTest.throwsAsync(
+      () => cloudNoToken.backends(),
+      expErrRegex.loginBefore,
+    ));
 
   it('should return the online backends info', async function t() {
     if (!global.qiskitTest.integration) {
       this.skip();
     }
 
-    const res = await qe.backends();
+    const res = await cloud.backends();
 
     assert.equal(res.length, 4);
     assert.deepEqual(Object.keys(res[0]), [
@@ -212,14 +218,14 @@ describe('qe:backends', () => {
   });
 
   it('should fail if bad format in the "onlySims" parameter', async () =>
-    utilsTest.throwsAsync(() => qe.backends(1), expErrRegex.formatBool));
+    utilsTest.throwsAsync(() => cloud.backends(1), expErrRegex.formatBool));
 
   it('should allow to ask only for simulators info', async function t() {
     if (!global.qiskitTest.integration) {
       this.skip();
     }
 
-    const res = await qe.backends(true);
+    const res = await cloud.backends(true);
 
     assert.equal(res.length, 1);
     assert.equal(Object.keys(res[0]).length, 9);

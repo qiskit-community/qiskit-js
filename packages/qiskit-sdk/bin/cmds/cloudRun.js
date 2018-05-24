@@ -18,9 +18,9 @@ const logger = require('../lib/logger');
 const readFile = util.promisify(fs.readFile);
 
 exports.command =
-  'qe-run <circuit> [backend] [shots] [name] [seed] [maxCredits]';
+  'cloud-run <circuit> [backend] [shots] [name] [seed] [maxCredits]';
 
-exports.aliases = ['qr'];
+exports.aliases = ['cr'];
 
 exports.desc =
   'Send the circuit to be run in the Quantum Experience' +
@@ -71,7 +71,7 @@ exports.handler = argv => {
   logger.info(`${logger.emoji('mag')} Reading the circuit file: ${pathCode}`);
   readFile(pathCode, 'utf8')
     .then(code => {
-      global.qiskit.qe
+      global.qiskit.cloud
         .run(
           code,
           argv.backend,

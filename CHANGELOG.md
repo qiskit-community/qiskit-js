@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 * Minor typos in the README file.
 * Following new dev guideline: code of conduct, file naming, issue/PR templates, etc.
   * Prettier support.
+* Package "qiskit-qe" renamed to [qiskit-cloud](https://github.com/QISKit/qiskit-sdk-js/tree/master/packages/qiskit-cloud).
 * JS distribution files rebundled.
 
 ### Deleted

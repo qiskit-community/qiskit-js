@@ -63,9 +63,9 @@ describe('qiskit:bin', () => {
     assert.throws(() => exec(`${comm} sim whatever.png`), reNotSup);
   });
 
-  it('should fail for "qe-job" command without arguments', () =>
-    assert.throws(() => exec(`${comm} qe-job`), reGot0));
+  it('should fail for "cloud-job" command without arguments', () =>
+    assert.throws(() => exec(`${comm} cloud-job`), reGot0));
 
-  it('should fail for "qe-run" command without arguments', () =>
-    assert.throws(() => exec(`${comm} qe-run`), reGot0));
+  it('should fail for "cloud-run" command without arguments', () =>
+    assert.throws(() => exec(`${comm} cloud-run`), reGot0));
 });

@@ -12,12 +12,12 @@
 
 const assert = require('assert');
 
-const Qe = require('@qiskit/qe');
+const Cloud = require('@qiskit/cloud');
 
 const algos = require('..');
 const { version } = require('../package');
 
-const qe = new Qe();
+const cloud = new Cloud();
 
 // TODO: Use utils.difference instead.
 function multiIncludes(text, values) {
@@ -36,13 +36,13 @@ describe('algos:api', () => {
 describe('algos:version', () =>
   it('should be correct', () => assert.equal(algos.version, version)));
 
-// TODO: this is not the best solution, we're repeting things in @qiskit/qe tests.
+// TODO: this is not the best solution, we're repeting things in @qiskit/cloud tests.
 describe('algos:result:random', () => {
   it('should return the result passing jobId', async function t() {
     if (!process.env.QE_TOKEN || !process.env.QE_USER) {
       // Dirty trick to allow the tests which don´t need the API to run.
-      qe.token = 'notvalid';
-      qe.userId = 'notvalid';
+      cloud.token = 'notvalid';
+      cloud.userId = 'notvalid';
 
       /* eslint-disable no-console */
       console.log(

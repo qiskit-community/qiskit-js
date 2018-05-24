@@ -11,24 +11,25 @@
 const qiskit = require('../..');
 const logger = require('../lib/logger');
 
-exports.command = 'qe-job <id>';
+exports.command = 'cloud-params [backend]';
 
-exports.aliases = ['qj'];
+exports.aliases = ['cp'];
 
-exports.desc = 'Get the info of a specific job';
+exports.desc = 'Get latest parameter stats for a backend';
 
 exports.builder = {
-  id: {
-    desc: 'Job identifier',
+  backend: {
+    desc: 'Name of the backend to inspect',
     type: 'string',
+    default: 'ibmqx4',
   },
 };
 
 exports.handler = argv => {
   logger.title(qiskit.version);
 
-  global.qiskit.qe
-    .job(argv.id)
+  global.qiskit.cloud
+    .parameters(argv.backend)
     .then(res => {
       logger.resultHead();
       logger.json(res);

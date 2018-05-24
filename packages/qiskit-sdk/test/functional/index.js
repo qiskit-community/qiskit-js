@@ -23,7 +23,7 @@ describe('qiskit:api', () => {
       'version',
       'qasm',
       'sim',
-      'Qe',
+      'Cloud',
       'utils',
       'algos',
     ]));

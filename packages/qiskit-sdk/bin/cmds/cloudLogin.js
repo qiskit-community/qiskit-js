@@ -19,20 +19,20 @@ const storage = require('../lib/storage');
 const getToken = util.promisify(prompt.get);
 const promptSchema = {
   properties: {
-    personalToken: {
+    apiToken: {
       type: 'string',
       hidden: true,
       message:
-        'Quantum Experience personal token, you can get' +
-        ' it here: https://quantumexperience.ng.bluemix.net/qx/account',
+        'Quantum Experience API token, you can get' +
+        ' it here: https://quantumexperience.ng.bluemix.net/qx/account/advanced',
       required: true,
     },
   },
 };
 
-exports.command = 'qe-login [printToken]';
+exports.command = 'cloud-login [printToken]';
 
-exports.aliases = ['ql'];
+exports.aliases = ['cl'];
 
 exports.desc = 'Get a long term access token';
 
@@ -50,8 +50,8 @@ exports.handler = argv => {
   prompt.start();
   getToken(promptSchema)
     .then(entered => {
-      global.qiskit.qe
-        .login(entered.personalToken)
+      global.qiskit.cloud
+        .login(entered.apiToken)
         .then(res => {
           logger.resultHead();
 
