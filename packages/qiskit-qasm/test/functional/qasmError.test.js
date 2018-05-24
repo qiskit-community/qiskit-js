@@ -14,7 +14,6 @@ const assert = require('assert');
 // const util = require('util');
 const QasmError = require('../../lib/QasmError');
 
-
 describe('qasm:QasmError', () => {
   it('should return the error with a message and all options', () => {
     const msg = 'test msg';
@@ -38,7 +37,6 @@ describe('qasm:QasmError', () => {
     assert.equal(err.expected, 'other');
   });
 
-
   it('should return the error with a message and without all options', () => {
     const msg = 'test msg';
     const opts = {
@@ -57,7 +55,6 @@ describe('qasm:QasmError', () => {
     assert.equal(err.expected, undefined);
   });
 
-
   it('should return the error with a message and without any option', () => {
     const msg = 'test msg';
 
@@ -72,13 +69,7 @@ describe('qasm:QasmError', () => {
     assert.equal(err.expected, undefined);
   });
 
-
   it('should fail without a message', () => {
-    assert.throws(
-      // eslint-disable-next-line no-new
-      () => { new QasmError(); },
-      // eslint-disable-next-line comma-dangle
-      /Required param: msg/
-    );
+    assert.throws(() => new QasmError(), /Required param: msg/);
   });
 });

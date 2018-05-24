@@ -10,7 +10,6 @@
 
 'use strict';
 
-
 // TODO: Repeated code in qiskit bin, qiskit-utils package needed?
 const assert = require('assert');
 
@@ -18,7 +17,6 @@ const assert = require('assert');
 const shot = require('snap-shot-it');
 const strip = require('strip-color');
 /* eslint-enable import/no-extraneous-dependencies */
-
 
 // A custom version of [assert.throws](https://nodejs.org/api/assert.html#
 // assert_assert_throws_block_error_message) with async (through promises) support.
@@ -33,7 +31,9 @@ async function throwsAsync(block, errorRexp) {
   } catch (e) {
     // To be consistent with the Node.js "assert.throws" behavior we reuse it.
     if (errorRexp) {
-      assert.throws(() => { throw e; }, errorRexp);
+      assert.throws(() => {
+        throw e;
+      }, errorRexp);
     }
     // We need this return because we're catching the thrown error,
     // if not, the next assert.fail would be reached when the regexp matches.
@@ -42,6 +42,5 @@ async function throwsAsync(block, errorRexp) {
 
   assert.fail('Missing expected exception');
 }
-
 
 module.exports = { throwsAsync, shot, strip };

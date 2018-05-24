@@ -13,7 +13,6 @@ const buildCircuit = require('./buildCircuit');
 
 const dbg = utils.debug(name);
 
-
 module.exports = (len = 16, backendQubits = 4) => {
   // TODO: Add types/values checking.
 

@@ -16,20 +16,19 @@ const qiskit = require('../..');
 const logger = require('../lib/logger');
 const storage = require('../lib/storage');
 
-
 const getToken = util.promisify(prompt.get);
 const promptSchema = {
   properties: {
     personalToken: {
       type: 'string',
       hidden: true,
-      message: 'Quantum Experience personal token, you can get' +
-      ' it here: https://quantumexperience.ng.bluemix.net/qx/account',
+      message:
+        'Quantum Experience personal token, you can get' +
+        ' it here: https://quantumexperience.ng.bluemix.net/qx/account',
       required: true,
     },
   },
 };
-
 
 exports.command = 'qe-login [printToken]';
 
@@ -45,35 +44,40 @@ exports.builder = {
   },
 };
 
-
-exports.handler = (argv) => {
+exports.handler = argv => {
   logger.title(qiskit.version);
 
   prompt.start();
   getToken(promptSchema)
-    .then((entered) => {
-      global.qiskit.qe.login(entered.personalToken)
-        .then((res) => {
+    .then(entered => {
+      global.qiskit.qe
+        .login(entered.personalToken)
+        .then(res => {
           logger.resultHead();
 
-          storage.setItem('token', res.token)
+          storage
+            .setItem('token', res.token)
             .then(() => {
-              if (!argv.printToken) { delete res.token; }
+              if (!argv.printToken) {
+                delete res.token;
+              }
 
               logger.json(res);
-              logger.regular('\nLong term token correctly stored for future uses');
+              logger.regular(
+                '\nLong term token correctly stored for future uses',
+              );
             })
-            .catch((err) => {
+            .catch(err => {
               logger.error('Storing the new long term token', err);
               process.exit(1);
             });
         })
-        .catch((err) => {
+        .catch(err => {
           logger.error('Making the request', err);
           process.exit(1);
         });
     })
-    .catch((err) => {
+    .catch(err => {
       logger.error('Prompting for the personal token', err);
       process.exit(1);
     });

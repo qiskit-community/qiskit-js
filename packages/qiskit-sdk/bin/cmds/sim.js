@@ -16,7 +16,6 @@ const qiskit = require('../..');
 const utils = require('../lib/utils');
 const logger = require('../lib/logger');
 
-
 const dbg = utils.dbg(__filename);
 const readFile = util.promisify(fs.readFile);
 
@@ -30,14 +29,15 @@ exports.builder = {
   circuit: {
     // Accepted options:
     // https://github.com/yargs/yargs/blob/master/docs/api.md#optionskey-opt
-    desc: 'Path to the file with the code of the circuit. ' +
-          'It supports OpenQASM (.qasm) or unrolled IR (.json)',
+    desc:
+      'Path to the file with the code of the circuit. ' +
+      'It supports OpenQASM (.qasm) or unrolled IR (.json)',
     type: 'string',
     normalize: true,
   },
 };
 
-exports.handler = (argv) => {
+exports.handler = argv => {
   logger.title(qiskit.version);
 
   dbg('Starting, args', argv);
@@ -45,8 +45,10 @@ exports.handler = (argv) => {
   const extension = path.extname(argv.circuit);
 
   if (extension === '.qasm') {
-    logger.error('Regular QASM circuits are still not supported' +
-                ', please use the option "unrolled" with false for now');
+    logger.error(
+      'Regular QASM circuits are still not supported' +
+        ', please use the option "unrolled" with false for now',
+    );
     process.exit(1);
   }
 
@@ -59,7 +61,7 @@ exports.handler = (argv) => {
 
   logger.info(`${logger.emoji('mag')} Reading the circuit file: ${pathCode}`);
   readFile(pathCode, 'utf8')
-    .then((code) => {
+    .then(code => {
       logger.info('Parsing the code file ...');
 
       let codeParsed;
@@ -94,7 +96,7 @@ exports.handler = (argv) => {
         logger.json({ size: stateJson.size });
       }
     })
-    .catch((err) => {
+    .catch(err => {
       logger.error('Reading the circuit file', err);
       process.exit(1);
     });

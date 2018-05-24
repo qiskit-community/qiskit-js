@@ -14,14 +14,19 @@ const assert = require('assert');
 
 const qiskit = require('../..');
 
-
 const pkgInfo = require('../../package');
 const pkgInfoSim = require('../../../qiskit-sim/package');
 
-
 describe('qiskit:api', () => {
   it('should include all documented items', () =>
-    assert.deepEqual(Object.keys(qiskit), ['version', 'qasm', 'sim', 'Qe', 'utils', 'algos']));
+    assert.deepEqual(Object.keys(qiskit), [
+      'version',
+      'qasm',
+      'sim',
+      'Qe',
+      'utils',
+      'algos',
+    ]));
 
   it('should return the the correct result for its methods', () =>
     assert.equal(qiskit.version, pkgInfo.version));

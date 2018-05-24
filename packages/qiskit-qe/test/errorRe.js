@@ -10,7 +10,6 @@
 
 'use strict';
 
-
 module.exports = {
   formatUri: /URI format expected/,
   formatStr: /String format expected/,

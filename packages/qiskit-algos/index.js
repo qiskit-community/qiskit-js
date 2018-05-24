@@ -14,17 +14,13 @@ const genBin = require('./lib/genBin');
 const { version } = require('./package');
 const { backends } = require('./cfg');
 
-
 const backendNames = Object.keys(backends);
 const dbg = utils.dbg(__filename);
 
-
 module.exports.version = version;
-
 
 module.exports.random = async (token, userId, opts = {}) => {
   dbg('Passed opts:', opts);
-
 
   if (!token || typeof token !== 'string') {
     throw new TypeError('The "token" parameter is mandatory (string)');
@@ -55,7 +51,6 @@ module.exports.random = async (token, userId, opts = {}) => {
   }
   const maxCredits = opts.maxCredits || null;
 
-
   if (opts.backend) {
     if (typeof opts.backend !== 'string') {
       throw new TypeError('A string expected in "backend" option');
@@ -77,7 +72,6 @@ module.exports.random = async (token, userId, opts = {}) => {
   });
 };
 
-
 module.exports.result = async (token, userId, jobId) => {
   const qe = new Qe();
 
@@ -96,7 +90,6 @@ module.exports.result = async (token, userId, jobId) => {
     throw new TypeError('The "jobId" parameter is mandatory (string)');
   }
 
-
   const res = await qe.job(jobId);
 
   const result = { status: res.status.toLowerCase() };
@@ -105,7 +98,7 @@ module.exports.result = async (token, userId, jobId) => {
     return result;
   }
 
-  const binaryArray = utils.map(res.circuits, (resCircuit) => {
+  const binaryArray = utils.map(res.circuits, resCircuit => {
     if (
       !resCircuit.result ||
       !resCircuit.result.data ||
@@ -117,7 +110,10 @@ module.exports.result = async (token, userId, jobId) => {
 
     return Object.keys(resCircuit.result.data.counts)[0];
   });
-  dbg('Generated partial number (binary-array):', { binaryArray, len: binaryArray.length });
+  dbg('Generated partial number (binary-array):', {
+    binaryArray,
+    len: binaryArray.length,
+  });
 
   const binary = binaryArray.join('');
   dbg('Generated partial number (binary):', { binary });
@@ -126,7 +122,7 @@ module.exports.result = async (token, userId, jobId) => {
   dbg('Generated number (decimal):', { decimal });
 
   // To return a value between 0 and 1 (similar to "Math.floor").
-  result.data = decimal / (10 ** decimal.toString().length);
+  result.data = decimal / 10 ** decimal.toString().length;
 
   return result;
 };

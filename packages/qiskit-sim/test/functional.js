@@ -18,14 +18,12 @@ const sim = require('..');
 const circuit = require('../../../circuits/unrolled/example.json');
 const pkgInfo = require('../package');
 
-
 const res = sim.run(circuit);
 
-
 describe('sim:version', () => {
-  it('should return the package version', () => assert.equal(sim.version, pkgInfo.version));
+  it('should return the package version', () =>
+    assert.equal(sim.version, pkgInfo.version));
 });
-
 
 describe('sim:run', () => {
   it('should work with the example file', () => {
@@ -66,7 +64,6 @@ describe('sim:run', () => {
     assert.equal(stateJson.data[1][9].re, -0.35355339059327384);
     assert.equal(stateJson.data[1][9].im, 4.3297802811774677e-17);
   });
-
 
   it('should provide data to calculate the state |psi> = U|0>', () => {
     const expected = [
@@ -142,21 +139,15 @@ describe('sim:run', () => {
     assert.deepEqual(state0.data, expected);
   });
 
-
   it('should fail if a circuit is not passed', () => {
-    assert.throws(
-      () => { sim.run(); },
-      // eslint-disable-next-line comma-dangle
-      /Empty circuit/
-    );
+    assert.throws(() => {
+      sim.run();
+    }, /Empty circuit/);
   });
 
-
   it('should fail with a parsing error if a not supported operation is found', () => {
-    assert.throws(
-      () => { sim.run({ operations: [{ name: 'nonexistent' }] }); },
-      // eslint-disable-next-line comma-dangle
-      /Parsing error/
-    );
+    assert.throws(() => {
+      sim.run({ operations: [{ name: 'nonexistent' }] });
+    }, /Parsing error/);
   });
 });

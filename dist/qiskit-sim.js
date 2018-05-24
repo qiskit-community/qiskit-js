@@ -1633,7 +1633,6 @@ function index1(b, i, k) {
   let res = k;
 
   // Get the low i bits.
-  /* eslint-disable no-bitwise */
   const lowbits = k & ((1 << i) - 1);
 
   res >>= i;
@@ -1643,7 +1642,6 @@ function index1(b, i, k) {
 
   res <<= i;
   res |= lowbits;
-  /* eslint-enable no-bitwise */
 
   return res;
 }
@@ -1672,7 +1670,6 @@ function index2(b1, i1, b2, i2, k) {
 
 
 module.exports = (gate, qubit0, qubit1, numQbits, state) => {
-  // eslint-disable-next-line no-bitwise
   const enlargeOpt = math.zeros(1 << numQbits, 1 << numQbits);
 
   dbg('Starting "addUnitaryTwo" with opions', {
@@ -1688,7 +1685,6 @@ module.exports = (gate, qubit0, qubit1, numQbits, state) => {
   dbg('Position 0,0 before', enlargeOpt.get([0, 0]));
 
   // TODO: Can we optimize this? http://mathjs.org/docs/datatypes/matrices.html#iterating
-  // eslint-disable-next-line no-bitwise
   for (let i = 0; i < 1 << (numQbits - 2); i += 1) {
     for (let j = 0; j < 2; j += 1) {
       for (let k = 0; k < 2; k += 1) {

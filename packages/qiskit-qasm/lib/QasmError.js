@@ -12,24 +12,34 @@
 
 const util = require('util');
 
-
 function QasmError(msg, opts = {}) {
   Error.captureStackTrace(this, this.constructor);
 
   this.name = this.constructor.name;
 
-  if (!msg) { throw new Error('Required param: msg'); }
+  if (!msg) {
+    throw new Error('Required param: msg');
+  }
 
   this.message = msg;
 
   // TODO: Review: error code, etc? If coming from jison X ours Y
-  if (opts.line) { this.line = opts.line; }
-  if (opts.column) { this.column = opts.column; }
-  if (opts.text) { this.text = opts.text; }
-  if (opts.token) { this.token = opts.token; }
-  if (opts.expected) { this.expected = opts.expected; }
+  if (opts.line) {
+    this.line = opts.line;
+  }
+  if (opts.column) {
+    this.column = opts.column;
+  }
+  if (opts.text) {
+    this.text = opts.text;
+  }
+  if (opts.token) {
+    this.token = opts.token;
+  }
+  if (opts.expected) {
+    this.expected = opts.expected;
+  }
 }
-
 
 util.inherits(QasmError, Error);
 

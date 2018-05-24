@@ -17,33 +17,24 @@ const Qe = require('@qiskit/qe');
 const algos = require('..');
 const { version } = require('../package');
 
-
 const qe = new Qe();
-
 
 // TODO: Use utils.difference instead.
 function multiIncludes(text, values) {
   return values.every(val => text.includes(val));
 }
 
-
 describe('algos:api', () => {
   it('should include all documented items', () => {
-    assert.ok(multiIncludes(Object.keys(algos), [
-      'random',
-      'result',
-    ]));
+    assert.ok(multiIncludes(Object.keys(algos), ['random', 'result']));
   });
 
   it('should return the the correct result for its methods', () =>
     assert.equal(algos.version, version));
 });
 
-
 describe('algos:version', () =>
-  it('should be correct', () =>
-    assert.equal(algos.version, version)));
-
+  it('should be correct', () => assert.equal(algos.version, version)));
 
 // TODO: this is not the best solution, we're repeting things in @qiskit/qe tests.
 describe('algos:result:random', () => {
@@ -54,10 +45,16 @@ describe('algos:result:random', () => {
       qe.userId = 'notvalid';
 
       /* eslint-disable no-console */
-      console.log('\n\n\n\t-------------------------------------------------------------');
+      console.log(
+        '\n\n\n\t-------------------------------------------------------------',
+      );
       console.log('\tWARNING');
-      console.log('\tQE_TOKEN env var not found, so skipping integration tests.');
-      console.log('\t-------------------------------------------------------------\n\n\n');
+      console.log(
+        '\tQE_TOKEN env var not found, so skipping integration tests.',
+      );
+      console.log(
+        '\t-------------------------------------------------------------\n\n\n',
+      );
       /* eslint-enable no-console */
 
       this.skip();

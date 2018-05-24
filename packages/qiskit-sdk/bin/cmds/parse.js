@@ -19,13 +19,13 @@ const logger = require('../lib/logger');
 const readFile = util.promisify(fs.readFile);
 const dbg = utils.dbg(__filename);
 
-
 exports.command = 'parse <circuit>';
 
 exports.aliases = ['p'];
 
 // TODO: Put a name to our IR.
-exports.desc = 'Parse the circuit to our IR (intermediate representation - JSON format).';
+exports.desc =
+  'Parse the circuit to our IR (intermediate representation - JSON format).';
 
 exports.builder = {
   circuit: {
@@ -35,8 +35,7 @@ exports.builder = {
   },
 };
 
-
-exports.handler = (argv) => {
+exports.handler = argv => {
   logger.title(qiskit.version);
   logger.bold('\n\nWARNING: Partial implementetation for now\n\n');
 
@@ -48,7 +47,7 @@ exports.handler = (argv) => {
   // TODO: "async" still not suported by yargs:
   // https://github.com/yargs/yargs/issues/510
   readFile(pathCode, 'utf8')
-    .then((code) => {
+    .then(code => {
       try {
         logger.resultHead();
         logger.json(parser.parse(code));
@@ -57,7 +56,7 @@ exports.handler = (argv) => {
         process.exit(1);
       }
     })
-    .catch((err) => {
+    .catch(err => {
       logger.error('Reading the circuit file', err);
       process.exit(1);
     });

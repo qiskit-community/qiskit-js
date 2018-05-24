@@ -16,7 +16,6 @@ const utilsTest = require('../../../../utils-test');
 const Qe = require('../..');
 const expErrRegex = require('../errorRe');
 
-
 const qe = new Qe();
 global.qiskitTest = {
   // To reuse in the rest of test files of this folder and avoid multiple re-login.
@@ -24,7 +23,6 @@ global.qiskitTest = {
   // To detect if we want to run integration tests without exposing sensitive data.
   integration: false,
 };
-
 
 describe('qe:login', () => {
   it('should fail if "token" parameter no present', async () =>
@@ -44,10 +42,16 @@ describe('qe:login', () => {
       qe.userId = 'notvalid';
 
       /* eslint-disable no-console */
-      console.log('\n\n\n\t-------------------------------------------------------------');
+      console.log(
+        '\n\n\n\t-------------------------------------------------------------',
+      );
       console.log('\tWARNING');
-      console.log('\tQE_TOKEN env var not found, so skipping integration tests.');
-      console.log('\t-------------------------------------------------------------\n\n\n');
+      console.log(
+        '\tQE_TOKEN env var not found, so skipping integration tests.',
+      );
+      console.log(
+        '\t-------------------------------------------------------------\n\n\n',
+      );
 
       /* eslint-enable no-console */
       this.skip();

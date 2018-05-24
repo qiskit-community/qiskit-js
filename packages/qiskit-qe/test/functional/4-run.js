@@ -16,15 +16,14 @@ const utilsTest = require('../../../../utils-test');
 const Qe = require('../..');
 const expErrRegex = require('../errorRe');
 
-
 // Already logged instance.
 const { qe } = global.qiskitTest;
-const circuit = 'OPENQASM 2.0;' +
-                'include "qelib1.inc";' +
-                'qreg q[1];' +
-                'creg c[1];' +
-                'measure q -> c;';
-
+const circuit =
+  'OPENQASM 2.0;' +
+  'include "qelib1.inc";' +
+  'qreg q[1];' +
+  'creg c[1];' +
+  'measure q -> c;';
 
 describe('qe:run', () => {
   it('should fail if no logged', async () =>
@@ -38,37 +37,65 @@ describe('qe:run', () => {
     utilsTest.throwsAsync(() => qe.run(1), expErrRegex.formatStr));
 
   it('should fail if bad format in the "backend" option', async () =>
-    utilsTest.throwsAsync(() => qe.run('a', { backend: 1 }), expErrRegex.formatStr));
+    utilsTest.throwsAsync(
+      () => qe.run('a', { backend: 1 }),
+      expErrRegex.formatStr,
+    ));
 
   it('should fail if bad format in the "name" option', async () =>
-    utilsTest.throwsAsync(() => qe.run('a', { name: 1 }), expErrRegex.formatStr));
+    utilsTest.throwsAsync(
+      () => qe.run('a', { name: 1 }),
+      expErrRegex.formatStr,
+    ));
 
   it('should fail if bad format in the "shots" option', async () =>
-    utilsTest.throwsAsync(() => qe.run('a', { shots: 'a' }), expErrRegex.formatNumber));
+    utilsTest.throwsAsync(
+      () => qe.run('a', { shots: 'a' }),
+      expErrRegex.formatNumber,
+    ));
 
   it('should fail if under min. in the "shots" option', async () =>
-    utilsTest.throwsAsync(() => qe.run('a', { shots: -1 }), expErrRegex.outRange));
+    utilsTest.throwsAsync(
+      () => qe.run('a', { shots: -1 }),
+      expErrRegex.outRange,
+    ));
 
   it('should fail if over max. in the "shots" option', async () =>
-    utilsTest.throwsAsync(() => qe.run('a', { shots: 8193 }), expErrRegex.outRange));
+    utilsTest.throwsAsync(
+      () => qe.run('a', { shots: 8193 }),
+      expErrRegex.outRange,
+    ));
 
   it('should fail if bad format in the "seed" option', async () =>
-    utilsTest.throwsAsync(() => qe.run('a', { seed: 1 }), expErrRegex.formatStr));
+    utilsTest.throwsAsync(
+      () => qe.run('a', { seed: 1 }),
+      expErrRegex.formatStr,
+    ));
 
   it('should fail if bad format in the "maxCredits" option', async () =>
-    utilsTest.throwsAsync(() => qe.run('a', { maxCredits: 'a' }), expErrRegex.formatNumber));
+    utilsTest.throwsAsync(
+      () => qe.run('a', { maxCredits: 'a' }),
+      expErrRegex.formatNumber,
+    ));
 
   it('should fail if under min. in the "maxCredits" option', async () =>
-    utilsTest.throwsAsync(() => qe.run('a', { maxCredits: -1 }), expErrRegex.outRange));
+    utilsTest.throwsAsync(
+      () => qe.run('a', { maxCredits: -1 }),
+      expErrRegex.outRange,
+    ));
 
   it('should fail if a controlled API error', async function t() {
-    if (!global.qiskitTest.integration) { this.skip(); }
+    if (!global.qiskitTest.integration) {
+      this.skip();
+    }
 
     utilsTest.throwsAsync(() => qe.run('a'), expErrRegex.badQasm);
   });
 
   it('should return the run info for a valid circuit', async function t() {
-    if (!global.qiskitTest.integration) { this.skip(); }
+    if (!global.qiskitTest.integration) {
+      this.skip();
+    }
 
     const res = await qe.run(circuit);
 
@@ -81,10 +108,12 @@ describe('qe:run', () => {
   });
 });
 
-
 describe('qe:runBatch', () => {
   it('should fail if no logged', async () =>
-    utilsTest.throwsAsync(() => new Qe().runBatch('a'), expErrRegex.loginBefore));
+    utilsTest.throwsAsync(
+      () => new Qe().runBatch('a'),
+      expErrRegex.loginBefore,
+    ));
 
   it('should fail if "circuits" parameter no present', async () =>
     // TODO: Emit proper error.
@@ -103,69 +132,98 @@ describe('qe:runBatch', () => {
     utilsTest.throwsAsync(() => qe.runBatch([{}]), expErrRegex.formatStr));
 
   it('should fail if bad format in the "qasm" subfield', async () =>
-    utilsTest.throwsAsync(() => qe.runBatch([{ qasm: 1 }]), expErrRegex.formatStr));
+    utilsTest.throwsAsync(
+      () => qe.runBatch([{ qasm: 1 }]),
+      expErrRegex.formatStr,
+    ));
 
   it('should fail if bad format in the "shots" subfield', async () =>
-    utilsTest.throwsAsync(() =>
-      qe.runBatch([{ qasm: 'a', shots: 'a' }]), expErrRegex.formatNumber));
+    utilsTest.throwsAsync(
+      () => qe.runBatch([{ qasm: 'a', shots: 'a' }]),
+      expErrRegex.formatNumber,
+    ));
 
   it('should fail if under min. in the "shots" subfield', async () =>
-    utilsTest.throwsAsync(() =>
-      qe.runBatch([{ qasm: 'a', shots: -1 }]), expErrRegex.outRange));
+    utilsTest.throwsAsync(
+      () => qe.runBatch([{ qasm: 'a', shots: -1 }]),
+      expErrRegex.outRange,
+    ));
 
   it('should fail if over max. in the "shots" subfield', async () =>
-    utilsTest.throwsAsync(() =>
-      qe.runBatch([{ qasm: 'a', shots: 8193 }]), expErrRegex.outRange));
+    utilsTest.throwsAsync(
+      () => qe.runBatch([{ qasm: 'a', shots: 8193 }]),
+      expErrRegex.outRange,
+    ));
 
   it('should fail if bad format in the "seed" subfield', async () =>
-    utilsTest.throwsAsync(() =>
-      qe.runBatch([{ qasm: 'a', seed: 1 }]), expErrRegex.formatStr));
+    utilsTest.throwsAsync(
+      () => qe.runBatch([{ qasm: 'a', seed: 1 }]),
+      expErrRegex.formatStr,
+    ));
 
   it('should fail if bad format in the "name" subfield', async () =>
-    utilsTest.throwsAsync(() =>
-      qe.runBatch([{ qasm: 'a', name: 1 }]), expErrRegex.formatStr));
+    utilsTest.throwsAsync(
+      () => qe.runBatch([{ qasm: 'a', name: 1 }]),
+      expErrRegex.formatStr,
+    ));
 
   it('should fail if bad format in the "backend" option', async () =>
     utilsTest.throwsAsync(() =>
-      qe.runBatch(([{ qasm: 'a' }], { backend: 1 }), expErrRegex.formatStr)));
+      qe.runBatch(([{ qasm: 'a' }], { backend: 1 }), expErrRegex.formatStr),
+    ));
 
   it('should fail if bad format in the "name" option', async () =>
     utilsTest.throwsAsync(() =>
-      qe.runBatch(([{ qasm: 'a' }], { name: 1 }), expErrRegex.formatStr)));
+      qe.runBatch(([{ qasm: 'a' }], { name: 1 }), expErrRegex.formatStr),
+    ));
 
   it('should fail if bad format in the "shots" option', async () =>
     utilsTest.throwsAsync(() =>
-      qe.runBatch(([{ qasm: 'a' }], { shots: 'a' }), expErrRegex.formatNumber)));
+      qe.runBatch(([{ qasm: 'a' }], { shots: 'a' }), expErrRegex.formatNumber),
+    ));
 
   it('should fail if under min. in the "shots" option', async () =>
     utilsTest.throwsAsync(() =>
-      qe.runBatch(([{ qasm: 'a' }], { shots: -1 }), expErrRegex.outRange)));
+      qe.runBatch(([{ qasm: 'a' }], { shots: -1 }), expErrRegex.outRange),
+    ));
 
   it('should fail if over max. in the "shots" option', async () =>
     utilsTest.throwsAsync(() =>
-      qe.runBatch(([{ qasm: 'a' }], { shots: 8193 }), expErrRegex.outRange)));
+      qe.runBatch(([{ qasm: 'a' }], { shots: 8193 }), expErrRegex.outRange),
+    ));
 
   it('should fail if bad format in the "seed" option', async () =>
     utilsTest.throwsAsync(() =>
-      qe.runBatch(([{ qasm: 'a' }], { seed: 1 }), expErrRegex.formatStr)));
+      qe.runBatch(([{ qasm: 'a' }], { seed: 1 }), expErrRegex.formatStr),
+    ));
 
   it('should fail if bad format in the "maxCredits" option', async () =>
     utilsTest.throwsAsync(() =>
-      qe.runBatch(([{ qasm: 'a' }], { maxCredits: 'a' }), expErrRegex.formatNumber)));
+      qe.runBatch(
+        ([{ qasm: 'a' }], { maxCredits: 'a' }),
+        expErrRegex.formatNumber,
+      ),
+    ));
 
   it('should fail if under min. in the "maxCredits" option', async () =>
     utilsTest.throwsAsync(() =>
-      qe.runBatch(([{ qasm: 'a' }], { maxCredits: -1 }), expErrRegex.formatStr)));
+      qe.runBatch(([{ qasm: 'a' }], { maxCredits: -1 }), expErrRegex.formatStr),
+    ));
 
   it('should fail if a controlled API error', async function t() {
-    if (!global.qiskitTest.integration) { this.skip(); }
+    if (!global.qiskitTest.integration) {
+      this.skip();
+    }
 
     utilsTest.throwsAsync(() =>
-      qe.runBatch(([{ qasm: 'a' }]), expErrRegex.badQasm));
+      qe.runBatch([{ qasm: 'a' }], expErrRegex.badQasm),
+    );
   });
 
   it('should return the run info for a valid batch of circuits', async function t() {
-    if (!global.qiskitTest.integration) { this.skip(); }
+    if (!global.qiskitTest.integration) {
+      this.skip();
+    }
 
     const res = await qe.runBatch([{ qasm: circuit }]);
 

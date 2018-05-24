@@ -15,17 +15,16 @@ const util = require('util');
 const qiskit = require('../..');
 const logger = require('../lib/logger');
 
-
 const readFile = util.promisify(fs.readFile);
 
-
-exports.command = 'qe-run <circuit> [backend] [shots] [name] [seed] [maxCredits]';
+exports.command =
+  'qe-run <circuit> [backend] [shots] [name] [seed] [maxCredits]';
 
 exports.aliases = ['qr'];
 
-exports.desc = 'Send the circuit to be run in the Quantum Experience' +
-                ' (https://quantumexperience.ng.bluemix.net)';
-
+exports.desc =
+  'Send the circuit to be run in the Quantum Experience' +
+  ' (https://quantumexperience.ng.bluemix.net)';
 
 exports.builder = {
   circuit: {
@@ -57,8 +56,7 @@ exports.builder = {
   },
 };
 
-
-exports.handler = (argv) => {
+exports.handler = argv => {
   logger.title(qiskit.version);
 
   const extension = path.extname(argv.circuit);
@@ -72,25 +70,26 @@ exports.handler = (argv) => {
 
   logger.info(`${logger.emoji('mag')} Reading the circuit file: ${pathCode}`);
   readFile(pathCode, 'utf8')
-    .then((code) => {
-      global.qiskit.qe.run(
-        code,
-        argv.backend,
-        argv.shots,
-        argv.name,
-        argv.seed,
-        argv.maxCredits,
-      )
-        .then((res) => {
+    .then(code => {
+      global.qiskit.qe
+        .run(
+          code,
+          argv.backend,
+          argv.shots,
+          argv.name,
+          argv.seed,
+          argv.maxCredits,
+        )
+        .then(res => {
           logger.resultHead();
           logger.json(res);
         })
-        .catch((err) => {
+        .catch(err => {
           logger.error('Making the request', err);
           process.exit(1);
         });
     })
-    .catch((err) => {
+    .catch(err => {
       logger.error('Reading the circuit file', err);
       process.exit(1);
     });

@@ -15,10 +15,8 @@ const assert = require('assert');
 const Qe = require('../..');
 const pkgInfo = require('../../package');
 
-
 const { version } = pkgInfo;
 let qe;
-
 
 describe('qe:new', () => {
   it('should work without options', () =>
@@ -30,6 +28,6 @@ describe('qe:new', () => {
   });
 });
 
-
 describe('qe:version', () =>
-  it('should return the package version', () => assert.equal(qe.version, pkgInfo.version)));
+  it('should return the package version', () =>
+    assert.equal(qe.version, pkgInfo.version)));
