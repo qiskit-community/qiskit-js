@@ -98,13 +98,11 @@ A wrapper fot the [`qiskit-algos`](./packages/qiskit-algos) project.
 
 - `algos` (object) - The same object provided in the original library.
 
-## Authors (alphabetical)
+## Authors
 
-:alien: Ismael Faro, Jesús Pérez, Jorge Carballo.
+:alien: https://github.com/QISKit/qiskit-sdk-js/graphs/contributors
 
 Original code (Python) authors [here](https://github.com/QISKit/qiskit-sdk-py#authors-alphabetical).
-
-In future releases, anyone who contributes code to this project can include their name here.
 
 ## Other QISKit projects
 
