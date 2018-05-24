@@ -36,17 +36,17 @@ Please, add your name in the head comment of each file you contribute to (under 
 
 ### Pull requests
 
-- We use [GitHub pull requests](https://help.github.com/articles/about-pull-requests) to accept the contributions.
-- Review the parts of the documentation regarding the new changes and update it if it's needed.
-- New features often imply changes in the existent tests or new ones are needed. Once they're updated/added please be sure they keep passing.
+* We use [GitHub pull requests](https://help.github.com/articles/about-pull-requests) to accept the contributions.
+* Review the parts of the documentation regarding the new changes and update it if it's needed.
+* New features often imply changes in the existent tests or new ones are needed. Once they're updated/added please be sure they keep passing.
 
 ### Commits
 
 Please follow the next rules for the commit messages:
 
-- It should be formed by a one-line subject, followed by one line of white space. Followed by one or more descriptive paragraphs, each separated by one line of white space. All of them finished by a dot.
-- If it fixes an issue, it should include a reference to the issue ID in the first line of the commit.
-- It should provide enough information for a reviewer to understand the changes and their relation to the rest of the code.
+* It should be formed by a one-line subject, followed by one line of white space. Followed by one or more descriptive paragraphs, each separated by one line of white space. All of them finished by a dot.
+* If it fixes an issue, it should include a reference to the issue ID in the first line of the commit.
+* It should provide enough information for a reviewer to understand the changes and their relation to the rest of the code.
 
 From here, depending of the nature of the project, we have specific recommendations about the code style, the debuggins engine or how to run the tests and the rest of security checks. Please visit the one regarding your project.
 
@@ -54,18 +54,18 @@ From here, depending of the nature of the project, we have specific recommendati
 
 ## Environment
 
-- A better way to install [Node.js](https://nodejs.org) for developers is to use [nvm](https://github.com/creationix/nvm), to test different versions.
-- Get the code and install all dependencies:
+* A better way to install [Node.js](https://nodejs.org) for developers is to use [nvm](https://github.com/creationix/nvm), to test different versions.
+* Get the code and install all dependencies:
 
 ```sh
-git clone https://github.com/IBM/qiskit
-cd qiskit
+https://github.com/QISKit/qiskit-sdk-js
+cd qiskit-sdk-js
 npm i
 ```
 
 ### Style guide
 
-Submit clean code and please make effort to follow existing conventions in order to keep it as readable as possible. We love ES6, so we use [ESLint](http://eslint.org/) and the [Airbnb](https://github.com/airbnb/javascript) style guide. It's the most complete, so it forces the developers to keep a consistent style. Please run to be sure your code fits with it:
+Submit clean code and please make effort to follow existing conventions in order to keep it as readable as possible. We love ES6, so we use [ESLint](http://eslint.org/) and the [Airbnb](https://github.com/airbnb/javascript) style guide. It's the most complete, so it forces the developers to keep a consistent style. Moreover, we auto-format the code in each commit, thanks to (Prettier)[https://github.com/prettier/prettier]. Please run to be sure your code fits with it:
 
 ```sh
 npm run lint
@@ -81,9 +81,9 @@ npm test
 
 This command also checks for:
 
-- Style linting.
-- Outdated/lost/unused dependencies.
-- Insecure dependencies.
+* Style linting.
+* Outdated/lost/unused dependencies.
+* Insecure dependencies.
 
 ### Debugging
 
@@ -92,32 +92,4 @@ To debug we use the [visionmedia module](https://github.com/visionmedia/debug). 
 ```sh
 DEBUG=qiskit* npm start
 DEBUG=qiskit:bin* npm start
-```
-
-## Deploy
-
-In the projects which a deployment to Bluemix is required we include a couple of shortcuts:
-
-```sh
-npm run deploy-develop
-npm run deploy-production
-```
-
-## Releases
-
-For the libraries we have those to publish to npm. Both use [release-it](https://www.npmjs.com/package/release-it) under the hood:
-
-```sh
-npm run release
-npm run release-major
-```
-
-## Metrics
-
-For HTTP API projects we use the [Node application metrics](https://developer.ibm.com/open/openprojects/node-application-metrics) dashboard.
-
-```sh
-npm run metrics # local
-npm run metrics-develop
-npm run metrics-production
 ```

@@ -27,6 +27,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 * Insecure dependencies updated.
 
+### Fix
+
+* Main README and CONTRIBUTING files.
+
 ## [0.1.9] - 2018-04-27
 
 ### Added
