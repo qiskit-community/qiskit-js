@@ -12,6 +12,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 * Following new dev guideline: code of conduct, file naming, issue/PR templates, etc.
   * Prettier support.
 * Doc about how to make releases easier.
+* JS distribution files rebundled.
+* nsp dropped because now npm supports it natively.
 
 ### Changed
 
@@ -72,7 +74,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 
 * [Jest](https://facebook.github.io/jest) test engine for [snap-shot-it](https://github.com/bahmutov/snap-shot-it) (mocha support).
-* [depcheck](https://www.npmjs.com/package/depcheck) for [npm-check](https://www.npmjs.com/package/npm-check).
+* [depcheck](https://www.npmjs.com/package/depcheck) instead [npm-check](https://www.npmjs.com/package/npm-check).
 * Using native [util.promisify](https://nodejs.org/api/util.html#util_util_promisify_original) instead the external library.
 * Client side libraries rebundled.
 
