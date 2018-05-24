@@ -1,6 +1,6 @@
 {
   "name": "@qiskit/utils",
-  "version": "0.1.9",
+  "version": "0.2.0",
   "description": "Quantum Information Software utils library",
   "author": {
     "name": "IBM RESEARCH",
