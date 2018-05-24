@@ -1,11 +1,11 @@
 /*!
- * Qiskit Qasm v0.1.3 (November 28th 2017)
+ * Qiskit Qasm v0.1.9 (May 24th 2018)
  * Quantum Information Software Kit OpenQASM library
  * https://github.com/QISKit/qiskit-sdk-js
  * @author  IBM RESEARCH (http://research.ibm.com)
  * @license Apache-2.0
  */
-(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.qiskitQasm = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.qiskitQasm = f()}})(function(){var define,module,exports;return (function(){function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s}return e})()({1:[function(require,module,exports){
 
 },{}],2:[function(require,module,exports){
 (function (process){
@@ -1060,7 +1060,6 @@ const Parser = require('./lib/Parser');
 const QasmError = require('./lib/QasmError');
 const { version } = require('./package');
 
-
 module.exports = {
   version,
   Parser,
@@ -1109,7 +1108,9 @@ class Parser {
   }
 
   parse(circuit) {
-    if (!circuit) { throw new Error('Required param: circuit'); }
+    if (!circuit) {
+      throw new Error('Required param: circuit');
+    }
 
     let res;
 
@@ -1143,24 +1144,34 @@ module.exports = Parser;
 
 const util = require('util');
 
-
 function QasmError(msg, opts = {}) {
   Error.captureStackTrace(this, this.constructor);
 
   this.name = this.constructor.name;
 
-  if (!msg) { throw new Error('Required param: msg'); }
+  if (!msg) {
+    throw new Error('Required param: msg');
+  }
 
   this.message = msg;
 
   // TODO: Review: error code, etc? If coming from jison X ours Y
-  if (opts.line) { this.line = opts.line; }
-  if (opts.column) { this.column = opts.column; }
-  if (opts.text) { this.text = opts.text; }
-  if (opts.token) { this.token = opts.token; }
-  if (opts.expected) { this.expected = opts.expected; }
+  if (opts.line) {
+    this.line = opts.line;
+  }
+  if (opts.column) {
+    this.column = opts.column;
+  }
+  if (opts.text) {
+    this.text = opts.text;
+  }
+  if (opts.token) {
+    this.token = opts.token;
+  }
+  if (opts.expected) {
+    this.expected = opts.expected;
+  }
 }
-
 
 util.inherits(QasmError, Error);
 
@@ -1183,9 +1194,7 @@ const utils = require('@qiskit/utils');
 
 const pkgName = require('../package.json').name;
 
-
 utils.dbg = fullPath => utils.debug(`${pkgName}:${utils.pathToTag(fullPath)}`);
-
 
 module.exports = utils;
 
@@ -5974,29 +5983,34 @@ if (typeof module !== 'undefined' && require.main === module) {
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"./package.json":18,"estraverse":20,"esutils":23,"source-map":31}],18:[function(require,module,exports){
 module.exports={
-  "_from": "escodegen@1.3.x",
+  "_args": [
+    [
+      "escodegen@1.3.3",
+      "/home/baguira/src/qiskit-sdk-js/packages/qiskit-qasm"
+    ]
+  ],
+  "_from": "escodegen@1.3.3",
   "_id": "escodegen@1.3.3",
   "_inBundle": false,
   "_integrity": "sha1-8CQBb1qI4Eb9EgBQVek5gC5sXyM=",
   "_location": "/escodegen",
   "_phantomChildren": {},
   "_requested": {
-    "type": "range",
+    "type": "version",
     "registry": true,
-    "raw": "escodegen@1.3.x",
+    "raw": "escodegen@1.3.3",
     "name": "escodegen",
     "escapedName": "escodegen",
-    "rawSpec": "1.3.x",
+    "rawSpec": "1.3.3",
     "saveSpec": null,
-    "fetchSpec": "1.3.x"
+    "fetchSpec": "1.3.3"
   },
   "_requiredBy": [
     "/jison"
   ],
   "_resolved": "https://registry.npmjs.org/escodegen/-/escodegen-1.3.3.tgz",
-  "_shasum": "f024016f5a88e046fd12005055e939802e6c5f23",
-  "_spec": "escodegen@1.3.x",
-  "_where": "/home/baguira/src/qiskit-sdk-js/packages/qiskit-qasm/node_modules/jison",
+  "_spec": "1.3.3",
+  "_where": "/home/baguira/src/qiskit-sdk-js/packages/qiskit-qasm",
   "bin": {
     "esgenerate": "./bin/esgenerate.js",
     "escodegen": "./bin/escodegen.js"
@@ -6004,14 +6018,12 @@ module.exports={
   "bugs": {
     "url": "https://github.com/Constellation/escodegen/issues"
   },
-  "bundleDependencies": false,
   "dependencies": {
     "esprima": "~1.1.1",
     "estraverse": "~1.5.0",
     "esutils": "~1.0.0",
     "source-map": "~0.1.33"
   },
-  "deprecated": false,
   "description": "ECMAScript code generator",
   "devDependencies": {
     "bluebird": "~1.2.0",
@@ -10833,29 +10845,34 @@ parseStatement: true, parseSourceElement: true */
 
 },{"./code":21,"./keyword":22}],24:[function(require,module,exports){
 module.exports={
-  "_from": "jison-lex@0.3.x",
+  "_args": [
+    [
+      "jison-lex@0.3.4",
+      "/home/baguira/src/qiskit-sdk-js/packages/qiskit-qasm"
+    ]
+  ],
+  "_from": "jison-lex@0.3.4",
   "_id": "jison-lex@0.3.4",
   "_inBundle": false,
   "_integrity": "sha1-gcoo2E+ESZ36jFlNzePYo/Jux6U=",
   "_location": "/jison-lex",
   "_phantomChildren": {},
   "_requested": {
-    "type": "range",
+    "type": "version",
     "registry": true,
-    "raw": "jison-lex@0.3.x",
+    "raw": "jison-lex@0.3.4",
     "name": "jison-lex",
     "escapedName": "jison-lex",
-    "rawSpec": "0.3.x",
+    "rawSpec": "0.3.4",
     "saveSpec": null,
-    "fetchSpec": "0.3.x"
+    "fetchSpec": "0.3.4"
   },
   "_requiredBy": [
     "/jison"
   ],
   "_resolved": "https://registry.npmjs.org/jison-lex/-/jison-lex-0.3.4.tgz",
-  "_shasum": "81ca28d84f84499dfa8c594dcde3d8a3f26ec7a5",
-  "_spec": "jison-lex@0.3.x",
-  "_where": "/home/baguira/src/qiskit-sdk-js/packages/qiskit-qasm/node_modules/jison",
+  "_spec": "0.3.4",
+  "_where": "/home/baguira/src/qiskit-sdk-js/packages/qiskit-qasm",
   "author": {
     "name": "Zach Carter",
     "email": "zach@carter.name",
@@ -10868,12 +10885,10 @@ module.exports={
     "url": "http://github.com/zaach/jison-lex/issues",
     "email": "jison@librelist.com"
   },
-  "bundleDependencies": false,
   "dependencies": {
     "lex-parser": "0.1.x",
     "nomnom": "1.5.2"
   },
-  "deprecated": false,
   "description": "lexical analyzer generator used by jison",
   "devDependencies": {
     "test": "0.4.4"
@@ -13619,28 +13634,33 @@ if (typeof exports !== 'undefined')
 
 },{}],29:[function(require,module,exports){
 module.exports={
-  "_from": "jison@^0.4.18",
+  "_args": [
+    [
+      "jison@0.4.18",
+      "/home/baguira/src/qiskit-sdk-js/packages/qiskit-qasm"
+    ]
+  ],
+  "_from": "jison@0.4.18",
   "_id": "jison@0.4.18",
   "_inBundle": false,
   "_integrity": "sha512-FKkCiJvozgC7VTHhMJ00a0/IApSxhlGsFIshLW6trWJ8ONX2TQJBBz6DlcO1Gffy4w9LT+uL+PA+CVnUSJMF7w==",
   "_location": "/jison",
   "_phantomChildren": {},
   "_requested": {
-    "type": "range",
+    "type": "version",
     "registry": true,
-    "raw": "jison@^0.4.18",
+    "raw": "jison@0.4.18",
     "name": "jison",
     "escapedName": "jison",
-    "rawSpec": "^0.4.18",
+    "rawSpec": "0.4.18",
     "saveSpec": null,
-    "fetchSpec": "^0.4.18"
+    "fetchSpec": "0.4.18"
   },
   "_requiredBy": [
     "/"
   ],
   "_resolved": "https://registry.npmjs.org/jison/-/jison-0.4.18.tgz",
-  "_shasum": "c68a6a54bfe7028fa40bcfc6cc8bbd9ed291f502",
-  "_spec": "jison@^0.4.18",
+  "_spec": "0.4.18",
   "_where": "/home/baguira/src/qiskit-sdk-js/packages/qiskit-qasm",
   "author": {
     "name": "Zach Carter",
@@ -13654,7 +13674,6 @@ module.exports={
     "url": "http://github.com/zaach/jison/issues",
     "email": "jison@librelist.com"
   },
-  "bundleDependencies": false,
   "dependencies": {
     "JSONSelect": "0.4.0",
     "cjson": "0.3.0",
@@ -13665,7 +13684,6 @@ module.exports={
     "lex-parser": "~0.1.3",
     "nomnom": "1.5.2"
   },
-  "deprecated": false,
   "description": "A parser generator with Bison's API",
   "devDependencies": {
     "browserify": "2.x.x",
@@ -16742,7 +16760,7 @@ define(function (require, exports, module) {
 },{"amdefine":12}],41:[function(require,module,exports){
 module.exports={
   "name": "@qiskit/qasm",
-  "version": "0.1.3",
+  "version": "0.1.9",
   "description": "Quantum Information Software Kit OpenQASM library",
   "author": {
     "name": "IBM RESEARCH",
@@ -16777,18 +16795,15 @@ module.exports={
     "url": "https://github.com/QISKit/qiskit-sdk-js/issues"
   },
   "dependencies": {
-    "@qiskit/utils": "^0.1.3",
+    "@qiskit/utils": "^0.1.9",
     "jison": "^0.4.18"
   },
   "engines": {
-    "node": ">=8",
-    "npm": ">=5"
+    "node": ">=8"
   },
   "license": "Apache-2.0",
   "browserify": {
-    "transform": [
-      "brfs"
-    ]
+    "transform": ["brfs"]
   },
   "publishConfig": {
     "access": "public"
@@ -16810,14 +16825,11 @@ module.exports={
 
 const path = require('path');
 
-// Lodash as base. TODO: Maybe not needed anymore.
 const utils = require('lodash');
 const debug = require('debug');
-// TODO: Use the native one.
-const promisify = require('es6-promisify');
+const ayb = require('all-your-base');
 
 const { version } = require('./package.json');
-
 
 function pathToTag(fullPath) {
   const res = path.basename(fullPath, '.js');
@@ -16829,17 +16841,518 @@ function pathToTag(fullPath) {
   }
 }
 
-
 // Exposed stuff.
 utils.version = version;
 utils.pathToTag = pathToTag;
 utils.debug = debug;
-utils.promisify = promisify;
-
+utils.ayb = ayb;
 
 module.exports = utils;
 
-},{"./package.json":50,"debug":43,"es6-promisify":47,"lodash":48,"path":2}],43:[function(require,module,exports){
+},{"./package.json":51,"all-your-base":43,"debug":47,"lodash":49,"path":2}],43:[function(require,module,exports){
+var convert = require('./src/convert.js');
+
+module.exports = {
+  binToDec: convert.binToDec,
+  binToHex: convert.binToHex,
+  binToOct: convert.binToOct,
+  decToBin: convert.decToBin,
+  decToHex: convert.decToHex,
+  decToOct: convert.decToOct,
+  hexToDec: convert.hexToDec,
+  hexToBin: convert.hexToBin,
+  hexToOct: convert.hexToOct,
+  octToDec: convert.octToDec,
+  octToBin: convert.octToBin,
+  octToHex: convert.octToHex,
+  parseInt: local_parseInt
+};
+
+/**
+ * A buffed-up version of the standard `parseInt` function
+ * @param str, the value to convert. Is coerced into a String.
+ * @param from, [Number], a base to convert from
+ * @param to, [Number] a base to convert to
+ * @return, the result of a call to a base conversion function
+ */
+function local_parseInt(str, from, to) {
+  var fn = assignFn(from, to);
+  return convert[fn](str + '');
+}
+
+/**
+ * Return a property to pass to the 'convert' object
+ * @param from, [Number], a base to convert from
+ * @param to, [Number] a base to convert to
+ * @return, [String] a generated property name
+ * @throws, an error if the base is not supported by this module
+ */
+function assignFn(from, to) {
+  from = setDefault(10, from);
+  to   = setDefault(10, to);
+
+  from = numToWord(from);
+  to   = capitalize(numToWord(to));
+
+  return from + 'To' + to;
+
+  // return a copy of a string with its first letter capitalized
+  function capitalize(str) {
+    return str[0].toUpperCase() + str.slice(1);
+  }
+
+  // translate a number to its correlating module-specific namespace
+  function numToWord(num) {
+    num += '';
+    switch(num) {
+      case '2':
+        return 'bin';
+      case '8':
+        return 'oct';
+      case '10':
+        return 'dec';
+      case '16':
+        return 'hex';
+      default:
+        throw new Error('Base "' + num + '" is not supported');
+    }
+  }
+
+  // if `arg` is not provided, return a default value
+  function setDefault(defaultVal, arg) {
+    return (typeof arg === 'undefined' ? defaultVal : arg);
+  }
+}
+
+},{"./src/convert.js":44}],44:[function(require,module,exports){
+var h = require('./helpers.js');
+var tables = require('./tables.js');
+
+var makePowersOf = h.makePowersOf;
+var genPowersArray = h.genPowersArray;
+var zeroPadding = h.zeroPadding;
+var scan = h.scan;
+
+/**
+ * convert binary value to a decimal value
+ * @param bin string the binary value
+ * @return integer the decimal value
+ */
+var binToDec = function(bin) {
+  // ensure bin is a string
+  bin += ''; 
+  // convert bin to an array & reverse it
+  bin = bin.split('').reverse();
+  // generate an array of powersOf2, equal to length of bin array minus 1
+  // this array will be used in parallel with bin array to get multiples
+  var powersOf2 = makePowersOf(2, bin.length - 1); 
+  // use reduce to get the sum of each bit in bin multiplied against powersOf2 array
+  return bin.reduce(function(sum, bit, index) {
+    return sum + (powersOf2[index] * bit);
+  }, 0);
+};
+
+/**
+ * convert binary value to a hexadecimal value
+ * @param bin string the binary value
+ * @return integer the decimal value
+ */
+var binToHex = function(bin) {
+  // divide binary number into sets of 4 digits
+  // build a hex-string by comparing each value to a key in a table
+  return scan(bin, 4).reduce(function(hex, val) { 
+    return hex + tables.binToHexTable[val];
+  }, '');
+};
+
+/**
+ * convert decimal value to a binary value
+ * @param dec string the decimal value
+ * @return bin the binary equivalent value as a string
+ */
+var decToBin = function(dec) {
+  var bin = '';
+  var powersOf2 = genPowersArray(2, dec); 
+  while (powersOf2.length) {
+    var popped = powersOf2.pop();
+    var bit = dec >= popped ? '1' : '0';
+    bin += bit;
+    if (bit === '1') {
+      dec -= popped;
+    }
+  }
+  return bin;
+};
+
+/**
+ * convert decimal value to a hexadecimal value
+ * @param dec string the decimal value
+ * @return string the hexadecimal equivalent value as a string
+ */
+var decToHex = function(dec) {
+  var hexArr = [];
+  var hexVal;
+  while (dec > 0) {
+    // get modulus of dec & 16
+    // save it to hexadecimal notation
+    // add that to beginning of array
+    hexArr.unshift(tables.decToHexTable[dec % 16]);
+    // get quotient of num and 16
+    dec = Math.floor(dec / 16);
+  }
+  return hexArr.join('');
+};
+
+/**
+ * convert hexadecimal value to a decimal value
+ * @param hex string the hexadecimal value
+ * @return integer the decimal equivalent
+ */
+var hexToDec = function(hex) {
+  // create an array of decimal equivalents
+  var decs = hex.split('').map(function(val) {
+    if (/[a-z]/.test(val)) {
+      val = val.replace(/[a-z]/, val.toUpperCase());
+    }
+    return parseInt(tables.hexToDecTable[val]);
+  });
+  // create array of the powers of base 16
+  var powers = makePowersOf(16, decs.length -1);
+  // for each value, multiply by the corresponding power of 16.
+  // accumulate & return sum
+  return decs.reverse().reduce(function(sum, val, index) {
+    return sum + (powers[index] * val);
+  }, 0);
+};
+
+/**
+ * convert hexadecimal value to a binary value
+ * depends on decToBin & hexToDec
+ * @param hex string the hexadecimal value
+ * @return string the binary equivalent as a string
+ */
+var hexToBin = function(hex) {
+  // convert from hexadecimal to decimal
+  // then convert from decimal to binary
+  return decToBin(hexToDec(hex));
+};
+
+/**
+ * convert binary value to an octal value
+ * @param bin string the binary value
+ * @return integer the octal value
+ */
+var binToOct = function(bin) {
+  // group binary number into groups of 3
+  bin = scan(bin, 3);
+  // use binToOct table to convert each 3-part binary value to octal equivalent
+  return bin.map(function(val) {
+    return tables.binToOctTable[val];
+  }).join('');
+};
+
+/**
+ * convert decimal value to a octal value
+ * @param dec string the decimal value
+ * @return string the octal equivalent value as a string
+ */
+var decToOct = function(dec) {
+  var octArr = [];
+  var octVal;
+  while (dec > 0) {
+    // get modulus of dec & 16
+    // save it to hexadecimal notation
+    // add that to beginning of array
+    octArr.unshift(tables.decToHexTable[dec % 8]);
+    // get quotient of num and 16
+    dec = Math.floor(dec / 8);
+  }
+  return octArr.join('');
+};
+
+/**
+ * convert hexadecimal value to a octal value
+ * depends on binToOct & hexToBin
+ * @param hex string the hexadecimal value
+ * @return string the octal equivalent as a string
+ */
+var hexToOct = function(hex) {
+  // convert hexadecimal to binary
+  // then convert binary to octal
+  return binToOct(hexToBin(hex));
+};
+
+/**
+ * convert octal value to a decimal value
+ * @param oct string the octal value
+ * @return integer the decimal equivalent
+ */
+var octToDec = function(oct) {
+  // create an array of decimal equivalents
+  var octs = oct.split('').map(function(val) {
+    return parseInt(tables.hexToDecTable[val]);
+  });
+  // create array of the powers of base 8
+  var powers = makePowersOf(8, octs.length -1);
+  // for each value, multiply by the corresponding power of 8
+  // accumulate & return sum
+  return octs.reverse().reduce(function(sum, val, index) {
+    return sum + (powers[index] * val);
+  }, 0);
+};
+
+/**
+ * convert octal value to a binary value
+ * depends on decToBin & octToDec
+ * @param oct string the octal value
+ * @return string the binary equivalent as a string
+ */
+var octToBin = function(oct) {
+  // convert octal to decimal
+  // then convert decimal to binary
+  return decToBin(octToDec(oct));
+};
+
+/**
+ * convert octal value to a hexadecimal value
+ * depends on binToHex & octToBin
+ * @param oct string the octal value
+ * @return string the hexadecimal equivalent as a string
+ */
+var octToHex = function(oct) {
+  // convert octal to binary
+  // then convert binary to hexadecimal
+  return binToHex(octToBin(oct));
+};
+
+module.exports = {
+  binToDec: binToDec,
+  binToHex: binToHex,
+  binToOct: binToOct,
+  decToBin: decToBin,
+  decToHex: decToHex,
+  decToOct: decToOct,
+  hexToDec: hexToDec,
+  hexToBin: hexToBin,
+  hexToOct: hexToOct,
+  octToDec: octToDec,
+  octToBin: octToBin,
+  octToHex: octToHex,
+};
+
+},{"./helpers.js":45,"./tables.js":46}],45:[function(require,module,exports){
+// set of common utility functions used by this module
+
+/**
+ * use a prototype method of a native-JS object as a general utility method
+ * thanks to Leland Richardson for this method. See this blog post:
+ * http://tech.pro/tutorial/2010/functional-javascript-part-3-apply-call-and-the-arguments-object
+ * @param fn Function the function to transform. 
+ *   pass in as <Object>.prototype.<method>
+ *   ie: var split = demethodize(String.prototype.split);
+ *   ie: var forEach = demethodize(Array.prototype.forEach);
+ * @return Function returns a function
+ */
+var demethodize = function(fn) {
+  return function() {
+    var args = [].slice.call(arguments, 1);
+    return fn.apply(arguments[0], args);
+  };
+};
+
+/**
+ * return an array whose
+ *   indices can be thought of as an exponent
+ *   and corresponding values are the powers of the passed-in base & exponent
+ *   from powers 0 through n. inclusive
+ * @param base integer which base should each value be?
+ * @param n integer the highest power in the array
+ * @return array of the powers (0..n) of base
+ */
+var makePowersOf = function(base, n) {
+  var i = 0;
+  var arr = [];
+  while (i <= n) {
+    arr.push(Math.pow(base, i)); 
+    i++;  
+  }
+  return arr;
+};
+
+/**
+ * returns the exponent which would give you the highest value less than num
+ * @param base integer, the base with which you are working
+ * @param num integer, the number which should not be surpassed
+ * @return integer, the exponent which would produce the highest power via Math.power(base, exponent) less than num
+ */
+var getExponent = function(base, num) {
+  var i = 0;
+  while (Math.pow(base, i) <= num) {
+    i++;
+  }
+  return i-1;
+};
+
+/**
+ * generate an array whose values are powers less than a specified number
+ * @param base integer the base with which you are working
+ * @param num integer, upper limit
+ * @return array an array
+ */
+var genPowersArray = function(base, num) {
+  return makePowersOf(base, getExponent(base, num));
+};
+
+/**
+ * pass in a string and return a copy of it, reversed
+ * depends on demethodize()
+ * @param str String the string to reverse
+ * @return string reversed
+ */
+var reverseString = function(str) {
+  return demethodize(Array.prototype.reverse)(str.split('')).join('');
+};
+
+/**
+ * pad a value with zeros. zeros go on left-hand size of original values
+ * @param val integer/string  the value you want to pad
+ * @param width integer how many characters wide you want the value to ultimately be
+ * @return string padded with zeros from left side
+*/
+var zeroPadding = function(val, width) {
+  var s = val.toString();
+  while (s.length < width) {
+    s = '0' + s;
+  }
+  return s;
+};
+
+/**
+ * split a string into an array
+ * then group the array values into groups of n-length
+ *
+ * like a digraph or a trigraph, but n is any integer
+ * remainders are padded with zeros from the left-hand side
+ * @param str String the string to split up
+ * @param n integer how to group array. default value is 2
+ * @return array
+ */
+var scan = function(str, n) {
+  n = n || 2;
+  var arr = str.split('');
+  if (arr.length % n > 0) {
+    for (var i = 0; i < arr.length % n; i++) {
+      arr.unshift(0); 
+    }
+  }
+  var chopped = [];
+  while (arr.length) {
+    chopped.push(arr.splice(0, n).join('')); 
+  }
+  return chopped;
+};
+
+module.exports = {
+  makePowersOf: makePowersOf,
+  getExponent: getExponent,
+  genPowersArray: genPowersArray,
+  reverseString: reverseString,
+  zeroPadding: zeroPadding,
+  scan: scan
+};
+
+},{}],46:[function(require,module,exports){
+// use following table to convert each 4-digit binary string to single hexadecimal value
+// key: binary number
+// value: hexadecimal equivalent
+exports.binToHexTable = {
+  '0000': '0',
+  '0001': '1',
+  '0010': '2',
+  '0011': '3',
+  '0100': '4',
+  '0101': '5',
+  '0110': '6',
+  '0111': '7',
+  '1000': '8',
+  '1001': '9',
+  '1010': 'A',
+  '1011': 'B',
+  '1100': 'C',
+  '1101': 'D',
+  '1110': 'E',
+  '1111': 'F',
+};
+
+exports.hexToBinTable = {
+  '0': '0000',
+  '1': '0001',
+  '2': '0010',
+  '3': '0011',
+  '4': '0100',
+  '5': '0101',
+  '6': '0110',
+  '7': '0111',
+  '8': '1000',
+  '9': '1001',
+  'A': '1010',
+  'B': '1011',
+  'C': '1100',
+  'D': '1101',
+  'E': '1110',
+  'F': '1111',
+};
+
+exports.hexToDecTable = {
+  '0': '0',
+  '1': '1',
+  '2': '2',
+  '3': '3',
+  '4': '4',
+  '5': '5',
+  '6': '6',
+  '7': '7',
+  '8': '8',
+  '9': '9',
+  'A': '10',
+  'B': '11',
+  'C': '12',
+  'D': '13',
+  'E': '14',
+  'F': '15',
+};
+
+exports.decToHexTable = {
+  '0': '0',
+  '1': '1',
+  '2': '2',
+  '3': '3',
+  '4': '4',
+  '5': '5',
+  '6': '6',
+  '7': '7',
+  '8': '8',
+  '9': '9',
+  '10': 'A',
+  '11': 'B',
+  '12': 'C',
+  '13': 'D',
+  '14': 'E',
+  '15': 'F',
+};
+
+exports.binToOctTable = {
+  '000': '0',
+  '001': '1',
+  '010': '2',
+  '011': '3',
+  '100': '4',
+  '101': '5',
+  '110': '6',
+  '111': '7',
+};
+
+},{}],47:[function(require,module,exports){
 (function (process){
 /**
  * This is the web browser implementation of `debug()`.
@@ -17038,7 +17551,7 @@ function localstorage() {
 }
 
 }).call(this,require('_process'))
-},{"./debug":44,"_process":3}],44:[function(require,module,exports){
+},{"./debug":48,"_process":3}],48:[function(require,module,exports){
 
 /**
  * This is the common logic for both the Node.js and web browser
@@ -17265,1330 +17778,7 @@ function coerce(val) {
   return val;
 }
 
-},{"ms":49}],45:[function(require,module,exports){
-(function (process,global){
-/*!
- * @overview es6-promise - a tiny implementation of Promises/A+.
- * @copyright Copyright (c) 2014 Yehuda Katz, Tom Dale, Stefan Penner and contributors (Conversion to ES6 API by Jake Archibald)
- * @license   Licensed under MIT license
- *            See https://raw.githubusercontent.com/stefanpenner/es6-promise/master/LICENSE
- * @version   4.1.1
- */
-
-(function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
-	typeof define === 'function' && define.amd ? define(factory) :
-	(global.ES6Promise = factory());
-}(this, (function () { 'use strict';
-
-function objectOrFunction(x) {
-  var type = typeof x;
-  return x !== null && (type === 'object' || type === 'function');
-}
-
-function isFunction(x) {
-  return typeof x === 'function';
-}
-
-var _isArray = undefined;
-if (Array.isArray) {
-  _isArray = Array.isArray;
-} else {
-  _isArray = function (x) {
-    return Object.prototype.toString.call(x) === '[object Array]';
-  };
-}
-
-var isArray = _isArray;
-
-var len = 0;
-var vertxNext = undefined;
-var customSchedulerFn = undefined;
-
-var asap = function asap(callback, arg) {
-  queue[len] = callback;
-  queue[len + 1] = arg;
-  len += 2;
-  if (len === 2) {
-    // If len is 2, that means that we need to schedule an async flush.
-    // If additional callbacks are queued before the queue is flushed, they
-    // will be processed by this flush that we are scheduling.
-    if (customSchedulerFn) {
-      customSchedulerFn(flush);
-    } else {
-      scheduleFlush();
-    }
-  }
-};
-
-function setScheduler(scheduleFn) {
-  customSchedulerFn = scheduleFn;
-}
-
-function setAsap(asapFn) {
-  asap = asapFn;
-}
-
-var browserWindow = typeof window !== 'undefined' ? window : undefined;
-var browserGlobal = browserWindow || {};
-var BrowserMutationObserver = browserGlobal.MutationObserver || browserGlobal.WebKitMutationObserver;
-var isNode = typeof self === 'undefined' && typeof process !== 'undefined' && ({}).toString.call(process) === '[object process]';
-
-// test for web worker but not in IE10
-var isWorker = typeof Uint8ClampedArray !== 'undefined' && typeof importScripts !== 'undefined' && typeof MessageChannel !== 'undefined';
-
-// node
-function useNextTick() {
-  // node version 0.10.x displays a deprecation warning when nextTick is used recursively
-  // see https://github.com/cujojs/when/issues/410 for details
-  return function () {
-    return process.nextTick(flush);
-  };
-}
-
-// vertx
-function useVertxTimer() {
-  if (typeof vertxNext !== 'undefined') {
-    return function () {
-      vertxNext(flush);
-    };
-  }
-
-  return useSetTimeout();
-}
-
-function useMutationObserver() {
-  var iterations = 0;
-  var observer = new BrowserMutationObserver(flush);
-  var node = document.createTextNode('');
-  observer.observe(node, { characterData: true });
-
-  return function () {
-    node.data = iterations = ++iterations % 2;
-  };
-}
-
-// web worker
-function useMessageChannel() {
-  var channel = new MessageChannel();
-  channel.port1.onmessage = flush;
-  return function () {
-    return channel.port2.postMessage(0);
-  };
-}
-
-function useSetTimeout() {
-  // Store setTimeout reference so es6-promise will be unaffected by
-  // other code modifying setTimeout (like sinon.useFakeTimers())
-  var globalSetTimeout = setTimeout;
-  return function () {
-    return globalSetTimeout(flush, 1);
-  };
-}
-
-var queue = new Array(1000);
-function flush() {
-  for (var i = 0; i < len; i += 2) {
-    var callback = queue[i];
-    var arg = queue[i + 1];
-
-    callback(arg);
-
-    queue[i] = undefined;
-    queue[i + 1] = undefined;
-  }
-
-  len = 0;
-}
-
-function attemptVertx() {
-  try {
-    var r = require;
-    var vertx = r('vertx');
-    vertxNext = vertx.runOnLoop || vertx.runOnContext;
-    return useVertxTimer();
-  } catch (e) {
-    return useSetTimeout();
-  }
-}
-
-var scheduleFlush = undefined;
-// Decide what async method to use to triggering processing of queued callbacks:
-if (isNode) {
-  scheduleFlush = useNextTick();
-} else if (BrowserMutationObserver) {
-  scheduleFlush = useMutationObserver();
-} else if (isWorker) {
-  scheduleFlush = useMessageChannel();
-} else if (browserWindow === undefined && typeof require === 'function') {
-  scheduleFlush = attemptVertx();
-} else {
-  scheduleFlush = useSetTimeout();
-}
-
-function then(onFulfillment, onRejection) {
-  var _arguments = arguments;
-
-  var parent = this;
-
-  var child = new this.constructor(noop);
-
-  if (child[PROMISE_ID] === undefined) {
-    makePromise(child);
-  }
-
-  var _state = parent._state;
-
-  if (_state) {
-    (function () {
-      var callback = _arguments[_state - 1];
-      asap(function () {
-        return invokeCallback(_state, child, callback, parent._result);
-      });
-    })();
-  } else {
-    subscribe(parent, child, onFulfillment, onRejection);
-  }
-
-  return child;
-}
-
-/**
-  `Promise.resolve` returns a promise that will become resolved with the
-  passed `value`. It is shorthand for the following:
-
-  ```javascript
-  let promise = new Promise(function(resolve, reject){
-    resolve(1);
-  });
-
-  promise.then(function(value){
-    // value === 1
-  });
-  ```
-
-  Instead of writing the above, your code now simply becomes the following:
-
-  ```javascript
-  let promise = Promise.resolve(1);
-
-  promise.then(function(value){
-    // value === 1
-  });
-  ```
-
-  @method resolve
-  @static
-  @param {Any} value value that the returned promise will be resolved with
-  Useful for tooling.
-  @return {Promise} a promise that will become fulfilled with the given
-  `value`
-*/
-function resolve$1(object) {
-  /*jshint validthis:true */
-  var Constructor = this;
-
-  if (object && typeof object === 'object' && object.constructor === Constructor) {
-    return object;
-  }
-
-  var promise = new Constructor(noop);
-  resolve(promise, object);
-  return promise;
-}
-
-var PROMISE_ID = Math.random().toString(36).substring(16);
-
-function noop() {}
-
-var PENDING = void 0;
-var FULFILLED = 1;
-var REJECTED = 2;
-
-var GET_THEN_ERROR = new ErrorObject();
-
-function selfFulfillment() {
-  return new TypeError("You cannot resolve a promise with itself");
-}
-
-function cannotReturnOwn() {
-  return new TypeError('A promises callback cannot return that same promise.');
-}
-
-function getThen(promise) {
-  try {
-    return promise.then;
-  } catch (error) {
-    GET_THEN_ERROR.error = error;
-    return GET_THEN_ERROR;
-  }
-}
-
-function tryThen(then$$1, value, fulfillmentHandler, rejectionHandler) {
-  try {
-    then$$1.call(value, fulfillmentHandler, rejectionHandler);
-  } catch (e) {
-    return e;
-  }
-}
-
-function handleForeignThenable(promise, thenable, then$$1) {
-  asap(function (promise) {
-    var sealed = false;
-    var error = tryThen(then$$1, thenable, function (value) {
-      if (sealed) {
-        return;
-      }
-      sealed = true;
-      if (thenable !== value) {
-        resolve(promise, value);
-      } else {
-        fulfill(promise, value);
-      }
-    }, function (reason) {
-      if (sealed) {
-        return;
-      }
-      sealed = true;
-
-      reject(promise, reason);
-    }, 'Settle: ' + (promise._label || ' unknown promise'));
-
-    if (!sealed && error) {
-      sealed = true;
-      reject(promise, error);
-    }
-  }, promise);
-}
-
-function handleOwnThenable(promise, thenable) {
-  if (thenable._state === FULFILLED) {
-    fulfill(promise, thenable._result);
-  } else if (thenable._state === REJECTED) {
-    reject(promise, thenable._result);
-  } else {
-    subscribe(thenable, undefined, function (value) {
-      return resolve(promise, value);
-    }, function (reason) {
-      return reject(promise, reason);
-    });
-  }
-}
-
-function handleMaybeThenable(promise, maybeThenable, then$$1) {
-  if (maybeThenable.constructor === promise.constructor && then$$1 === then && maybeThenable.constructor.resolve === resolve$1) {
-    handleOwnThenable(promise, maybeThenable);
-  } else {
-    if (then$$1 === GET_THEN_ERROR) {
-      reject(promise, GET_THEN_ERROR.error);
-      GET_THEN_ERROR.error = null;
-    } else if (then$$1 === undefined) {
-      fulfill(promise, maybeThenable);
-    } else if (isFunction(then$$1)) {
-      handleForeignThenable(promise, maybeThenable, then$$1);
-    } else {
-      fulfill(promise, maybeThenable);
-    }
-  }
-}
-
-function resolve(promise, value) {
-  if (promise === value) {
-    reject(promise, selfFulfillment());
-  } else if (objectOrFunction(value)) {
-    handleMaybeThenable(promise, value, getThen(value));
-  } else {
-    fulfill(promise, value);
-  }
-}
-
-function publishRejection(promise) {
-  if (promise._onerror) {
-    promise._onerror(promise._result);
-  }
-
-  publish(promise);
-}
-
-function fulfill(promise, value) {
-  if (promise._state !== PENDING) {
-    return;
-  }
-
-  promise._result = value;
-  promise._state = FULFILLED;
-
-  if (promise._subscribers.length !== 0) {
-    asap(publish, promise);
-  }
-}
-
-function reject(promise, reason) {
-  if (promise._state !== PENDING) {
-    return;
-  }
-  promise._state = REJECTED;
-  promise._result = reason;
-
-  asap(publishRejection, promise);
-}
-
-function subscribe(parent, child, onFulfillment, onRejection) {
-  var _subscribers = parent._subscribers;
-  var length = _subscribers.length;
-
-  parent._onerror = null;
-
-  _subscribers[length] = child;
-  _subscribers[length + FULFILLED] = onFulfillment;
-  _subscribers[length + REJECTED] = onRejection;
-
-  if (length === 0 && parent._state) {
-    asap(publish, parent);
-  }
-}
-
-function publish(promise) {
-  var subscribers = promise._subscribers;
-  var settled = promise._state;
-
-  if (subscribers.length === 0) {
-    return;
-  }
-
-  var child = undefined,
-      callback = undefined,
-      detail = promise._result;
-
-  for (var i = 0; i < subscribers.length; i += 3) {
-    child = subscribers[i];
-    callback = subscribers[i + settled];
-
-    if (child) {
-      invokeCallback(settled, child, callback, detail);
-    } else {
-      callback(detail);
-    }
-  }
-
-  promise._subscribers.length = 0;
-}
-
-function ErrorObject() {
-  this.error = null;
-}
-
-var TRY_CATCH_ERROR = new ErrorObject();
-
-function tryCatch(callback, detail) {
-  try {
-    return callback(detail);
-  } catch (e) {
-    TRY_CATCH_ERROR.error = e;
-    return TRY_CATCH_ERROR;
-  }
-}
-
-function invokeCallback(settled, promise, callback, detail) {
-  var hasCallback = isFunction(callback),
-      value = undefined,
-      error = undefined,
-      succeeded = undefined,
-      failed = undefined;
-
-  if (hasCallback) {
-    value = tryCatch(callback, detail);
-
-    if (value === TRY_CATCH_ERROR) {
-      failed = true;
-      error = value.error;
-      value.error = null;
-    } else {
-      succeeded = true;
-    }
-
-    if (promise === value) {
-      reject(promise, cannotReturnOwn());
-      return;
-    }
-  } else {
-    value = detail;
-    succeeded = true;
-  }
-
-  if (promise._state !== PENDING) {
-    // noop
-  } else if (hasCallback && succeeded) {
-      resolve(promise, value);
-    } else if (failed) {
-      reject(promise, error);
-    } else if (settled === FULFILLED) {
-      fulfill(promise, value);
-    } else if (settled === REJECTED) {
-      reject(promise, value);
-    }
-}
-
-function initializePromise(promise, resolver) {
-  try {
-    resolver(function resolvePromise(value) {
-      resolve(promise, value);
-    }, function rejectPromise(reason) {
-      reject(promise, reason);
-    });
-  } catch (e) {
-    reject(promise, e);
-  }
-}
-
-var id = 0;
-function nextId() {
-  return id++;
-}
-
-function makePromise(promise) {
-  promise[PROMISE_ID] = id++;
-  promise._state = undefined;
-  promise._result = undefined;
-  promise._subscribers = [];
-}
-
-function Enumerator$1(Constructor, input) {
-  this._instanceConstructor = Constructor;
-  this.promise = new Constructor(noop);
-
-  if (!this.promise[PROMISE_ID]) {
-    makePromise(this.promise);
-  }
-
-  if (isArray(input)) {
-    this.length = input.length;
-    this._remaining = input.length;
-
-    this._result = new Array(this.length);
-
-    if (this.length === 0) {
-      fulfill(this.promise, this._result);
-    } else {
-      this.length = this.length || 0;
-      this._enumerate(input);
-      if (this._remaining === 0) {
-        fulfill(this.promise, this._result);
-      }
-    }
-  } else {
-    reject(this.promise, validationError());
-  }
-}
-
-function validationError() {
-  return new Error('Array Methods must be provided an Array');
-}
-
-Enumerator$1.prototype._enumerate = function (input) {
-  for (var i = 0; this._state === PENDING && i < input.length; i++) {
-    this._eachEntry(input[i], i);
-  }
-};
-
-Enumerator$1.prototype._eachEntry = function (entry, i) {
-  var c = this._instanceConstructor;
-  var resolve$$1 = c.resolve;
-
-  if (resolve$$1 === resolve$1) {
-    var _then = getThen(entry);
-
-    if (_then === then && entry._state !== PENDING) {
-      this._settledAt(entry._state, i, entry._result);
-    } else if (typeof _then !== 'function') {
-      this._remaining--;
-      this._result[i] = entry;
-    } else if (c === Promise$2) {
-      var promise = new c(noop);
-      handleMaybeThenable(promise, entry, _then);
-      this._willSettleAt(promise, i);
-    } else {
-      this._willSettleAt(new c(function (resolve$$1) {
-        return resolve$$1(entry);
-      }), i);
-    }
-  } else {
-    this._willSettleAt(resolve$$1(entry), i);
-  }
-};
-
-Enumerator$1.prototype._settledAt = function (state, i, value) {
-  var promise = this.promise;
-
-  if (promise._state === PENDING) {
-    this._remaining--;
-
-    if (state === REJECTED) {
-      reject(promise, value);
-    } else {
-      this._result[i] = value;
-    }
-  }
-
-  if (this._remaining === 0) {
-    fulfill(promise, this._result);
-  }
-};
-
-Enumerator$1.prototype._willSettleAt = function (promise, i) {
-  var enumerator = this;
-
-  subscribe(promise, undefined, function (value) {
-    return enumerator._settledAt(FULFILLED, i, value);
-  }, function (reason) {
-    return enumerator._settledAt(REJECTED, i, reason);
-  });
-};
-
-/**
-  `Promise.all` accepts an array of promises, and returns a new promise which
-  is fulfilled with an array of fulfillment values for the passed promises, or
-  rejected with the reason of the first passed promise to be rejected. It casts all
-  elements of the passed iterable to promises as it runs this algorithm.
-
-  Example:
-
-  ```javascript
-  let promise1 = resolve(1);
-  let promise2 = resolve(2);
-  let promise3 = resolve(3);
-  let promises = [ promise1, promise2, promise3 ];
-
-  Promise.all(promises).then(function(array){
-    // The array here would be [ 1, 2, 3 ];
-  });
-  ```
-
-  If any of the `promises` given to `all` are rejected, the first promise
-  that is rejected will be given as an argument to the returned promises's
-  rejection handler. For example:
-
-  Example:
-
-  ```javascript
-  let promise1 = resolve(1);
-  let promise2 = reject(new Error("2"));
-  let promise3 = reject(new Error("3"));
-  let promises = [ promise1, promise2, promise3 ];
-
-  Promise.all(promises).then(function(array){
-    // Code here never runs because there are rejected promises!
-  }, function(error) {
-    // error.message === "2"
-  });
-  ```
-
-  @method all
-  @static
-  @param {Array} entries array of promises
-  @param {String} label optional string for labeling the promise.
-  Useful for tooling.
-  @return {Promise} promise that is fulfilled when all `promises` have been
-  fulfilled, or rejected if any of them become rejected.
-  @static
-*/
-function all$1(entries) {
-  return new Enumerator$1(this, entries).promise;
-}
-
-/**
-  `Promise.race` returns a new promise which is settled in the same way as the
-  first passed promise to settle.
-
-  Example:
-
-  ```javascript
-  let promise1 = new Promise(function(resolve, reject){
-    setTimeout(function(){
-      resolve('promise 1');
-    }, 200);
-  });
-
-  let promise2 = new Promise(function(resolve, reject){
-    setTimeout(function(){
-      resolve('promise 2');
-    }, 100);
-  });
-
-  Promise.race([promise1, promise2]).then(function(result){
-    // result === 'promise 2' because it was resolved before promise1
-    // was resolved.
-  });
-  ```
-
-  `Promise.race` is deterministic in that only the state of the first
-  settled promise matters. For example, even if other promises given to the
-  `promises` array argument are resolved, but the first settled promise has
-  become rejected before the other promises became fulfilled, the returned
-  promise will become rejected:
-
-  ```javascript
-  let promise1 = new Promise(function(resolve, reject){
-    setTimeout(function(){
-      resolve('promise 1');
-    }, 200);
-  });
-
-  let promise2 = new Promise(function(resolve, reject){
-    setTimeout(function(){
-      reject(new Error('promise 2'));
-    }, 100);
-  });
-
-  Promise.race([promise1, promise2]).then(function(result){
-    // Code here never runs
-  }, function(reason){
-    // reason.message === 'promise 2' because promise 2 became rejected before
-    // promise 1 became fulfilled
-  });
-  ```
-
-  An example real-world use case is implementing timeouts:
-
-  ```javascript
-  Promise.race([ajax('foo.json'), timeout(5000)])
-  ```
-
-  @method race
-  @static
-  @param {Array} promises array of promises to observe
-  Useful for tooling.
-  @return {Promise} a promise which settles in the same way as the first passed
-  promise to settle.
-*/
-function race$1(entries) {
-  /*jshint validthis:true */
-  var Constructor = this;
-
-  if (!isArray(entries)) {
-    return new Constructor(function (_, reject) {
-      return reject(new TypeError('You must pass an array to race.'));
-    });
-  } else {
-    return new Constructor(function (resolve, reject) {
-      var length = entries.length;
-      for (var i = 0; i < length; i++) {
-        Constructor.resolve(entries[i]).then(resolve, reject);
-      }
-    });
-  }
-}
-
-/**
-  `Promise.reject` returns a promise rejected with the passed `reason`.
-  It is shorthand for the following:
-
-  ```javascript
-  let promise = new Promise(function(resolve, reject){
-    reject(new Error('WHOOPS'));
-  });
-
-  promise.then(function(value){
-    // Code here doesn't run because the promise is rejected!
-  }, function(reason){
-    // reason.message === 'WHOOPS'
-  });
-  ```
-
-  Instead of writing the above, your code now simply becomes the following:
-
-  ```javascript
-  let promise = Promise.reject(new Error('WHOOPS'));
-
-  promise.then(function(value){
-    // Code here doesn't run because the promise is rejected!
-  }, function(reason){
-    // reason.message === 'WHOOPS'
-  });
-  ```
-
-  @method reject
-  @static
-  @param {Any} reason value that the returned promise will be rejected with.
-  Useful for tooling.
-  @return {Promise} a promise rejected with the given `reason`.
-*/
-function reject$1(reason) {
-  /*jshint validthis:true */
-  var Constructor = this;
-  var promise = new Constructor(noop);
-  reject(promise, reason);
-  return promise;
-}
-
-function needsResolver() {
-  throw new TypeError('You must pass a resolver function as the first argument to the promise constructor');
-}
-
-function needsNew() {
-  throw new TypeError("Failed to construct 'Promise': Please use the 'new' operator, this object constructor cannot be called as a function.");
-}
-
-/**
-  Promise objects represent the eventual result of an asynchronous operation. The
-  primary way of interacting with a promise is through its `then` method, which
-  registers callbacks to receive either a promise's eventual value or the reason
-  why the promise cannot be fulfilled.
-
-  Terminology
-  -----------
-
-  - `promise` is an object or function with a `then` method whose behavior conforms to this specification.
-  - `thenable` is an object or function that defines a `then` method.
-  - `value` is any legal JavaScript value (including undefined, a thenable, or a promise).
-  - `exception` is a value that is thrown using the throw statement.
-  - `reason` is a value that indicates why a promise was rejected.
-  - `settled` the final resting state of a promise, fulfilled or rejected.
-
-  A promise can be in one of three states: pending, fulfilled, or rejected.
-
-  Promises that are fulfilled have a fulfillment value and are in the fulfilled
-  state.  Promises that are rejected have a rejection reason and are in the
-  rejected state.  A fulfillment value is never a thenable.
-
-  Promises can also be said to *resolve* a value.  If this value is also a
-  promise, then the original promise's settled state will match the value's
-  settled state.  So a promise that *resolves* a promise that rejects will
-  itself reject, and a promise that *resolves* a promise that fulfills will
-  itself fulfill.
-
-
-  Basic Usage:
-  ------------
-
-  ```js
-  let promise = new Promise(function(resolve, reject) {
-    // on success
-    resolve(value);
-
-    // on failure
-    reject(reason);
-  });
-
-  promise.then(function(value) {
-    // on fulfillment
-  }, function(reason) {
-    // on rejection
-  });
-  ```
-
-  Advanced Usage:
-  ---------------
-
-  Promises shine when abstracting away asynchronous interactions such as
-  `XMLHttpRequest`s.
-
-  ```js
-  function getJSON(url) {
-    return new Promise(function(resolve, reject){
-      let xhr = new XMLHttpRequest();
-
-      xhr.open('GET', url);
-      xhr.onreadystatechange = handler;
-      xhr.responseType = 'json';
-      xhr.setRequestHeader('Accept', 'application/json');
-      xhr.send();
-
-      function handler() {
-        if (this.readyState === this.DONE) {
-          if (this.status === 200) {
-            resolve(this.response);
-          } else {
-            reject(new Error('getJSON: `' + url + '` failed with status: [' + this.status + ']'));
-          }
-        }
-      };
-    });
-  }
-
-  getJSON('/posts.json').then(function(json) {
-    // on fulfillment
-  }, function(reason) {
-    // on rejection
-  });
-  ```
-
-  Unlike callbacks, promises are great composable primitives.
-
-  ```js
-  Promise.all([
-    getJSON('/posts'),
-    getJSON('/comments')
-  ]).then(function(values){
-    values[0] // => postsJSON
-    values[1] // => commentsJSON
-
-    return values;
-  });
-  ```
-
-  @class Promise
-  @param {function} resolver
-  Useful for tooling.
-  @constructor
-*/
-function Promise$2(resolver) {
-  this[PROMISE_ID] = nextId();
-  this._result = this._state = undefined;
-  this._subscribers = [];
-
-  if (noop !== resolver) {
-    typeof resolver !== 'function' && needsResolver();
-    this instanceof Promise$2 ? initializePromise(this, resolver) : needsNew();
-  }
-}
-
-Promise$2.all = all$1;
-Promise$2.race = race$1;
-Promise$2.resolve = resolve$1;
-Promise$2.reject = reject$1;
-Promise$2._setScheduler = setScheduler;
-Promise$2._setAsap = setAsap;
-Promise$2._asap = asap;
-
-Promise$2.prototype = {
-  constructor: Promise$2,
-
-  /**
-    The primary way of interacting with a promise is through its `then` method,
-    which registers callbacks to receive either a promise's eventual value or the
-    reason why the promise cannot be fulfilled.
-  
-    ```js
-    findUser().then(function(user){
-      // user is available
-    }, function(reason){
-      // user is unavailable, and you are given the reason why
-    });
-    ```
-  
-    Chaining
-    --------
-  
-    The return value of `then` is itself a promise.  This second, 'downstream'
-    promise is resolved with the return value of the first promise's fulfillment
-    or rejection handler, or rejected if the handler throws an exception.
-  
-    ```js
-    findUser().then(function (user) {
-      return user.name;
-    }, function (reason) {
-      return 'default name';
-    }).then(function (userName) {
-      // If `findUser` fulfilled, `userName` will be the user's name, otherwise it
-      // will be `'default name'`
-    });
-  
-    findUser().then(function (user) {
-      throw new Error('Found user, but still unhappy');
-    }, function (reason) {
-      throw new Error('`findUser` rejected and we're unhappy');
-    }).then(function (value) {
-      // never reached
-    }, function (reason) {
-      // if `findUser` fulfilled, `reason` will be 'Found user, but still unhappy'.
-      // If `findUser` rejected, `reason` will be '`findUser` rejected and we're unhappy'.
-    });
-    ```
-    If the downstream promise does not specify a rejection handler, rejection reasons will be propagated further downstream.
-  
-    ```js
-    findUser().then(function (user) {
-      throw new PedagogicalException('Upstream error');
-    }).then(function (value) {
-      // never reached
-    }).then(function (value) {
-      // never reached
-    }, function (reason) {
-      // The `PedgagocialException` is propagated all the way down to here
-    });
-    ```
-  
-    Assimilation
-    ------------
-  
-    Sometimes the value you want to propagate to a downstream promise can only be
-    retrieved asynchronously. This can be achieved by returning a promise in the
-    fulfillment or rejection handler. The downstream promise will then be pending
-    until the returned promise is settled. This is called *assimilation*.
-  
-    ```js
-    findUser().then(function (user) {
-      return findCommentsByAuthor(user);
-    }).then(function (comments) {
-      // The user's comments are now available
-    });
-    ```
-  
-    If the assimliated promise rejects, then the downstream promise will also reject.
-  
-    ```js
-    findUser().then(function (user) {
-      return findCommentsByAuthor(user);
-    }).then(function (comments) {
-      // If `findCommentsByAuthor` fulfills, we'll have the value here
-    }, function (reason) {
-      // If `findCommentsByAuthor` rejects, we'll have the reason here
-    });
-    ```
-  
-    Simple Example
-    --------------
-  
-    Synchronous Example
-  
-    ```javascript
-    let result;
-  
-    try {
-      result = findResult();
-      // success
-    } catch(reason) {
-      // failure
-    }
-    ```
-  
-    Errback Example
-  
-    ```js
-    findResult(function(result, err){
-      if (err) {
-        // failure
-      } else {
-        // success
-      }
-    });
-    ```
-  
-    Promise Example;
-  
-    ```javascript
-    findResult().then(function(result){
-      // success
-    }, function(reason){
-      // failure
-    });
-    ```
-  
-    Advanced Example
-    --------------
-  
-    Synchronous Example
-  
-    ```javascript
-    let author, books;
-  
-    try {
-      author = findAuthor();
-      books  = findBooksByAuthor(author);
-      // success
-    } catch(reason) {
-      // failure
-    }
-    ```
-  
-    Errback Example
-  
-    ```js
-  
-    function foundBooks(books) {
-  
-    }
-  
-    function failure(reason) {
-  
-    }
-  
-    findAuthor(function(author, err){
-      if (err) {
-        failure(err);
-        // failure
-      } else {
-        try {
-          findBoooksByAuthor(author, function(books, err) {
-            if (err) {
-              failure(err);
-            } else {
-              try {
-                foundBooks(books);
-              } catch(reason) {
-                failure(reason);
-              }
-            }
-          });
-        } catch(error) {
-          failure(err);
-        }
-        // success
-      }
-    });
-    ```
-  
-    Promise Example;
-  
-    ```javascript
-    findAuthor().
-      then(findBooksByAuthor).
-      then(function(books){
-        // found books
-    }).catch(function(reason){
-      // something went wrong
-    });
-    ```
-  
-    @method then
-    @param {Function} onFulfilled
-    @param {Function} onRejected
-    Useful for tooling.
-    @return {Promise}
-  */
-  then: then,
-
-  /**
-    `catch` is simply sugar for `then(undefined, onRejection)` which makes it the same
-    as the catch block of a try/catch statement.
-  
-    ```js
-    function findAuthor(){
-      throw new Error('couldn't find that author');
-    }
-  
-    // synchronous
-    try {
-      findAuthor();
-    } catch(reason) {
-      // something went wrong
-    }
-  
-    // async with promises
-    findAuthor().catch(function(reason){
-      // something went wrong
-    });
-    ```
-  
-    @method catch
-    @param {Function} onRejection
-    Useful for tooling.
-    @return {Promise}
-  */
-  'catch': function _catch(onRejection) {
-    return this.then(null, onRejection);
-  }
-};
-
-/*global self*/
-function polyfill$1() {
-    var local = undefined;
-
-    if (typeof global !== 'undefined') {
-        local = global;
-    } else if (typeof self !== 'undefined') {
-        local = self;
-    } else {
-        try {
-            local = Function('return this')();
-        } catch (e) {
-            throw new Error('polyfill failed because global object is unavailable in this environment');
-        }
-    }
-
-    var P = local.Promise;
-
-    if (P) {
-        var promiseToString = null;
-        try {
-            promiseToString = Object.prototype.toString.call(P.resolve());
-        } catch (e) {
-            // silently ignored
-        }
-
-        if (promiseToString === '[object Promise]' && !P.cast) {
-            return;
-        }
-    }
-
-    local.Promise = Promise$2;
-}
-
-// Strange compat..
-Promise$2.polyfill = polyfill$1;
-Promise$2.Promise = Promise$2;
-
-return Promise$2;
-
-})));
-
-
-
-}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"_process":3}],46:[function(require,module,exports){
-(function (global){
-"use strict";
-
-/* global self, window, module, global, require */
-module.exports = function () {
-
-    "use strict";
-
-    var globalObject = void 0;
-
-    function isFunction(x) {
-        return typeof x === "function";
-    }
-
-    // Seek the global object
-    if (global !== undefined) {
-        globalObject = global;
-    } else if (window !== undefined && window.document) {
-        globalObject = window;
-    } else {
-        globalObject = self;
-    }
-
-    // Test for any native promise implementation, and if that
-    // implementation appears to conform to the specificaton.
-    // This code mostly nicked from the es6-promise module polyfill
-    // and then fooled with.
-    var hasPromiseSupport = function () {
-
-        // No promise object at all, and it's a non-starter
-        if (!globalObject.hasOwnProperty("Promise")) {
-            return false;
-        }
-
-        // There is a Promise object. Does it conform to the spec?
-        var P = globalObject.Promise;
-
-        // Some of these methods are missing from
-        // Firefox/Chrome experimental implementations
-        if (!P.hasOwnProperty("resolve") || !P.hasOwnProperty("reject")) {
-            return false;
-        }
-
-        if (!P.hasOwnProperty("all") || !P.hasOwnProperty("race")) {
-            return false;
-        }
-
-        // Older version of the spec had a resolver object
-        // as the arg rather than a function
-        return function () {
-
-            var resolve = void 0;
-
-            var p = new globalObject.Promise(function (r) {
-                resolve = r;
-            });
-
-            if (p) {
-                return isFunction(resolve);
-            }
-
-            return false;
-        }();
-    }();
-
-    // Export the native Promise implementation if it
-    // looks like it matches the spec
-    if (hasPromiseSupport) {
-        return globalObject.Promise;
-    }
-
-    //  Otherwise, return the es6-promise polyfill by @jaffathecake.
-    return require("es6-promise").Promise;
-}();
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"es6-promise":45}],47:[function(require,module,exports){
-"use strict";
-
-/* global module, require */
-module.exports = function () {
-
-    "use strict";
-
-    // Get a promise object. This may be native, or it may be polyfilled
-
-    var ES6Promise = require("./promise.js");
-
-    /**
-     * thatLooksLikeAPromiseToMe()
-     *
-     * Duck-types a promise.
-     *
-     * @param {object} o
-     * @return {bool} True if this resembles a promise
-     */
-    function thatLooksLikeAPromiseToMe(o) {
-        return o && typeof o.then === "function" && typeof o.catch === "function";
-    }
-
-    /**
-     * promisify()
-     *
-     * Transforms callback-based function -- func(arg1, arg2 .. argN, callback) -- into
-     * an ES6-compatible Promise. Promisify provides a default callback of the form (error, result)
-     * and rejects when `error` is truthy. You can also supply settings object as the second argument.
-     *
-     * @param {function} original - The function to promisify
-     * @param {object} settings - Settings object
-     * @param {object} settings.thisArg - A `this` context to use. If not set, assume `settings` _is_ `thisArg`
-     * @param {bool} settings.multiArgs - Should multiple arguments be returned as an array?
-     * @return {function} A promisified version of `original`
-     */
-    return function promisify(original, settings) {
-
-        return function () {
-            for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-                args[_key] = arguments[_key];
-            }
-
-            var returnMultipleArguments = settings && settings.multiArgs;
-
-            var target = void 0;
-            if (settings && settings.thisArg) {
-                target = settings.thisArg;
-            } else if (settings) {
-                target = settings;
-            }
-
-            // Return the promisified function
-            return new ES6Promise(function (resolve, reject) {
-
-                // Append the callback bound to the context
-                args.push(function callback(err) {
-
-                    if (err) {
-                        return reject(err);
-                    }
-
-                    for (var _len2 = arguments.length, values = Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
-                        values[_key2 - 1] = arguments[_key2];
-                    }
-
-                    if (false === !!returnMultipleArguments) {
-                        return resolve(values[0]);
-                    }
-
-                    resolve(values);
-                });
-
-                // Call the function
-                var response = original.apply(target, args);
-
-                // If it looks like original already returns a promise,
-                // then just resolve with that promise. Hopefully, the callback function we added will just be ignored.
-                if (thatLooksLikeAPromiseToMe(response)) {
-                    resolve(response);
-                }
-            });
-        };
-    };
-}();
-},{"./promise.js":46}],48:[function(require,module,exports){
+},{"ms":50}],49:[function(require,module,exports){
 (function (global){
 /**
  * @license
@@ -18604,7 +17794,7 @@ module.exports = function () {
   var undefined;
 
   /** Used as the semantic version number. */
-  var VERSION = '4.17.4';
+  var VERSION = '4.17.10';
 
   /** Used as the size to enable large array optimizations. */
   var LARGE_ARRAY_SIZE = 200;
@@ -18735,7 +17925,6 @@ module.exports = function () {
   /** Used to match property names within property paths. */
   var reIsDeepProp = /\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\\]|\\.)*?\1)\]/,
       reIsPlainProp = /^\w*$/,
-      reLeadingDot = /^\./,
       rePropName = /[^.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|$))/g;
 
   /**
@@ -18835,8 +18024,8 @@ module.exports = function () {
       reOptMod = rsModifier + '?',
       rsOptVar = '[' + rsVarRange + ']?',
       rsOptJoin = '(?:' + rsZWJ + '(?:' + [rsNonAstral, rsRegional, rsSurrPair].join('|') + ')' + rsOptVar + reOptMod + ')*',
-      rsOrdLower = '\\d*(?:(?:1st|2nd|3rd|(?![123])\\dth)\\b)',
-      rsOrdUpper = '\\d*(?:(?:1ST|2ND|3RD|(?![123])\\dTH)\\b)',
+      rsOrdLower = '\\d*(?:1st|2nd|3rd|(?![123])\\dth)(?=\\b|[A-Z_])',
+      rsOrdUpper = '\\d*(?:1ST|2ND|3RD|(?![123])\\dTH)(?=\\b|[a-z_])',
       rsSeq = rsOptVar + reOptMod + rsOptJoin,
       rsEmoji = '(?:' + [rsDingbat, rsRegional, rsSurrPair].join('|') + ')' + rsSeq,
       rsSymbol = '(?:' + [rsNonAstral + rsCombo + '?', rsCombo, rsRegional, rsSurrPair, rsAstral].join('|') + ')';
@@ -19029,6 +18218,14 @@ module.exports = function () {
   /** Used to access faster Node.js helpers. */
   var nodeUtil = (function() {
     try {
+      // Use `util.types` for Node.js 10+.
+      var types = freeModule && freeModule.require && freeModule.require('util').types;
+
+      if (types) {
+        return types;
+      }
+
+      // Legacy `process.binding('util')` for Node.js < 10.
       return freeProcess && freeProcess.binding && freeProcess.binding('util');
     } catch (e) {}
   }());
@@ -19042,34 +18239,6 @@ module.exports = function () {
       nodeIsTypedArray = nodeUtil && nodeUtil.isTypedArray;
 
   /*--------------------------------------------------------------------------*/
-
-  /**
-   * Adds the key-value `pair` to `map`.
-   *
-   * @private
-   * @param {Object} map The map to modify.
-   * @param {Array} pair The key-value pair to add.
-   * @returns {Object} Returns `map`.
-   */
-  function addMapEntry(map, pair) {
-    // Don't return `map.set` because it's not chainable in IE 11.
-    map.set(pair[0], pair[1]);
-    return map;
-  }
-
-  /**
-   * Adds `value` to `set`.
-   *
-   * @private
-   * @param {Object} set The set to modify.
-   * @param {*} value The value to add.
-   * @returns {Object} Returns `set`.
-   */
-  function addSetEntry(set, value) {
-    // Don't return `set.add` because it's not chainable in IE 11.
-    set.add(value);
-    return set;
-  }
 
   /**
    * A faster alternative to `Function#apply`, this function invokes `func`
@@ -19835,6 +19004,20 @@ module.exports = function () {
       }
     }
     return result;
+  }
+
+  /**
+   * Gets the value at `key`, unless `key` is "__proto__".
+   *
+   * @private
+   * @param {Object} object The object to query.
+   * @param {string} key The key of the property to get.
+   * @returns {*} Returns the property value.
+   */
+  function safeGet(object, key) {
+    return key == '__proto__'
+      ? undefined
+      : object[key];
   }
 
   /**
@@ -21269,7 +20452,7 @@ module.exports = function () {
           if (!cloneableTags[tag]) {
             return object ? value : {};
           }
-          result = initCloneByTag(value, tag, baseClone, isDeep);
+          result = initCloneByTag(value, tag, isDeep);
         }
       }
       // Check for circular references and return its corresponding clone.
@@ -21279,6 +20462,22 @@ module.exports = function () {
         return stacked;
       }
       stack.set(value, result);
+
+      if (isSet(value)) {
+        value.forEach(function(subValue) {
+          result.add(baseClone(subValue, bitmask, customizer, subValue, value, stack));
+        });
+
+        return result;
+      }
+
+      if (isMap(value)) {
+        value.forEach(function(subValue, key) {
+          result.set(key, baseClone(subValue, bitmask, customizer, key, value, stack));
+        });
+
+        return result;
+      }
 
       var keysFunc = isFull
         ? (isFlat ? getAllKeysIn : getAllKeys)
@@ -22207,7 +21406,7 @@ module.exports = function () {
         }
         else {
           var newValue = customizer
-            ? customizer(object[key], srcValue, (key + ''), object, source, stack)
+            ? customizer(safeGet(object, key), srcValue, (key + ''), object, source, stack)
             : undefined;
 
           if (newValue === undefined) {
@@ -22234,8 +21433,8 @@ module.exports = function () {
      *  counterparts.
      */
     function baseMergeDeep(object, source, key, srcIndex, mergeFunc, customizer, stack) {
-      var objValue = object[key],
-          srcValue = source[key],
+      var objValue = safeGet(object, key),
+          srcValue = safeGet(source, key),
           stacked = stack.get(srcValue);
 
       if (stacked) {
@@ -23144,20 +22343,6 @@ module.exports = function () {
     }
 
     /**
-     * Creates a clone of `map`.
-     *
-     * @private
-     * @param {Object} map The map to clone.
-     * @param {Function} cloneFunc The function to clone values.
-     * @param {boolean} [isDeep] Specify a deep clone.
-     * @returns {Object} Returns the cloned map.
-     */
-    function cloneMap(map, isDeep, cloneFunc) {
-      var array = isDeep ? cloneFunc(mapToArray(map), CLONE_DEEP_FLAG) : mapToArray(map);
-      return arrayReduce(array, addMapEntry, new map.constructor);
-    }
-
-    /**
      * Creates a clone of `regexp`.
      *
      * @private
@@ -23168,20 +22353,6 @@ module.exports = function () {
       var result = new regexp.constructor(regexp.source, reFlags.exec(regexp));
       result.lastIndex = regexp.lastIndex;
       return result;
-    }
-
-    /**
-     * Creates a clone of `set`.
-     *
-     * @private
-     * @param {Object} set The set to clone.
-     * @param {Function} cloneFunc The function to clone values.
-     * @param {boolean} [isDeep] Specify a deep clone.
-     * @returns {Object} Returns the cloned set.
-     */
-    function cloneSet(set, isDeep, cloneFunc) {
-      var array = isDeep ? cloneFunc(setToArray(set), CLONE_DEEP_FLAG) : setToArray(set);
-      return arrayReduce(array, addSetEntry, new set.constructor);
     }
 
     /**
@@ -24778,7 +23949,7 @@ module.exports = function () {
      */
     function initCloneArray(array) {
       var length = array.length,
-          result = array.constructor(length);
+          result = new array.constructor(length);
 
       // Add properties assigned by `RegExp#exec`.
       if (length && typeof array[0] == 'string' && hasOwnProperty.call(array, 'index')) {
@@ -24805,16 +23976,15 @@ module.exports = function () {
      * Initializes an object clone based on its `toStringTag`.
      *
      * **Note:** This function only supports cloning values with tags of
-     * `Boolean`, `Date`, `Error`, `Number`, `RegExp`, or `String`.
+     * `Boolean`, `Date`, `Error`, `Map`, `Number`, `RegExp`, `Set`, or `String`.
      *
      * @private
      * @param {Object} object The object to clone.
      * @param {string} tag The `toStringTag` of the object to clone.
-     * @param {Function} cloneFunc The function to clone values.
      * @param {boolean} [isDeep] Specify a deep clone.
      * @returns {Object} Returns the initialized clone.
      */
-    function initCloneByTag(object, tag, cloneFunc, isDeep) {
+    function initCloneByTag(object, tag, isDeep) {
       var Ctor = object.constructor;
       switch (tag) {
         case arrayBufferTag:
@@ -24833,7 +24003,7 @@ module.exports = function () {
           return cloneTypedArray(object, isDeep);
 
         case mapTag:
-          return cloneMap(object, isDeep, cloneFunc);
+          return new Ctor;
 
         case numberTag:
         case stringTag:
@@ -24843,7 +24013,7 @@ module.exports = function () {
           return cloneRegExp(object);
 
         case setTag:
-          return cloneSet(object, isDeep, cloneFunc);
+          return new Ctor;
 
         case symbolTag:
           return cloneSymbol(object);
@@ -24890,10 +24060,13 @@ module.exports = function () {
      * @returns {boolean} Returns `true` if `value` is a valid index, else `false`.
      */
     function isIndex(value, length) {
+      var type = typeof value;
       length = length == null ? MAX_SAFE_INTEGER : length;
+
       return !!length &&
-        (typeof value == 'number' || reIsUint.test(value)) &&
-        (value > -1 && value % 1 == 0 && value < length);
+        (type == 'number' ||
+          (type != 'symbol' && reIsUint.test(value))) &&
+            (value > -1 && value % 1 == 0 && value < length);
     }
 
     /**
@@ -25343,11 +24516,11 @@ module.exports = function () {
      */
     var stringToPath = memoizeCapped(function(string) {
       var result = [];
-      if (reLeadingDot.test(string)) {
+      if (string.charCodeAt(0) === 46 /* . */) {
         result.push('');
       }
-      string.replace(rePropName, function(match, number, quote, string) {
-        result.push(quote ? string.replace(reEscapeChar, '$1') : (number || match));
+      string.replace(rePropName, function(match, number, quote, subString) {
+        result.push(quote ? subString.replace(reEscapeChar, '$1') : (number || match));
       });
       return result;
     });
@@ -28955,9 +28128,11 @@ module.exports = function () {
       function remainingWait(time) {
         var timeSinceLastCall = time - lastCallTime,
             timeSinceLastInvoke = time - lastInvokeTime,
-            result = wait - timeSinceLastCall;
+            timeWaiting = wait - timeSinceLastCall;
 
-        return maxing ? nativeMin(result, maxWait - timeSinceLastInvoke) : result;
+        return maxing
+          ? nativeMin(timeWaiting, maxWait - timeSinceLastInvoke)
+          : timeWaiting;
       }
 
       function shouldInvoke(time) {
@@ -31389,9 +30564,35 @@ module.exports = function () {
      * _.defaults({ 'a': 1 }, { 'b': 2 }, { 'a': 3 });
      * // => { 'a': 1, 'b': 2 }
      */
-    var defaults = baseRest(function(args) {
-      args.push(undefined, customDefaultsAssignIn);
-      return apply(assignInWith, undefined, args);
+    var defaults = baseRest(function(object, sources) {
+      object = Object(object);
+
+      var index = -1;
+      var length = sources.length;
+      var guard = length > 2 ? sources[2] : undefined;
+
+      if (guard && isIterateeCall(sources[0], sources[1], guard)) {
+        length = 1;
+      }
+
+      while (++index < length) {
+        var source = sources[index];
+        var props = keysIn(source);
+        var propsIndex = -1;
+        var propsLength = props.length;
+
+        while (++propsIndex < propsLength) {
+          var key = props[propsIndex];
+          var value = object[key];
+
+          if (value === undefined ||
+              (eq(value, objectProto[key]) && !hasOwnProperty.call(object, key))) {
+            object[key] = source[key];
+          }
+        }
+      }
+
+      return object;
     });
 
     /**
@@ -31788,6 +30989,11 @@ module.exports = function () {
      * // => { '1': 'c', '2': 'b' }
      */
     var invert = createInverter(function(result, value, key) {
+      if (value != null &&
+          typeof value.toString != 'function') {
+        value = nativeObjectToString.call(value);
+      }
+
       result[value] = key;
     }, constant(identity));
 
@@ -31818,6 +31024,11 @@ module.exports = function () {
      * // => { 'group1': ['a', 'c'], 'group2': ['b'] }
      */
     var invertBy = createInverter(function(result, value, key) {
+      if (value != null &&
+          typeof value.toString != 'function') {
+        value = nativeObjectToString.call(value);
+      }
+
       if (hasOwnProperty.call(result, value)) {
         result[value].push(key);
       } else {
@@ -35676,7 +34887,7 @@ module.exports = function () {
 }.call(this));
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],49:[function(require,module,exports){
+},{}],50:[function(require,module,exports){
 /**
  * Helpers.
  */
@@ -35830,10 +35041,10 @@ function plural(ms, n, name) {
   return Math.ceil(ms / n) + ' ' + name + 's';
 }
 
-},{}],50:[function(require,module,exports){
+},{}],51:[function(require,module,exports){
 module.exports={
   "name": "@qiskit/utils",
-  "version": "0.1.3",
+  "version": "0.1.9",
   "description": "Quantum Information Software utils library",
   "author": {
     "name": "IBM RESEARCH",
@@ -35866,9 +35077,9 @@ module.exports={
     "url": "https://github.com/QISKit/qiskit-sdk-js/issues"
   },
   "dependencies": {
+    "all-your-base": "^0.3.0",
     "debug": "^3.1.0",
-    "es6-promisify": "^5.0.0",
-    "lodash": "^4.17.4"
+    "lodash": "^4.17.5"
   },
   "engines": {
     "node": ">=8",
