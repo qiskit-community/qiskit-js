@@ -45,7 +45,7 @@
   "dependencies": {
     "@qiskit/algos": "^0.1.9",
     "@qiskit/qasm": "^0.1.9",
-    "@qiskit/qe": "^0.1.9",
+    "@qiskit/cloud": "^0.1.9",
     "@qiskit/sim": "^0.1.9",
     "@qiskit/utils": "^0.1.9",
     "cli-color": "^1.2.0",

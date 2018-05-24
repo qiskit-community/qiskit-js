@@ -11,14 +11,14 @@
 const qiskit = require('../..');
 const logger = require('../lib/logger');
 
-exports.command = 'qe-cali [backend]';
+exports.command = 'cloud-back [name]';
 
-exports.aliases = ['qc'];
+exports.aliases = ['cb'];
 
 exports.desc = 'Get latest calibration stats for a backend';
 
 exports.builder = {
-  backend: {
+  name: {
     desc: 'Name of the backend to inspect',
     type: 'string',
     default: 'ibmqx4',
@@ -28,8 +28,8 @@ exports.builder = {
 exports.handler = argv => {
   logger.title(qiskit.version);
 
-  global.qiskit.qe
-    .calibration(argv.backend)
+  global.qiskit.cloud
+    .backend(argv.name)
     .then(res => {
       logger.resultHead();
       logger.json(res);

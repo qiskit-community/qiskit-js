@@ -12,22 +12,22 @@
 
 const assert = require('assert');
 
-const Qe = require('../..');
+const Cloud = require('../..');
 const pkgInfo = require('../../package');
 
 const { version } = pkgInfo;
-let qe;
+let cloud;
 
-describe('qe:new', () => {
+describe('cloud:new', () => {
   it('should work without options', () =>
-    assert.equal(new Qe().version, version));
+    assert.equal(new Cloud().version, version));
 
   it('should work with empty options', () => {
-    qe = new Qe({});
+    cloud = new Cloud({});
     assert.ok(true);
   });
 });
 
-describe('qe:version', () =>
+describe('cloud:version', () =>
   it('should return the package version', () =>
-    assert.equal(qe.version, pkgInfo.version)));
+    assert.equal(cloud.version, pkgInfo.version)));

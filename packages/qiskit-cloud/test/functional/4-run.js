@@ -17,7 +17,7 @@ const Qe = require('../..');
 const expErrRegex = require('../errorRe');
 
 // Already logged instance.
-const { qe } = global.qiskitTest;
+const { cloud } = global.qiskitTest;
 const circuit =
   'OPENQASM 2.0;' +
   'include "qelib1.inc";' +
@@ -25,62 +25,62 @@ const circuit =
   'creg c[1];' +
   'measure q -> c;';
 
-describe('qe:run', () => {
+describe('cloud:run', () => {
   it('should fail if no logged', async () =>
     utilsTest.throwsAsync(() => new Qe().run('a'), expErrRegex.loginBefore));
 
   it('should fail if "circuit" parameter no present', async () =>
     // TODO: Emit proper error.
-    utilsTest.throwsAsync(() => qe.run(), expErrRegex.formatStr));
+    utilsTest.throwsAsync(() => cloud.run(), expErrRegex.formatStr));
 
   it('should fail if bad format in the "circuit" parameter', async () =>
-    utilsTest.throwsAsync(() => qe.run(1), expErrRegex.formatStr));
+    utilsTest.throwsAsync(() => cloud.run(1), expErrRegex.formatStr));
 
   it('should fail if bad format in the "backend" option', async () =>
     utilsTest.throwsAsync(
-      () => qe.run('a', { backend: 1 }),
+      () => cloud.run('a', { backend: 1 }),
       expErrRegex.formatStr,
     ));
 
   it('should fail if bad format in the "name" option', async () =>
     utilsTest.throwsAsync(
-      () => qe.run('a', { name: 1 }),
+      () => cloud.run('a', { name: 1 }),
       expErrRegex.formatStr,
     ));
 
   it('should fail if bad format in the "shots" option', async () =>
     utilsTest.throwsAsync(
-      () => qe.run('a', { shots: 'a' }),
+      () => cloud.run('a', { shots: 'a' }),
       expErrRegex.formatNumber,
     ));
 
   it('should fail if under min. in the "shots" option', async () =>
     utilsTest.throwsAsync(
-      () => qe.run('a', { shots: -1 }),
+      () => cloud.run('a', { shots: -1 }),
       expErrRegex.outRange,
     ));
 
   it('should fail if over max. in the "shots" option', async () =>
     utilsTest.throwsAsync(
-      () => qe.run('a', { shots: 8193 }),
+      () => cloud.run('a', { shots: 8193 }),
       expErrRegex.outRange,
     ));
 
   it('should fail if bad format in the "seed" option', async () =>
     utilsTest.throwsAsync(
-      () => qe.run('a', { seed: 1 }),
+      () => cloud.run('a', { seed: 1 }),
       expErrRegex.formatStr,
     ));
 
   it('should fail if bad format in the "maxCredits" option', async () =>
     utilsTest.throwsAsync(
-      () => qe.run('a', { maxCredits: 'a' }),
+      () => cloud.run('a', { maxCredits: 'a' }),
       expErrRegex.formatNumber,
     ));
 
   it('should fail if under min. in the "maxCredits" option', async () =>
     utilsTest.throwsAsync(
-      () => qe.run('a', { maxCredits: -1 }),
+      () => cloud.run('a', { maxCredits: -1 }),
       expErrRegex.outRange,
     ));
 
@@ -89,7 +89,7 @@ describe('qe:run', () => {
       this.skip();
     }
 
-    utilsTest.throwsAsync(() => qe.run('a'), expErrRegex.badQasm);
+    utilsTest.throwsAsync(() => cloud.run('a'), expErrRegex.badQasm);
   });
 
   it('should return the run info for a valid circuit', async function t() {
@@ -97,7 +97,7 @@ describe('qe:run', () => {
       this.skip();
     }
 
-    const res = await qe.run(circuit);
+    const res = await cloud.run(circuit);
 
     // To use in the Job endpoint related tests.
     global.qiskitTest.jobId = res.id;
@@ -108,7 +108,7 @@ describe('qe:run', () => {
   });
 });
 
-describe('qe:runBatch', () => {
+describe('cloud:runBatch', () => {
   it('should fail if no logged', async () =>
     utilsTest.throwsAsync(
       () => new Qe().runBatch('a'),
@@ -117,89 +117,92 @@ describe('qe:runBatch', () => {
 
   it('should fail if "circuits" parameter no present', async () =>
     // TODO: Emit proper error.
-    utilsTest.throwsAsync(() => qe.runBatch(), expErrRegex.formatArr));
+    utilsTest.throwsAsync(() => cloud.runBatch(), expErrRegex.formatArr));
 
   it('should fail if bad format in the "circuits" parameter', async () =>
-    utilsTest.throwsAsync(() => qe.runBatch(1), expErrRegex.formatArr));
+    utilsTest.throwsAsync(() => cloud.runBatch(1), expErrRegex.formatArr));
 
   it('should fail if empty "circuits" parameter', async () =>
-    utilsTest.throwsAsync(() => qe.runBatch([]), expErrRegex.formatArr));
+    utilsTest.throwsAsync(() => cloud.runBatch([]), expErrRegex.formatArr));
 
   it('should fail if bad format on the elements of "circuits"', async () =>
-    utilsTest.throwsAsync(() => qe.runBatch([1]), expErrRegex.formatObj));
+    utilsTest.throwsAsync(() => cloud.runBatch([1]), expErrRegex.formatObj));
 
   it('should fail if "qasm" subfield not present', async () =>
-    utilsTest.throwsAsync(() => qe.runBatch([{}]), expErrRegex.formatStr));
+    utilsTest.throwsAsync(() => cloud.runBatch([{}]), expErrRegex.formatStr));
 
   it('should fail if bad format in the "qasm" subfield', async () =>
     utilsTest.throwsAsync(
-      () => qe.runBatch([{ qasm: 1 }]),
+      () => cloud.runBatch([{ qasm: 1 }]),
       expErrRegex.formatStr,
     ));
 
   it('should fail if bad format in the "shots" subfield', async () =>
     utilsTest.throwsAsync(
-      () => qe.runBatch([{ qasm: 'a', shots: 'a' }]),
+      () => cloud.runBatch([{ qasm: 'a', shots: 'a' }]),
       expErrRegex.formatNumber,
     ));
 
   it('should fail if under min. in the "shots" subfield', async () =>
     utilsTest.throwsAsync(
-      () => qe.runBatch([{ qasm: 'a', shots: -1 }]),
+      () => cloud.runBatch([{ qasm: 'a', shots: -1 }]),
       expErrRegex.outRange,
     ));
 
   it('should fail if over max. in the "shots" subfield', async () =>
     utilsTest.throwsAsync(
-      () => qe.runBatch([{ qasm: 'a', shots: 8193 }]),
+      () => cloud.runBatch([{ qasm: 'a', shots: 8193 }]),
       expErrRegex.outRange,
     ));
 
   it('should fail if bad format in the "seed" subfield', async () =>
     utilsTest.throwsAsync(
-      () => qe.runBatch([{ qasm: 'a', seed: 1 }]),
+      () => cloud.runBatch([{ qasm: 'a', seed: 1 }]),
       expErrRegex.formatStr,
     ));
 
   it('should fail if bad format in the "name" subfield', async () =>
     utilsTest.throwsAsync(
-      () => qe.runBatch([{ qasm: 'a', name: 1 }]),
+      () => cloud.runBatch([{ qasm: 'a', name: 1 }]),
       expErrRegex.formatStr,
     ));
 
   it('should fail if bad format in the "backend" option', async () =>
     utilsTest.throwsAsync(() =>
-      qe.runBatch(([{ qasm: 'a' }], { backend: 1 }), expErrRegex.formatStr),
+      cloud.runBatch(([{ qasm: 'a' }], { backend: 1 }), expErrRegex.formatStr),
     ));
 
   it('should fail if bad format in the "name" option', async () =>
     utilsTest.throwsAsync(() =>
-      qe.runBatch(([{ qasm: 'a' }], { name: 1 }), expErrRegex.formatStr),
+      cloud.runBatch(([{ qasm: 'a' }], { name: 1 }), expErrRegex.formatStr),
     ));
 
   it('should fail if bad format in the "shots" option', async () =>
     utilsTest.throwsAsync(() =>
-      qe.runBatch(([{ qasm: 'a' }], { shots: 'a' }), expErrRegex.formatNumber),
+      cloud.runBatch(
+        ([{ qasm: 'a' }], { shots: 'a' }),
+        expErrRegex.formatNumber,
+      ),
     ));
 
   it('should fail if under min. in the "shots" option', async () =>
     utilsTest.throwsAsync(() =>
-      qe.runBatch(([{ qasm: 'a' }], { shots: -1 }), expErrRegex.outRange),
+      cloud.runBatch(([{ qasm: 'a' }], { shots: -1 }), expErrRegex.outRange),
     ));
 
   it('should fail if over max. in the "shots" option', async () =>
     utilsTest.throwsAsync(() =>
-      qe.runBatch(([{ qasm: 'a' }], { shots: 8193 }), expErrRegex.outRange),
+      cloud.runBatch(([{ qasm: 'a' }], { shots: 8193 }), expErrRegex.outRange),
     ));
 
   it('should fail if bad format in the "seed" option', async () =>
     utilsTest.throwsAsync(() =>
-      qe.runBatch(([{ qasm: 'a' }], { seed: 1 }), expErrRegex.formatStr),
+      cloud.runBatch(([{ qasm: 'a' }], { seed: 1 }), expErrRegex.formatStr),
     ));
 
   it('should fail if bad format in the "maxCredits" option', async () =>
     utilsTest.throwsAsync(() =>
-      qe.runBatch(
+      cloud.runBatch(
         ([{ qasm: 'a' }], { maxCredits: 'a' }),
         expErrRegex.formatNumber,
       ),
@@ -207,7 +210,10 @@ describe('qe:runBatch', () => {
 
   it('should fail if under min. in the "maxCredits" option', async () =>
     utilsTest.throwsAsync(() =>
-      qe.runBatch(([{ qasm: 'a' }], { maxCredits: -1 }), expErrRegex.formatStr),
+      cloud.runBatch(
+        ([{ qasm: 'a' }], { maxCredits: -1 }),
+        expErrRegex.formatStr,
+      ),
     ));
 
   it('should fail if a controlled API error', async function t() {
@@ -216,7 +222,7 @@ describe('qe:runBatch', () => {
     }
 
     utilsTest.throwsAsync(() =>
-      qe.runBatch([{ qasm: 'a' }], expErrRegex.badQasm),
+      cloud.runBatch([{ qasm: 'a' }], expErrRegex.badQasm),
     );
   });
 
@@ -225,7 +231,7 @@ describe('qe:runBatch', () => {
       this.skip();
     }
 
-    const res = await qe.runBatch([{ qasm: circuit }]);
+    const res = await cloud.runBatch([{ qasm: circuit }]);
 
     assert.deepEqual(Object.keys(res), ['id', 'status']);
     assert.equal(typeof res.id, 'string');

@@ -17,13 +17,13 @@ const logger = require('./lib/logger');
 const storage = require('./lib/storage');
 
 // To share it among the different QE related commands.
-global.qiskit = { qe: new qiskit.Qe() };
+global.qiskit = { cloud: new qiskit.Cloud() };
 
 storage
   .getItem('token')
   .then(token => {
     if (token) {
-      global.qiskit.qe.token = token;
+      global.qiskit.cloud.token = token;
     }
 
     // Starting the console cli.

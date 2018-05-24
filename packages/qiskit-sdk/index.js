@@ -12,7 +12,7 @@
 
 const qasm = require('@qiskit/qasm');
 const sim = require('@qiskit/sim');
-const Qe = require('@qiskit/qe');
+const Cloud = require('@qiskit/cloud');
 const utils = require('@qiskit/utils');
 const algos = require('@qiskit/algos');
 
@@ -22,7 +22,7 @@ module.exports = {
   version,
   qasm,
   sim,
-  Qe,
+  Cloud,
   utils,
   algos,
 };

@@ -17,7 +17,7 @@ const Qe = require('../..');
 const expErrRegex = require('../errorRe');
 
 // Already logged instance.
-const { qe } = global.qiskitTest;
+const { cloud } = global.qiskitTest;
 
 function checkJob(res) {
   assert.deepEqual(Object.keys(res), [
@@ -61,49 +61,49 @@ function checkJob(res) {
   }
 }
 
-describe('qe:job', () => {
+describe('cloud:job', () => {
   it('should fail if no logged', async () =>
     utilsTest.throwsAsync(() => new Qe().job(), expErrRegex.loginBefore));
 
   it('should fail if "id" parameter no present', async () =>
-    utilsTest.throwsAsync(() => qe.job(), expErrRegex.formatStr));
+    utilsTest.throwsAsync(() => cloud.job(), expErrRegex.formatStr));
 
   it('should fail if bad format in the "id" parameter', async () =>
-    utilsTest.throwsAsync(() => qe.job(1), expErrRegex.formatStr));
+    utilsTest.throwsAsync(() => cloud.job(1), expErrRegex.formatStr));
 
   it('should return the info for a valid job', async function t() {
     if (!global.qiskitTest.integration) {
       this.skip();
     }
 
-    const res = await qe.job(global.qiskitTest.jobId);
+    const res = await cloud.job(global.qiskitTest.jobId);
     checkJob(res);
   });
 });
 
 let oldId;
-describe('qe:jobs', () => {
+describe('cloud:jobs', () => {
   it('should fail if no logged', async () =>
     utilsTest.throwsAsync(() => new Qe().jobs(), expErrRegex.loginBefore));
 
   it('should fail if bad format in the "limit" option', async () =>
-    utilsTest.throwsAsync(() => qe.jobs('a'), expErrRegex.formatNumber));
+    utilsTest.throwsAsync(() => cloud.jobs('a'), expErrRegex.formatNumber));
 
   it('should fail if under min. in the "limit" option', async () =>
-    utilsTest.throwsAsync(() => qe.jobs(-1), expErrRegex.outRange));
+    utilsTest.throwsAsync(() => cloud.jobs(-1), expErrRegex.outRange));
 
   it('should fail if bad format in the "offset" option', async () =>
-    utilsTest.throwsAsync(() => qe.jobs(1, 'a'), expErrRegex.formatNumber));
+    utilsTest.throwsAsync(() => cloud.jobs(1, 'a'), expErrRegex.formatNumber));
 
   it('should fail if under min. in the "offset" option', async () =>
-    utilsTest.throwsAsync(() => qe.jobs(1, -1), expErrRegex.outRange));
+    utilsTest.throwsAsync(() => cloud.jobs(1, -1), expErrRegex.outRange));
 
   it('should return all jobs info without parameters', async function t() {
     if (!global.qiskitTest.integration) {
       this.skip();
     }
 
-    const res = await qe.jobs();
+    const res = await cloud.jobs();
 
     assert.ok(res.length > 1);
     checkJob(res[0]);
@@ -114,7 +114,7 @@ describe('qe:jobs', () => {
       this.skip();
     }
 
-    const res = await qe.jobs(1);
+    const res = await cloud.jobs(1);
 
     assert.equal(res.length, 1);
     checkJob(res[0]);
@@ -126,7 +126,7 @@ describe('qe:jobs', () => {
       this.skip();
     }
 
-    const res = await qe.jobs(1, 1);
+    const res = await cloud.jobs(1, 1);
 
     assert.equal(res.length, 1);
     checkJob(res[0]);

@@ -33,7 +33,7 @@
     "url": "https://github.com/QISKit/qiskit-sdk-js/issues"
   },
   "dependencies": {
-    "@qiskit/qe": "^0.1.9",
+    "@qiskit/cloud": "^0.1.9",
     "@qiskit/utils": "^0.1.9"
   },
   "engines": {

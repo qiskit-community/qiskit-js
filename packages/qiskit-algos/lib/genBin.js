@@ -7,7 +7,7 @@
 
 'use strict';
 
-const Qe = require('@qiskit/qe');
+const Cloud = require('@qiskit/cloud');
 
 const utils = require('./utils');
 const { name } = require('../package');
@@ -23,10 +23,10 @@ function buildParam(circuit) {
 module.exports = async (token, userId, opts = {}) => {
   const len = opts.length || 16;
   const backend = opts.backend || 'ibmqx4';
-  const qe = new Qe();
+  const cloud = new Cloud();
 
-  qe.token = token;
-  qe.userId = token;
+  cloud.token = token;
+  cloud.userId = token;
 
   const backendQubits = backends[backend].nQubits;
   const circuits = buildCircuits(len, backendQubits);
@@ -38,7 +38,7 @@ module.exports = async (token, userId, opts = {}) => {
   circuitsMassaged[0].name = 'random';
   dbg('Massaged circuits', circuitsMassaged);
 
-  const res = await qe.runBatch(circuitsMassaged, {
+  const res = await cloud.runBatch(circuitsMassaged, {
     backend: opts.backend || 'simulator',
     shots: opts.shots || 1,
     maxCredits: opts.maxCredits || null,

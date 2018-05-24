@@ -9,7 +9,7 @@ Please visit the [main repository](https://github.com/QISKit/qiskit-sdk-js) of t
 :inbox_tray: You can take the same browserified version from here:
 
 - [qiskit-qasm.js](./qiskit-qasm.js): Only the `@qiskit/qasm` component, also [the same API that for node.js](../packages/qiskit-qasm/README.md). The global `qiskitQasm` is exposed.
-- [qiskit-qe.js](./qiskit-qe.js): The same for the `@qiskit/qe` component, also [the same API](../packages/qiskit-qe/README.md) and the global is `QiskitQe`.
+- [qiskit-cloud.js](./qiskit-cloud.js): The same for the `@qiskit/cloud` component, also [the same API](../packages/qiskit-cloud/README.md) and the global is `QiskitQe`.
 - [qiskit-sim.js](./qiskit-sim.js): The same for the `@qiskit/sim` component, also [the same API](../packages/qiskit-sim/README.md) and the global is `qiskitSim`.
 
 If you needed a new version of the bundled files, please run:

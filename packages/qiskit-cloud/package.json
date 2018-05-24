@@ -1,5 +1,5 @@
 {
-  "name": "@qiskit/qe",
+  "name": "@qiskit/cloud",
   "version": "0.1.9",
   "description":
     "Quantum Information Software library to use the Quantum Experience",

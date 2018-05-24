@@ -5,7 +5,7 @@
   <meta charset="utf-8"/>
   <title>qiskit.js</title>
   <script src="./qiskit-sim.js"></script>
-  <script src="./qiskit-qe.js"></script>
+  <script src="./qiskit-cloud.js"></script>
 
   <style>
     #ide {
@@ -26,11 +26,11 @@
 
 <body>
 
-  <h2>qiskit.js QE</h1>
-  <div id="versionQe">v:</div>
+  <h2>QISKit.js Cloud</h1>
+  <div id="versionCloud">v:</div>
   <div id="backends">Default backends queue info:</div>
 
-  <h2>qiskit.js sim</h1>
+  <h2>QISKit.js sim</h1>
   <div id="version">v:</div>
   
   <button>Run</button>
@@ -135,8 +135,8 @@
         return;
       }
 
-      if (!qiskitSim) {
-        alert('qiskit-qe is not present :(');
+      if (!QiskitCloud) {
+        alert('qiskit-cloud is not present :(');
         return;
       }
 
@@ -145,18 +145,18 @@
       console.log('Sim version:')
       console.log(qiskitSim.version);
 
-      const qe = new QiskitQe();
-      console.log('QE version:')
-      console.log(qe.version);
+      const cloud = new QiskitCloud();
+      console.log('Cloud version:')
+      console.log(cloud.version);
 
       const version = document.getElementById('version');
       version.innerHTML = `${version.innerHTML} ${qiskitSim.version}`;
 
-      const versionQe = document.getElementById('versionQe');
-      versionQe.innerHTML = `${versionQe.innerHTML} ${qe.version}`;
+      const versionCloud = document.getElementById('versionCloud');
+      versionCloud.innerHTML = `${versionCloud.innerHTML} ${cloud.version}`;
 
       console.log('Making a check request to QE ...');
-      qe.queues()
+      cloud.queues()
       .then(data => {
         console.log(data);
         const backends = document.getElementById('backends');

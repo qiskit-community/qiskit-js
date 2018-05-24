@@ -17,9 +17,9 @@ const Qe = require('../..');
 const expErrRegex = require('../errorRe');
 
 // Already logged instance.
-const { qe } = global.qiskitTest;
+const { cloud } = global.qiskitTest;
 
-describe('qe:credits', () => {
+describe('cloud:credits', () => {
   it('should fail if no logged', async () =>
     utilsTest.throwsAsync(() => new Qe().credits(), expErrRegex.loginBefore));
 
@@ -28,7 +28,7 @@ describe('qe:credits', () => {
       this.skip();
     }
 
-    const res = await qe.credits();
+    const res = await cloud.credits();
 
     assert.deepEqual(Object.keys(res), [
       'promotional',
