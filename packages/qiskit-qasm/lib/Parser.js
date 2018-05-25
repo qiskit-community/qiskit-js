@@ -1,13 +1,11 @@
-/*
-  Copyright IBM Corp. 2017. All Rights Reserved.
-
-  This code may only be used under the Apache 2.0 license found at
-  http://www.apache.org/licenses/LICENSE-2.0.txt.
-
-  Authors:
-  - Jesús Pérez <jesusper@us.ibm.com>
-  - Jorge Carballo <carballo@us.ibm.com>
-*/
+/**
+ * @license
+ *
+ * Copyright (c) 2017-present, IBM Research.
+ *
+ * This source code is licensed under the Apache license found in the
+ * LICENSE.txt file in the root directory of this source tree.
+ */
 
 'use strict';
 

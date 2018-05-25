@@ -1,5 +1,5 @@
 /*!
- * Qiskit Qasm v0.1.9 (May 24th 2018)
+ * Qiskit Qasm v0.2.0 (May 24th 2018)
  * Quantum Information Software Kit OpenQASM library
  * https://github.com/QISKit/qiskit-sdk-js
  * @author  IBM RESEARCH (http://research.ibm.com)
@@ -1044,15 +1044,14 @@ function hasOwnProperty(obj, prop) {
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"./support/isBuffer":5,"_process":3,"inherits":4}],7:[function(require,module,exports){
-/*
-  Copyright IBM Corp. 2017. All Rights Reserved.
-
-  This code may only be used under the Apache 2.0 license found at
-  http://www.apache.org/licenses/LICENSE-2.0.txt.
-
-  Authors:
-  - Jesús Pérez <jesusper@us.ibm.com>
-*/
+/**
+ * @license
+ *
+ * Copyright (c) 2017-present, IBM Research.
+ *
+ * This source code is licensed under the Apache license found in the
+ * LICENSE.txt file in the root directory of this source tree.
+ */
 
 'use strict';
 
@@ -1068,16 +1067,14 @@ module.exports = {
 
 },{"./lib/Parser":8,"./lib/QasmError":9,"./package":41}],8:[function(require,module,exports){
 (function (__filename){
-/*
-  Copyright IBM Corp. 2017. All Rights Reserved.
-
-  This code may only be used under the Apache 2.0 license found at
-  http://www.apache.org/licenses/LICENSE-2.0.txt.
-
-  Authors:
-  - Jesús Pérez <jesusper@us.ibm.com>
-  - Jorge Carballo <carballo@us.ibm.com>
-*/
+/**
+ * @license
+ *
+ * Copyright (c) 2017-present, IBM Research.
+ *
+ * This source code is licensed under the Apache license found in the
+ * LICENSE.txt file in the root directory of this source tree.
+ */
 
 'use strict';
 
@@ -1092,7 +1089,7 @@ const dbg = utils.dbg(__filename);
 // const QasmError = require('./QasmError');
 
 // TODO: Do async?
-const bnf = "/*\n Copyright IBM Corp. 2017. All Rights Reserved.\n \n This code may only be used under the Apache 2.0 license found at\n http://www.apache.org/licenses/LICENSE-2.0.txt.\n\n Authors:\n - John Smolin (original code)\n - Jay Gambetta (original code)\n - Jorge Carballo <carballo@us.ibm.com>\n - Jesús Pérez <jesusper@us.ibm.com>\n*/\n\n\n/**************************************************\n * Lexical Grammar\n **************************************************/\n%lex\n%%\n\n\"//\".*                  /* skip comments */\n\\s+                     /* skip whitespace */ // ??\n[0-9]+(\".\"[0-9]+)\\b     return 'REAL'\n[-]?[0-9]+              return 'INT'\n\"IBMQASM\"               return 'IBMQASM'\n\"OPENQASM\"              return 'IBMQASM'\n\"include\"               return 'include'\n\"\\\"qelib1.inc\\\"\"        return 'QELIB.INC'\n\"qreg\"                  return 'QREG'\n\"creg\"                  return 'CREG'\n\"CX\"                    return 'CX'\n\"U\"                     return 'U'\n\"measure\"               return 'MEASURE'\n\"barrier\"               return 'BARRIER'\n\"reset\"                 return 'RESET'\n\"opaque\"                return 'OPAQUE'\n\"->\"                    return '->'\n\";\"                     return ';'\n\",\"                     return ','\n\"(\"                     return '('\n\")\"                     return ')'\n\"{\"                     return '{'\n\"}\"                     return '}'\n\"+\"                     return '+'\n\"-\"                     return '-'\n\"*\"                     return '*'\n\"/\"                     return '/'\n\"gate\"                  return 'GATE'\n\"pi\"                    return 'PI'\n// \"theta\"                 return 'THETA'\n// \"phi\"                   return 'PHI'\n// \"lambda\"                return 'LAMBDA'\n[a-z][a-zA-Z0-9]{0,30}\\b return 'ID'\n\"[\"                     return '['\n\"]\"\t                    return ']'\n<<EOF>>                 return 'EOF'\n\n/lex\n\n%left '+' '-'\n%left '*' '/'\n%left '^'\n\n/**************************************************\n * HELPERS\n **************************************************/\n%{\n  const lodash = require('lodash');\n  const util = require('util');\n\n  // List of register definitionsutil\n  const externalFuncs = ['sin', 'cos', 'tan', 'exp', 'ln', 'sqrt'];\n  var registers = [];\n  // List of defined Gates\n  var gateDefinitions = [];\n\n  function launchError(line, msg) {\n      const err = new Error('qasm:' + msg);\n      err.line = line;\n\n      // TODO: Drop, only to debug \n      //console.log('------------------------');\n      //console.log(err);\n      //console.log('------------------------');\n\n      // TODO: Use QasmError  \n      throw err;\n  }\n\n  function addRegister(register, line) {\n    var equalsRegisters = registers.filter(function(value) {\n      return value.identifier === register.identifier;\n    });\n\n    if (equalsRegisters && equalsRegisters.length > 0) {\n      launchError(line, 'Register '+ register.identifier + ' is already defined ');\n    };\n\n    registers.push(register);\n  }\n\n  function buildQReg(identifier, number) {\n    return {\n      type: 'qubit',\n      identifier: identifier,\n      number: number\n    }\n  }\n\n  function buildCReg(identifier, number) {\n    return {\n      type: 'clbit',\n      identifier: identifier,\n      number: number\n    }\n  }\n\n  function buildBarrier(identifiers) {\n    return {\n      type: 'barrier',\n      identifiers\n    }\n  }\n\n  function buildReset(qreg) {\n    return {\n      type: 'reset',\n      qreg\n    }\n  }\n\n  function buildMeasure(qreg, creg) {\n    return {\n      type: 'measure',\n      qreg,\n      creg\n    }\n  }\n  \n  function buildOpaque(name, gateScope, bitList, gateIdList) {\n    return {\n      type: 'opaque',\n      gateScope,\n      bitList,\n      gateIdList\n    }\n  }\n\n  function buildGate(name, identifiers, params, qelib, line) {\n    const gate = {\n      type: name,\n      identifiers\n    };\n\n    // The first time (to parse the standard library - qelib) we dont pass it.\n    if (qelib) {\n        const defined = lodash.find(qelib, { name }); \n\n        if (!defined) {\n            launchError(line, `Gate ${name} is not defined`);\n        }\n    }\n\n    if (params) { gate.params = params; }\n\n    return gate;\n  }\n\n  // TODO: Review this.\n  function addGate(gate, line) {\n    var equalsGates = gateDefinitions.filter(function(value) {\n      return value.name === gate.name;\n    });\n\n    if (equalsGates && equalsGates.length > 0) {\n      launchError(line, 'Gate '+ gate.name + ' is already defined ');\n    };\n\n    gateDefinitions.push(gate);\n  }\n%}\n\n\n/**************************************************\n * Grammar\n **************************************************/\n%start StartProgram\n\n%parse-param qelibParsed\n\n%% /* language grammar */\n\nStartProgram\n    : MainProgram EOF\n      {\n        // console.log('qelibParsed:');\n        // console.log(util.inspect(qelibParsed, { depth: null }));\n        \n        return $1;\n      }\n    ;\n\nMainProgram\n    : IbmDefinition\n    | IbmDefinition Program { $$ = $2; }\n    | Library \n    ;\n\nIbmDefinition\n    : IBMQASM REAL ';' Include\n    | IBMQASM REAL ';'\n    ;\n\nInclude\n    : 'include' 'QELIB.INC' ';' // TODO: Support include in parser\n    ;\n\nLibrary\n    : Declaration { $$ = [ $1 ]; }\n    | Library Declaration\n      {\n        $$ = $Library;\n        $$.push($Declaration);\n      }\n    ;\n\nProgram\n    : Statement { $$ = [ $1 ]; }\n    | Program Statement\n      {\n        $$ = $Program;\n        $$.push($Statement);\n      }\n    ;\n\nStatement\n    : Declaration { addRegister($1, @1.first_line); $1; }\n    | QOperation ';'\n    | Magic ';'\n    // TODO: The user can define its own gates\n    // | GateDefinition { console.log('Definition: %j', $1); }\n    ;\n\nDeclaration\n    : QRegDeclaration\n    | CRegDeclaration\n    | GateDeclaration\n    ;\n\nQRegDeclaration\n    : QREG ID '[' INT ']' ';' { $$ = buildQReg($2, $4); }\n    ;\n\nCRegDeclaration\n    : CREG ID '[' INT ']' ';' { $$ = buildCReg($2, $4); }\n    ;\n\nGateDeclaration\n    : GATE Id GateScope BitList GateBody\n      {\n        $$ = {\n            name: $Id,\n            bitList: $BitList,\n            body: $GateBody\n        };\n      }\n    | GATE Id GateScope '(' ')' BitList GateBody\n      {\n        $$ = {\n            name: $Id,\n            bitList: $BitList,\n            body: $GateBody\n        };\n      }\n    | GATE Id GateScope '(' GateIdList ')' BitList GateBody\n      {\n        $$ = {\n            name: $Id,\n            params: $GateIdList,\n            bitList: $BitList,\n            body: $GateBody\n        };\n      }\n    ;\n\nGateIdList\n    : Gate { $$ = [ $1 ]; }\n    | GateIdList ',' Gate\n      {\n        $$ = $GateIdList;\n        $$.push($Gate);\n      }\n    ;\n\nGate\n    : Id\n    ;\n\n    // TODO: empty in the source ???\nGateScope\n    :\n    ;\n\nBitList\n    : Bit { $$ = [ $1 ]; }\n    | BitList ',' Bit\n      {\n        $$ = $BitList;\n        $$.push($Bit);\n      }\n    ;\n\nBit\n    : Id\n    ;\n\nGateBody\n    : '{' GateOpList '}' { $$ = $GateOpList; }\n    | '{' '}'\n    ;\n\nGateOpList\n    : GateOp { $$ = [ $1 ]; }\n    | GateOpList GateOp\n      {\n        $$ = $GateOpList;\n        $$.push($GateOp);\n      }\n    ;\n\nGateOp\n    : U '(' ExpList ')' Id ';' { $$ = buildGate('u', [ $Id ], $ExpList, qelibParsed); }\n    | CX Id ',' Id ';' { $$ = buildGate('cx', [$2, $4], null, qelibParsed); }\n    | Id IdList ';' { $$ = buildGate($Id, $IdList, null, qelibParsed); }\n    | Id '(' ')' IdList ';' { $$ = buildGate($Id, $IdList, null, qelibParsed); }\n    | Id '(' ExpList ')' IdList ';' { $$ = buildGate($Id, $IdList, $ExpList, qelibParsed); }\n    | BARRIER IdList ';' { $$ = buildBarrier($IdList); }\n    ;\n\nExpList\n    : Expression { $$ = [ $1 ]; }\n    | ExpList ',' Expression\n      {\n        $$ = $ExpList;\n        $$.push($Expression);\n      }\n    ;\n\nExpression\n    : MultiplicativeExpression\n    | Expression '^' MultiplicativeExpression { $$ = `${$1}^${$3}`; }\n    ;\n\nMultiplicativeExpression\n    : AdditiveExpression\n    | MultiplicativeExpression '*' MultiplicativeExpression { $$ = `${$1}*${$3}`; }\n    | MultiplicativeExpression '/' MultiplicativeExpression { $$ = `${$1}/${$3}`; }\n    ;\n\nAdditiveExpression\n    : PrefixExpression\n    | AdditiveExpression '+' AdditiveExpression { $$ = `${$1}+${$3}`; }\n    | AdditiveExpression '-' AdditiveExpression { $$ = `${$1}-${$3}`; }\n    ;\n\nPrefixExpression\n    : Unary\n    | '+' PrefixExpression {  $$ = `+${$PrefixExpression}`; }\n    | '-' PrefixExpression {  $$ = `-${$PrefixExpression}`; }\n    ;\n\nUnary\n    : INT\n    | REAL\n    | PI\n    | Id\n    | '(' Expression ')' { $$ = $2; }\n    // | Id '(' Expression ')'\n    | Id '(' Expression ')'\n      {\n        if (!lodash.includes(externalFuncs, $Id)) {\n            launchError(@Id.first_line, `Illegal external function call: ${$Id}`);\n        }\n\n        $$ = `${$Expression}(${$Id})`;\n      }\n    ;\n\nQOperation\n    : UnitaryOperation\n    | Opaque\n    | Measure\n    | Barrier\n    | Reset\n    // | if\n    ;\n\nUnitaryOperation\n    : U '(' ExprList ')' Primary ';' { $$ = buildGate('u', [ $Primary ], $ExpList, qelibParsed); }\n    | CX Primary ',' Primary { $$ = buildGate($1, [ $2, $4 ], null, qelibParsed); }\n    | Id PrimaryList { $$ = buildGate($Id, $PrimaryList, null, qelibParsed); }\n    | Id '(' ')' PrimaryList { $$ = buildGate($Id, $PrimaryList, null, qelibParsed); }\n    | Id '(' ExpressionList ')' PrimaryList { $$ = buildGate($Id, $PrimaryList, $ExpressionList, qelibParsed); }\n    ;\n\n\nPrimary\n    : Id { $$ = { name: $Id }; }\n    | IndexedId\n    ;\n\nId\n    : ID\n    ;\n\nPrimaryList\n    : Primary { $$ = [ $1 ]; }\n    | PrimaryList ',' Primary\n      {\n        $$ = $PrimaryList;\n        $$.push($Primary);\n      }\n    ;\n\nIndexedId\n    : ID '[' INT ']'\n      {\n        $$ = {\n          name: $ID,\n          index: $INT\n        };\n      }\n    ;\n\nBarrier\n    : BARRIER PrimaryList { $$ = buildBarrier($2); }\n    ;\n\nMeasure\n    : MEASURE Primary '->' Primary { $$ = buildMeasure($2, $4); }\n    ;\n\nIdList\n    : Id { $$ = [ $1 ]; }\n    | IdList ',' Id\n      {\n        $$ = $IdList;\n        $$.push($Id);\n      }\n    ;\n\nReset\n    : RESET Primary { $$ = buildReset($2); }\n    ;\n\nOpaque\n    : OPAQUE Id GateScope BitList { $$ = buildOpaque($Id, $GateScope, $BitList); }\n    | OPAQUE Id GateScope '(' ')' BitList { $$ = buildOpaque($Id, $GateScope, $BitList); }\n    | OPAQUE Id GateScope '(' GateIdList ')' BitList { $$ = buildOpaque($Id, $GateScope, $BitList, $GateIdList); }\n    ;\n\n";
+const bnf = "/**\n * @license\n *\n * Copyright (c) 2017-present, IBM Research.\n *\n * This source code is licensed under the Apache license found in the\n * LICENSE.txt file in the root directory of this source tree.\n\n * Authors original code:\n - John Smolin\n - Jay Gambetta\n */\n\n/**************************************************\n * Lexical Grammar\n **************************************************/\n%lex\n%%\n\n\"//\".*                  /* skip comments */\n\\s+                     /* skip whitespace */ // ??\n[0-9]+(\".\"[0-9]+)\\b     return 'REAL'\n[-]?[0-9]+              return 'INT'\n\"IBMQASM\"               return 'IBMQASM'\n\"OPENQASM\"              return 'IBMQASM'\n\"include\"               return 'include'\n\"\\\"qelib1.inc\\\"\"        return 'QELIB.INC'\n\"qreg\"                  return 'QREG'\n\"creg\"                  return 'CREG'\n\"CX\"                    return 'CX'\n\"U\"                     return 'U'\n\"measure\"               return 'MEASURE'\n\"barrier\"               return 'BARRIER'\n\"reset\"                 return 'RESET'\n\"opaque\"                return 'OPAQUE'\n\"->\"                    return '->'\n\";\"                     return ';'\n\",\"                     return ','\n\"(\"                     return '('\n\")\"                     return ')'\n\"{\"                     return '{'\n\"}\"                     return '}'\n\"+\"                     return '+'\n\"-\"                     return '-'\n\"*\"                     return '*'\n\"/\"                     return '/'\n\"gate\"                  return 'GATE'\n\"pi\"                    return 'PI'\n// \"theta\"                 return 'THETA'\n// \"phi\"                   return 'PHI'\n// \"lambda\"                return 'LAMBDA'\n[a-z][a-zA-Z0-9]{0,30}\\b return 'ID'\n\"[\"                     return '['\n\"]\"\t                    return ']'\n<<EOF>>                 return 'EOF'\n\n/lex\n\n%left '+' '-'\n%left '*' '/'\n%left '^'\n\n/**************************************************\n * HELPERS\n **************************************************/\n%{\n  const lodash = require('lodash');\n  const util = require('util');\n\n  // List of register definitionsutil\n  const externalFuncs = ['sin', 'cos', 'tan', 'exp', 'ln', 'sqrt'];\n  var registers = [];\n  // List of defined Gates\n  var gateDefinitions = [];\n\n  function launchError(line, msg) {\n      const err = new Error('qasm:' + msg);\n      err.line = line;\n\n      // TODO: Drop, only to debug \n      //console.log('------------------------');\n      //console.log(err);\n      //console.log('------------------------');\n\n      // TODO: Use QasmError  \n      throw err;\n  }\n\n  function addRegister(register, line) {\n    var equalsRegisters = registers.filter(function(value) {\n      return value.identifier === register.identifier;\n    });\n\n    if (equalsRegisters && equalsRegisters.length > 0) {\n      launchError(line, 'Register '+ register.identifier + ' is already defined ');\n    };\n\n    registers.push(register);\n  }\n\n  function buildQReg(identifier, number) {\n    return {\n      type: 'qubit',\n      identifier: identifier,\n      number: number\n    }\n  }\n\n  function buildCReg(identifier, number) {\n    return {\n      type: 'clbit',\n      identifier: identifier,\n      number: number\n    }\n  }\n\n  function buildBarrier(identifiers) {\n    return {\n      type: 'barrier',\n      identifiers\n    }\n  }\n\n  function buildReset(qreg) {\n    return {\n      type: 'reset',\n      qreg\n    }\n  }\n\n  function buildMeasure(qreg, creg) {\n    return {\n      type: 'measure',\n      qreg,\n      creg\n    }\n  }\n  \n  function buildOpaque(name, gateScope, bitList, gateIdList) {\n    return {\n      type: 'opaque',\n      gateScope,\n      bitList,\n      gateIdList\n    }\n  }\n\n  function buildGate(name, identifiers, params, qelib, line) {\n    const gate = {\n      type: name,\n      identifiers\n    };\n\n    // The first time (to parse the standard library - qelib) we dont pass it.\n    if (qelib) {\n        const defined = lodash.find(qelib, { name }); \n\n        if (!defined) {\n            launchError(line, `Gate ${name} is not defined`);\n        }\n    }\n\n    if (params) { gate.params = params; }\n\n    return gate;\n  }\n\n  // TODO: Review this.\n  function addGate(gate, line) {\n    var equalsGates = gateDefinitions.filter(function(value) {\n      return value.name === gate.name;\n    });\n\n    if (equalsGates && equalsGates.length > 0) {\n      launchError(line, 'Gate '+ gate.name + ' is already defined ');\n    };\n\n    gateDefinitions.push(gate);\n  }\n%}\n\n\n/**************************************************\n * Grammar\n **************************************************/\n%start StartProgram\n\n%parse-param qelibParsed\n\n%% /* language grammar */\n\nStartProgram\n    : MainProgram EOF\n      {\n        // console.log('qelibParsed:');\n        // console.log(util.inspect(qelibParsed, { depth: null }));\n        \n        return $1;\n      }\n    ;\n\nMainProgram\n    : IbmDefinition\n    | IbmDefinition Program { $$ = $2; }\n    | Library \n    ;\n\nIbmDefinition\n    : IBMQASM REAL ';' Include\n    | IBMQASM REAL ';'\n    ;\n\nInclude\n    : 'include' 'QELIB.INC' ';' // TODO: Support include in parser\n    ;\n\nLibrary\n    : Declaration { $$ = [ $1 ]; }\n    | Library Declaration\n      {\n        $$ = $Library;\n        $$.push($Declaration);\n      }\n    ;\n\nProgram\n    : Statement { $$ = [ $1 ]; }\n    | Program Statement\n      {\n        $$ = $Program;\n        $$.push($Statement);\n      }\n    ;\n\nStatement\n    : Declaration { addRegister($1, @1.first_line); $1; }\n    | QOperation ';'\n    | Magic ';'\n    // TODO: The user can define its own gates\n    // | GateDefinition { console.log('Definition: %j', $1); }\n    ;\n\nDeclaration\n    : QRegDeclaration\n    | CRegDeclaration\n    | GateDeclaration\n    ;\n\nQRegDeclaration\n    : QREG ID '[' INT ']' ';' { $$ = buildQReg($2, $4); }\n    ;\n\nCRegDeclaration\n    : CREG ID '[' INT ']' ';' { $$ = buildCReg($2, $4); }\n    ;\n\nGateDeclaration\n    : GATE Id GateScope BitList GateBody\n      {\n        $$ = {\n            name: $Id,\n            bitList: $BitList,\n            body: $GateBody\n        };\n      }\n    | GATE Id GateScope '(' ')' BitList GateBody\n      {\n        $$ = {\n            name: $Id,\n            bitList: $BitList,\n            body: $GateBody\n        };\n      }\n    | GATE Id GateScope '(' GateIdList ')' BitList GateBody\n      {\n        $$ = {\n            name: $Id,\n            params: $GateIdList,\n            bitList: $BitList,\n            body: $GateBody\n        };\n      }\n    ;\n\nGateIdList\n    : Gate { $$ = [ $1 ]; }\n    | GateIdList ',' Gate\n      {\n        $$ = $GateIdList;\n        $$.push($Gate);\n      }\n    ;\n\nGate\n    : Id\n    ;\n\n    // TODO: empty in the source ???\nGateScope\n    :\n    ;\n\nBitList\n    : Bit { $$ = [ $1 ]; }\n    | BitList ',' Bit\n      {\n        $$ = $BitList;\n        $$.push($Bit);\n      }\n    ;\n\nBit\n    : Id\n    ;\n\nGateBody\n    : '{' GateOpList '}' { $$ = $GateOpList; }\n    | '{' '}'\n    ;\n\nGateOpList\n    : GateOp { $$ = [ $1 ]; }\n    | GateOpList GateOp\n      {\n        $$ = $GateOpList;\n        $$.push($GateOp);\n      }\n    ;\n\nGateOp\n    : U '(' ExpList ')' Id ';' { $$ = buildGate('u', [ $Id ], $ExpList, qelibParsed); }\n    | CX Id ',' Id ';' { $$ = buildGate('cx', [$2, $4], null, qelibParsed); }\n    | Id IdList ';' { $$ = buildGate($Id, $IdList, null, qelibParsed); }\n    | Id '(' ')' IdList ';' { $$ = buildGate($Id, $IdList, null, qelibParsed); }\n    | Id '(' ExpList ')' IdList ';' { $$ = buildGate($Id, $IdList, $ExpList, qelibParsed); }\n    | BARRIER IdList ';' { $$ = buildBarrier($IdList); }\n    ;\n\nExpList\n    : Expression { $$ = [ $1 ]; }\n    | ExpList ',' Expression\n      {\n        $$ = $ExpList;\n        $$.push($Expression);\n      }\n    ;\n\nExpression\n    : MultiplicativeExpression\n    | Expression '^' MultiplicativeExpression { $$ = `${$1}^${$3}`; }\n    ;\n\nMultiplicativeExpression\n    : AdditiveExpression\n    | MultiplicativeExpression '*' MultiplicativeExpression { $$ = `${$1}*${$3}`; }\n    | MultiplicativeExpression '/' MultiplicativeExpression { $$ = `${$1}/${$3}`; }\n    ;\n\nAdditiveExpression\n    : PrefixExpression\n    | AdditiveExpression '+' AdditiveExpression { $$ = `${$1}+${$3}`; }\n    | AdditiveExpression '-' AdditiveExpression { $$ = `${$1}-${$3}`; }\n    ;\n\nPrefixExpression\n    : Unary\n    | '+' PrefixExpression {  $$ = `+${$PrefixExpression}`; }\n    | '-' PrefixExpression {  $$ = `-${$PrefixExpression}`; }\n    ;\n\nUnary\n    : INT\n    | REAL\n    | PI\n    | Id\n    | '(' Expression ')' { $$ = $2; }\n    // | Id '(' Expression ')'\n    | Id '(' Expression ')'\n      {\n        if (!lodash.includes(externalFuncs, $Id)) {\n            launchError(@Id.first_line, `Illegal external function call: ${$Id}`);\n        }\n\n        $$ = `${$Expression}(${$Id})`;\n      }\n    ;\n\nQOperation\n    : UnitaryOperation\n    | Opaque\n    | Measure\n    | Barrier\n    | Reset\n    // | if\n    ;\n\nUnitaryOperation\n    : U '(' ExprList ')' Primary ';' { $$ = buildGate('u', [ $Primary ], $ExpList, qelibParsed); }\n    | CX Primary ',' Primary { $$ = buildGate($1, [ $2, $4 ], null, qelibParsed); }\n    | Id PrimaryList { $$ = buildGate($Id, $PrimaryList, null, qelibParsed); }\n    | Id '(' ')' PrimaryList { $$ = buildGate($Id, $PrimaryList, null, qelibParsed); }\n    | Id '(' ExpressionList ')' PrimaryList { $$ = buildGate($Id, $PrimaryList, $ExpressionList, qelibParsed); }\n    ;\n\n\nPrimary\n    : Id { $$ = { name: $Id }; }\n    | IndexedId\n    ;\n\nId\n    : ID\n    ;\n\nPrimaryList\n    : Primary { $$ = [ $1 ]; }\n    | PrimaryList ',' Primary\n      {\n        $$ = $PrimaryList;\n        $$.push($Primary);\n      }\n    ;\n\nIndexedId\n    : ID '[' INT ']'\n      {\n        $$ = {\n          name: $ID,\n          index: $INT\n        };\n      }\n    ;\n\nBarrier\n    : BARRIER PrimaryList { $$ = buildBarrier($2); }\n    ;\n\nMeasure\n    : MEASURE Primary '->' Primary { $$ = buildMeasure($2, $4); }\n    ;\n\nIdList\n    : Id { $$ = [ $1 ]; }\n    | IdList ',' Id\n      {\n        $$ = $IdList;\n        $$.push($Id);\n      }\n    ;\n\nReset\n    : RESET Primary { $$ = buildReset($2); }\n    ;\n\nOpaque\n    : OPAQUE Id GateScope BitList { $$ = buildOpaque($Id, $GateScope, $BitList); }\n    | OPAQUE Id GateScope '(' ')' BitList { $$ = buildOpaque($Id, $GateScope, $BitList); }\n    | OPAQUE Id GateScope '(' GateIdList ')' BitList { $$ = buildOpaque($Id, $GateScope, $BitList, $GateIdList); }\n    ;\n\n";
 let parser;
 
 class Parser {
@@ -1130,15 +1127,14 @@ module.exports = Parser;
 
 }).call(this,"/packages/qiskit-qasm/lib/Parser.js")
 },{"./utils":10,"jison":26,"path":2}],9:[function(require,module,exports){
-/*
-  Copyright IBM Corp. 2017. All Rights Reserved.
-
-  This code may only be used under the Apache 2.0 license found at
-  http://www.apache.org/licenses/LICENSE-2.0.txt.
-
-  Authors:
-  - Jesús Pérez <jesusper@us.ibm.com>
-*/
+/**
+ * @license
+ *
+ * Copyright (c) 2017-present, IBM Research.
+ *
+ * This source code is licensed under the Apache license found in the
+ * LICENSE.txt file in the root directory of this source tree.
+ */
 
 'use strict';
 
@@ -1178,15 +1174,14 @@ util.inherits(QasmError, Error);
 module.exports = QasmError;
 
 },{"util":6}],10:[function(require,module,exports){
-/*
-  Copyright IBM Corp. 2017. All Rights Reserved.
-
-  This code may only be used under the Apache 2.0 license found at
-  http://www.apache.org/licenses/LICENSE-2.0.txt.
-
-  Authors:
-  - Jesús Pérez <jesusper@us.ibm.com>
-*/
+/**
+ * @license
+ *
+ * Copyright (c) 2017-present, IBM Research.
+ *
+ * This source code is licensed under the Apache license found in the
+ * LICENSE.txt file in the root directory of this source tree.
+ */
 
 'use strict';
 
@@ -16760,7 +16755,7 @@ define(function (require, exports, module) {
 },{"amdefine":12}],41:[function(require,module,exports){
 module.exports={
   "name": "@qiskit/qasm",
-  "version": "0.1.9",
+  "version": "0.2.0",
   "description": "Quantum Information Software Kit OpenQASM library",
   "author": {
     "name": "IBM RESEARCH",
@@ -16794,7 +16789,7 @@ module.exports={
     "url": "https://github.com/QISKit/qiskit-sdk-js/issues"
   },
   "dependencies": {
-    "@qiskit/utils": "^0.1.9",
+    "@qiskit/utils": "^0.2.0",
     "jison": "^0.4.18"
   },
   "engines": {
@@ -16802,7 +16797,9 @@ module.exports={
   },
   "license": "Apache-2.0",
   "browserify": {
-    "transform": ["brfs"]
+    "transform": [
+      "brfs"
+    ]
   },
   "publishConfig": {
     "access": "public"
@@ -16810,15 +16807,14 @@ module.exports={
 }
 
 },{}],42:[function(require,module,exports){
-/*
-  Copyright IBM Corp. 2017. All Rights Reserved.
-
-  This code may only be used under the Apache 2.0 license found at
-  http://www.apache.org/licenses/LICENSE-2.0.txt.
-
-  Authors:
-  - Jesús Pérez <jesusper@us.ibm.com>
-*/
+/**
+ * @license
+ *
+ * Copyright (c) 2017-present, IBM Research.
+ *
+ * This source code is licensed under the Apache license found in the
+ * LICENSE.txt file in the root directory of this source tree.
+ */
 
 'use strict';
 
@@ -35043,7 +35039,7 @@ function plural(ms, n, name) {
 },{}],51:[function(require,module,exports){
 module.exports={
   "name": "@qiskit/utils",
-  "version": "0.1.9",
+  "version": "0.2.0",
   "description": "Quantum Information Software utils library",
   "author": {
     "name": "IBM RESEARCH",

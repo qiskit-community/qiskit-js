@@ -1,5 +1,5 @@
 /*!
- * Qiskit Cloud v0.1.9 (May 24th 2018)
+ * Qiskit Cloud v0.2.0 (May 24th 2018)
  * Quantum Information Software library to use the Quantum Experience
  * https://github.com/QISKit/qiskit-sdk-js
  * @author  IBM RESEARCH (http://research.ibm.com)
@@ -34936,20 +34936,19 @@ module.exports={
   },
   "limits": {
     "shots": [0, 8192]
-  } 
+  }
 }
 
 },{}],199:[function(require,module,exports){
 (function (process,__filename){
-/*
-  Copyright IBM Corp. 2017. All Rights Reserved.
-
-  This code may only be used under the Apache 2.0 license found at
-  http://www.apache.org/licenses/LICENSE-2.0.txt.
-
-  Authors:
-  - Jesús Pérez <jesusper@us.ibm.com>
-*/
+/**
+ * @license
+ *
+ * Copyright (c) 2017-present, IBM Research.
+ *
+ * This source code is licensed under the Apache license found in the
+ * LICENSE.txt file in the root directory of this source tree.
+ */
 
 'use strict';
 
@@ -35295,15 +35294,14 @@ module.exports = Qe;
 }).call(this,require('_process'),"/packages/qiskit-cloud/index.js")
 },{"./cfg.json":198,"./lib/massageJob":200,"./lib/parser":201,"./lib/request":202,"./lib/utils":203,"./package":383,"_process":136}],200:[function(require,module,exports){
 (function (__filename){
-/*
-  Copyright IBM Corp. 2017. All Rights Reserved.
-
-  This code may only be used under the Apache 2.0 license found at
-  http://www.apache.org/licenses/LICENSE-2.0.txt.
-
-  Authors:
-  - Jesús Pérez <jesusper@us.ibm.com>
-*/
+/**
+ * @license
+ *
+ * Copyright (c) 2017-present, IBM Research.
+ *
+ * This source code is licensed under the Apache license found in the
+ * LICENSE.txt file in the root directory of this source tree.
+ */
 
 'use strict';
 
@@ -35360,15 +35358,14 @@ module.exports = resJob => {
 
 }).call(this,"/packages/qiskit-cloud/lib/massageJob.js")
 },{"./utils":203}],201:[function(require,module,exports){
-/*
-  Copyright IBM Corp. 2017. All Rights Reserved.
-
-  This code may only be used under the Apache 2.0 license found at
-  http://www.apache.org/licenses/LICENSE-2.0.txt.
-
-  Authors:
-  - Jesús Pérez <jesusper@us.ibm.com>
-*/
+/**
+ * @license
+ *
+ * Copyright (c) 2017-present, IBM Research.
+ *
+ * This source code is licensed under the Apache license found in the
+ * LICENSE.txt file in the root directory of this source tree.
+ */
 
 'use strict';
 
@@ -35401,15 +35398,14 @@ module.exports.bool = value => {
 };
 
 },{}],202:[function(require,module,exports){
-/*
-  Copyright IBM Corp. 2017. All Rights Reserved.
-
-  This code may only be used under the Apache 2.0 license found at
-  http://www.apache.org/licenses/LICENSE-2.0.txt.
-
-  Authors:
-  - Jesús Pérez <jesusper@us.ibm.com>
-*/
+/**
+ * @license
+ *
+ * Copyright (c) 2017-present, IBM Research.
+ *
+ * This source code is licensed under the Apache license found in the
+ * LICENSE.txt file in the root directory of this source tree.
+ */
 
 'use strict';
 
@@ -35459,15 +35455,14 @@ async function request(uri, opts = {}) {
 module.exports = request;
 
 },{"request-promise-native":328}],203:[function(require,module,exports){
-/*
-  Copyright IBM Corp. 2017. All Rights Reserved.
-
-  This code may only be used under the Apache 2.0 license found at
-  http://www.apache.org/licenses/LICENSE-2.0.txt.
-
-  Authors:
-  - Jesús Pérez <jesusper@us.ibm.com>
-*/
+/**
+ * @license
+ *
+ * Copyright (c) 2017-present, IBM Research.
+ *
+ * This source code is licensed under the Apache license found in the
+ * LICENSE.txt file in the root directory of this source tree.
+ */
 
 'use strict';
 
@@ -72878,9 +72873,8 @@ WError.prototype.cause = function we_cause(c)
 },{"assert-plus":250,"core-util-is":259,"extsprintf":265,"util":195}],383:[function(require,module,exports){
 module.exports={
   "name": "@qiskit/cloud",
-  "version": "0.1.9",
-  "description":
-    "Quantum Information Software library to use the Quantum Experience",
+  "version": "0.2.0",
+  "description": "Quantum Information Software library to use the Quantum Experience",
   "author": {
     "name": "IBM RESEARCH",
     "url": "http://research.ibm.com"
@@ -72911,7 +72905,7 @@ module.exports={
     "url": "https://github.com/QISKit/qiskit-sdk-js/issues"
   },
   "dependencies": {
-    "@qiskit/utils": "^0.1.9",
+    "@qiskit/utils": "^0.2.0",
     "request": "^2.83.0",
     "request-promise-native": "^1.0.5"
   },
@@ -72926,15 +72920,14 @@ module.exports={
 }
 
 },{}],384:[function(require,module,exports){
-/*
-  Copyright IBM Corp. 2017. All Rights Reserved.
-
-  This code may only be used under the Apache 2.0 license found at
-  http://www.apache.org/licenses/LICENSE-2.0.txt.
-
-  Authors:
-  - Jesús Pérez <jesusper@us.ibm.com>
-*/
+/**
+ * @license
+ *
+ * Copyright (c) 2017-present, IBM Research.
+ *
+ * This source code is licensed under the Apache license found in the
+ * LICENSE.txt file in the root directory of this source tree.
+ */
 
 'use strict';
 
@@ -91159,7 +91152,7 @@ function plural(ms, n, name) {
 },{}],393:[function(require,module,exports){
 module.exports={
   "name": "@qiskit/utils",
-  "version": "0.1.9",
+  "version": "0.2.0",
   "description": "Quantum Information Software utils library",
   "author": {
     "name": "IBM RESEARCH",

@@ -1,10 +1,11 @@
-/*
-  Copyright IBM Research Emergent Solutions
-            Jesús Pérez <jesusprubio@gmail.com>
-
-  This code may only be used under the MIT license found at
-  https://opensource.org/licenses/MIT.
-*/
+/**
+ * @license
+ *
+ * Copyright (c) 2017-present, IBM Research.
+ *
+ * This source code is licensed under the Apache license found in the
+ * LICENSE.txt file in the root directory of this source tree.
+ */
 
 'use strict';
 
