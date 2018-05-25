@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+* License header in source code files to be consistent with the rest of the projects.
+* JS distribution files rebundled.
+
 ## [0.2.0] - 2018-05-24
 
 ### Added

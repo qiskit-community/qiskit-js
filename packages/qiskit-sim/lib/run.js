@@ -1,15 +1,16 @@
-/*
-  Copyright IBM Corp. 2017. All Rights Reserved.
-
-  This code may only be used under the Apache 2.0 license found at
-  http://www.apache.org/licenses/LICENSE-2.0.txt.
-
-  Authors:
-  - John Smolin (original code)
-  - Jay Gambetta (original code)
-  - Ismael Faro <Ismael.Faro1@ibm.com>
-  - Jesús Pérez <jesusper@us.ibm.com>
-*/
+/**
+ * @license
+ *
+ * Copyright (c) 2017-present, IBM Research.
+ *
+ * This source code is licensed under the Apache license found in the
+ * LICENSE.txt file in the root directory of this source tree.
+ *
+ * Authors original code:
+ * - John Smolin
+ * - Jay Gambetta
+ * - Ismael Faro
+ */
 
 /*
   (Slow) Javascript simulator that returns the unitary of the circuit.

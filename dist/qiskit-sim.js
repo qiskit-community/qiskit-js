@@ -1,5 +1,5 @@
 /*!
- * Qiskit Sim v0.1.9 (May 24th 2018)
+ * Qiskit Sim v0.2.0 (May 24th 2018)
  * Quantum Information Software Kit simulator
  * https://github.com/QISKit/qiskit-sdk-js
  * @author  IBM RESEARCH (http://research.ibm.com)
@@ -1536,15 +1536,14 @@ function hasOwnProperty(obj, prop) {
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"./support/isBuffer":5,"_process":3,"inherits":4}],7:[function(require,module,exports){
-/*
-  Copyright IBM Corp. 2017. All Rights Reserved.
-
-  This code may only be used under the Apache 2.0 license found at
-  http://www.apache.org/licenses/LICENSE-2.0.txt.
-
-  Authors:
-  - Jesús Pérez <jesusper@us.ibm.com>
-*/
+/**
+ * @license
+ *
+ * Copyright (c) 2017-present, IBM Research.
+ *
+ * This source code is licensed under the Apache license found in the
+ * LICENSE.txt file in the root directory of this source tree.
+ */
 
 'use strict';
 
@@ -1563,18 +1562,19 @@ module.exports = {
 };
 
 },{"./lib/gateSingle":8,"./lib/gateTwo":9,"./lib/run":10,"./lib/state0":11,"./package":564}],8:[function(require,module,exports){
-/*
-  Copyright IBM Corp. 2017. All Rights Reserved.
-
-  This code may only be used under the Apache 2.0 license found at
-  http://www.apache.org/licenses/LICENSE-2.0.txt.
-
-  Authors:
-  - John Smolin (original code)
-  - Jay Gambetta (original code)
-  - Ismael Faro <Ismael.Faro1@ibm.com>
-  - Jesús Pérez <jesusper@us.ibm.com>
-*/
+/**
+ * @license
+ *
+ * Copyright (c) 2017-present, IBM Research.
+ *
+ * This source code is licensed under the Apache license found in the
+ * LICENSE.txt file in the root directory of this source tree.
+ *
+ * Authors original code:
+ * - John Smolin
+ * - Jay Gambetta
+ * - Ismael Faro
+ */
 
 // TODO: Add tests.
 
@@ -1600,18 +1600,19 @@ module.exports = (gate, qubit, nQubits, state) => {
 
 },{"mathjs":19}],9:[function(require,module,exports){
 (function (__filename){
-/*
-  Copyright IBM Corp. 2017. All Rights Reserved.
-
-  This code may only be used under the Apache 2.0 license found at
-  http://www.apache.org/licenses/LICENSE-2.0.txt.
-
-  Authors:
-  - John Smolin (original code)
-  - Jay Gambetta (original code)
-  - Ismael Faro <Ismael.Faro1@ibm.com>
-  - Jesús Pérez <jesusper@us.ibm.com>
-*/
+/**
+ * @license
+ *
+ * Copyright (c) 2017-present, IBM Research.
+ *
+ * This source code is licensed under the Apache license found in the
+ * LICENSE.txt file in the root directory of this source tree.
+ *
+ * Authors original code:
+ * - John Smolin
+ * - Jay Gambetta
+ * - Ismael Faro
+ */
 
 'use strict';
 
@@ -1720,18 +1721,19 @@ module.exports = (gate, qubit0, qubit1, numQbits, state) => {
 }).call(this,"/packages/qiskit-sim/lib/gateTwo.js")
 },{"./utils":12,"assert":1,"mathjs":19}],10:[function(require,module,exports){
 (function (__filename){
-/*
-  Copyright IBM Corp. 2017. All Rights Reserved.
-
-  This code may only be used under the Apache 2.0 license found at
-  http://www.apache.org/licenses/LICENSE-2.0.txt.
-
-  Authors:
-  - John Smolin (original code)
-  - Jay Gambetta (original code)
-  - Ismael Faro <Ismael.Faro1@ibm.com>
-  - Jesús Pérez <jesusper@us.ibm.com>
-*/
+/**
+ * @license
+ *
+ * Copyright (c) 2017-present, IBM Research.
+ *
+ * This source code is licensed under the Apache license found in the
+ * LICENSE.txt file in the root directory of this source tree.
+ *
+ * Authors original code:
+ * - John Smolin
+ * - Jay Gambetta
+ * - Ismael Faro
+ */
 
 /*
   (Slow) Javascript simulator that returns the unitary of the circuit.
@@ -1863,18 +1865,19 @@ module.exports = circuit => {
 
 }).call(this,"/packages/qiskit-sim/lib/run.js")
 },{"./gateSingle":8,"./gateTwo":9,"./utils":12,"mathjs":19}],11:[function(require,module,exports){
-/*
-  Copyright IBM Corp. 2017. All Rights Reserved.
-
-  This code may only be used under the Apache 2.0 license found at
-  http://www.apache.org/licenses/LICENSE-2.0.txt.
-
-  Authors:
-  - John Smolin (original code)
-  - Jay Gambetta (original code)
-  - Ismael Faro <Ismael.Faro1@ibm.com>
-  - Jesús Pérez <jesusper@us.ibm.com>
-*/
+/**
+ * @license
+ *
+ * Copyright (c) 2017-present, IBM Research.
+ *
+ * This source code is licensed under the Apache license found in the
+ * LICENSE.txt file in the root directory of this source tree.
+ *
+ * Authors original code:
+ * - John Smolin
+ * - Jay Gambetta
+ * - Ismael Faro
+ */
 
 // TODO: Add tests.
 
@@ -1894,15 +1897,14 @@ module.exports = state => {
 };
 
 },{"mathjs":19}],12:[function(require,module,exports){
-/*
-  Copyright IBM Corp. 2017. All Rights Reserved.
-
-  This code may only be used under the Apache 2.0 license found at
-  http://www.apache.org/licenses/LICENSE-2.0.txt.
-
-  Authors:
-  - Jesús Pérez <jesusper@us.ibm.com>
-*/
+/**
+ * @license
+ *
+ * Copyright (c) 2017-present, IBM Research.
+ *
+ * This source code is licensed under the Apache license found in the
+ * LICENSE.txt file in the root directory of this source tree.
+ */
 
 'use strict';
 
@@ -60764,7 +60766,7 @@ module.exports = E;
 },{}],564:[function(require,module,exports){
 module.exports={
   "name": "@qiskit/sim",
-  "version": "0.1.9",
+  "version": "0.2.0",
   "description": "Quantum Information Software Kit simulator",
   "author": {
     "name": "IBM RESEARCH",
@@ -60799,7 +60801,7 @@ module.exports={
     "url": "https://github.com/QISKit/qiskit-sdk-js/issues"
   },
   "dependencies": {
-    "@qiskit/utils": "^0.1.9",
+    "@qiskit/utils": "^0.2.0",
     "mathjs": "^3.17.0"
   },
   "engines": {
@@ -60813,15 +60815,14 @@ module.exports={
 }
 
 },{}],565:[function(require,module,exports){
-/*
-  Copyright IBM Corp. 2017. All Rights Reserved.
-
-  This code may only be used under the Apache 2.0 license found at
-  http://www.apache.org/licenses/LICENSE-2.0.txt.
-
-  Authors:
-  - Jesús Pérez <jesusper@us.ibm.com>
-*/
+/**
+ * @license
+ *
+ * Copyright (c) 2017-present, IBM Research.
+ *
+ * This source code is licensed under the Apache license found in the
+ * LICENSE.txt file in the root directory of this source tree.
+ */
 
 'use strict';
 
@@ -79046,7 +79047,7 @@ function plural(ms, n, name) {
 },{}],574:[function(require,module,exports){
 module.exports={
   "name": "@qiskit/utils",
-  "version": "0.1.9",
+  "version": "0.2.0",
   "description": "Quantum Information Software utils library",
   "author": {
     "name": "IBM RESEARCH",
