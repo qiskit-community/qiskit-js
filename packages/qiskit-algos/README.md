@@ -45,7 +45,7 @@ The actual version of the library.
 Generate a true random number among 0 and 1.
 
 * `opts` (object) - Optional parameters:
-  * `engine` (string) - Where to run the operation. Please visit the section [structure](#structure) to see the supported ones. The number of digits depends on the selected engine. (default: "js")
+  * `engine` (string) - Where to run the operation. Please visit the [packages](https://github.ibm.com/jesusper/qiskit-sdk-js-next/tree/master/packages) to see the supported ones. The number of digits depends on the selected engine. (default: "js")
   * `length` (number) - Number of random hex characters to ask for to the engine. As you can see in the doc referenced before each engine has different limit, they will throw in it's overpassed. (default: 16)
   * `format` (string) - To ask for the result in a different format, supported ("hex").
   * `token` (string) - Some engines need an access token (visit each specific doc).
