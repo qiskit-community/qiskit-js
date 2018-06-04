@@ -13,6 +13,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 > - 🐛 Fixed
 > - 👾 Security
 
+## [Unreleased-private]
+
+### Added
+
+* Multiple engine support to "qiskit-algos" package: ANU, JS
+
 ## [Unreleased]
 
 ### ✏️ Changed

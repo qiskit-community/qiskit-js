@@ -1,0 +1,47 @@
+{
+  "name": "@qiskit/algos-ibm",
+  "version": "0.2.0",
+  "description": "IBM Q engine for QISKit algorithms",
+  "author": {
+    "name": "IBM RESEARCH",
+    "url": "http://research.ibm.com"
+  },
+  "homepage": "https://github.com/QISKit/qiskit-sdk-js",
+  "contributors": [
+    "https://github.com/QISKit/qiskit-sdk-js/graphs/contributors"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/QISKit/qiskit-sdk-js"
+  },
+  "scripts": {
+    "dep-check": "depcheck",
+    "test": "mocha --recursive test --timeout 20000"
+  },
+  "keywords": [
+    "quantum",
+    "experience",
+    "computing",
+    "information",
+    "algorithms",
+    "random",
+    "shor",
+    "factor",
+    "IBM"
+  ],
+  "bugs": {
+    "url": "https://github.com/QISKit/qiskit-sdk-js/issues"
+  },
+  "dependencies": {
+    "@qiskit/cloud": "^0.2.0",
+    "@qiskit/utils": "^0.2.0"
+  },
+  "engines": {
+    "node": ">=8",
+    "npm": ">=5"
+  },
+  "license": "Apache-2.0",
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -16,6 +16,7 @@ const debug = require('debug');
 const ayb = require('all-your-base');
 
 const { version } = require('./package.json');
+const genRandom = require('./lib/genRandom');
 
 function pathToTag(fullPath) {
   const res = path.basename(fullPath, '.js');
@@ -32,5 +33,6 @@ utils.version = version;
 utils.pathToTag = pathToTag;
 utils.debug = debug;
 utils.ayb = ayb;
+utils.genRandom = genRandom;
 
 module.exports = utils;

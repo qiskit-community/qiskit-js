@@ -1,0 +1,29 @@
+# QISKit.js algorithms (ANU)
+
+The [Australian National University](http://www.anu.edu.au) [Quantum Random Numbers Server](https://qrng.anu.edu.au) engine (chip) for the [QISKit algorithms package](https://github.com/QISKit/qiskit-sdk-js/tree/master/packages/qiskit-algos).
+
+## Install
+
+:coffee: Install [Node.js](https://nodejs.org/download) v8 and then:
+
+```sh
+npm i @qiskit/algos-anu
+```
+
+## Use
+
+:pencil: You can visit the complete example [in this test](./test/functional/index.js).
+
+```js
+const algos = require('@qiskit/algos-anu');
+
+console.log('Version');
+console.log(algos.version);
+```
+
+## API
+
+:eyes: Please check the [main doc](../../README.md#API). The methods signature is the same but:
+
+* As expected, the `engine` parameter is omitted here.
+* Only the `random` method is supported.
