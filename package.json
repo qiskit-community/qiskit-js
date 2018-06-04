@@ -9,6 +9,10 @@
     "dep-check":
       "depcheck --ignore-dirs=dist --ignores='brfs,brfs-babel,browserify-banner,mocha,nsp,husky' && lerna run dep-check",
     "dep-sec": "lerna run dep-sec",
+    "test-algos": "lerna run test --scope @qiskit/algos",
+    "test-algos-js": "lerna run test --scope @qiskit/algos-js",
+    "test-algos-ibm": "lerna run test --scope @qiskit/algos-ibm",
+    "test-algos-anu": "lerna run test --scope @qiskit/algos-anu",
     "test-qasm": "lerna run test --scope @qiskit/qasm",
     "test-cloud": "lerna run test --scope @qiskit/cloud",
     "test-sdk": "lerna run test --scope @qiskit/sdk",
