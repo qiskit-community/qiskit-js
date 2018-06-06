@@ -5,15 +5,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+> **Tags:**
+> - 🎉 Added
+> - ✏️ Changed
+> - ⚠️ Deprecated
+> - ❌ Removed
+> - 🐛 Fixed
+> - 👾 Security
+
 ## [Unreleased-private]
 
 ### Added
 
-* Multiple engine support to "qiskit-algos" package.
+* Multiple engine support to "qiskit-algos" package: ANU, JS
 
 ## [Unreleased]
 
-### Changed
+### ✏️ Changed
 
 * License header in source code files to be consistent with the rest of the projects.
 * JS distribution files rebundled.
@@ -21,11 +29,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [0.2.0] - 2018-05-24
 
-### Added
+### 🎉 Added
 
 * Doc about how to make releases easier.
 
-### Changed
+### ✏️ Changed
 
 * Minor typos in the README file.
 * Following new dev guideline: code of conduct, file naming, issue/PR templates, etc.
@@ -33,92 +41,90 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 * Package "qiskit-qe" renamed to [qiskit-cloud](https://github.com/QISKit/qiskit-sdk-js/tree/master/packages/qiskit-cloud).
 * JS distribution files rebundled.
 
-### Deleted
+### ❌ Removed
 
 * nsp dropped because now npm supports it natively.
 
-### Security
-
-* Insecure dependencies updated.
-
-### Fix
+### 🐛 Fixed
 
 * Main README and CONTRIBUTING files.
 * To support the new simulator name.
 
+### 👾 Security
+
+* Insecure dependencies updated.
+
 ## [0.1.9] - 2018-04-27
 
-### Added
+### 🎉 Added
 
 * Node.js v10 support.
 
-### Changed
+### ✏️ Changed
 
 * Package "qiskit-cli" renamed to [qiskit-sdk](https://github.com/QISKit/qiskit-sdk-js/tree/master/packages/qiskit-sdk).
 * Minor improvements/fixes in the README file.
 
-### Deleted
+### ❌ Removed
 
 * All "package-lock" files
 
-### Fixed
+### 🐛 Fixed
 
 * Some old tests after last changes.
 
 ## [0.1.8] - 2018-04-24
 
-### Changed
+### ✏️ Changed
 
 * Good practices in the codebase, to respect new development guide.
 
-### Security
-
-* Updated the library "elasticsearch" to avoid insecure dependencies.
-
-### Fixed
+### 🐛 Fixed
 
 * Avoid a break when options not passed.
 
+### 👾 Security
+
+* Updated the library "elasticsearch" to avoid insecure dependencies.
+
 ## [0.1.7] - 2018-04-24
 
-### Added
+### 🎉 Added
 
 * Publish scoped packages support for npm.
 
-### Fixed
+### 🐛 Fixed
 
 * Copy/paste error in the main README file.
 
 ## [0.1.6] - 2018-04-24
 
-### Added
+### 🎉 Added
 
 * Package [qiskit-algos](https://github.com/QISKit/qiskit-sdk-js/tree/master/packages/qiskit-devs).
 
 ## [0.1.5] - 2018-2-20
 
-### Deleted
-
-* Old not needed stuff.
-
-### Changed
+### ✏️ Changed
 
 * [Jest](https://facebook.github.io/jest) test engine for [snap-shot-it](https://github.com/bahmutov/snap-shot-it) (mocha support).
 * [depcheck](https://www.npmjs.com/package/depcheck) instead [npm-check](https://www.npmjs.com/package/npm-check).
 * Using native [util.promisify](https://nodejs.org/api/util.html#util_util_promisify_original) instead the external library.
 * Client side libraries rebundled.
 
-### Fixed
+### ❌ Removed
+
+* Not used dependencies.
+* Old not needed stuff.
+
+### 🐛 Fixed
 
 * Minor test fail discovered after last changes.
 * Change in lerna setup to allow markdown files in npm.
 * Travis badge in the main README file.
 
-### Deleted
-
-* Not used dependencies.
-
-[unreleased]: https://github.com/QISKit/qiskit-sdk-js/compare/v0.1.9...HEAD
+[unreleased]: https://github.com/QISKit/qiskit-sdk-js/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/QISKit/qiskit-sdk-js/compare/v0.1.9...v0.2.0
 [0.1.9]: https://github.com/QISKit/qiskit-sdk-js/compare/v0.1.8...v0.1.9
 [0.1.8]: https://github.com/QISKit/qiskit-sdk-js/compare/v0.1.7...v0.1.8
 [0.1.7]: https://github.com/QISKit/qiskit-sdk-js/compare/v0.1.6...v0.1.7
