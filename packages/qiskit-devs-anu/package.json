@@ -1,7 +1,8 @@
 {
-  "name": "@qiskit/algos-ibm",
+  "name": "@qiskit/devs-anu",
   "version": "0.2.0",
-  "description": "IBM Q engine for QISKit algorithms",
+  "description":
+    "Australia National University engine for QISKit for developers",
   "author": {
     "name": "IBM RESEARCH",
     "url": "http://research.ibm.com"
@@ -20,20 +21,18 @@
   },
   "keywords": [
     "quantum",
-    "experience",
     "computing",
     "information",
     "algorithms",
     "random",
     "shor",
-    "factor",
-    "IBM"
+    "Australian National University"
   ],
   "bugs": {
     "url": "https://github.com/QISKit/qiskit-sdk-js/issues"
   },
   "dependencies": {
-    "@qiskit/cloud": "^0.2.0",
+    "qrand": "^0.1.3",
     "@qiskit/utils": "^0.2.0"
   },
   "engines": {

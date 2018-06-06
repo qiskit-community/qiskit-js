@@ -1,13 +1,13 @@
 # QISKit.js algorithms (pure JavaScript)
 
-Pure JS engine ([jsqubitjs](https://www.research.ibm.com/ibm-q) based) engine (simulator) for the [QISKit algorithms package](https://github.com/QISKit/qiskit-sdk-js/tree/master/packages/qiskit-algos).
+Pure JS engine ([jsqubitjs](https://www.research.ibm.com/ibm-q) based) engine (simulator) for the [QISKit algorithms package](https://github.com/QISKit/qiskit-sdk-js/tree/master/packages/qiskit-devs).
 
 ## Install
 
 :coffee: Install [Node.js](https://nodejs.org/download) v8 and then:
 
 ```sh
-npm i @qiskit/algos-js
+npm i @qiskit/devs-js
 ```
 
 ## Use
@@ -15,10 +15,10 @@ npm i @qiskit/algos-js
 :pencil: You can visit the complete example [in this test](test/functional.js).
 
 ```js
-const algos = require('@qiskit/algos-js');
+const qiskit = require('@qiskit/devs-js');
 
 console.log('Version');
-console.log(algos.version);
+console.log(qiskit.version);
 ```
 
 ## API

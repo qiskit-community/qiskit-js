@@ -13,9 +13,9 @@ const assert = require('assert');
 
 const genBin = require('../lib/genBin');
 
-describe('algos:genBin', () => {
+describe('devs:genBin', () => {
   it('should return a jobId', async function t() {
-    if (!global.qiskitTestAlgos || !global.qiskitTestAlgos.integration) {
+    if (!global.qiskitTestDevs || !global.qiskitTestDevs.integration) {
       this.skip();
     }
     const res = await genBin(process.env.QE_TOKEN, process.env.USER_ID);

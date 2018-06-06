@@ -13,7 +13,7 @@ const assert = require('assert');
 
 const utils = require('@qiskit/utils');
 
-const algos = require('..');
+const qiskit = require('..');
 const { name, version } = require('../package');
 const genHex = require('../lib/genHex');
 
@@ -22,19 +22,19 @@ const dbg = utils.debug(`${name}:test`);
 describe('api', () => {
   it('should include all documented items', () => {
     assert.equal(
-      utils.difference(['version', 'random'], Object.keys(algos)),
+      utils.difference(['version', 'random', 'factor'], Object.keys(qiskit)),
       0,
     );
   });
 });
 
 describe('version', () => {
-  it('should be included', () => assert.equal(algos.version, version));
+  it('should be included', () => assert.equal(qiskit.version, version));
 });
 
 describe('random', () => {
   it('should return a number between 0 and 1 without options', async () => {
-    const res = await algos.random();
+    const res = await qiskit.random();
     dbg('Result', res);
 
     assert.ok(res >= 0);

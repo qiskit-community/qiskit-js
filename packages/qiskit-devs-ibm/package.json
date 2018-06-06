@@ -1,7 +1,7 @@
 {
-  "name": "@qiskit/algos-js",
+  "name": "@qiskit/devs-ibm",
   "version": "0.2.0",
-  "description": "Pure JavaScript engine for QISKit algorithms",
+  "description": "IBM Q engine for QISKit for developers",
   "author": {
     "name": "IBM RESEARCH",
     "url": "http://research.ibm.com"
@@ -27,13 +27,13 @@
     "random",
     "shor",
     "factor",
-    "jsqubitsjs"
+    "IBM"
   ],
   "bugs": {
     "url": "https://github.com/QISKit/qiskit-sdk-js/issues"
   },
   "dependencies": {
-    "jsqubits": "^1.0.0",
+    "@qiskit/cloud": "^0.2.0",
     "@qiskit/utils": "^0.2.0"
   },
   "engines": {

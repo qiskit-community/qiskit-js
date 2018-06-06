@@ -1,7 +1,7 @@
 {
-  "name": "@qiskit/algos",
+  "name": "@qiskit/devs-js",
   "version": "0.2.0",
-  "description": "Quantum Information algorithms for humans",
+  "description": "Pure JavaScript engine for QISKit for developers",
   "author": {
     "name": "IBM RESEARCH",
     "url": "http://research.ibm.com"
@@ -27,13 +27,13 @@
     "random",
     "shor",
     "factor",
-    "IBM"
+    "jsqubitsjs"
   ],
   "bugs": {
     "url": "https://github.com/QISKit/qiskit-sdk-js/issues"
   },
   "dependencies": {
-    "@qiskit/cloud": "^0.2.0",
+    "jsqubits": "^1.0.0",
     "@qiskit/utils": "^0.2.0"
   },
   "engines": {

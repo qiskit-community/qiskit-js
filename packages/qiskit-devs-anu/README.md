@@ -1,13 +1,13 @@
 # QISKit.js algorithms (ANU)
 
-The [Australian National University](http://www.anu.edu.au) [Quantum Random Numbers Server](https://qrng.anu.edu.au) engine (chip) for the [QISKit algorithms package](https://github.com/QISKit/qiskit-sdk-js/tree/master/packages/qiskit-algos).
+The [Australian National University](http://www.anu.edu.au) [Quantum Random Numbers Server](https://qrng.anu.edu.au) engine (chip) for the [QISKit algorithms package](https://github.com/QISKit/qiskit-sdk-js/tree/master/packages/qiskit-devs).
 
 ## Install
 
 :coffee: Install [Node.js](https://nodejs.org/download) v8 and then:
 
 ```sh
-npm i @qiskit/algos-anu
+npm i @qiskit/devs-anu
 ```
 
 ## Use
@@ -15,10 +15,10 @@ npm i @qiskit/algos-anu
 :pencil: You can visit the complete example [in this test](./test/functional/index.js).
 
 ```js
-const algos = require('@qiskit/algos-anu');
+const qiskit = require('@qiskit/devs-anu');
 
 console.log('Version');
-console.log(algos.version);
+console.log(qiskit.version);
 ```
 
 ## API

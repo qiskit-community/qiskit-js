@@ -22,7 +22,7 @@ function buildParam(circuit) {
   return { qasm: circuit };
 }
 
-// TODO: Reuse "utils.genRandom" like in the other "qiskit-algos=*" packages.
+// TODO: Reuse "utils.genRandom" like in the other "qiskit-devs=*" packages.
 module.exports = async (token, userId, opts = {}) => {
   const len = opts.length || 16;
   const backend = opts.backend || 'ibmqx4';

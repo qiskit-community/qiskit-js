@@ -13,7 +13,7 @@ const assert = require('assert');
 
 const Cloud = require('@qiskit/cloud');
 
-const algos = require('..');
+const qiskit = require('..');
 const { version } = require('../package');
 
 const cloud = new Cloud();
@@ -23,20 +23,20 @@ function multiIncludes(text, values) {
   return values.every(val => text.includes(val));
 }
 
-describe('algos:api', () => {
+describe('devs:api', () => {
   it('should include all documented items', () => {
-    assert.ok(multiIncludes(Object.keys(algos), ['random', 'result']));
+    assert.ok(multiIncludes(Object.keys(qiskit), ['random', 'result']));
   });
 
   it('should return the the correct result for its methods', () =>
-    assert.equal(algos.version, version));
+    assert.equal(qiskit.version, version));
 });
 
-describe('algos:version', () =>
-  it('should be correct', () => assert.equal(algos.version, version)));
+describe('devs:version', () =>
+  it('should be correct', () => assert.equal(qiskit.version, version)));
 
 // TODO: this is not the best solution, we're repeting things in @qiskit/cloud tests.
-describe('algos:result:random', () => {
+describe('devs:result:random', () => {
   it('should return the result passing jobId', async function t() {
     if (!process.env.QE_TOKEN || !process.env.QE_USER) {
       // Dirty trick to allow the tests which don´t need the API to run.
@@ -59,9 +59,9 @@ describe('algos:result:random', () => {
       this.skip();
     }
 
-    global.qiskitTestAlgos = { integration: true };
+    global.qiskitTestDevs = { integration: true };
 
-    const res = await algos.result(
+    const res = await qiskit.result(
       process.env.QE_TOKEN,
       process.env.USER_ID,
       // TODO

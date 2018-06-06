@@ -1,13 +1,13 @@
 # QISKit.js algorithms (IBM Q)
 
-[IBM Q](https://www.research.ibm.com/ibm-q) engine (chip and remote simulator) for the [QISKit algorithms package](https://github.com/QISKit/qiskit-sdk-js/tree/master/packages/qiskit-algos).
+[IBM Q](https://www.research.ibm.com/ibm-q) engine (chip and remote simulator) for the [QISKit algorithms package](https://github.com/QISKit/qiskit-sdk-js/tree/master/packages/qiskit-devs).
 
 ## Install
 
 :coffee: Install [Node.js](https://nodejs.org/download) v8 and then:
 
 ```sh
-npm i @qiskit/algos-ibm
+npm i @qiskit/devs-ibm
 ```
 
 ## Use
@@ -15,10 +15,10 @@ npm i @qiskit/algos-ibm
 :pencil: You can visit the complete example [in this test](./test/functional/index.js).
 
 ```js
-const algos = require('@qiskit/algos-ibm');
+const qiskit = require('@qiskit/devs-ibm');
 
 console.log('Version');
-console.log(algos.version);
+console.log(qiskit.version);
 ```
 
 ## API

@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 * License header in source code files to be consistent with the rest of the projects.
 * JS distribution files rebundled.
+* Package "qiskit-algos" renamed to [qiskit-devs](https://github.com/QISKit/qiskit-sdk-js/tree/master/packages/qiskit-devs).
 
 ## [0.2.0] - 2018-05-24
 
@@ -92,7 +93,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-* Package [qiskit-algos](https://github.com/QISKit/qiskit-sdk-js/tree/master/packages/qiskit-algos).
+* Package [qiskit-algos](https://github.com/QISKit/qiskit-sdk-js/tree/master/packages/qiskit-devs).
 
 ## [0.1.5] - 2018-2-20
 

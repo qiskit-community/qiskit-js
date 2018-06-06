@@ -30,7 +30,7 @@ const expectedCircuit =
   'measure q[2] -> c[2];\n' +
   'measure q[3] -> c[3];\n';
 
-describe('algos:buildCircuit', () => {
+describe('devs:buildCircuit', () => {
   it('should return a circuit for the default lenght', () =>
     assert.equal(buildCircuit(), expectedCircuit));
 
@@ -44,7 +44,7 @@ describe('algos:buildCircuit', () => {
   });
 });
 
-describe('algos:buildCircuits', () => {
+describe('devs:buildCircuits', () => {
   it('should return a group of circuits for the default options', () => {
     const circuits = buildCircuits();
 
