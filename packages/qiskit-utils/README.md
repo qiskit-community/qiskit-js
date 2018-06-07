@@ -2,7 +2,7 @@
 
 :atom_symbol: Quantum Information Science Kit utils library, shared among the rest of the qiskit-\* packages.
 
-Please visit the [main repository](https://github.com/QISKit/qiskit-sdk-js) of the project to know about the rest of the tools.
+Please visit the [main repository](https://github.com/QISKit/qiskit-js) of the project to know about the rest of the tools.
 
 ## Install
 

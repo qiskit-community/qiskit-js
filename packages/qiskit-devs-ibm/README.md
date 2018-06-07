@@ -1,6 +1,6 @@
 # QISKit.js algorithms (IBM Q)
 
-[IBM Q](https://www.research.ibm.com/ibm-q) engine (chip and remote simulator) for the [QISKit algorithms package](https://github.com/QISKit/qiskit-sdk-js/tree/master/packages/qiskit-devs).
+[IBM Q](https://www.research.ibm.com/ibm-q) engine (chip and remote simulator) for the [QISKit algorithms package](https://github.com/QISKit/qiskit-js/tree/master/packages/qiskit-devs).
 
 ## Install
 

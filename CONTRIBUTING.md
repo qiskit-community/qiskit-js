@@ -58,7 +58,7 @@ From here, depending of the nature of the project, we have specific recommendati
 * Get the code and install all dependencies:
 
 ```sh
-https://github.com/QISKit/qiskit-sdk-js
+https://github.com/QISKit/qiskit-js
 cd qiskit-sdk-js
 npm i
 ```

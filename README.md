@@ -100,7 +100,7 @@ A wrapper fot the [`qiskit-devs`](./packages/qiskit-devs) project.
 
 ## Authors
 
-:alien: https://github.com/QISKit/qiskit-sdk-js/graphs/contributors
+:alien: https://github.com/QISKit/qiskit-js/graphs/contributors
 
 Original code (Python) authors [here](https://github.com/QISKit/qiskit-sdk-py#authors-alphabetical).
 

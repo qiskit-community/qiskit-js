@@ -7,12 +7,10 @@
     "url": "http://research.ibm.com"
   },
   "homepage": "https://www.qiskit.org",
-  "contributors": [
-    "https://github.com/QISKit/qiskit-sdk-js/graphs/contributors"
-  ],
+  "contributors": ["https://github.com/QISKit/qiskit-js/graphs/contributors"],
   "repository": {
     "type": "git",
-    "url": "https://github.com/QISKit/qiskit-sdk-js"
+    "url": "https://github.com/QISKit/qiskit-js"
   },
   "bin": {
     "qiskitjs": "./bin/index.js"
@@ -40,7 +38,7 @@
     "IBM"
   ],
   "bugs": {
-    "url": "https://github.com/QISKit/qiskit-sdk-js/issues"
+    "url": "https://github.com/QISKit/qiskit-js/issues"
   },
   "dependencies": {
     "@qiskit/cloud": "^0.3.0",

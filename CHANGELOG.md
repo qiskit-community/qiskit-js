@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### ✏️ Changed
 
 * Renamed "Software Kit" to "Science Kit" everywhere.
+* Repository URL updated everywhere.
 
 ## [0.3.0] - 2018-06-07
 
@@ -30,7 +31,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 * License header in source code files to be consistent with the rest of the projects.
 * JS distribution files rebundled.
-* Package "qiskit-algos" renamed to [qiskit-devs](https://github.com/QISKit/qiskit-sdk-js/tree/master/packages/qiskit-devs).
+* Package "qiskit-algos" renamed to [qiskit-devs](https://github.com/QISKit/qiskit-js/tree/master/packages/qiskit-devs).
 
 ## [0.2.0] - 2018-05-24
 
@@ -43,7 +44,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 * Minor typos in the README file.
 * Following new dev guideline: code of conduct, file naming, issue/PR templates, etc.
   * Prettier support.
-* Package "qiskit-qe" renamed to [qiskit-cloud](https://github.com/QISKit/qiskit-sdk-js/tree/master/packages/qiskit-cloud).
+* Package "qiskit-qe" renamed to [qiskit-cloud](https://github.com/QISKit/qiskit-js/tree/master/packages/qiskit-cloud).
 * JS distribution files rebundled.
 
 ### ❌ Removed
@@ -67,7 +68,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### ✏️ Changed
 
-* Package "qiskit-cli" renamed to [qiskit-sdk](https://github.com/QISKit/qiskit-sdk-js/tree/master/packages/qiskit-sdk).
+* Package "qiskit-cli" renamed to [qiskit-sdk](https://github.com/QISKit/qiskit-js/tree/master/packages/qiskit-sdk).
 * Minor improvements/fixes in the README file.
 
 ### ❌ Removed
@@ -106,7 +107,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### 🎉 Added
 
-* Package [qiskit-algos](https://github.com/QISKit/qiskit-sdk-js/tree/master/packages/qiskit-devs).
+* Package [qiskit-algos](https://github.com/QISKit/qiskit-js/tree/master/packages/qiskit-devs).
 
 ## [0.1.5] - 2018-2-20
 
@@ -128,11 +129,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 * Change in lerna setup to allow markdown files in npm.
 * Travis badge in the main README file.
 
-[unreleased]: https://github.com/QISKit/qiskit-sdk-js/compare/v0.3.0...HEAD
-[0.3.0]: https://github.com/QISKit/qiskit-sdk-js/compare/v0.2.0...v0.3.0
-[0.2.0]: https://github.com/QISKit/qiskit-sdk-js/compare/v0.1.9...v0.2.0
-[0.1.9]: https://github.com/QISKit/qiskit-sdk-js/compare/v0.1.8...v0.1.9
-[0.1.8]: https://github.com/QISKit/qiskit-sdk-js/compare/v0.1.7...v0.1.8
-[0.1.7]: https://github.com/QISKit/qiskit-sdk-js/compare/v0.1.6...v0.1.7
-[0.1.6]: https://github.com/QISKit/qiskit-sdk-js/compare/v0.1.5...v0.1.6
-[0.1.5]: https://github.com/QISKit/qiskit-sdk-js/compare/170b827423cb605c99c599a0be2ab526359bac76...v0.1.5
+[unreleased]: https://github.com/QISKit/qiskit-js/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/QISKit/qiskit-js/compare/v0.2.0...v0.3.0
+[0.2.0]: https://github.com/QISKit/qiskit-js/compare/v0.1.9...v0.2.0
+[0.1.9]: https://github.com/QISKit/qiskit-js/compare/v0.1.8...v0.1.9
+[0.1.8]: https://github.com/QISKit/qiskit-js/compare/v0.1.7...v0.1.8
+[0.1.7]: https://github.com/QISKit/qiskit-js/compare/v0.1.6...v0.1.7
+[0.1.6]: https://github.com/QISKit/qiskit-js/compare/v0.1.5...v0.1.6
+[0.1.5]: https://github.com/QISKit/qiskit-js/compare/170b827423cb605c99c599a0be2ab526359bac76...v0.1.5

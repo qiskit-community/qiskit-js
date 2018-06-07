@@ -1,18 +1,17 @@
 {
   "name": "@qiskit/devs-anu",
   "version": "0.3.0",
-  "description": "Australia National University engine for QISKit for developers",
+  "description":
+    "Australia National University engine for QISKit for developers",
   "author": {
     "name": "IBM RESEARCH",
     "url": "http://research.ibm.com"
   },
-  "homepage": "https://github.com/QISKit/qiskit-sdk-js",
-  "contributors": [
-    "https://github.com/QISKit/qiskit-sdk-js/graphs/contributors"
-  ],
+  "homepage": "https://github.com/QISKit/qiskit-js",
+  "contributors": ["https://github.com/QISKit/qiskit-js/graphs/contributors"],
   "repository": {
     "type": "git",
-    "url": "https://github.com/QISKit/qiskit-sdk-js"
+    "url": "https://github.com/QISKit/qiskit-js"
   },
   "scripts": {
     "dep-check": "depcheck",
@@ -28,7 +27,7 @@
     "Australian National University"
   ],
   "bugs": {
-    "url": "https://github.com/QISKit/qiskit-sdk-js/issues"
+    "url": "https://github.com/QISKit/qiskit-js/issues"
   },
   "dependencies": {
     "@qiskit/utils": "^0.3.0",

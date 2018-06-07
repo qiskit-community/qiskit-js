@@ -2,7 +2,7 @@
 
 :atom_symbol: Quantum Information Science Kit Quantum Information algorithms for developers. The idea is to hide all quantum mechanics complexity exposing only the upper layer.
 
-Please visit the [main repository](https://github.com/QISKit/qiskit-sdk-js) of the project to know about the rest of the tools.
+Please visit the [main repository](https://github.com/QISKit/qiskit-js) of the project to know about the rest of the tools.
 
 ## Install
 
