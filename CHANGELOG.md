@@ -16,11 +16,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### ✏️ Changed
+
+* Renamed "Software Kit" to "Science Kit" everywhere.
+
 ## [0.3.0] - 2018-06-07
 
 ### 🎉 Added
 
-* Multiple engine support to "qiskit-algos" package: ANU, JS
+* Multiple engine support to "qiskit-algos" package: ANU, JS.
 
 ### ✏️ Changed
 

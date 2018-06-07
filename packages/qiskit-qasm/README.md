@@ -1,6 +1,6 @@
 # QISKit.js OpenQASM
 
-:atom_symbol: Quantum Information Software Kit [OpenQASM](https://github.com/IBM/qiskit-openqasm) library.
+:atom_symbol: Quantum Information Science Kit [OpenQASM](https://github.com/IBM/qiskit-openqasm) library.
 
 Please visit the [main repository](https://github.com/QISKit/qiskit-sdk-js) of the project to know about the rest of the tools.
 
@@ -37,35 +37,35 @@ console.log(util.inspect(parser.parse(circuit), { depth: null }));
 
 The actual version of the library.
 
-- `version` (string) - Version number.
+* `version` (string) - Version number.
 
 ### `Parser(opts) -> parser`
 
 The constructor accepts next option:
 
-- `core` (boolean) - To include core libraries. (default: true)
+* `core` (boolean) - To include core libraries. (default: true)
 
 ### `parser.parse(circuit) -> circuitJson`
 
 **NOTE: Method still partially implemented**
 Get the intermediate representation of the circuit using the OpenQASM parser.
 
-- `circuit` (string) - QASM circuit representation.
-- `circuitJson` (object): The same information in JSON format.
+* `circuit` (string) - QASM circuit representation.
+* `circuitJson` (object): The same information in JSON format.
 
 ### `QasmError(msg, opts) -> error`
 
 Custom QASM error class.
 
-- `msg` (string) - Error message.
-- `opts` (object) - Optional parameter, including next fields:
-  - `line` (number) - Line number where the error happened.
-  - `column` (number) - Column number where the error happened.
-  - `text` (string) - Text extracted from where the error happened.
-  - `token` (string) - Identifier found where the error happened.
-  - `expected` (string) - Regular expresion for supported values.
-- `error` (Error) - A common JS error including also next fields:
-  - `name` (string) - Error name ("QasmError").
-  - `message` (string) - Error message.
-  - `stack` (string) - Error stack.
-  - From here the same fields that for `opts` are included.
+* `msg` (string) - Error message.
+* `opts` (object) - Optional parameter, including next fields:
+  * `line` (number) - Line number where the error happened.
+  * `column` (number) - Column number where the error happened.
+  * `text` (string) - Text extracted from where the error happened.
+  * `token` (string) - Identifier found where the error happened.
+  * `expected` (string) - Regular expresion for supported values.
+* `error` (Error) - A common JS error including also next fields:
+  * `name` (string) - Error name ("QasmError").
+  * `message` (string) - Error message.
+  * `stack` (string) - Error stack.
+  * From here the same fields that for `opts` are included.

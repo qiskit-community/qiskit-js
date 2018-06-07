@@ -1,7 +1,8 @@
 {
   "name": "@qiskit/cloud",
   "version": "0.3.0",
-  "description": "Quantum Information Software library to use the Quantum Experience",
+  "description":
+    "Quantum Information Science kit to connect to the Quantum Experience",
   "author": {
     "name": "IBM RESEARCH",
     "url": "http://research.ibm.com"

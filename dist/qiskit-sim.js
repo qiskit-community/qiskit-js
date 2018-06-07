@@ -1,6 +1,6 @@
 /*!
  * Qiskit Sim v0.3.0 (June 7th 2018)
- * Quantum Information Software Kit simulator
+ * Quantum Information Science Kit simulator
  * https://github.com/QISKit/qiskit-sdk-js
  * @author  IBM RESEARCH (http://research.ibm.com)
  * @license Apache-2.0
@@ -60767,7 +60767,7 @@ module.exports = E;
 module.exports={
   "name": "@qiskit/sim",
   "version": "0.3.0",
-  "description": "Quantum Information Software Kit simulator",
+  "description": "Quantum Information Science Kit simulator",
   "author": {
     "name": "IBM RESEARCH",
     "url": "http://research.ibm.com"

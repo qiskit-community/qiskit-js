@@ -1,6 +1,6 @@
 # QISKit.js for the browser
 
-:atom_symbol: Quantum Information Software Kit for the browser.
+:atom_symbol: Quantum Information Science Kit for the browser.
 
 Please visit the [main repository](https://github.com/QISKit/qiskit-sdk-js) of the project to know about the rest of the tools.
 

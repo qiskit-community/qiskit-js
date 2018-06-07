@@ -1,7 +1,7 @@
 {
   "name": "@qiskit/qasm",
   "version": "0.3.0",
-  "description": "Quantum Information Software Kit OpenQASM library",
+  "description": "Quantum Information Science Kit OpenQASM library",
   "author": {
     "name": "IBM RESEARCH",
     "url": "http://research.ibm.com"
@@ -42,9 +42,7 @@
   },
   "license": "Apache-2.0",
   "browserify": {
-    "transform": [
-      "brfs"
-    ]
+    "transform": ["brfs"]
   },
   "publishConfig": {
     "access": "public"

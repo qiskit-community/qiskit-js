@@ -1,6 +1,6 @@
 /*!
  * Qiskit Qasm v0.3.0 (June 7th 2018)
- * Quantum Information Software Kit OpenQASM library
+ * Quantum Information Science Kit OpenQASM library
  * https://github.com/QISKit/qiskit-sdk-js
  * @author  IBM RESEARCH (http://research.ibm.com)
  * @license Apache-2.0
@@ -16756,7 +16756,7 @@ define(function (require, exports, module) {
 module.exports={
   "name": "@qiskit/qasm",
   "version": "0.3.0",
-  "description": "Quantum Information Software Kit OpenQASM library",
+  "description": "Quantum Information Science Kit OpenQASM library",
   "author": {
     "name": "IBM RESEARCH",
     "url": "http://research.ibm.com"

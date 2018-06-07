@@ -4,7 +4,7 @@
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/)
 [![Build Status](https://travis-ci.org/QISKit/qiskit-sdk-js.svg?branch=master)](https://travis-ci.org/QISKit/qiskit-sdk-js)
 
-:atom_symbol: [Quantum Information Software Kit](https://developer.ibm.com/open/openprojects/qiskit) for JavaScript.
+:atom_symbol: [Quantum Information Science Kit](https://developer.ibm.com/open/openprojects/qiskit) for JavaScript.
 
 :bulb: This project born as a clone (in JS) of [its big brother](https://github.com/QISKit/qiskit-sdk-py).
 

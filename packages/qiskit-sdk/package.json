@@ -1,7 +1,7 @@
 {
   "name": "@qiskit/sdk",
   "version": "0.3.0",
-  "description": "Quantum Information Software Kit meta-package",
+  "description": "Quantum Information Science Kit meta-package",
   "author": {
     "name": "IBM RESEARCH",
     "url": "http://research.ibm.com"
