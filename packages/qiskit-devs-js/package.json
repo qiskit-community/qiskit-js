@@ -1,6 +1,6 @@
 {
   "name": "@qiskit/devs-js",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Pure JavaScript engine for QISKit for developers",
   "author": {
     "name": "IBM RESEARCH",
@@ -33,8 +33,8 @@
     "url": "https://github.com/QISKit/qiskit-sdk-js/issues"
   },
   "dependencies": {
-    "jsqubits": "^1.0.0",
-    "@qiskit/utils": "^0.2.0"
+    "@qiskit/utils": "^0.3.0",
+    "jsqubits": "^1.0.0"
   },
   "engines": {
     "node": ">=8",
