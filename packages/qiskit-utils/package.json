@@ -7,9 +7,7 @@
     "url": "http://research.ibm.com"
   },
   "homepage": "https://github.com/QISKit/qiskit-js",
-  "contributors": [
-    "https://github.com/QISKit/qiskit-js/graphs/contributors"
-  ],
+  "contributors": ["https://github.com/QISKit/qiskit-js/graphs/contributors"],
   "repository": {
     "type": "git",
     "url": "https://github.com/QISKit/qiskit-js"
