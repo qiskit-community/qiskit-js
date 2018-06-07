@@ -1,5 +1,5 @@
 /*!
- * Qiskit Qasm v0.2.0 (May 24th 2018)
+ * Qiskit Qasm v0.3.0 (June 7th 2018)
  * Quantum Information Software Kit OpenQASM library
  * https://github.com/QISKit/qiskit-sdk-js
  * @author  IBM RESEARCH (http://research.ibm.com)
@@ -16755,7 +16755,7 @@ define(function (require, exports, module) {
 },{"amdefine":12}],41:[function(require,module,exports){
 module.exports={
   "name": "@qiskit/qasm",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Quantum Information Software Kit OpenQASM library",
   "author": {
     "name": "IBM RESEARCH",
@@ -16789,7 +16789,7 @@ module.exports={
     "url": "https://github.com/QISKit/qiskit-sdk-js/issues"
   },
   "dependencies": {
-    "@qiskit/utils": "^0.2.0",
+    "@qiskit/utils": "^0.3.0",
     "jison": "^0.4.18"
   },
   "engines": {
@@ -16825,6 +16825,7 @@ const debug = require('debug');
 const ayb = require('all-your-base');
 
 const { version } = require('./package.json');
+const genRandom = require('./lib/genRandom');
 
 function pathToTag(fullPath) {
   const res = path.basename(fullPath, '.js');
@@ -16841,10 +16842,80 @@ utils.version = version;
 utils.pathToTag = pathToTag;
 utils.debug = debug;
 utils.ayb = ayb;
+utils.genRandom = genRandom;
 
 module.exports = utils;
 
-},{"./package.json":51,"all-your-base":43,"debug":47,"lodash":49,"path":2}],43:[function(require,module,exports){
+},{"./lib/genRandom":43,"./package.json":52,"all-your-base":44,"debug":48,"lodash":50,"path":2}],43:[function(require,module,exports){
+/**
+ * @license
+ *
+ * Copyright (c) 2017-present, IBM Research.
+ *
+ * This source code is licensed under the Apache license found in the
+ * LICENSE.txt file in the root directory of this source tree.
+ */
+
+'use strict';
+
+// We can't use "utils.*" here to avoid a circular dep.
+const debug = require('debug');
+const lodash = require('lodash');
+const ayb = require('all-your-base');
+
+const { name } = require('../package');
+
+const formats = ['hex'];
+const dbg = debug(name);
+
+// TODO: Document this.
+module.exports = async (genHex, opts = {}) => {
+  let len = 16;
+
+  dbg('Passed opts:', opts);
+
+  if (!genHex) {
+    throw new Error('Required "genHex" param');
+  }
+
+  if (opts.length) {
+    if (typeof opts.length !== 'number') {
+      throw new TypeError('A number expected for "length"');
+    }
+
+    len = opts.length;
+  }
+  dbg('Parsed opts:', { len });
+
+  const hexadecimal = await genHex(len);
+
+  dbg('Generated number (hexadecimal):', {
+    hexadecimal,
+    len: hexadecimal.length,
+  });
+
+  if (opts.format) {
+    if (!lodash.includes(formats, opts.format)) {
+      throw new Error(`Not supported "format", allowed: ${formats}`);
+    }
+
+    // We make this check here to return in advance and avoit to
+    // convert it to decimal in this cases.
+    if (opts.format === 'hex') {
+      return hexadecimal;
+    }
+  }
+
+  // ie (after "ayb"): 1.1914622019661597e+24, 5.591825073748114e+23
+  const decimal = ayb.parseInt(hexadecimal, 16, 10);
+
+  dbg('Generated number (decimal):', { decimal });
+
+  // To return a value between 0 and 1 (similar to "Math.floor").
+  return decimal / 10 ** decimal.toString().length;
+};
+
+},{"../package":52,"all-your-base":44,"debug":48,"lodash":50}],44:[function(require,module,exports){
 var convert = require('./src/convert.js');
 
 module.exports = {
@@ -16919,7 +16990,7 @@ function assignFn(from, to) {
   }
 }
 
-},{"./src/convert.js":44}],44:[function(require,module,exports){
+},{"./src/convert.js":45}],45:[function(require,module,exports){
 var h = require('./helpers.js');
 var tables = require('./tables.js');
 
@@ -17135,7 +17206,7 @@ module.exports = {
   octToHex: octToHex,
 };
 
-},{"./helpers.js":45,"./tables.js":46}],45:[function(require,module,exports){
+},{"./helpers.js":46,"./tables.js":47}],46:[function(require,module,exports){
 // set of common utility functions used by this module
 
 /**
@@ -17256,7 +17327,7 @@ module.exports = {
   scan: scan
 };
 
-},{}],46:[function(require,module,exports){
+},{}],47:[function(require,module,exports){
 // use following table to convert each 4-digit binary string to single hexadecimal value
 // key: binary number
 // value: hexadecimal equivalent
@@ -17347,7 +17418,7 @@ exports.binToOctTable = {
   '111': '7',
 };
 
-},{}],47:[function(require,module,exports){
+},{}],48:[function(require,module,exports){
 (function (process){
 /**
  * This is the web browser implementation of `debug()`.
@@ -17546,7 +17617,7 @@ function localstorage() {
 }
 
 }).call(this,require('_process'))
-},{"./debug":48,"_process":3}],48:[function(require,module,exports){
+},{"./debug":49,"_process":3}],49:[function(require,module,exports){
 
 /**
  * This is the common logic for both the Node.js and web browser
@@ -17773,7 +17844,7 @@ function coerce(val) {
   return val;
 }
 
-},{"ms":50}],49:[function(require,module,exports){
+},{"ms":51}],50:[function(require,module,exports){
 (function (global){
 /**
  * @license
@@ -34882,7 +34953,7 @@ function coerce(val) {
 }.call(this));
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],50:[function(require,module,exports){
+},{}],51:[function(require,module,exports){
 /**
  * Helpers.
  */
@@ -35036,10 +35107,10 @@ function plural(ms, n, name) {
   return Math.ceil(ms / n) + ' ' + name + 's';
 }
 
-},{}],51:[function(require,module,exports){
+},{}],52:[function(require,module,exports){
 module.exports={
   "name": "@qiskit/utils",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Quantum Information Software utils library",
   "author": {
     "name": "IBM RESEARCH",

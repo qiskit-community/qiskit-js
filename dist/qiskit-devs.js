@@ -1,11 +1,11 @@
 /*!
- * Qiskit Cloud v0.3.0 (June 7th 2018)
- * Quantum Information Software library to use the Quantum Experience
+ * Qiskit Devs v0.3.0 (June 7th 2018)
+ * Quantum Information algorithms for developers
  * https://github.com/QISKit/qiskit-sdk-js
  * @author  IBM RESEARCH (http://research.ibm.com)
  * @license Apache-2.0
  */
-(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.QiskitCloud = f()}})(function(){var define,module,exports;return (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
+(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.qiskitDevs = f()}})(function(){var define,module,exports;return (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 var asn1 = exports;
 
 asn1.bignum = require('bn.js');
@@ -35291,7 +35291,7 @@ class Qe {
 
 module.exports = Qe;
 
-}).call(this,require('_process'),"/packages/qiskit-cloud/index.js")
+}).call(this,require('_process'),"/packages/qiskit-devs/node_modules/@qiskit/cloud/index.js")
 },{"./cfg.json":198,"./lib/massageJob":200,"./lib/parser":201,"./lib/request":202,"./lib/utils":203,"./package":383,"_process":136}],200:[function(require,module,exports){
 (function (__filename){
 /**
@@ -35474,7 +35474,7 @@ utils.dbg = fullPath => utils.debug(`${pkgName}:${utils.pathToTag(fullPath)}`);
 
 module.exports = utils;
 
-},{"../package.json":383,"@qiskit/utils":384}],204:[function(require,module,exports){
+},{"../package.json":383,"@qiskit/utils":391}],204:[function(require,module,exports){
 'use strict';
 
 var KEYWORDS = [
@@ -72920,6 +72920,376 @@ module.exports={
 }
 
 },{}],384:[function(require,module,exports){
+module.exports={
+  "backends": {
+    "simulator": {
+      "nQubits": 5
+    },
+    "ibmqx2": {
+      "nQubits": 5
+    },
+    "ibmqx4": {
+      "nQubits": 5
+    },
+    "ibmqx5": {
+      "nQubits": 16
+    },
+    "qs1_1": {
+      "nQubits": 20
+    }
+  }
+}
+
+},{}],385:[function(require,module,exports){
+(function (__filename){
+/**
+ * @license
+ *
+ * Copyright (c) 2017-present, IBM Research.
+ *
+ * This source code is licensed under the Apache license found in the
+ * LICENSE.txt file in the root directory of this source tree.
+ */
+
+'use strict';
+
+const Cloud = require('@qiskit/cloud');
+
+const utils = require('./lib/utils');
+const genBin = require('./lib/genBin');
+const { version } = require('./package');
+const { backends } = require('./cfg');
+
+const backendNames = Object.keys(backends);
+const dbg = utils.dbg(__filename);
+
+module.exports.version = version;
+
+module.exports.random = async (token, userId, opts = {}) => {
+  dbg('Passed opts:', opts);
+
+  if (!token || typeof token !== 'string') {
+    throw new TypeError('The "token" parameter is mandatory (string)');
+  }
+
+  if (!userId || typeof userId !== 'string') {
+    throw new TypeError('The "userId" parameter is mandatory (string)');
+  }
+
+  if (opts.length) {
+    if (typeof opts.length !== 'number') {
+      throw new TypeError('A number expected in "length" option');
+    }
+  }
+  const length = opts.length || 16;
+
+  if (opts.shots) {
+    if (typeof opts.shots !== 'number') {
+      throw new TypeError('A number expected in "shots" option');
+    }
+  }
+  const shots = opts.shots || 1;
+
+  if (opts.maxCredits) {
+    if (typeof opts.maxCredits !== 'number') {
+      throw new TypeError('A number expected in "shots" option');
+    }
+  }
+  const maxCredits = opts.maxCredits || null;
+
+  if (opts.backend) {
+    if (typeof opts.backend !== 'string') {
+      throw new TypeError('A string expected in "backend" option');
+    }
+
+    if (!utils.includes(backendNames, opts.backend.toLowerCase())) {
+      throw new Error(`Not valid "backend", allowed: ${backendNames}`);
+    }
+  }
+  const backend = opts.backend || 'simulator';
+
+  dbg('Parsed opts:', { length, shots, backend });
+
+  return genBin(token, userId, {
+    length,
+    backend,
+    shots,
+    maxCredits,
+  });
+};
+
+module.exports.result = async (token, userId, jobId) => {
+  const cloud = new Cloud();
+
+  cloud.token = token;
+  cloud.userId = token;
+
+  if (!token || typeof token !== 'string') {
+    throw new TypeError('The "token" parameter is mandatory (string)');
+  }
+
+  if (!userId || typeof userId !== 'string') {
+    throw new TypeError('The "userId" parameter is mandatory (string)');
+  }
+
+  if (!jobId || typeof jobId !== 'string') {
+    throw new TypeError('The "jobId" parameter is mandatory (string)');
+  }
+
+  const res = await cloud.job(jobId);
+
+  const result = { status: res.status.toLowerCase() };
+
+  if (result.status !== 'completed') {
+    return result;
+  }
+
+  const binaryArray = utils.map(res.circuits, resCircuit => {
+    if (
+      !resCircuit.result ||
+      !resCircuit.result.data ||
+      !resCircuit.result.data.counts ||
+      typeof resCircuit.result.data.counts !== 'object'
+    ) {
+      throw new Error(`Parsing the circuits result: ${JSON.stringify(res)}`);
+    }
+
+    return Object.keys(resCircuit.result.data.counts)[0];
+  });
+  dbg('Generated partial number (binary-array):', {
+    binaryArray,
+    len: binaryArray.length,
+  });
+
+  const binary = binaryArray.join('');
+  dbg('Generated partial number (binary):', { binary });
+
+  const decimal = utils.ayb.parseInt(binary, 2, 10);
+  dbg('Generated number (decimal):', { decimal });
+
+  // To return a value between 0 and 1 (similar to "Math.floor").
+  result.data = decimal / 10 ** decimal.toString().length;
+
+  return result;
+};
+
+}).call(this,"/packages/qiskit-devs/index.js")
+},{"./cfg":384,"./lib/genBin":388,"./lib/utils":389,"./package":390,"@qiskit/cloud":199}],386:[function(require,module,exports){
+/**
+ * @license
+ *
+ * Copyright (c) 2017-present, IBM Research.
+ *
+ * This source code is licensed under the Apache license found in the
+ * LICENSE.txt file in the root directory of this source tree.
+ */
+
+'use strict';
+
+const utils = require('./utils');
+const { name, version } = require('../package');
+
+const dbg = utils.debug(name);
+
+module.exports = (neededQubits = 4) => {
+  let circuit =
+    `// Cirtuit generated by QISKit.js, version: ${version}\n\n` +
+    // Includes.
+    'include "qelib1.inc";\n\n' +
+    // Register declarations.
+    `qreg q[${neededQubits}];\n` +
+    `creg c[${neededQubits}];\n\n`;
+
+  let i = 0;
+  utils.times(neededQubits, () => {
+    circuit += `h q[${i}];\n`;
+    i += 1;
+  });
+
+  circuit += '\n';
+
+  i = 0;
+  utils.times(neededQubits, () => {
+    circuit += `measure q[${i}] -> c[${i}];\n`;
+    i += 1;
+  });
+
+  dbg('Built circuit:', { circuit });
+  return circuit;
+};
+
+},{"../package":390,"./utils":389}],387:[function(require,module,exports){
+/**
+ * @license
+ *
+ * Copyright (c) 2017-present, IBM Research.
+ *
+ * This source code is licensed under the Apache license found in the
+ * LICENSE.txt file in the root directory of this source tree.
+ */
+
+'use strict';
+
+const utils = require('./utils');
+const { name } = require('../package');
+const buildCircuit = require('./buildCircuit');
+
+const dbg = utils.debug(name);
+
+module.exports = (len = 16, backendQubits = 4) => {
+  // TODO: Add types/values checking.
+
+  // 1 hex char : 4 bits
+  const neededQubits = len * 4;
+  const circuits = [];
+
+  // ie:
+  // - len = 4 -> neededQubits = 16
+  // - backendQubits = 16
+  // ------------------------------
+  // - len = 3 -> neededQubits = 4
+  // - backendQubits = 16
+  if (neededQubits <= backendQubits) {
+    return [buildCircuit(neededQubits)];
+  }
+
+  const circuit = buildCircuit(backendQubits);
+  // ie:
+  // - len = 8 -> neededQubits = 32
+  // - backendQubits = 4
+  // - blocksNumber = 32 / 4 = 7
+  // - blocksNumberExtra = 32 % 4 = 0
+  // --------------------------
+  // - len = 8 -> neededQubits = 32
+  // - backendQubits = 5
+  // - blocksNumber = 32 / 5 = 6.5 -> 6, 6*5 = 35
+  // - blocksNumberExtra = 32 % 5 = 2
+  const circuitsNumber = Math.floor(neededQubits / backendQubits);
+  const circuitExtraQubits = neededQubits % backendQubits;
+  dbg('Parameters', { backendQubits, circuitsNumber, circuitExtraQubits });
+
+  utils.times(circuitsNumber, () => circuits.push(circuit));
+
+  dbg('Built circuits', { circuits });
+
+  if (circuitExtraQubits) {
+    const circuitExtra = buildCircuit(circuitExtraQubits);
+    dbg('Built circuit (extra)', { circuitExtra });
+
+    circuits.push(circuitExtra);
+  }
+
+  return circuits;
+};
+
+},{"../package":390,"./buildCircuit":386,"./utils":389}],388:[function(require,module,exports){
+/**
+ * @license
+ *
+ * Copyright (c) 2017-present, IBM Research.
+ *
+ * This source code is licensed under the Apache license found in the
+ * LICENSE.txt file in the root directory of this source tree.
+ */
+
+'use strict';
+
+const Cloud = require('@qiskit/cloud');
+
+const utils = require('./utils');
+const { name } = require('../package');
+const { backends } = require('../cfg');
+const buildCircuits = require('./buildCircuits');
+
+const dbg = utils.debug(name);
+
+function buildParam(circuit) {
+  return { qasm: circuit };
+}
+
+module.exports = async (token, userId, opts = {}) => {
+  const len = opts.length || 16;
+  const backend = opts.backend || 'ibmqx4';
+  const cloud = new Cloud();
+
+  cloud.token = token;
+  cloud.userId = token;
+
+  const backendQubits = backends[backend].nQubits;
+  const circuits = buildCircuits(len, backendQubits);
+  const circuitsMassaged = utils.map(circuits, buildParam);
+
+  // Marking it to know how to parse the response later'
+  // TODO: It would be better to mark the whole job, but the library and/or API
+  // doesn't support it for now.
+  circuitsMassaged[0].name = 'random';
+  dbg('Massaged circuits', circuitsMassaged);
+
+  const res = await cloud.runBatch(circuitsMassaged, {
+    backend: opts.backend || 'simulator',
+    shots: opts.shots || 1,
+    maxCredits: opts.maxCredits || null,
+  });
+
+  if (!res.status || res.status !== 'RUNNING') {
+    throw new Error(`Running the circuit: ${res}`);
+  }
+
+  return res.id;
+};
+
+},{"../cfg":384,"../package":390,"./buildCircuits":387,"./utils":389,"@qiskit/cloud":199}],389:[function(require,module,exports){
+arguments[4][203][0].apply(exports,arguments)
+},{"../package.json":390,"@qiskit/utils":391,"dup":203}],390:[function(require,module,exports){
+module.exports={
+  "name": "@qiskit/devs",
+  "version": "0.3.0",
+  "description": "Quantum Information algorithms for developers",
+  "author": {
+    "name": "IBM RESEARCH",
+    "url": "http://research.ibm.com"
+  },
+  "homepage": "https://github.com/QISKit/qiskit-sdk-js",
+  "contributors": [
+    "https://github.com/QISKit/qiskit-sdk-js/graphs/contributors"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/QISKit/qiskit-sdk-js"
+  },
+  "scripts": {
+    "dep-check": "depcheck",
+    "test": "mocha --recursive test --timeout 20000"
+  },
+  "keywords": [
+    "quantum",
+    "experience",
+    "computing",
+    "information",
+    "algorithms",
+    "random",
+    "shor",
+    "factor",
+    "IBM"
+  ],
+  "bugs": {
+    "url": "https://github.com/QISKit/qiskit-sdk-js/issues"
+  },
+  "dependencies": {
+    "@qiskit/cloud": "^0.3.0",
+    "@qiskit/utils": "^0.3.0"
+  },
+  "engines": {
+    "node": ">=8",
+    "npm": ">=5"
+  },
+  "license": "Apache-2.0",
+  "publishConfig": {
+    "access": "public"
+  }
+}
+
+},{}],391:[function(require,module,exports){
 /**
  * @license
  *
@@ -72959,7 +73329,7 @@ utils.genRandom = genRandom;
 
 module.exports = utils;
 
-},{"./lib/genRandom":385,"./package.json":394,"all-your-base":386,"debug":390,"lodash":392,"path":129}],385:[function(require,module,exports){
+},{"./lib/genRandom":392,"./package.json":401,"all-your-base":393,"debug":397,"lodash":399,"path":129}],392:[function(require,module,exports){
 /**
  * @license
  *
@@ -73028,7 +73398,7 @@ module.exports = async (genHex, opts = {}) => {
   return decimal / 10 ** decimal.toString().length;
 };
 
-},{"../package":394,"all-your-base":386,"debug":390,"lodash":392}],386:[function(require,module,exports){
+},{"../package":401,"all-your-base":393,"debug":397,"lodash":399}],393:[function(require,module,exports){
 var convert = require('./src/convert.js');
 
 module.exports = {
@@ -73103,7 +73473,7 @@ function assignFn(from, to) {
   }
 }
 
-},{"./src/convert.js":387}],387:[function(require,module,exports){
+},{"./src/convert.js":394}],394:[function(require,module,exports){
 var h = require('./helpers.js');
 var tables = require('./tables.js');
 
@@ -73319,7 +73689,7 @@ module.exports = {
   octToHex: octToHex,
 };
 
-},{"./helpers.js":388,"./tables.js":389}],388:[function(require,module,exports){
+},{"./helpers.js":395,"./tables.js":396}],395:[function(require,module,exports){
 // set of common utility functions used by this module
 
 /**
@@ -73440,7 +73810,7 @@ module.exports = {
   scan: scan
 };
 
-},{}],389:[function(require,module,exports){
+},{}],396:[function(require,module,exports){
 // use following table to convert each 4-digit binary string to single hexadecimal value
 // key: binary number
 // value: hexadecimal equivalent
@@ -73531,7 +73901,7 @@ exports.binToOctTable = {
   '111': '7',
 };
 
-},{}],390:[function(require,module,exports){
+},{}],397:[function(require,module,exports){
 (function (process){
 /**
  * This is the web browser implementation of `debug()`.
@@ -73730,7 +74100,7 @@ function localstorage() {
 }
 
 }).call(this,require('_process'))
-},{"./debug":391,"_process":136}],391:[function(require,module,exports){
+},{"./debug":398,"_process":136}],398:[function(require,module,exports){
 
 /**
  * This is the common logic for both the Node.js and web browser
@@ -73957,7 +74327,7 @@ function coerce(val) {
   return val;
 }
 
-},{"ms":393}],392:[function(require,module,exports){
+},{"ms":400}],399:[function(require,module,exports){
 (function (global){
 /**
  * @license
@@ -91066,7 +91436,7 @@ function coerce(val) {
 }.call(this));
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],393:[function(require,module,exports){
+},{}],400:[function(require,module,exports){
 /**
  * Helpers.
  */
@@ -91220,7 +91590,7 @@ function plural(ms, n, name) {
   return Math.ceil(ms / n) + ' ' + name + 's';
 }
 
-},{}],394:[function(require,module,exports){
+},{}],401:[function(require,module,exports){
 module.exports={
   "name": "@qiskit/utils",
   "version": "0.3.0",
@@ -91269,5 +91639,5 @@ module.exports={
   }
 }
 
-},{}]},{},[199])(199)
+},{}]},{},[385])(385)
 });
