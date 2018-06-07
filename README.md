@@ -2,7 +2,7 @@
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/)
-[![Build Status](https://travis-ci.org/QISKit/qiskit-sdk-js.svg?branch=master)](https://travis-ci.org/QISKit/qiskit-sdk-js)
+[![Build Status](https://travis-ci.org/QISKit/qiskit-js.svg?branch=master)](https://travis-ci.org/QISKit/qiskit-js)
 
 :atom_symbol: [Quantum Information Science Kit](https://developer.ibm.com/open/openprojects/qiskit) for JavaScript.
 
