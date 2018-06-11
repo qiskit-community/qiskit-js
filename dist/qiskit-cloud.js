@@ -34944,10 +34944,10 @@ module.exports={
 /**
  * @license
  *
- * Copyright (c) 2017-present, IBM Research.
+ * Copyright (c) 2017, IBM.
  *
- * This source code is licensed under the Apache license found in the
- * LICENSE.txt file in the root directory of this source tree.
+ * This source code is licensed under the Apache License, Version 2.0 found in
+ * the LICENSE.txt file in the root directory of this source tree.
  */
 
 'use strict';
@@ -35297,10 +35297,10 @@ module.exports = Qe;
 /**
  * @license
  *
- * Copyright (c) 2017-present, IBM Research.
+ * Copyright (c) 2017, IBM.
  *
- * This source code is licensed under the Apache license found in the
- * LICENSE.txt file in the root directory of this source tree.
+ * This source code is licensed under the Apache License, Version 2.0 found in
+ * the LICENSE.txt file in the root directory of this source tree.
  */
 
 'use strict';
@@ -35361,10 +35361,10 @@ module.exports = resJob => {
 /**
  * @license
  *
- * Copyright (c) 2017-present, IBM Research.
+ * Copyright (c) 2017, IBM.
  *
- * This source code is licensed under the Apache license found in the
- * LICENSE.txt file in the root directory of this source tree.
+ * This source code is licensed under the Apache License, Version 2.0 found in
+ * the LICENSE.txt file in the root directory of this source tree.
  */
 
 'use strict';
@@ -35401,10 +35401,10 @@ module.exports.bool = value => {
 /**
  * @license
  *
- * Copyright (c) 2017-present, IBM Research.
+ * Copyright (c) 2017, IBM.
  *
- * This source code is licensed under the Apache license found in the
- * LICENSE.txt file in the root directory of this source tree.
+ * This source code is licensed under the Apache License, Version 2.0 found in
+ * the LICENSE.txt file in the root directory of this source tree.
  */
 
 'use strict';
@@ -35458,10 +35458,10 @@ module.exports = request;
 /**
  * @license
  *
- * Copyright (c) 2017-present, IBM Research.
+ * Copyright (c) 2017, IBM.
  *
- * This source code is licensed under the Apache license found in the
- * LICENSE.txt file in the root directory of this source tree.
+ * This source code is licensed under the Apache License, Version 2.0 found in
+ * the LICENSE.txt file in the root directory of this source tree.
  */
 
 'use strict';
@@ -72924,10 +72924,10 @@ module.exports={
 /**
  * @license
  *
- * Copyright (c) 2017-present, IBM Research.
+ * Copyright (c) 2017, IBM.
  *
- * This source code is licensed under the Apache license found in the
- * LICENSE.txt file in the root directory of this source tree.
+ * This source code is licensed under the Apache License, Version 2.0 found in
+ * the LICENSE.txt file in the root directory of this source tree.
  */
 
 'use strict';
@@ -72964,10 +72964,10 @@ module.exports = utils;
 /**
  * @license
  *
- * Copyright (c) 2017-present, IBM Research.
+ * Copyright (c) 2017, IBM.
  *
- * This source code is licensed under the Apache license found in the
- * LICENSE.txt file in the root directory of this source tree.
+ * This source code is licensed under the Apache License, Version 2.0 found in
+ * the LICENSE.txt file in the root directory of this source tree.
  */
 
 'use strict';
