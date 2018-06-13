@@ -1,5 +1,6 @@
 # QISKit.js
 
+[![experimental](http://badges.github.io/stability-badges/dist/experimental.svg)](http://github.com/badges/stability-badges)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/)
 [![Build Status](https://travis-ci.org/QISKit/qiskit-js.svg?branch=master)](https://travis-ci.org/QISKit/qiskit-js)
