@@ -1,6 +1,6 @@
-# QISKit.js algorithms (ANU)
+# QISKit.js devs (ANU)
 
-The [Australian National University](http://www.anu.edu.au) [Quantum Random Numbers Server](https://qrng.anu.edu.au) engine (chip) for the [QISKit algorithms package](https://github.com/QISKit/qiskit-js/tree/master/packages/qiskit-devs).
+The [Australian National University](http://www.anu.edu.au) [Quantum Random Numbers Server](https://qrng.anu.edu.au) engine (chip) for the [QISKit devs package](https://github.com/QISKit/qiskit-js/tree/master/packages/qiskit-devs).
 
 ## Install
 
