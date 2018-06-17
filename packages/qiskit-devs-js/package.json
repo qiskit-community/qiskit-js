@@ -24,8 +24,7 @@
     "algorithms",
     "random",
     "shor",
-    "factor",
-    "jsqubitsjs"
+    "factor"
   ],
   "bugs": {
     "url": "https://github.com/QISKit/qiskit-js/issues"
