@@ -1,6 +1,6 @@
-# QISKit.js algorithms (pure JavaScript)
+# QISKit.js devs (pure JavaScript)
 
-Pure JS engine ([jsqubitjs](https://www.research.ibm.com/ibm-q) based) engine (simulator) for the [QISKit algorithms package](https://github.com/QISKit/qiskit-js/tree/master/packages/qiskit-devs).
+Pure JS engine ([jsqubits](https://www.npmjs.com/package/jsqubits) based) engine (simulator) for the [QISKit algorithms package](https://github.com/QISKit/qiskit-js/tree/master/packages/qiskit-devs).
 
 ## Install
 
