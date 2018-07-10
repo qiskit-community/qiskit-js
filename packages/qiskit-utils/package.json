@@ -6,11 +6,11 @@
     "name": "IBM RESEARCH",
     "url": "http://research.ibm.com"
   },
-  "homepage": "https://github.com/QISKit/qiskit-js",
-  "contributors": ["https://github.com/QISKit/qiskit-js/graphs/contributors"],
+  "homepage": "https://github.com/Qiskit/qiskit-js",
+  "contributors": ["https://github.com/Qiskit/qiskit-js/graphs/contributors"],
   "repository": {
     "type": "git",
-    "url": "https://github.com/QISKit/qiskit-js"
+    "url": "https://github.com/Qiskit/qiskit-js"
   },
   "scripts": {
     "dep-check": "depcheck",
@@ -27,7 +27,7 @@
     "IBM"
   ],
   "bugs": {
-    "url": "https://github.com/QISKit/qiskit-js/issues"
+    "url": "https://github.com/Qiskit/qiskit-js/issues"
   },
   "dependencies": {
     "all-your-base": "^0.3.0",

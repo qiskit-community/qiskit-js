@@ -1,6 +1,6 @@
-# QISKit.js devs (IBM Q)
+# Qiskit.js devs (IBM Q)
 
-[IBM Q](https://www.research.ibm.com/ibm-q) engine (chip and remote simulator) for the [QISKit devs package](https://github.com/QISKit/qiskit-js/tree/master/packages/qiskit-devs).
+[IBM Q](https://www.research.ibm.com/ibm-q) engine (chip and remote simulator) for the [Qiskit devs package](https://github.com/Qiskit/qiskit-js/tree/master/packages/qiskit-devs).
 
 ## Install
 

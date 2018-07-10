@@ -1,12 +1,12 @@
-# QISKit.js
+# Qiskit.js
 
 [![experimental](http://badges.github.io/stability-badges/dist/experimental.svg)](http://github.com/badges/stability-badges)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/)
-[![Build Status](https://travis-ci.org/QISKit/qiskit-js.svg?branch=master)](https://travis-ci.org/QISKit/qiskit-js)
+[![Build Status](https://travis-ci.org/Qiskit/qiskit-js.svg?branch=master)](https://travis-ci.org/Qiskit/qiskit-js)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
-:atom_symbol: [Quantum Information Science Kit](https://developer.ibm.com/open/openprojects/qiskit) for JavaScript. :bulb: This project born as a clone (in JS) of [its big brother](https://github.com/QISKit/qiskit-sdk-py).
+:atom_symbol: [Quantum Information Science Kit](https://developer.ibm.com/open/openprojects/qiskit) for JavaScript. :bulb: This project born as a clone (in JS) of [its big brother](https://github.com/Qiskit/qiskit-sdk-py).
 
 **beta**: Until v1 breaking changes could be included.
 
@@ -27,7 +27,7 @@ If you want to learn more about Quantum Computing, you're invited to visit our [
 * [@qiskit/utils](./packages/qiskit-utils): Helpers shared among all packages.
 * [@qiskit/devs](./packages/qiskit-devs): High level algorithms for easy use. Designed for developers (vs. researchers).
 
-### QISKit for the browser
+### Qiskit for the browser
 
 You can find a bundled version with the same stuff ready to be used in the browser in the [dist](./dist) folder.
 
@@ -102,24 +102,24 @@ A wrapper fot the [`qiskit-devs`](./packages/qiskit-devs) project.
 
 ## Authors
 
-:alien: https://github.com/QISKit/qiskit-js/graphs/contributors
+:alien: https://github.com/Qiskit/qiskit-js/graphs/contributors
 
-Original code (Python) authors [here](https://github.com/QISKit/qiskit-sdk-py#authors-alphabetical).
+Original code (Python) authors [here](https://github.com/Qiskit/qiskit-sdk-py#authors-alphabetical).
 
-## Other QISKit projects
+## Other Qiskit projects
 
 :school_satchel:
 
-* [Python QISKit](https://github.com/QISKit/qiskit-sdk-py.git>)
-* [ibmqx backend information](https://github.com/QISKit/ibmqx-backend-information): Information about the different IBM Q experience backends.
-* [ibmqx user guide](https://github.com/QISKit/ibmqx-user-guides): The users guides for the IBM Q experience.
-* [OpenQasm](https://github.com/QISKit/openqasm): Examples and tools for the OpenQASM intermediate representation.
-* [Python API](https://github.com/QISKit/qiskit-api-py): API Client to use IBM Q experience in Python.
-* [Tutorials](https://github.com/QISKit/qiskit-tutorial): Jupyter notebooks for using QISKit.
+* [Python Qiskit](https://github.com/Qiskit/qiskit-sdk-py.git>)
+* [ibmqx backend information](https://github.com/Qiskit/ibmqx-backend-information): Information about the different IBM Q experience backends.
+* [ibmqx user guide](https://github.com/Qiskit/ibmqx-user-guides): The users guides for the IBM Q experience.
+* [OpenQasm](https://github.com/Qiskit/openqasm): Examples and tools for the OpenQASM intermediate representation.
+* [Python API](https://github.com/Qiskit/qiskit-api-py): API Client to use IBM Q experience in Python.
+* [Tutorials](https://github.com/Qiskit/qiskit-tutorial): Jupyter notebooks for using Qiskit.
 
 ## License
 
-:penguin: QISKit is released under the [Apache license, v2.0](https://www.apache.org/licenses/LICENSE-2.0).
+:penguin: Qiskit is released under the [Apache license, v2.0](https://www.apache.org/licenses/LICENSE-2.0).
 
 ## Do you want to help?
 
