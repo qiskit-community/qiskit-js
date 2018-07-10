@@ -1,8 +1,8 @@
-# QISKit.js simulator
+# Qiskit.js simulator
 
 :atom_symbol: [Quantum Information Science Kit](https://developer.ibm.com/open/openprojects/qiskit) simulator in pure JavaScript. As a first feature it includes an unitary one for [OpenQASM](https://github.com/IBM/qisim.js-openqasm) circuits representation.
 
-Please visit the [main repository](https://github.com/QISKit/qiskit-js) to know more about the rest of the project tools.
+Please visit the [main repository](https://github.com/Qiskit/qiskit-js) to know more about the rest of the project tools.
 
 ## Install
 

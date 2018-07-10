@@ -8,7 +8,7 @@ about: Create a report to help us improve 🤔.
 
 ### Environment (please complete the following information):
 
-- **QISKit.js version**:
+- **Qiskit.js version**:
 - **Node.js version**:
 - **Operating system**:
 
