@@ -6,7 +6,7 @@ You can contribute in many ways to this project.
 
 ## Issue reporting
 
-:fire: This is a goog point to start, when you find a problem please add it to the [issue traker](https://github.com/IBMResearch/qiskit/issues).
+:fire: This is a goog point to start, when you find a problem please add it to the [issue traker](https://github.com/Qiskit/qiskit-js/issues).
 
 ## Doubts solving
 
@@ -58,8 +58,8 @@ From here, depending of the nature of the project, we have specific recommendati
 * Get the code and install all dependencies:
 
 ```sh
-https://github.com/QISKit/qiskit-js
-cd qiskit-sdk-js
+https://github.com/Qiskit/qiskit-js
+cd qiskit-js
 npm i
 ```
 

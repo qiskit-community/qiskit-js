@@ -1,3 +1,3 @@
-# QISKit.js SDK
+# Qiskit.js SDK
 
-Please visit the documentation in the [main repository](https://github.com/QISKit/qiskit-js).
+Please visit the documentation in the [main repository](https://github.com/Qiskit/qiskit-js).

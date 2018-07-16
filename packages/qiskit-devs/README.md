@@ -1,8 +1,8 @@
-# QISKit for developers
+# Qiskit for developers
 
 :atom_symbol: Quantum Information Science Kit Quantum Information algorithms for developers. The idea is to hide all quantum mechanics complexity exposing only the upper layer.
 
-Please visit the [main repository](https://github.com/QISKit/qiskit-js) of the project to know about the rest of the tools.
+Please visit the [main repository](https://github.com/Qiskit/qiskit-js) of the project to know about the rest of the tools.
 
 ## Install
 
@@ -45,7 +45,7 @@ The actual version of the library.
 Generate a true random number among 0 and 1.
 
 * `opts` (object) - Optional parameters:
-  * `engine` (string) - Where to run the operation. Please visit the [packages](https://github.ibm.com/jesusper/qiskit-sdk-js-next/tree/master/packages) to see the supported ones. The number of digits depends on the selected engine. (default: "js")
+  * `engine` (string) - Where to run the operation. Please visit the [packages](https://github.ibm.com/jesusper/qiskit-js-next/tree/master/packages) to see the supported ones. The number of digits depends on the selected engine. (default: "js")
   * `length` (number) - Number of random hex characters to ask for to the engine. As you can see in the doc referenced before each engine has different limit, they will throw in it's overpassed. (default: 16)
   * `format` (string) - To ask for the result in a different format, supported ("hex").
   * `token` (string) - Some engines need an access token (visit each specific doc).
