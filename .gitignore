@@ -25,3 +25,5 @@ npm-debug.log
 .editorconfig
 lerna-debug.log
 package-lock.json
+
+dist/*.js
