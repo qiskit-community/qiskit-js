@@ -31,10 +31,10 @@ If you want to learn more about Quantum Computing, you're invited to visit our [
 
 :inbox_tray: You can find a bundled version with the same stuff ready to be used in the browser with each [release](https://github.com/Qiskit/qiskit-js/releases).
 
-* qiskit-cloud.js: The same for the `@qiskit/cloud` component, also [the same API](../packages/qiskit-cloud/README.md) and the global is `QiskitCloud`.
-* qiskit-devs.js: The same for the `@qiskit/devs` component, also [the same API](../packages/qiskit-devs/README.md) and the global is `qiskitDevs`.
-* qiskit-qasm.js: Only the `@qiskit/qasm` component, also [the same API that for node.js](../packages/qiskit-qasm/README.md). The global `qiskitQasm` is exposed.
-* qiskit-sim.js: The same for the `@qiskit/sim` component, also [the same API](../packages/qiskit-sim/README.md) and the global is `qiskitSim`.
+* `qiskit-cloud.js`: The same for the `@qiskit/cloud` component, also [the same API](../packages/qiskit-cloud/README.md) and the global is `QiskitCloud`.
+* `qiskit-devs.js`: The same for the `@qiskit/devs` component, also [the same API](../packages/qiskit-devs/README.md) and the global is `qiskitDevs`.
+* `qiskit-qasm.js`: Only the `@qiskit/qasm` component, also [the same API that for node.js](../packages/qiskit-qasm/README.md). The global `qiskitQasm` is exposed.
+* `qiskit-sim.js`: The same for the `@qiskit/sim` component, also [the same API](../packages/qiskit-sim/README.md) and the global is `qiskitSim`.
 
 If you needed a new version of the bundled files, please run:
 
