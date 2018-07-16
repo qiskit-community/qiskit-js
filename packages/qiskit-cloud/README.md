@@ -1,4 +1,4 @@
-# QISKit.js Quantum Experience
+# QISKit.js cloud
 
 :atom_symbol: Quantum Information Science Kit library to use the [Quamtum Experience](https://quantumexperience.ng.bluemix.net).
 

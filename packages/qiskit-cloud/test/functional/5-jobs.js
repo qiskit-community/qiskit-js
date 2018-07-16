@@ -12,7 +12,7 @@
 const assert = require('assert');
 const utilsTest = require('../../../../utils-test');
 
-const Qe = require('../..');
+const Cloud = require('../..');
 const expErrRegex = require('../errorRe');
 
 // Already logged instance.
@@ -62,7 +62,7 @@ function checkJob(res) {
 
 describe('cloud:job', () => {
   it('should fail if no logged', async () =>
-    utilsTest.throwsAsync(() => new Qe().job(), expErrRegex.loginBefore));
+    utilsTest.throwsAsync(() => new Cloud().job(), expErrRegex.loginBefore));
 
   it('should fail if "id" parameter no present', async () =>
     utilsTest.throwsAsync(() => cloud.job(), expErrRegex.formatStr));
@@ -83,7 +83,7 @@ describe('cloud:job', () => {
 let oldId;
 describe('cloud:jobs', () => {
   it('should fail if no logged', async () =>
-    utilsTest.throwsAsync(() => new Qe().jobs(), expErrRegex.loginBefore));
+    utilsTest.throwsAsync(() => new Cloud().jobs(), expErrRegex.loginBefore));
 
   it('should fail if bad format in the "limit" option', async () =>
     utilsTest.throwsAsync(() => cloud.jobs('a'), expErrRegex.formatNumber));

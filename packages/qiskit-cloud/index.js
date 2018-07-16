@@ -20,7 +20,7 @@ const dbg = utils.dbg(__filename);
 // To avoid requests that are going to fail to the API.
 const errLoginBefore = 'Please use "login" before';
 
-class Qe {
+class Cloud {
   constructor(opts = {}) {
     dbg('Starting', opts);
 
@@ -346,4 +346,4 @@ class Qe {
   }
 }
 
-module.exports = Qe;
+module.exports = Cloud;

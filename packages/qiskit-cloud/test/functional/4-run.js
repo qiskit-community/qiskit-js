@@ -12,7 +12,7 @@
 const assert = require('assert');
 const utilsTest = require('../../../../utils-test');
 
-const Qe = require('../..');
+const Cloud = require('../..');
 const expErrRegex = require('../errorRe');
 
 // Already logged instance.
@@ -26,7 +26,7 @@ const circuit =
 
 describe('cloud:run', () => {
   it('should fail if no logged', async () =>
-    utilsTest.throwsAsync(() => new Qe().run('a'), expErrRegex.loginBefore));
+    utilsTest.throwsAsync(() => new Cloud().run('a'), expErrRegex.loginBefore));
 
   it('should fail if "circuit" parameter no present', async () =>
     // TODO: Emit proper error.
@@ -110,7 +110,7 @@ describe('cloud:run', () => {
 describe('cloud:runBatch', () => {
   it('should fail if no logged', async () =>
     utilsTest.throwsAsync(
-      () => new Qe().runBatch('a'),
+      () => new Cloud().runBatch('a'),
       expErrRegex.loginBefore,
     ));
 
