@@ -9,16 +9,12 @@
 
 'use strict';
 
-const gateSingle = require('./lib/gateSingle');
-const gateTwo = require('./lib/gateTwo');
-const run = require('./lib/run');
-const state0 = require('./lib/state0');
 const { version } = require('./package');
+const gates = require('./lib/gates');
+const Circuit = require('./lib/Circuit');
 
 module.exports = {
   version,
-  gateSingle,
-  gateTwo,
-  run,
-  state0,
+  gates,
+  Circuit,
 };

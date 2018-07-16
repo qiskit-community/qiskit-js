@@ -1,8 +1,8 @@
-# QISKit.js simulator
+# Qiskit.js simulator
 
-:atom_symbol: [Quantum Information Science Kit](https://developer.ibm.com/open/openprojects/qiskit) simulator in pure JavaScript. As a first feature it includes an unitary one for [OpenQASM](https://github.com/IBM/qisim.js-openqasm) circuits representation.
+:atom_symbol: [Quantum Information Science Kit](https://developer.ibm.com/open/openprojects/qiskit) simulator in pure JavaScript. As a first feature it includes an unitary one, with specific support for [OpenQASM](https://github.com/IBM/qisim.js-openqasm) circuits representation.
 
-Please visit the [main repository](https://github.com/QISKit/qiskit-js) to know more about the rest of the project tools.
+Please visit the [main repository](https://github.com/Qiskit/qiskit-js) to know more about the rest of the project tools.
 
 ## Install
 
@@ -17,17 +17,47 @@ npm i @qiskit/sim
 :pencil: You can visit the complete example [in this test](./test/functional/run.js).
 
 ```js
-const sim = require('@qiskit/sim');
+const util = require('util');
 
-console.log('Version');
-console.log(sim.version);
+const sim = require('..');
 
-const circuit = fs.readFileSync('./example.qasm', 'utf8');
+function randomizeInput(nQubits) {
+  const input = [];
 
-console.log('Simulation started ...');
-const res = sim.run(circuit);
-console.log('Result:');
-console.log(res);
+  for (let i = 0; i < nQubits; i += 1) {
+    const x = !!Math.round(Math.random());
+    input.push(x);
+
+    /* eslint-disable no-console */
+    console.log(`${i}:${x ? '|1>' : '|0>'}`);
+  }
+
+  return input;
+}
+
+const circuit = new sim.Circuit({ nQubits: 2 });
+
+circuit.addGate('h', 0, 0);
+circuit.addGate('cx', 1, [0, 1]);
+
+console.log('\nInput randomized (as string):');
+const input = randomizeInput(circuit.nQubits);
+
+console.log('\nInput randomized:');
+console.log(input);
+
+console.log('\nRunning the circuit now ...');
+circuit.run(input);
+
+console.log('\nDone, internal state:');
+console.log(circuit.state);
+
+console.log('\nInternal state (as string):');
+console.log(circuit.stateToString());
+
+const circuitIr = circuit.save();
+console.log('\nSaved IR:');
+console.log(util.inspect(circuitIr, { showHidden: false, depth: null }));
 ```
 
 ## API
@@ -40,40 +70,48 @@ The actual version of the library.
 
 * `version` (string) - Version number.
 
-### `unroll(circuitIr) -> circuitUnrolled`
+### `gates`
 
-**NOTE: Method still not implemented**
-Get the extended representation of the circuit for this simulator.
+Gates definition.
 
-* `circuitIr` (object) - QASM circuit in the parser generated intermediate representation (JSON).
-* `circuitUnrolled` (object): Extended (also JSON) circuit.
+* `gates` (object) - Supported gates definition.
 
-### `gateSingle(gate, qubit, nQubits, stateOld) -> stateNew`
+### `Circuit(opts) -> circuit`
 
-Apply a single-qubit gate.
+* `opts` (object) -The constructor accepts next options:
+  * `nQubits` (number) - Number of qubits needed to run the circuit. It will be automatically updated by the `addGate` method if needed.
+* `circuit` (object) - New instance.
 
-* `gate` (object, [Math.js matrix](http://mathjs.org/docs/datatypes/matrices.html)) - Single-qubit gate to apply.
-* `qubit` - Qubit to apply on, counts from 0. Order is q\_{n-1} ... otimes q_1 otimes q_0.
-* `nQubits` (number) - Number of qubits of the system.
-* `state` (object, Math.js matrix) - Internal state of the simulator before the gate.
-* `stateNew` (object, Math.js matrix) - Internal state of the simulator after the gate.
+### `circuit.state`
 
-### `gateTwo(gate, qubit0, qubit1, nQubits, state) -> stateNew`
+* `state` (object, [Math.js matrix](http://mathjs.org/docs/datatypes/matrices.html)) - Internal state of the simulation.
 
-Apply a two-qubit gate.
+### `circuit.stateToString() -> stateStr`
 
-* `gate` (object, Math.js matrix) - Two-qubit gate to apply.
-* `qubit0` - First qubit (control), counts from 0.
-* `qubit1` - Second qubit (target).
-* `nQubits` (number) - Number of qubits of the system.
-* `state` (object, Math.js matrix) - Internal state of the simulator before the gate.
-* `stateNew` (object, Math.js matrix) - Internal state of the simulator after the gate.
+* `stateStr` (string) - Human friendly representation of the internal state.
 
-### `run(circuit) -> result`
+### `circuit.addGate(name, column, wires)`
 
-Run a simulation.
+Add a gate to the circuit.
 
-* `circuit` (string) - QASM circuit representation. For now only an "unrolled" (intermediate, JSON format) version of them is accepted.
-* `result` (object):
-  * `drops` (array) - Not supported (omitted) operations present in the circuit.
-  * `state` (object, Math.js matrix) - Internal state of the simulator after the run.
+* `name` (string) - Name of the gate, from `gates` field.
+* `colum` (number) - Qubit to connect the gate.
+* `wires` (number / [number]) - Gate connections. An array is used for multi-gates.
+
+### `circuit.run(input)`
+
+Make the simulation.
+
+* `input` ([boolean]) - Initial state of each qubit.
+
+### `circuit.save() -> circuitIr`
+
+Export the circuit setup for a future reuse.
+
+* `circuitIr` (object) - Simulator internal representation of the circuit (JSON).
+
+### `circuit.load(circuitIr)`
+
+Import a circuit setup.
+
+* `circuitIr`
