@@ -12,11 +12,10 @@
 const Cloud = require('@qiskit/cloud');
 
 const utils = require('./utils');
-const { name } = require('../package');
 const { backends } = require('../cfg');
 const buildCircuits = require('./buildCircuits');
 
-const dbg = utils.debug(name);
+const dbg = utils.debug(__filename);
 
 function buildParam(circuit) {
   return { qasm: circuit };

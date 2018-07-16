@@ -11,12 +11,10 @@
 
 const util = require('util');
 
-const utils = require('@qiskit/utils');
+const utils = require('./utils');
 const qrand = util.promisify(require('qrand').getRandomHexOctets);
 
-const { name } = require('../package');
-
-const dbg = utils.debug(name);
+const dbg = utils.dbg(__filename);
 
 module.exports = async (len = 16) => {
   // "/2" The library expecst the number of octects and we ask for number of

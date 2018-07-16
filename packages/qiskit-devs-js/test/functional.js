@@ -11,13 +11,13 @@
 
 const assert = require('assert');
 
-const utils = require('@qiskit/utils');
+const utils = require('../lib/utils');
 
 const qiskit = require('..');
-const { name, version } = require('../package');
+const { version } = require('../package');
 const genHex = require('../lib/genHex');
 
-const dbg = utils.debug(`${name}:test`);
+const dbg = utils.dbg(__filename);
 
 describe('api', () => {
   it('should include all documented items', () => {

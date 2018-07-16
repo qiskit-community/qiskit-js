@@ -10,10 +10,9 @@
 'use strict';
 
 const utils = require('./utils');
-const { name } = require('../package');
 const buildCircuit = require('./buildCircuit');
 
-const dbg = utils.debug(name);
+const dbg = utils.dbg(__filename);
 
 module.exports = (len = 16, backendQubits = 4) => {
   // TODO: Add types/values checking.

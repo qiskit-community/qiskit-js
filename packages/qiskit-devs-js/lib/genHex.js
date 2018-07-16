@@ -9,12 +9,10 @@
 
 'use strict';
 
-const utils = require('@qiskit/utils');
+const utils = require('./utils');
 const qubits = require('jsqubits').jsqubits;
 
-const { name } = require('../package');
-
-const dbg = utils.debug(name);
+const dbg = utils.dbg(__filename);
 
 module.exports = (len = 16) => {
   let strHex = '';

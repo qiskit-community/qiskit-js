@@ -10,9 +10,9 @@
 'use strict';
 
 const utils = require('./utils');
-const { name, version } = require('../package');
+const { version } = require('../package');
 
-const dbg = utils.debug(name);
+const dbg = utils.debug(__filename);
 
 module.exports = (neededQubits = 4) => {
   let circuit =
