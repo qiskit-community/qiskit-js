@@ -1,6 +1,6 @@
 # Qiskit for developers
 
-:atom_symbol: Quantum Information Science Kit Quantum Information algorithms for developers. The idea is to hide all quantum mechanics complexity exposing only the upper layer.
+:atom_symbol: Quantum Information Science Kit algorithms for developers. The idea is to hide all quantum mechanics complexity exposing only the upper layer.
 
 Please visit the [main repository](https://github.com/Qiskit/qiskit-js) of the project to know about the rest of the tools.
 
