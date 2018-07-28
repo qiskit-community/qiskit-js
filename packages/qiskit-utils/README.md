@@ -1,4 +1,4 @@
-# Qiskit.js OpenQASM
+# Qiskit.js utils
 
 :atom_symbol: Quantum Information Science Kit utils library, shared among the rest of the qiskit-\* packages.
 
