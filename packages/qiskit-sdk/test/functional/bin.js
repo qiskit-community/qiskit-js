@@ -19,7 +19,6 @@ const pkgInfo = require('../../package');
 const utilsTest = require('../../../../utils-test');
 
 const reGot0 = /Not enough non-option arguments: got 0/;
-const reNotSupQasm = /Regular QASM circuits are still not supported/;
 const reNotSup = /Format not supported/;
 
 function assertComm(re, result) {
@@ -44,19 +43,18 @@ describe('qiskit:bin', () => {
   it('should fail for "parse" command without arguments', () =>
     assert.throws(() => exec(`${comm} parse`), reGot0));
 
-  it('should work for "sim" command with unrolled circuits', () => {
-    assertComm(
-      /State\|psi>=U|0>:\[0.35355339059327384,0/,
-      exec(`${comm} sim ../../circuits/unrolled/example.json`),
-    );
-  }).timeout(5000);
+  // TODO: Waiting to finish the new simulator implementation.
+  it
+    .skip('should work for "sim" command with unrolled circuits', () => {
+      assertComm(
+        /State\|psi>=U|0>:\[0.35355339059327384,0/,
+        exec(`${comm} sim ../../circuits/unrolled/example.json`),
+      );
+    })
+    .timeout(5000);
 
   it('should fail for "sim" command without arguments', () =>
     assert.throws(() => exec(`${comm} sim`), reGot0));
-
-  it('should fail for "sim" command with non-unrolled QASM circuits', () => {
-    assert.throws(() => exec(`${comm} sim whatever.qasm`), reNotSupQasm);
-  });
 
   it('should fail for "sim" command with any other format', () => {
     assert.throws(() => exec(`${comm} sim whatever.png`), reNotSup);

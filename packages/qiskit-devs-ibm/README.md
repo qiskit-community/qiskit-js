@@ -27,5 +27,5 @@ console.log(qiskit.version);
 
 * As expected, the `engine` parameter is omitted here.
 * All algorithms need a background job, so a `jobId` is returned.
-* The `token` parameter is mandatory. Provided by the `login` method of the [qiskit-cloud](../qiskit-cloud) package.
+* The `token` option is mandatory here. Provided by the `login` method of the [qiskit-cloud](../qiskit-cloud) package.
 * An extra one `userId` is also needed, same that for the last option.

@@ -23,7 +23,7 @@ console.log(qiskit.version);
 
 ## API
 
-:eyes: Please check the [main doc](../../README.md#API). The method signature is the same but:
+:eyes: Please check the [main doc](../../README.md#API). The methods signature is the same but:
 
 * As expected, the `engine` parameter is omitted here.
 * All algorithms doesn't need a background job, so a result is returned (vs a `jobId`).

@@ -30,9 +30,7 @@ exports.builder = {
   circuit: {
     // Accepted options:
     // https://github.com/yargs/yargs/blob/master/docs/api.md#optionskey-opt
-    desc:
-      'Path to the file with the code of the circuit. ' +
-      'It supports OpenQASM (.qasm) or unrolled IR (.json)',
+    desc: 'Path to the OpenQASM (.qasm) file with the circuit definition.',
     type: 'string',
     normalize: true,
   },
@@ -45,15 +43,7 @@ exports.handler = argv => {
 
   const extension = path.extname(argv.circuit);
 
-  if (extension === '.qasm') {
-    logger.error(
-      'Regular QASM circuits are still not supported' +
-        ', please use the option "unrolled" with false for now',
-    );
-    process.exit(1);
-  }
-
-  if (!extension || extension !== '.json') {
+  if (extension !== '.qasm') {
     logger.error('Format not supported');
     process.exit(1);
   }
@@ -62,41 +52,46 @@ exports.handler = argv => {
 
   logger.info(`${logger.emoji('mag')} Reading the circuit file: ${pathCode}`);
   readFile(pathCode, 'utf8')
-    .then(code => {
-      logger.info('Parsing the code file ...');
-
-      let codeParsed;
-      try {
-        codeParsed = JSON.parse(code);
-      } catch (err) {
-        logger.error('Parsing the circuit file', err);
-        process.exit(1);
-      }
-
-      logger.info(`\n${logger.emoji('computer')} Starting the simulation ...`);
-      let resSim;
-      logger.time();
-      try {
-        resSim = qiskit.sim.run(codeParsed);
-        logger.timeEnd();
-      } catch (err) {
-        logger.error('Simulating the circuit', err);
-        process.exit(1);
-      }
-
-      logger.resultHead();
-      if (resSim && resSim.state) {
-        const stateJson = resSim.state.toJSON();
-        logger.bold(stateJson.data);
-
-        logger.info('\nState |psi> = U|0>:');
-        const state0 = qiskit.sim.state0(resSim.state);
-        logger.bold(state0);
-
-        logger.info('\nExtra info:');
-        logger.json({ size: stateJson.size });
-      }
+    // TODO: .then(code => {
+    .then(() => {
+      logger.error(
+        'Still not supported, waiting for the new simulator implementation',
+      );
+      process.exit(1);
     })
+    // logger.info('Parsing the code file ...');
+
+    // let codeParsed;
+    // try {
+    //   codeParsed = JSON.parse(code);
+    // } catch (err) {
+    //   logger.error('Parsing the circuit file', err);
+    //   process.exit(1);
+    // }
+
+    // logger.info(`\n${logger.emoji('computer')} Starting the simulation ...`);
+    // let resSim;
+    // logger.time();
+    // try {
+    //   resSim = qiskit.sim.run(codeParsed);
+    //   logger.timeEnd();
+    // } catch (err) {
+    //   logger.error('Simulating the circuit', err);
+    //   process.exit(1);
+    // }
+
+    // logger.resultHead();
+    // if (resSim && resSim.state) {
+    //   const stateJson = resSim.state.toJSON();
+    //   logger.bold(stateJson.data);
+
+    //   logger.info('\nState |psi> = U|0>:');
+    //   const state0 = qiskit.sim.state0(resSim.state);
+    //   logger.bold(state0);
+
+    //   logger.info('\nExtra info:');
+    //   logger.json({ size: stateJson.size });
+    // }
     .catch(err => {
       logger.error('Reading the circuit file', err);
       process.exit(1);

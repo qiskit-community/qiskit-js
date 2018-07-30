@@ -19,7 +19,6 @@ const dbg = utils.dbg(__filename);
 module.exports = async (len = 16) => {
   // "/2" The library expecst the number of octects and we ask for number of
   // hexadecimal digits (8 octets = 16 hex chars).
-
   const octects = await qrand(len / 2);
   dbg('Generated number (octects):', { octects, len: octects.length });
 

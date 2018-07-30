@@ -74,18 +74,18 @@ module.exports.random = async (token, userId, opts = {}) => {
   });
 };
 
-module.exports.result = async (token, userId, jobId) => {
+module.exports.result = async (jobId, opts = {}) => {
   const cloud = new Cloud();
 
-  cloud.token = token;
-  cloud.userId = token;
+  cloud.token = opts.token;
+  cloud.userId = opts.userId;
 
-  if (!token || typeof token !== 'string') {
-    throw new TypeError('The "token" parameter is mandatory (string)');
+  if (!opts.token || typeof opts.token !== 'string') {
+    throw new TypeError('The "token" option is mandatory (string)');
   }
 
-  if (!userId || typeof userId !== 'string') {
-    throw new TypeError('The "userId" parameter is mandatory (string)');
+  if (!opts.userId || typeof opts.userId !== 'string') {
+    throw new TypeError('The "userId" option is mandatory (string)');
   }
 
   if (!jobId || typeof jobId !== 'string') {
