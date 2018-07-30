@@ -14,12 +14,12 @@ npm i @qiskit/sim
 
 ## Use
 
-:pencil: You can visit the complete example [in this test](./test/functional/run.js).
+:pencil: You can visit more complete examples [in the tests](./test).
 
 ```js
 const util = require('util');
 
-const sim = require('..');
+const sim = require('@qiskit/sim');
 
 function randomizeInput(nQubits) {
   const input = [];
@@ -28,7 +28,6 @@ function randomizeInput(nQubits) {
     const x = !!Math.round(Math.random());
     input.push(x);
 
-    /* eslint-disable no-console */
     console.log(`${i}:${x ? '|1>' : '|0>'}`);
   }
 
