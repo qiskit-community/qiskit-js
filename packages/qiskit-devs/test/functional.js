@@ -11,12 +11,8 @@
 
 const assert = require('assert');
 
-// const Cloud = require('@qiskit/cloud');
-
 const devs = require('..');
 const { version } = require('../package');
-
-// const cloud = new Cloud();
 
 // TODO: Use utils.difference instead.
 function multiIncludes(text, values) {
