@@ -14,7 +14,7 @@
   },
   "scripts": {
     "dep-check": "depcheck",
-    "test": "mocha --recursive test --timeout 20000"
+    "test": "mocha --recursive test --timeout 20000 --color"
   },
   "keywords": [
     "quantum",
@@ -31,7 +31,9 @@
     "url": "https://github.com/Qiskit/qiskit-js/issues"
   },
   "dependencies": {
-    "@qiskit/cloud": "^0.3.0",
+    "@qiskit/devs-js": "^0.3.0",
+    "@qiskit/devs-anu": "^0.3.0",
+    "@qiskit/devs-ibm": "^0.3.0",
     "@qiskit/utils": "^0.3.0"
   },
   "engines": {

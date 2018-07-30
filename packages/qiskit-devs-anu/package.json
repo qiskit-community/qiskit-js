@@ -15,7 +15,7 @@
   },
   "scripts": {
     "dep-check": "depcheck",
-    "test": "mocha --recursive test --timeout 20000"
+    "test": "mocha --recursive test --timeout 20000 --color"
   },
   "keywords": [
     "quantum",

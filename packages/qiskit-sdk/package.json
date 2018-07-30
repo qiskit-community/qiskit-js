@@ -17,7 +17,7 @@
   },
   "scripts": {
     "dep-check": "depcheck",
-    "test": "mocha --recursive test"
+    "test": "mocha --recursive test --color"
   },
   "keywords": [
     "quantum",
