@@ -23,7 +23,7 @@ function multiIncludes(text, values) {
   return values.every(val => text.includes(val));
 }
 
-describe('devs:api', () => {
+describe('devs:ibm:api', () => {
   it('should include all documented items', () => {
     assert.ok(multiIncludes(Object.keys(qiskit), ['random', 'result']));
   });
@@ -32,11 +32,11 @@ describe('devs:api', () => {
     assert.equal(qiskit.version, version));
 });
 
-describe('devs:version', () =>
+describe('devs:ibm:version', () =>
   it('should be correct', () => assert.equal(qiskit.version, version)));
 
 // TODO: this is not the best solution, we're repeting things in @qiskit/cloud tests.
-describe('devs:result:random', () => {
+describe('devs:ibm:result:random', () => {
   it('should return the result passing jobId', async function t() {
     if (!process.env.QE_TOKEN || !process.env.QE_USER) {
       // Dirty trick to allow the tests which don´t need the API to run.

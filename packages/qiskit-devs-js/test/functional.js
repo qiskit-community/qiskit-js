@@ -19,7 +19,7 @@ const genHex = require('../lib/genHex');
 
 const dbg = utils.dbg(__filename);
 
-describe('api', () => {
+describe('devs:js:api', () => {
   it('should include all documented items', () => {
     assert.equal(
       utils.difference(['version', 'random', 'factor'], Object.keys(qiskit)),
@@ -28,11 +28,11 @@ describe('api', () => {
   });
 });
 
-describe('version', () => {
+describe('devs:js:version', () => {
   it('should be included', () => assert.equal(qiskit.version, version));
 });
 
-describe('random', () => {
+describe('devs:js:random', () => {
   it('should return a number between 0 and 1 without options', async () => {
     const res = await qiskit.random();
     dbg('Result', res);
@@ -42,7 +42,7 @@ describe('random', () => {
   });
 });
 
-describe('genHex', () => {
+describe('devs:js:genHex', () => {
   it('should return a hex string of the default length without options', async () => {
     const res = await genHex();
     dbg('Result', res);
@@ -59,4 +59,6 @@ describe('genHex', () => {
     assert.ok(typeof res === 'string');
     assert.ok(res.length === len);
   });
+
+  // TODO: factor
 });

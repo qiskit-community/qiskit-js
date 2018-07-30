@@ -13,7 +13,7 @@ const assert = require('assert');
 
 const genBin = require('../lib/genBin');
 
-describe('devs:genBin', () => {
+describe('devs:ibm:genBin', () => {
   it('should return a jobId', async function t() {
     if (!global.qiskitTestDevs || !global.qiskitTestDevs.integration) {
       this.skip();
