@@ -25,7 +25,10 @@ console.log(qiskit.version);
 
 :eyes: Please check the [main doc](../../README.md#API). The method signature is the same but:
 
-* As expected, the `engine` parameter is omitted here.
-* All algorithms need a background job, so a `jobId` is returned.
-* The `token` option is mandatory here. Provided by the `login` method of the [qiskit-cloud](../qiskit-cloud) package.
-* An extra one `userId` is also needed, same that for the last option.
+- As expected, the `engine` parameter is omitted here.
+- All algorithms need a background job, so a `jobId` is returned.
+- About the options:
+  - `custom` (object): Mandatory here, it should be a logged [qiskit-cloud](../qiskit-cloud) instance.
+  - `backend` (string): Name of the backend to use. (default: simulator)
+  - `shots` (number): Number of times to run the circuit. (default: 1)
+  - `maxCredits` (number): Max number of the credits to run this job. The task will be cancelled if it needs more.
