@@ -6,8 +6,7 @@
     "format": "prettier --write '**/*.js'",
     "precommit": "pretty-quick --staged",
     "lint": "npm run format && eslint .",
-    "dep-check":
-      "depcheck --ignore-dirs=dist --ignores='brfs,brfs-babel,browserify-banner,mocha,nsp,husky' && lerna run dep-check",
+    "dep-check": "depcheck --ignore-dirs=dist --ignores='brfs,brfs-babel,browserify-banner,mocha,nsp,husky' && lerna run dep-check",
     "dep-sec": "lerna run dep-sec",
     "test-devs": "lerna run test --scope @qiskit/devs",
     "test-devs-js": "lerna run test --scope @qiskit/devs-js",
@@ -20,21 +19,16 @@
     "test-utils": "lerna run test --scope @qiskit/utils",
     "pretest": "npm i && npm run lint && npm run dep-check",
     "test": "lerna run test",
-    "bundle-qasm":
-      "browserify packages/qiskit-qasm/index.js -p [ browserify-banner --file dist/banner.txt ] -s qiskitQasm > dist/qiskit-qasm.js",
-    "bundle-sim":
-      "browserify packages/qiskit-sim/index.js -p [ browserify-banner --file dist/banner.txt ] -s qiskitSim > dist/qiskit-sim.js",
-    "bundle-cloud":
-      "browserify packages/qiskit-cloud/index.js -p [ browserify-banner --file dist/banner.txt ] -s QiskitCloud > dist/qiskit-cloud.js",
-    "bundle-devs":
-      "browserify packages/qiskit-devs/index.js -p [ browserify-banner --file dist/banner.txt ] -s qiskitDevs > dist/qiskit-devs.js",
-    "bundle":
-      "npm run bundle-qasm && npm run bundle-sim && npm run bundle-cloud && npm run bundle-devs",
+    "bundle-qasm": "browserify packages/qiskit-qasm/index.js -p [ browserify-banner --file dist/banner.txt ] -s qiskitQasm > dist/qiskit-qasm.js",
+    "bundle-sim": "browserify packages/qiskit-sim/index.js -p [ browserify-banner --file dist/banner.txt ] -s qiskitSim > dist/qiskit-sim.js",
+    "bundle-cloud": "browserify packages/qiskit-cloud/index.js -p [ browserify-banner --file dist/banner.txt ] -s QiskitCloud > dist/qiskit-cloud.js",
+    "bundle-devs": "browserify packages/qiskit-devs/index.js -p [ browserify-banner --file dist/banner.txt ] -s qiskitDevs > dist/qiskit-devs.js",
+    "bundle": "npm run bundle-qasm && npm run bundle-sim && npm run bundle-cloud && npm run bundle-devs",
     "browser": "static-server -i example.html dist"
   },
   "depcheck": "^0.6.9",
   "devDependencies": {
-    "brfs": "^1.6.1",
+    "brfs": "^2.0.0",
     "brfs-babel": "^1.0.0",
     "browserify": "^16.2.2",
     "browserify-banner": "^1.0.8",
@@ -46,9 +40,9 @@
     "husky": "^0.14.3",
     "lerna": "^2.5.1",
     "mocha": "^5.2.0",
-    "prettier": "1.12.1",
+    "prettier": "1.14.0",
     "pretty-quick": "^1.6.0",
-    "snap-shot-it": "^5.0.0",
+    "snap-shot-it": "^5.0.1",
     "static-server": "^3.0.0",
     "strip-color": "^0.1.0"
   },
