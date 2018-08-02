@@ -44,14 +44,12 @@ describe('qiskit:bin', () => {
     assert.throws(() => exec(`${comm} parse`), reGot0));
 
   // TODO: Waiting to finish the new simulator implementation.
-  it
-    .skip('should work for "sim" command with unrolled circuits', () => {
-      assertComm(
-        /State\|psi>=U|0>:\[0.35355339059327384,0/,
-        exec(`${comm} sim ../../circuits/unrolled/example.json`),
-      );
-    })
-    .timeout(5000);
+  it.skip('should work for "sim" command with unrolled circuits', () => {
+    assertComm(
+      /State\|psi>=U|0>:\[0.35355339059327384,0/,
+      exec(`${comm} sim ../../circuits/unrolled/example.json`),
+    );
+  }).timeout(5000);
 
   it('should fail for "sim" command without arguments', () =>
     assert.throws(() => exec(`${comm} sim`), reGot0));
