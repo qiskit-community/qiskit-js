@@ -15,7 +15,6 @@ const utils = require('../lib/utils');
 
 const qiskit = require('..');
 const { version } = require('../package');
-const genHex = require('../lib/genHex');
 
 const dbg = utils.dbg(__filename);
 
@@ -42,23 +41,11 @@ describe('devs:js:random', () => {
   });
 });
 
-describe('devs:js:genHex', () => {
-  it('should return a hex string of the default length without options', async () => {
-    const res = await genHex();
+describe('devs:js:factor', () => {
+  it('should work for a small integer', async () => {
+    const res = await qiskit.factor(15);
     dbg('Result', res);
 
-    assert.ok(typeof res === 'string');
-    assert.ok(res.length === 16);
+    assert(res === 3 || res === 5);
   });
-
-  it('should return a hex string of the desired length if passed', async () => {
-    const len = 8;
-    const res = await genHex(len);
-    dbg('Result', res);
-
-    assert.ok(typeof res === 'string');
-    assert.ok(res.length === len);
-  });
-
-  // TODO: factor
 });
