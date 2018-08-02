@@ -11,12 +11,14 @@
 
 const assert = require('assert');
 
+// eslint-disable-next-line import/no-extraneous-dependencies
 const Cloud = require('@qiskit/cloud');
 
-const qiskit = require('..');
+const devs = require('..');
 const { version } = require('../package');
 
 const cloud = new Cloud();
+global.qiskit = {};
 
 // TODO: Use utils.difference instead.
 function multiIncludes(text, values) {
@@ -25,21 +27,20 @@ function multiIncludes(text, values) {
 
 describe('devs:ibm:api', () => {
   it('should include all documented items', () => {
-    assert.ok(multiIncludes(Object.keys(qiskit), ['random', 'result']));
+    assert.ok(multiIncludes(Object.keys(devs), ['random', 'result']));
   });
 
   it('should return the the correct result for its methods', () =>
-    assert.equal(qiskit.version, version));
+    assert.equal(devs.version, version));
 });
 
 describe('devs:ibm:version', () =>
-  it('should be correct', () => assert.equal(qiskit.version, version)));
+  it('should be correct', () => assert.equal(devs.version, version)));
 
-// TODO: this is not the best solution, we're repeting things in @qiskit/cloud tests.
-describe('devs:ibm:result:random', () => {
-  it('should return the result passing jobId', async function t() {
-    if (!process.env.QE_TOKEN || !process.env.QE_USER) {
-      // Dirty trick to allow the tests which don´t need the API to run.
+let jobId;
+describe('devs:ibm:random', () => {
+  before(async function t() {
+    if (!process.env.QX_KEY) {
       cloud.token = 'notvalid';
       cloud.userId = 'notvalid';
 
@@ -48,9 +49,7 @@ describe('devs:ibm:result:random', () => {
         '\n\n\n\t-------------------------------------------------------------',
       );
       console.log('\tWARNING');
-      console.log(
-        '\tQE_TOKEN env var not found, so skipping integration tests.',
-      );
+      console.log('\tQX_KEY env var not found, so skipping integration tests.');
       console.log(
         '\t-------------------------------------------------------------\n\n\n',
       );
@@ -59,17 +58,31 @@ describe('devs:ibm:result:random', () => {
       this.skip();
     }
 
-    global.qiskitTestDevs = { integration: true };
+    global.qiskit.cloud = cloud;
+    await cloud.login(process.env.QX_KEY);
+  });
 
-    const res = await qiskit.result(
-      process.env.QE_TOKEN,
-      process.env.USER_ID,
-      // TODO
-      // jobId
-    );
+  it('should return a jobId', async () => {
+    if (!global.qiskit || !global.qiskit.cloud) {
+      this.skip();
+    }
 
-    assert.equal(res.status, 'completed');
-    assert.ok(res.data >= 0);
-    assert.ok(res.data <= 1);
+    const res = await devs.random({ custom: cloud });
+    assert.equal(typeof res, 'string');
+    assert(res.length >= 0);
+
+    jobId = res;
+  });
+});
+
+describe('devs:ibm:result', () => {
+  it('should return the result passing jobId', async function t() {
+    if (!global.qiskit || !global.qiskit.cloud) {
+      this.skip();
+    }
+
+    const res = await devs.result(jobId, { custom: cloud });
+
+    assert.equal(res.status, 'running');
   });
 });
