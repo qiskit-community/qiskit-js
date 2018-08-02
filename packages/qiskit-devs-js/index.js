@@ -10,14 +10,14 @@
 'use strict';
 
 const utils = require('@qiskit/utils');
-const qubits = require('jsqubits').jsqubits;
 
 const genHex = require('./lib/genHex');
+const factor = require('./lib/factor');
 const { version } = require('./package');
 
 module.exports.version = version;
 
-module.exports.random = async opts => utils.genRandom(genHex, opts);
+module.exports.random = opts => utils.genRandom(genHex, opts);
 
 // TODO: Make it fit with the doc.
-module.exports.factor = qubits.factor;
+module.exports.factor = factor;
