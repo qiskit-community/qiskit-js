@@ -10,14 +10,16 @@
 'use strict';
 
 const assert = require('assert');
+
 const utilsTest = require('../../../../utils-test');
-
-const Qe = require('../..');
 const expErrRegex = require('../errorRe');
+const Cloud = require('../..');
 
-// Token not needed.
-
-const cloudNoToken = new Qe();
+const cloudNoToken = new Cloud();
+// To avoid no token related errors.
+const cloudFaked = new Cloud();
+cloudFaked.token = 'a';
+cloudFaked.userId = 'a';
 
 describe('cloud:calibration', () => {
   it('should fail if bad format in the "name" parameter', async () =>
@@ -104,10 +106,24 @@ describe('cloud:queues', () => {
     assert.deepEqual(await cloudNoToken.queues('nonexistent'), {}));
 });
 
-// Token needed.
-
-// Already logged instance.
-const { cloud } = global.qiskitTest;
+const expectedKeys = [
+  'name',
+  'version',
+  'status',
+  'serialNumber',
+  'description',
+  'gateSet',
+  'basisGates',
+  'onlineDate',
+  'chipName',
+  'id',
+  'topologyId',
+  'url',
+  'simulator',
+  'allowQObject',
+  'nQubits',
+  'couplingMap',
+];
 
 describe('cloud:backend', () => {
   it('should fail if no logged', async () =>
@@ -117,69 +133,39 @@ describe('cloud:backend', () => {
     ));
 
   it('should fail if bad format in the "name" parameter', async () =>
-    utilsTest.throwsAsync(() => cloud.backend(1), expErrRegex.formatStr));
+    utilsTest.throwsAsync(() => cloudFaked.backend(1), expErrRegex.formatStr));
 
   it('should return a backend with the default "name" parameter', async function t() {
-    if (!global.qiskitTest.integration) {
+    if (!global.qiskit || !global.qiskit.cloud) {
       this.skip();
     }
 
-    const res = await cloud.backend();
+    const res = await global.qiskit.cloud.backend();
 
-    assert.deepEqual(Object.keys(res), [
-      'name',
-      'version',
-      'status',
-      'serialNumber',
-      'description',
-      'onlineDate',
-      'chipName',
-      'id',
-      'topologyId',
-      'url',
-      'basisGates',
-      'simulator',
-      'nQubits',
-      'couplingMap',
-    ]);
+    assert.deepEqual(Object.keys(res), expectedKeys);
     assert.equal(res.name, 'ibmqx4');
   });
 
   it('should return a backend info for a valid "name" parameter', async function t() {
-    if (!global.qiskitTest.integration) {
+    if (!global.qiskit || !global.qiskit.cloud) {
       this.skip();
     }
 
     const name = 'ibmqx5';
-    const res = await cloud.backend(name);
+    const res = await global.qiskit.cloud.backend(name);
 
-    assert.deepEqual(Object.keys(res), [
-      'name',
-      'version',
-      'status',
-      'serialNumber',
-      'description',
-      'onlineDate',
-      'chipName',
-      'id',
-      'topologyId',
-      'url',
-      'basisGates',
-      'simulator',
-      'nQubits',
-      'couplingMap',
-    ]);
+    assert.deepEqual(Object.keys(res), expectedKeys);
     assert.equal(res.name, name);
   });
 
   // We use a non existent one because we can´t know in advance the returned values here.
   // TODO: The API should return an error in this case.
   it('should return the queue info for the selected backend', async function t() {
-    if (!global.qiskitTest.integration) {
+    if (!global.qiskit || !global.qiskit.cloud) {
       this.skip();
     }
 
-    assert.deepEqual(await cloud.backend('nonexistent'), {});
+    assert.deepEqual(await global.qiskit.cloud.backend('nonexistent'), {});
   });
 });
 
@@ -191,51 +177,39 @@ describe('cloud:backends', () => {
     ));
 
   it('should return the online backends info', async function t() {
-    if (!global.qiskitTest.integration) {
+    if (!global.qiskit || !global.qiskit.cloud) {
       this.skip();
     }
 
-    const res = await cloud.backends();
+    const res = await global.qiskit.cloud.backends();
 
     assert.equal(res.length, 4);
-    assert.deepEqual(Object.keys(res[0]), [
-      'name',
-      'version',
-      'status',
-      'serialNumber',
-      'description',
-      'onlineDate',
-      'chipName',
-      'id',
-      'topologyId',
-      'url',
-      'basisGates',
-      'simulator',
-      'nQubits',
-      'couplingMap',
-    ]);
+    assert.deepEqual(Object.keys(res[0]), expectedKeys);
   });
 
   it('should fail if bad format in the "onlySims" parameter', async () =>
-    utilsTest.throwsAsync(() => cloud.backends(1), expErrRegex.formatBool));
+    utilsTest.throwsAsync(
+      () => cloudFaked.backends(1),
+      expErrRegex.formatBool,
+    ));
 
   it('should allow to ask only for simulators info', async function t() {
-    if (!global.qiskitTest.integration) {
+    if (!global.qiskit || !global.qiskit.cloud) {
       this.skip();
     }
 
-    const res = await cloud.backends(true);
+    const res = await global.qiskit.cloud.backends(true);
 
     assert.equal(res.length, 1);
     assert.equal(Object.keys(res[0]).length, 9);
-    assert.equal(res[0].name, 'ibmqx_qasm_simulator');
+    assert.equal(res[0].name, 'ibmq_qasm_simulator');
     assert.equal(res[0].status, 'on');
-    assert.equal(res[0].serialNumber, 'ibmqx_qasm_simulator');
     assert.equal(res[0].description, 'online qasm simulator');
-    assert.equal(res[0].id, '4575265c19372392522a392842adc0e3');
-    assert.equal(res[0].gateSet, 'u1,u2,u3,cx');
-    assert.equal(res[0].topologyId, '250e969c6b9e68aa2a045ffbceb3ac33');
+    assert.equal(res[0].basisGates, 'u1,u2,u3,cx,id');
     assert.equal(res[0].simulator, true);
-    assert.equal(res[0].nQubits, 24);
+    assert(typeof res[0].onlineDate === 'string');
+    assert.equal(res[0].allowQObject, false);
+    assert.equal(res[0].nQubits, 32);
+    assert.equal(res[0].couplingMap, 'all-to-all');
   });
 });

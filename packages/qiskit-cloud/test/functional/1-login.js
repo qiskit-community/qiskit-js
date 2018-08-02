@@ -16,12 +16,8 @@ const Cloud = require('../..');
 const expErrRegex = require('../errorRe');
 
 const cloud = new Cloud();
-global.qiskitTest = {
-  // To reuse in the rest of test files of this folder and avoid multiple re-login.
-  cloud,
-  // To detect if we want to run integration tests without exposing sensitive data.
-  integration: false,
-};
+
+global.qiskit = {};
 
 describe('cloud:login', () => {
   it('should fail if "token" parameter no present', async () =>
@@ -35,7 +31,7 @@ describe('cloud:login', () => {
   // https://github.com/mochajs/mocha/issues/1856
   // it('should return the user info with a valid login', async () => {
   it('should return the user info with a valid login', async function t() {
-    if (!process.env.QE_TOKEN) {
+    if (!process.env.QX_KEY) {
       // Dirty trick to allow the tests which don´t need the API to run.
       cloud.token = 'notvalid';
       cloud.userId = 'notvalid';
@@ -45,9 +41,7 @@ describe('cloud:login', () => {
         '\n\n\n\t-------------------------------------------------------------',
       );
       console.log('\tWARNING');
-      console.log(
-        '\tQE_TOKEN env var not found, so skipping integration tests.',
-      );
+      console.log('\tQX_KEY env var not found, so skipping integration tests.');
       console.log(
         '\t-------------------------------------------------------------\n\n\n',
       );
@@ -56,9 +50,10 @@ describe('cloud:login', () => {
       this.skip();
     }
 
-    global.qiskitTest.integration = true;
-
-    const res = await cloud.login(process.env.QE_TOKEN);
+    // To reuse in the rest of test files of this folder and avoid multiple re-login.
+    // Also to detect if we want to run integration tests without exposing sensitive data.
+    global.qiskit.cloud = cloud;
+    const res = await cloud.login(process.env.QX_KEY);
 
     assert.deepEqual(Object.keys(res), ['ttl', 'created', 'userId', 'token']);
     assert.equal(typeof res.ttl, 'number');
