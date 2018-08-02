@@ -50,15 +50,16 @@ exports.handler = argv => {
 
   const pathCode = path.resolve(process.cwd(), argv.circuit);
 
-  logger.info(`${logger.emoji('mag')} Reading the circuit file: ${pathCode}`);
+  logger.info(`${logger.emoji('mag')}  Reading the circuit file: ${pathCode}`);
   readFile(pathCode, 'utf8')
     // TODO: .then(code => {
     .then(() => {
       logger.error(
-        'Still not supported, waiting for the new simulator implementation',
+        '\nStill not supported, waiting for the new simulator implementation',
       );
       process.exit(1);
     })
+    // TODO from here.
     // logger.info('Parsing the code file ...');
 
     // let codeParsed;
