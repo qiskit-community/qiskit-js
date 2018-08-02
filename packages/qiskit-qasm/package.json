@@ -1,13 +1,15 @@
 {
   "name": "@qiskit/qasm",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Quantum Information Science Kit OpenQASM library",
   "author": {
     "name": "IBM RESEARCH",
     "url": "http://research.ibm.com"
   },
   "homepage": "https://github.com/Qiskit/qiskit-js",
-  "contributors": ["https://github.com/Qiskit/qiskit-js/graphs/contributors"],
+  "contributors": [
+    "https://github.com/Qiskit/qiskit-js/graphs/contributors"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/Qiskit/qiskit-js"
@@ -32,7 +34,7 @@
     "url": "https://github.com/Qiskit/qiskit-js/issues"
   },
   "dependencies": {
-    "@qiskit/utils": "^0.3.0",
+    "@qiskit/utils": "^0.4.0",
     "jison": "^0.4.18"
   },
   "engines": {
@@ -40,7 +42,9 @@
   },
   "license": "Apache-2.0",
   "browserify": {
-    "transform": ["brfs"]
+    "transform": [
+      "brfs"
+    ]
   },
   "publishConfig": {
     "access": "public"

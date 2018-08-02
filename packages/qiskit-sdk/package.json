@@ -1,13 +1,15 @@
 {
   "name": "@qiskit/sdk",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Quantum Information Science Kit meta-package",
   "author": {
     "name": "IBM RESEARCH",
     "url": "http://research.ibm.com"
   },
   "homepage": "https://www.qiskit.org",
-  "contributors": ["https://github.com/Qiskit/qiskit-js/graphs/contributors"],
+  "contributors": [
+    "https://github.com/Qiskit/qiskit-js/graphs/contributors"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/Qiskit/qiskit-js"
@@ -41,11 +43,11 @@
     "url": "https://github.com/Qiskit/qiskit-js/issues"
   },
   "dependencies": {
-    "@qiskit/cloud": "^0.3.0",
-    "@qiskit/devs": "^0.3.0",
-    "@qiskit/qasm": "^0.3.0",
-    "@qiskit/sim": "^0.3.0",
-    "@qiskit/utils": "^0.3.0",
+    "@qiskit/cloud": "^0.4.0",
+    "@qiskit/devs": "^0.4.0",
+    "@qiskit/qasm": "^0.4.0",
+    "@qiskit/sim": "^0.4.0",
+    "@qiskit/utils": "^0.4.0",
     "cli-color": "^1.2.0",
     "home-or-tmp": "^3.0.0",
     "keypress": "^0.2.1",
