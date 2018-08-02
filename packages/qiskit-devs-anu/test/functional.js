@@ -34,6 +34,8 @@ describe('devs:anu:version', () => {
 
 describe('devs:anu:random', () => {
   it('should return a number between 0 and 1 without options', async () => {
+    this.retries(4);
+
     const res = await qiskit.random();
     dbg('Result', res);
 
@@ -44,6 +46,8 @@ describe('devs:anu:random', () => {
 
 describe('devs:anu:genHex', () => {
   it('should return a hex string of the default length without options', async () => {
+    this.retries(4);
+
     const res = await genHex();
     dbg('Result', res);
 
@@ -52,6 +56,8 @@ describe('devs:anu:genHex', () => {
   });
 
   it('devs:anu:should return a hex string of the desired length if passed', async () => {
+    this.retries(4);
+
     const len = 8;
     const res = await genHex(len);
     dbg('Result', res);
