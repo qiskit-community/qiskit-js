@@ -20,9 +20,15 @@ function multiIncludes(text, values) {
 }
 
 describe('devs:api', () => {
-  it('should include all documented items', () => {
-    assert.ok(multiIncludes(Object.keys(devs), ['random', 'result', 'factor']));
-  });
+  it('should include all documented items', () =>
+    assert.ok(
+      multiIncludes(Object.keys(devs), [
+        'version',
+        'random',
+        'factor',
+        'result',
+      ]),
+    ));
 });
 
 describe('devs:version', () =>
