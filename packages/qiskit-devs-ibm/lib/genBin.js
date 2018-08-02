@@ -9,10 +9,7 @@
 
 'use strict';
 
-const Cloud = require('@qiskit/cloud');
-
 const utils = require('./utils');
-const { backends } = require('../cfg');
 const buildCircuits = require('./buildCircuits');
 
 const dbg = utils.debug(__filename);
@@ -22,15 +19,11 @@ function buildParam(circuit) {
 }
 
 // TODO: Reuse "utils.genRandom" like in the other "qiskit-devs=*" packages.
-module.exports = async (token, userId, opts = {}) => {
+module.exports = async (cloud, opts = {}) => {
   const len = opts.length || 16;
-  const backend = opts.backend || 'ibmqx4';
-  const cloud = new Cloud();
+  const backendName = opts.backend || 'ibmqx4';
 
-  cloud.token = token;
-  cloud.userId = token;
-
-  const backendQubits = backends[backend].nQubits;
+  const backendQubits = (await cloud.backend(backendName)).nQubits;
   const circuits = buildCircuits(len, backendQubits);
   const circuitsMassaged = utils.map(circuits, buildParam);
 
