@@ -9,17 +9,38 @@
 
 'use strict';
 
-const util = require('util');
+const rp = require('request-promise-native');
 
 const utils = require('./utils');
-const qrand = util.promisify(require('qrand').getRandomHexOctets);
 
 const dbg = utils.dbg(__filename);
 
+async function getHex(len) {
+  if (len < 1) {
+    throw new Error('Invalid length (< 1)');
+  }
+
+  const body = await rp({
+    uri: 'http://qrng.anu.edu.au/API/jsonI.php',
+    qs: {
+      type: 'hex16',
+      size: '1',
+      length: len,
+    },
+    json: true,
+  });
+
+  if (!body.success) {
+    throw new Error('Unknown error');
+  }
+
+  return body.data;
+}
+
 module.exports = async (len = 16) => {
-  // "/2" The library expecst the number of octects and we ask for number of
+  // "/2" The library expects the number of octects and we ask for number of
   // hexadecimal digits (8 octets = 16 hex chars).
-  const octects = await qrand(len / 2);
+  const octects = await getHex(len / 2);
   dbg('Generated number (octects):', { octects, len: octects.length });
 
   if (!octects || !utils.isArray(octects)) {
