@@ -29,12 +29,7 @@ describe('cloud:credits', () => {
 
     const res = await global.qiskit.cloud.credits();
 
-    assert.deepEqual(Object.keys(res), [
-      'promotional',
-      'remaining',
-      'maxUserType',
-    ]);
-    assert.equal(typeof res.promotional, 'number');
+    assert.deepEqual(Object.keys(res), ['remaining', 'maxUserType']);
     assert.equal(typeof res.remaining, 'number');
     assert.equal(typeof res.maxUserType, 'number');
   });
