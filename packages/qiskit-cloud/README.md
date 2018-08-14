@@ -193,3 +193,11 @@ Get all your jobs. Ordered by creation date.
 - `limit` (number): Limit the number of instances to return. (default: 50)
 - `offset` (number): Skip the specified number of instances. Use it with "limit" to implement result pagination.
 - `infos` ([object]): The info for the required jobs. The object structure is like the one returned by the method `job`.
+
+## `async credits() -> info`
+
+Get info about your account credits.
+
+- `info` (object): Including next fields:
+  - `remaining` (number): Number of them the user still hasn't consumed.
+  - `maxUserType` (number): Limit of max allowed for this type of user (out of promotion).
