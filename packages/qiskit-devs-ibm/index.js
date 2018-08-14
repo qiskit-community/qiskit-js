@@ -27,8 +27,6 @@ module.exports.random = async (opts = {}) => {
     );
   }
 
-  const cloud = opts.custom;
-
   if (opts.length) {
     if (typeof opts.length !== 'number') {
       throw new TypeError('A number expected in "length" option');
@@ -57,7 +55,7 @@ module.exports.random = async (opts = {}) => {
 
   dbg('Parsed opts:', { length, shots, backend });
 
-  return genBin(cloud, {
+  return genBin(opts.custom, {
     length,
     backend,
     shots,
