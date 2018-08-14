@@ -39,6 +39,8 @@ module.exports.random = async (opts = {}) => {
   return engines[engine].random(opts);
 };
 
+// TODO: For now we only have "ibm" supporting background jobs.
+// We should do the same that for "random".
 module.exports.result = engines.ibm.result;
 
-module.exports.factor = engines.js.factor;
+module.exports.factor = async n => engines.js.factor(n);
