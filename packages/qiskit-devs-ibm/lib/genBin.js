@@ -21,7 +21,7 @@ function buildParam(circuit) {
 // TODO: Reuse "utils.genRandom" like in the other "qiskit-devs=*" packages.
 module.exports = async (cloud, opts = {}) => {
   const len = opts.length || 16;
-  const backendName = opts.backend || 'ibmqx4';
+  const backendName = opts.backend || 'simulator';
 
   const backendQubits = (await cloud.backend(backendName)).nQubits;
   const circuits = buildCircuits(len, backendQubits);
