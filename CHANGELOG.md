@@ -16,6 +16,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### 🎉 Added
+
+- `@qiskit/devs-ibmq`: Documentation for the `credits` method.
+- `@qiskit/devs-sdk`: Commands `devs-random`, `devs-factor`and `devs-result`.
+
+### 🐛 Fixed
+
+- `@qiskit/devs-sdk`: All commands depending of the userId.
+
+### ✏️ Changed
+
+- `@qiskit/devs-ibmq`: Dropped some fields of the method `credits` which don't apply to this library.
+
 ## [0.4.1] - 2018-08-09
 
 ### ❌ Removed
