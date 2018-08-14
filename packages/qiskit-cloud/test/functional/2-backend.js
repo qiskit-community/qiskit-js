@@ -116,9 +116,11 @@ const expectedKeys = [
   'basisGates',
   'onlineDate',
   'chipName',
+  'deleted',
   'id',
   'topologyId',
   'url',
+  'internalId',
   'simulator',
   'allowQObject',
   'nQubits',
@@ -201,7 +203,7 @@ describe('cloud:backends', () => {
     const res = await global.qiskit.cloud.backends(true);
 
     assert.equal(res.length, 1);
-    assert.equal(Object.keys(res[0]).length, 9);
+    assert.equal(Object.keys(res[0]).length, 11);
     assert.equal(res[0].name, 'ibmq_qasm_simulator');
     assert.equal(res[0].status, 'on');
     assert.equal(res[0].description, 'online qasm simulator');
