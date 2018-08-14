@@ -20,11 +20,10 @@ const storage = require('./lib/storage');
 // To share it among the different QE related commands.
 global.qiskit = { cloud: new qiskit.Cloud() };
 
-storage
-  .getItem('token')
-  .then(token => {
-    if (token) {
-      global.qiskit.cloud.token = token;
+Promise.all([storage.getItem('token'), storage.getItem('userId')])
+  .then(creds => {
+    if (creds) {
+      [global.qiskit.cloud.token, global.qiskit.cloud.userId] = creds;
     }
 
     // Starting the console cli.

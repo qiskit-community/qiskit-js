@@ -32,7 +32,7 @@ class Cloud {
       this.token = opts.token;
     }
     if (opts.userId) {
-      this.token = opts.userId;
+      this.userId = opts.userId;
     }
   }
 
@@ -108,6 +108,7 @@ class Cloud {
 
     delete creditInfo.promotionalCodesUsed;
     delete creditInfo.lastRefill;
+    delete creditInfo.promotional;
 
     return creditInfo;
   }

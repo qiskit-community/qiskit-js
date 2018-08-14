@@ -20,11 +20,11 @@ const storage = require('../lib/storage');
 const getToken = util.promisify(prompt.get);
 const promptSchema = {
   properties: {
-    apiToken: {
+    apiKey: {
       type: 'string',
       hidden: true,
       message:
-        'Quantum Experience API token, you can get' +
+        'Quantum Experience API key, you can get' +
         ' it here: https://quantumexperience.ng.bluemix.net/qx/account/advanced',
       required: true,
     },
@@ -35,11 +35,11 @@ exports.command = 'cloud-login [printToken]';
 
 exports.aliases = ['cl'];
 
-exports.desc = 'Get a long term access token';
+exports.desc = 'Use an API key to get a token to make requests';
 
 exports.builder = {
   printToken: {
-    desc: 'To show the returned long term token in the console',
+    desc: 'To show the returned API auth token in the console',
     type: 'boolean',
     default: false,
   },
@@ -52,12 +52,14 @@ exports.handler = argv => {
   getToken(promptSchema)
     .then(entered => {
       global.qiskit.cloud
-        .login(entered.apiToken)
+        .login(entered.apiKey)
         .then(res => {
           logger.resultHead();
 
-          storage
-            .setItem('token', res.token)
+          Promise.all([
+            storage.setItem('token', res.token),
+            storage.setItem('userId', res.userId),
+          ])
             .then(() => {
               if (!argv.printToken) {
                 delete res.token;
@@ -65,7 +67,7 @@ exports.handler = argv => {
 
               logger.json(res);
               logger.regular(
-                '\nLong term token correctly stored for future uses',
+                '\nHTTP API auth token and user ID correctly stored for future uses',
               );
             })
             .catch(err => {
