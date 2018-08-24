@@ -16,6 +16,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### 🐛 Fixed
+
+- `@qiskit/devs-js`: Some relative paths to specific files in dependencies.
+
 ### 🎉 Added
 
 - `@qiskit/devs-ibmq`: Documentation for the `credits` method.

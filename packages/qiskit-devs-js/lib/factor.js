@@ -14,8 +14,8 @@
 // Initially forked from from here:
 // https://github.com/davidbkemp/jsqubits/blob/master/examples/algorithms/factoring.js
 
-const jsqubits = require('../node_modules/jsqubits/lib/jsqubits');
-const jsqubitsmath = require('../node_modules/jsqubits/lib/jsqubitsmath');
+const jsqubits = require('jsqubits/lib/jsqubits');
+const jsqubitsmath = require('jsqubits/lib/jsqubitsmath');
 const utils = require('./utils');
 
 const dbg = utils.dbg(__filename);
