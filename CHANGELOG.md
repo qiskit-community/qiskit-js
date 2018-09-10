@@ -16,10 +16,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.4.2] - 2018-09-10
+
 ### 🐛 Fixed
 
 - `@qiskit/devs-js`: Some relative paths to specific files in dependencies.
-- `@qiskit/devs-sdk`: All commands depending of the userId.
+- `@qiskit/devs-sdk`:
+  - All commands depending of the userId.
+  - Typo in the alias of "cloud-jobs" command.
 
 ### 🎉 Added
 
