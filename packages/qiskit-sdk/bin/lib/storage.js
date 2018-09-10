@@ -15,12 +15,16 @@ const storage = require('node-persist');
 const homeOrTmp = require('home-or-tmp');
 
 const logger = require('./logger');
+const utils = require('./utils');
 
-try {
-  storage.initSync({ dir: path.resolve(homeOrTmp, '.qiskit') });
-} catch (err) {
-  logger.error('Starting the persistent storage', err);
-  process.exit(1);
-}
+const dbg = utils.dbg(__filename);
+
+storage
+  .init({ dir: path.resolve(homeOrTmp, '.qiskit') })
+  .then(() => dbg('Local storage init done'))
+  .catch(err => {
+    logger.error('Starting the persistent storage', err);
+    process.exit(1);
+  });
 
 module.exports = storage;
