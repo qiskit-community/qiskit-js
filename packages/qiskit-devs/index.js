@@ -33,7 +33,7 @@ module.exports.random = async (opts = {}) => {
   const engine = opts.engine || cfg.engines.default;
 
   if (!utils.includes(enginesList, engine)) {
-    throw new TypeError(`Bad engine, supported: ${engines}`);
+    throw new TypeError(`Bad engine, supported: ${JSON.stringify(engines)}`);
   }
 
   return engines[engine].random(opts);
