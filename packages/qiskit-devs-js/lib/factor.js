@@ -38,7 +38,7 @@ function computeOrder(a, n) {
   const f = x => jsqubitsmath.powerMod(a, x, n);
   const f0 = f(0);
 
-  // This function contains the actual quantum computation part of the algorithm.
+  // Quantum computation
   // It returns either the frequency of the function f or some integer multiple
   // (where "frequency" is the number of times the period of f will fit into 2^numInputBits)
   function determineFrequency(fu) {
@@ -64,7 +64,9 @@ function computeOrder(a, n) {
         return bestSoFar;
       }
 
+      dbg('Starting quantum computation ...');
       const sample = determineFrequency(f);
+      dbg('Done quantum computation, result', { sample });
 
       // Each "sample" has a high probability of being approximately equal to some
       // integer multiple of (inputRange/r) rounded to the nearest integer.
@@ -103,19 +105,20 @@ function computeOrder(a, n) {
 
 module.exports = n => {
   if (n % 2 === 0) {
-    // Is even.  No need for any quantum computing!
+    dbg('Even number!');
     return 2;
   }
 
   const powerFactor = jsqubitsmath.powerFactor(n);
   if (powerFactor > 1) {
-    // Is a power factor.  No need for anything quantum!
+    dbg('Power factor!');
+
     return powerFactor;
   }
 
   for (let attempts = 0; attempts < 8; attempts += 1) {
     const randomChoice = 2 + Math.floor(Math.random() * (n - 2));
-    dbg(`Step 1: chose random number between 2 and ${n}`, { randomChoice });
+    dbg(`Step 1: choose random number between 2 and ${n}`, { randomChoice });
     const gcd = jsqubitsmath.gcd(randomChoice, n);
     if (gcd > 1) {
       dbg(
