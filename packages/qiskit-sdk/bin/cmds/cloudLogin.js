@@ -67,7 +67,7 @@ exports.handler = argv => {
 
               logger.json(res);
               logger.regular(
-                '\nHTTP API auth token and user ID correctly stored for future uses',
+                '\nHTTP API auth token and user ID correctly stored for future use',
               );
             })
             .catch(err => {

@@ -19,15 +19,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### 🐛 Fixed
 
 - `@qiskit/devs-js`: Some relative paths to specific files in dependencies.
+- `@qiskit/devs-sdk`: All commands depending of the userId.
 
 ### 🎉 Added
 
 - `@qiskit/devs-ibmq`: Documentation for the `credits` method.
 - `@qiskit/devs-sdk`: Commands `devs-random`, `devs-factor`and `devs-result`.
-
-### 🐛 Fixed
-
-- `@qiskit/devs-sdk`: All commands depending of the userId.
 
 ### ✏️ Changed
 

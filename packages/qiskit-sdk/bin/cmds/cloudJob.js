@@ -14,7 +14,7 @@ const logger = require('../lib/logger');
 
 exports.command = 'cloud-job <id>';
 
-exports.aliases = ['cl'];
+exports.aliases = ['cj'];
 
 exports.desc = 'Get the info of a specific job';
 
