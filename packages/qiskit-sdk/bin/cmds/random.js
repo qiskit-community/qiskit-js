@@ -12,9 +12,9 @@
 const qiskit = require('../..');
 const logger = require('../lib/logger');
 
-exports.command = 'devs-random [engine] [length] [format] [backend]';
+exports.command = 'random [engine] [length] [format] [backend]';
 
-exports.aliases = ['dr'];
+exports.aliases = ['r'];
 
 exports.desc = 'Generate a true random number among 0 and 1';
 

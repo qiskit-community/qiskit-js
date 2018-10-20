@@ -19,9 +19,9 @@ const logger = require('../lib/logger');
 const readFile = util.promisify(fs.readFile);
 
 exports.command =
-  'cloud-run <circuit> [backend] [shots] [name] [seed] [maxCredits]';
+  'circuit <circuit> [backend] [shots] [name] [seed] [maxCredits]';
 
-exports.aliases = ['cr'];
+exports.aliases = ['ci'];
 
 exports.desc =
   'Send the circuit to be run in the Quantum Experience' +

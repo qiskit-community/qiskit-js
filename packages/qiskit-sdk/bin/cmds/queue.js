@@ -12,11 +12,11 @@
 const qiskit = require('../..');
 const logger = require('../lib/logger');
 
-exports.command = 'cloud-params [backend]';
+exports.command = 'queue [backend]';
 
-exports.aliases = ['cp'];
+exports.aliases = ['q'];
 
-exports.desc = 'Get latest parameter stats for a backend';
+exports.desc = 'Get the status of a backend queue';
 
 exports.builder = {
   backend: {
@@ -30,7 +30,7 @@ exports.handler = argv => {
   logger.title(qiskit.version);
 
   global.qiskit.cloud
-    .parameters(argv.backend)
+    .queues(argv.backend)
     .then(res => {
       logger.resultHead();
       logger.json(res);

@@ -12,9 +12,9 @@
 const qiskit = require('../..');
 const logger = require('../lib/logger');
 
-exports.command = 'cloud-job <id>';
+exports.command = 'job <id>';
 
-exports.aliases = ['cj'];
+exports.aliases = ['j'];
 
 exports.desc = 'Get the info of a specific job';
 

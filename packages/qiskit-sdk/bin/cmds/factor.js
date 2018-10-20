@@ -12,20 +12,15 @@
 const qiskit = require('../..');
 const logger = require('../lib/logger');
 
-exports.command = 'cloud-jobs [limit] [offset]';
+exports.command = 'factor <number>';
 
-exports.aliases = ['cjs'];
+exports.aliases = ['f'];
 
-exports.desc = 'Get all your jobs. Ordered by creation date';
+exports.desc = 'Calculate a factor of a number';
 
 exports.builder = {
-  limit: {
-    desc: ' To get only info of the simulators',
-    type: 'number',
-    default: 50,
-  },
-  offset: {
-    desc: ' To get only info of the simulators',
+  number: {
+    desc: 'Number to factorize',
     type: 'number',
   },
 };
@@ -33,11 +28,11 @@ exports.builder = {
 exports.handler = argv => {
   logger.title(qiskit.version);
 
-  global.qiskit.cloud
-    .jobs(argv.limit, argv.offset)
+  qiskit.devs
+    .factor(argv.number)
     .then(res => {
       logger.resultHead();
-      logger.chunks(res);
+      logger.json(res);
     })
     .catch(err => {
       logger.error('Making the request', err);

@@ -12,14 +12,14 @@
 const qiskit = require('../..');
 const logger = require('../lib/logger');
 
-exports.command = 'cloud-queue [backend]';
+exports.command = 'backend [name]';
 
-exports.aliases = ['cq'];
+exports.aliases = ['b'];
 
-exports.desc = 'Get the status of a backend queue';
+exports.desc = 'Get latest calibration stats for a backend';
 
 exports.builder = {
-  backend: {
+  name: {
     desc: 'Name of the backend to inspect',
     type: 'string',
     default: 'ibmqx4',
@@ -30,7 +30,7 @@ exports.handler = argv => {
   logger.title(qiskit.version);
 
   global.qiskit.cloud
-    .queues(argv.backend)
+    .backend(argv.name)
     .then(res => {
       logger.resultHead();
       logger.json(res);

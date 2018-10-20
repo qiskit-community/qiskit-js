@@ -12,24 +12,19 @@
 const qiskit = require('../..');
 const logger = require('../lib/logger');
 
-exports.command = 'devs-factor <number>';
+exports.command = 'credits';
 
-exports.aliases = ['df'];
+exports.aliases = ['cr'];
 
-exports.desc = 'Calculate a factor of a number';
+exports.desc = 'Information about your credits';
 
-exports.builder = {
-  number: {
-    desc: 'Number to factorize',
-    type: 'number',
-  },
-};
+exports.builder = {};
 
-exports.handler = argv => {
+exports.handler = () => {
   logger.title(qiskit.version);
 
-  qiskit.devs
-    .factor(argv.number)
+  global.qiskit.cloud
+    .credits()
     .then(res => {
       logger.resultHead();
       logger.json(res);

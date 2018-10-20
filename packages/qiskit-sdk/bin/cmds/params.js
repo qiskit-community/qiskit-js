@@ -12,11 +12,11 @@
 const qiskit = require('../..');
 const logger = require('../lib/logger');
 
-exports.command = 'cloud-cali [backend]';
+exports.command = 'params [backend]';
 
-exports.aliases = ['cc'];
+exports.aliases = ['p'];
 
-exports.desc = 'Get latest calibration stats for a backend';
+exports.desc = 'Get latest parameter stats for a backend';
 
 exports.builder = {
   backend: {
@@ -30,7 +30,7 @@ exports.handler = argv => {
   logger.title(qiskit.version);
 
   global.qiskit.cloud
-    .calibration(argv.backend)
+    .parameters(argv.backend)
     .then(res => {
       logger.resultHead();
       logger.json(res);

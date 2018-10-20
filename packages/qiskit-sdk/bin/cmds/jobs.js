@@ -12,22 +12,32 @@
 const qiskit = require('../..');
 const logger = require('../lib/logger');
 
-exports.command = 'cloud-credits';
+exports.command = 'jobs [limit] [offset]';
 
-exports.aliases = ['ccr'];
+exports.aliases = ['js'];
 
-exports.desc = 'Information about your credits';
+exports.desc = 'Get all your jobs. Ordered by creation date';
 
-exports.builder = {};
+exports.builder = {
+  limit: {
+    desc: ' To get only info of the simulators',
+    type: 'number',
+    default: 50,
+  },
+  offset: {
+    desc: ' To get only info of the simulators',
+    type: 'number',
+  },
+};
 
-exports.handler = () => {
+exports.handler = argv => {
   logger.title(qiskit.version);
 
   global.qiskit.cloud
-    .credits()
+    .jobs(argv.limit, argv.offset)
     .then(res => {
       logger.resultHead();
-      logger.json(res);
+      logger.chunks(res);
     })
     .catch(err => {
       logger.error('Making the request', err);

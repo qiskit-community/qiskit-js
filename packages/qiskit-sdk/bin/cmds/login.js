@@ -31,9 +31,9 @@ const promptSchema = {
   },
 };
 
-exports.command = 'cloud-login [printToken]';
+exports.command = 'login [printToken]';
 
-exports.aliases = ['cl'];
+exports.aliases = ['l'];
 
 exports.desc = 'Use an API key to get a token to make requests';
 
