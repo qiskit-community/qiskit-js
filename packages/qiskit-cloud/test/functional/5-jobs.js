@@ -9,8 +9,9 @@
 
 'use strict';
 
-const utils = require('../../lib/utils');
 const assert = require('assert');
+
+const utils = require('../../lib/utils');
 const utilsTest = require('../../../../utils-test');
 
 const Cloud = require('../..');

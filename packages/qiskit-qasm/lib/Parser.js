@@ -9,11 +9,12 @@
 
 'use strict';
 
+const jison = require('jison');
+
 // const util = require('util');
 const path = require('path');
 const fs = require('fs');
 const utils = require('./utils');
-const jison = require('jison');
 
 const dbg = utils.dbg(__filename);
 

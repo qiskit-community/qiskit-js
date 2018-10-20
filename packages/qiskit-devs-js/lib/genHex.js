@@ -9,8 +9,9 @@
 
 'use strict';
 
-const utils = require('./utils');
 const qubits = require('jsqubits').jsqubits;
+
+const utils = require('./utils');
 
 const dbg = utils.dbg(__filename);
 
