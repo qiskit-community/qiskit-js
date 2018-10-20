@@ -185,7 +185,7 @@ describe('cloud:backends', () => {
 
     const res = await global.qiskit.cloud.backends();
 
-    assert.equal(res.length, 4);
+    assert.equal(res.length, 5);
     assert.deepEqual(Object.keys(res[0]), expectedKeys);
   });
 
