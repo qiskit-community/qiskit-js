@@ -16,6 +16,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.5.0] - 2018-10-20 (JSDay)
+
+### ✏️ Changed
+
+- Clearer README.
+- Simpler ESLint and Prettier setup.
+- `@qiskit/devs-sdk`: Easier command line client.
+
 ## [0.4.2] - 2018-09-10
 
 ### 🐛 Fixed
@@ -184,7 +192,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Change in lerna setup to allow markdown files in npm.
 - Travis badge in the main README file.
 
-[unreleased]: https://github.com/Qiskit/qiskit-js/compare/v0.3.0...HEAD
+[unreleased]: https://github.com/Qiskit/qiskit-js/compare/v0.5.0...HEAD
+[0.5.0]: https://github.com/Qiskit/qiskit-js/compare/v0.4.2...v0.5.0
+[0.4.2]: https://github.com/Qiskit/qiskit-js/compare/v0.4.1...v0.4.2
+[0.4.1]: https://github.com/Qiskit/qiskit-js/compare/v0.4.0...v0.4.1
+[0.4.0]: https://github.com/Qiskit/qiskit-js/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/Qiskit/qiskit-js/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/Qiskit/qiskit-js/compare/v0.1.9...v0.2.0
 [0.1.9]: https://github.com/Qiskit/qiskit-js/compare/v0.1.8...v0.1.9
