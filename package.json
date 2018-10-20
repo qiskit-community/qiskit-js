@@ -6,7 +6,7 @@
     "format": "prettier --write '**/*.js'",
     "precommit": "lint-staged",
     "lint": "npm run format && eslint .",
-    "dep-check": "depcheck --ignore-dirs=dist --ignores='brfs,brfs-babel,browserify-banner,mocha,nsp,husky' && lerna run dep-check",
+    "dep-check": "depcheck --ignore-dirs=dist --ignores='brfs,brfs-babel,browserify-banner,mocha,nsp,husky,lint-staged,prettier' && lerna run dep-check",
     "dep-sec": "lerna run dep-sec",
     "test-devs": "lerna run test --scope @qiskit/devs",
     "test-devs-js": "lerna run test --scope @qiskit/devs-js",
