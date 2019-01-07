@@ -24,7 +24,7 @@ If you want to learn more about Quantum Computing, you're invited to visit our [
 * [@qiskit/devs](./packages/qiskit-devs): High level algorithms, thought for developers.
   * [@qiskit/devs-js](./packages/qiskit-devs-js): JavaScript engine.
   * [@qiskit/devs-anu](./packages/qiskit-devs-anu): [Australian National University](http://www.anu.edu.au) [Quantum Random Numbers Server](https://qrng.anu.edu.au) engine.
-  * [@qiskit/devs-ibm](./packages/qiskit-devs-anu): Quantum Experience engine.
+  * [@qiskit/devs-ibm](./packages/qiskit-devs-ibm): Quantum Experience engine.
 * [@qiskit/cloud](./packages/qiskit-cloud): Library to make easier the interaction with the Quantum Experience.
 * [@qiskit/utils](./packages/qiskit-utils): Helpers shared among all packages.
 * [@qiskit/qasm](./packages/qiskit-qasm): Some [OpenQASM](https://github.com/IBM/qiskit-openqasm) tools, like parser.
