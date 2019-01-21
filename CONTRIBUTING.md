@@ -65,7 +65,7 @@ npm i
 
 ### Style guide
 
-Submit clean code and please make effort to follow existing conventions in order to keep it as readable as possible. We love ES6, so we use [ESLint](http://eslint.org/) and the [Airbnb](https://github.com/airbnb/javascript) style guide. It's the most complete, so it forces the developers to keep a consistent style. Moreover, we auto-format the code in each commit, thanks to (Prettier)[https://github.com/prettier/prettier]. Please run to be sure your code fits with it:
+Submit clean code and please make effort to follow existing conventions in order to keep it as readable as possible. We love ES6, so we use [ESLint](http://eslint.org/) and the [Airbnb](https://github.com/airbnb/javascript) style guide. It's the most complete, so it forces the developers to keep a consistent style. Moreover, we auto-format the code in each commit, thanks to [Prettier](https://github.com/prettier/prettier). Please run to be sure your code fits with it:
 
 ```sh
 npm run lint
