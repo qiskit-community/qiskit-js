@@ -16,6 +16,21 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.6.0]
+
+### ✏️ Changed
+- Node.js version update
+- `@qiskit/sdk`: Rename package to `qiskit`.
+
+### 🐛 Fixed
+- Link to Qiskit site in the README.
+- `@qiskit/cloud`: Tests, to support changes in the API.
+- `@qiskit/devs-js`: Important bug to run the JS engine in Windows.
+
+### ❌ Removed
+
+- We don't support browser releases anymore. In 2019 everybody know how to bundle the dependencies of an application.
+
 ## [0.5.0] - 2018-10-20 (JSDay)
 
 ### ✏️ Changed
@@ -192,7 +207,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Change in lerna setup to allow markdown files in npm.
 - Travis badge in the main README file.
 
-[unreleased]: https://github.com/Qiskit/qiskit-js/compare/v0.5.0...HEAD
+[unreleased]: https://github.com/Qiskit/qiskit-js/compare/v0.6.0...HEAD
+[0.6.0]: https://github.com/Qiskit/qiskit-js/compare/v0.5.0...v0.5.0
 [0.5.0]: https://github.com/Qiskit/qiskit-js/compare/v0.4.2...v0.5.0
 [0.4.2]: https://github.com/Qiskit/qiskit-js/compare/v0.4.1...v0.4.2
 [0.4.1]: https://github.com/Qiskit/qiskit-js/compare/v0.4.0...v0.4.1
