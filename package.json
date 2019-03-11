@@ -18,13 +18,7 @@
     "test-sim": "lerna run test --scope @qiskit/sim",
     "test-utils": "lerna run test --scope @qiskit/utils",
     "pretest": "npm i && npm run lint && npm run dep-check",
-    "test": "lerna run test",
-    "bundle-qasm": "browserify packages/qiskit-qasm/index.js -p [ browserify-banner --file dist/banner.txt ] -s qiskitQasm > dist/qiskit-qasm.js",
-    "bundle-sim": "browserify packages/qiskit-sim/index.js -p [ browserify-banner --file dist/banner.txt ] -s qiskitSim > dist/qiskit-sim.js",
-    "bundle-cloud": "browserify packages/qiskit-cloud/index.js -p [ browserify-banner --file dist/banner.txt ] -s QiskitCloud > dist/qiskit-cloud.js",
-    "bundle-devs": "browserify packages/qiskit-devs/index.js -p [ browserify-banner --file dist/banner.txt ] -s qiskitDevs > dist/qiskit-devs.js",
-    "bundle": "npm run bundle-qasm && npm run bundle-sim && npm run bundle-cloud && npm run bundle-devs",
-    "browser": "static-server -i example.html dist"
+    "test": "lerna run test"
   },
   "lint-staged": {
     "*.js": [
@@ -34,10 +28,6 @@
     ]
   },
   "devDependencies": {
-    "brfs": "^2.0.1",
-    "brfs-babel": "^1.0.0",
-    "browserify": "^16.2.3",
-    "browserify-banner": "^1.0.11",
     "depcheck": "^0.6.11",
     "eslint": "^5.7.0",
     "eslint-config-airbnb-base": "^13.1.0",
@@ -49,7 +39,6 @@
     "mocha": "^5.2.0",
     "prettier": "1.14.3",
     "snap-shot-it": "^6.1.10",
-    "static-server": "^2.2.1",
     "strip-color": "^0.1.0"
   },
   "engines": {
