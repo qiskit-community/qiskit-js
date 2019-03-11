@@ -91,10 +91,15 @@ describe('cloud:queues', () => {
   it('should fail if bad format in the "name" parameter', async () =>
     utilsTest.throwsAsync(() => cloudNoToken.queues(1), expErrRegex.formatStr));
 
-  it('should return the status of the queue the default backend if no parameter', async () => {
+  it('should return the status of the queue of the default backend if no parameter', async () => {
     const res = await cloudNoToken.queues();
 
-    assert.deepEqual(Object.keys(res), ['state', 'status', 'lengthQueue']);
+    assert.deepEqual(Object.keys(res), [
+      'state',
+      'status',
+      'lengthQueue',
+      'backend_version',
+    ]);
     assert.equal(typeof res.state, 'boolean');
     assert.equal(typeof res.status, 'string');
     assert.equal(typeof res.lengthQueue, 'number');
