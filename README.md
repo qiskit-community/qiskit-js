@@ -86,31 +86,31 @@ The actual version of the library.
 
 ### `qasm`
 
-A wrapper fot the [`qiskit-qasm`](./packages/qiskit-qasm) project.
+A wrapper for the [`qiskit-qasm`](./packages/qiskit-qasm) project.
 
 * `qasm` (object) - The same object provided in the original library.
 
 ### `sim`
 
-A wrapper fot the [`qiskit-sim`](./packages/qiskit-sim) project.
+A wrapper for the [`qiskit-sim`](./packages/qiskit-sim) project.
 
 * `sim` (object) - The same object provided in the original library.
 
 ### `Cloud`
 
-A wrapper fot the [`qiskit-cloud`](./packages/qiskit-cloud) project.
+A wrapper for the [`qiskit-cloud`](./packages/qiskit-cloud) project.
 
 * `Cloud` (object) - The same constructor provided in the original library.
 
 ### `utils`
 
-A wrapper fot the [`qiskit-utils`](./packages/qiskit-utils) project.
+A wrapper for the [`qiskit-utils`](./packages/qiskit-utils) project.
 
 * `utils` (object) - The same object provided in the original library.
 
 ### `devs`
 
-A wrapper fot the [`qiskit-devs`](./packages/qiskit-devs) project.
+A wrapper for the [`qiskit-devs`](./packages/qiskit-devs) project.
 
 * `devs` (object) - The same object provided in the original library.
 
