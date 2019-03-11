@@ -6,7 +6,18 @@
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
-:atom_symbol: [Quantum Information Science Kit](https://qiskit.org) for JavaScript. :bulb: This project born as a clone (in JS) of [its big brother](https://github.com/Qiskit/qiskit-sdk-py).
+:atom_symbol: [Quantum Information Science Kit](https://qiskit.org) for JavaScript.
+
+<div align="center">
+	<p>
+    <img src="https://diego-plan9.github.io/_static/qiskit-logo-white-no-margin.gif" alt="logo">
+	</p>
+	<p>
+		<sub>:gift: Follow us on <a href="https://twitter.com/qiskit"><code>Twitter</code></a> if you like this project</sub>
+	</p>
+</div>
+
+:bulb: I was born as a clone (in JS) of [my big brother](https://github.com/Qiskit/qiskit-sdk-py).
 
 **beta**: Until v1 breaking changes could be included.
 
