@@ -20,7 +20,7 @@ If you want to learn more about Quantum Computing, you're invited to visit our [
 
 :handbag: The components of this repository are exposed as these libraries:
 
-* @qiskit/sdk: Meta-package, documented in this file. It also includes a command line client, which is your friend if you want to play with all these features without having to use any programming language.
+* [qiskit](./packages/qiskit): Meta-package, documented in this file. It also includes a command line client, which is your friend if you want to play with all these features without having to use any programming language.
 * [@qiskit/devs](./packages/qiskit-devs): High level algorithms, thought for developers.
   * [@qiskit/devs-js](./packages/qiskit-devs-js): JavaScript engine.
   * [@qiskit/devs-anu](./packages/qiskit-devs-anu): [Australian National University](http://www.anu.edu.au) [Quantum Random Numbers Server](https://qrng.anu.edu.au) engine.
@@ -56,7 +56,7 @@ npm run browser
 :coffee: Install last [Node.js](https://nodejs.org/download) stable version (or LTS) and then:
 
 ```sh
-npm i -g @qiskit/sdk
+npm i -g qiskit
 ```
 
 ## Use
@@ -74,7 +74,7 @@ qiskitjs --help
 :pencil: As you can see in the next section, we have to use it like in the rest of independent modules. The only difference is we need to select the proper field of the main object before.
 
 ```js
-const qiskit = require('@qiskit/sdk');
+const qiskit = require('qiskit');
 
 console.log('Simulator version');
 console.log(qiskit.sim.version);

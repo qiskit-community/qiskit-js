@@ -14,7 +14,7 @@
     "test-devs-anu": "lerna run test --scope @qiskit/devs-anu",
     "test-qasm": "lerna run test --scope @qiskit/qasm",
     "test-cloud": "lerna run test --scope @qiskit/cloud",
-    "test-sdk": "lerna run test --scope @qiskit/sdk",
+    "test-sdk": "lerna run test --scope qiskit",
     "test-sim": "lerna run test --scope @qiskit/sim",
     "test-utils": "lerna run test --scope @qiskit/utils",
     "pretest": "npm i && npm run lint && npm run dep-check",
