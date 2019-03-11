@@ -1,6 +1,6 @@
 {
   "name": "@qiskit/devs-anu",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "Australia National University engine for Qiskit for developers",
   "author": {
     "name": "IBM RESEARCH",
@@ -31,7 +31,7 @@
     "url": "https://github.com/Qiskit/qiskit-js/issues"
   },
   "dependencies": {
-    "@qiskit/utils": "^0.6.0",
+    "@qiskit/utils": "^0.6.1",
     "request-promise-native": "^1.0.5"
   },
   "engines": {
