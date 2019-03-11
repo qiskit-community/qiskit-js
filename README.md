@@ -6,7 +6,7 @@
 [![Build Status](https://travis-ci.org/Qiskit/qiskit-js.svg?branch=master)](https://travis-ci.org/Qiskit/qiskit-js)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
-:atom_symbol: [Quantum Information Science Kit](https://developer.ibm.com/open/openprojects/qiskit) for JavaScript. :bulb: This project born as a clone (in JS) of [its big brother](https://github.com/Qiskit/qiskit-sdk-py).
+:atom_symbol: [Quantum Information Science Kit](https://qiskit.org) for JavaScript. :bulb: This project born as a clone (in JS) of [its big brother](https://github.com/Qiskit/qiskit-sdk-py).
 
 **beta**: Until v1 breaking changes could be included.
 
