@@ -19,8 +19,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [0.6.0]
 
 ### ✏️ Changed
-- Node.js version update
+- Node.js version update.
 - `@qiskit/sdk`: Rename package to `qiskit`.
+- Logo in the README.
 
 ### 🐛 Fixed
 - Link to Qiskit site in the README.
