@@ -9,6 +9,8 @@
 
 'use strict';
 
+require('module-alias/register');
+
 const utils = require('@qiskit/utils');
 
 const genHex = require('./lib/genHex');

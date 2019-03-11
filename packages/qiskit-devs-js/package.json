@@ -15,7 +15,7 @@
     "url": "https://github.com/Qiskit/qiskit-js"
   },
   "scripts": {
-    "dep-check": "depcheck",
+    "dep-check": "depcheck --skip-missing=true",
     "test": "mocha --recursive test --timeout 20000 --color"
   },
   "keywords": [
@@ -33,7 +33,9 @@
   },
   "dependencies": {
     "@qiskit/utils": "^0.5.0",
-    "jsqubits": "^1.0.0"
+    "depcheck": "^0.7.2",
+    "jsqubits": "^1.0.0",
+    "module-alias": "^2.2.0"
   },
   "engines": {
     "node": ">=8",
@@ -42,5 +44,8 @@
   "license": "Apache-2.0",
   "publishConfig": {
     "access": "public"
+  },
+  "_moduleAliases": {
+    "@jsqubitslib": "node_modules/jsqubits/lib"
   }
 }
