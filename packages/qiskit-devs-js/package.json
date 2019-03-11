@@ -38,8 +38,7 @@
     "module-alias": "^2.2.0"
   },
   "engines": {
-    "node": ">=8",
-    "npm": ">=5"
+    "node": ">=10"
   },
   "license": "Apache-2.0",
   "publishConfig": {

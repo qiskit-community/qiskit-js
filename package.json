@@ -53,8 +53,7 @@
     "strip-color": "^0.1.0"
   },
   "engines": {
-    "node": ">=8",
-    "npm": ">=5"
+    "node": ">=10"
   },
   "private": true
 }
