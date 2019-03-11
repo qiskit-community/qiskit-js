@@ -143,7 +143,7 @@ describe('cloud:backend', () => {
   it('should fail if bad format in the "name" parameter', async () =>
     utilsTest.throwsAsync(() => cloudFaked.backend(1), expErrRegex.formatStr));
 
-  it.skip('should return a backend with the default "name" parameter', async function t() {
+  it('should return a backend with the default "name" parameter', async function t() {
     if (!global.qiskit || !global.qiskit.cloud) {
       this.skip();
     }
