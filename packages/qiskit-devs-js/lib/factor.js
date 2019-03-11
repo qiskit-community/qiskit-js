@@ -12,12 +12,11 @@
 // Shor's factoring algorithm.
 // See https://cs.uwaterloo.ca/~watrous/lecture-notes/519/11.pdf
 // Initially forked from from here:
-// https://github.com/davidbkemp/jsqubits/blob/master/examples/algorithms/factoring.js
+// https://github.com/davidbkemp/qubits/blob/master/examples/algorithms/factoring.js
 
-/* eslint-disable import/no-unresolved */
-const jsqubits = require('@jsqubitslib/jsqubits');
-const jsqubitsmath = require('@jsqubitslib/jsqubitsmath');
-/* eslint-enable import/no-unresolved */
+const qubits = require('jsqubits').jsqubits;
+
+const qubitsMath = qubits.QMath;
 const utils = require('./utils');
 
 const dbg = utils.dbg(__filename);
@@ -37,16 +36,14 @@ function computeOrder(a, n) {
     from: numOutBits,
     to: numOutBits + numInBits - 1,
   };
-  const f = x => jsqubitsmath.powerMod(a, x, n);
+  const f = x => qubitsMath.powerMod(a, x, n);
   const f0 = f(0);
 
   // Quantum computation
   // It returns either the frequency of the function f or some integer multiple
   // (where "frequency" is the number of times the period of f will fit into 2^numInputBits)
   function determineFrequency(fu) {
-    let qstate = new jsqubits.QState(numInBits + numOutBits).hadamard(
-      inputBits,
-    );
+    let qstate = new qubits.QState(numInBits + numOutBits).hadamard(inputBits);
     qstate = qstate.applyFunction(inputBits, outBits, fu);
     // We do not need to measure the outBits, but it does speed up the simulation.
     qstate = qstate.measure(outBits).newState;
@@ -73,7 +70,7 @@ function computeOrder(a, n) {
       // Each "sample" has a high probability of being approximately equal to some
       // integer multiple of (inputRange/r) rounded to the nearest integer.
       // So we use a continued fraction function to find r (or a divisor of r).
-      const continuedFraction = jsqubitsmath.continuedFraction(
+      const continuedFraction = qubitsMath.continuedFraction(
         sample / inputRange,
         accuracyRequiredForContinuedFraction,
       );
@@ -88,7 +85,7 @@ function computeOrder(a, n) {
           dbg('This is a multiple of the rank');
           bestSoFar = candidateDivisor;
         } else {
-          const lcm = jsqubitsmath.lcm(candidateDivisor, bestSoFar);
+          const lcm = qubitsMath.lcm(candidateDivisor, bestSoFar);
           if (lcm <= outputRange) {
             dbg('This is a good candidate');
             bestSoFar = lcm;
@@ -111,7 +108,7 @@ module.exports = n => {
     return 2;
   }
 
-  const powerFactor = jsqubitsmath.powerFactor(n);
+  const powerFactor = qubitsMath.powerFactor(n);
   if (powerFactor > 1) {
     dbg('Power factor!');
 
@@ -121,7 +118,7 @@ module.exports = n => {
   for (let attempts = 0; attempts < 8; attempts += 1) {
     const randomChoice = 2 + Math.floor(Math.random() * (n - 2));
     dbg(`Step 1: choose random number between 2 and ${n}`, { randomChoice });
-    const gcd = jsqubitsmath.gcd(randomChoice, n);
+    const gcd = qubitsMath.gcd(randomChoice, n);
     if (gcd > 1) {
       dbg(
         `Lucky guess, ${n} and randomly chosen ${randomChoice} have a common factor`,
@@ -134,8 +131,8 @@ module.exports = n => {
     if (r !== 'failed' && r % 2 !== 0) {
       dbg(`Need a period with an even number. Sadly, ${r} is not`);
     } else if (r !== 'failed' && r % 2 === 0) {
-      const powerMod = jsqubitsmath.powerMod(randomChoice, r / 2, n);
-      const candidateFactor = jsqubitsmath.gcd(powerMod - 1, n);
+      const powerMod = qubitsMath.powerMod(randomChoice, r / 2, n);
+      const candidateFactor = qubitsMath.gcd(powerMod - 1, n);
       dbg('Candidate factor computed from period', { candidateFactor });
       if (candidateFactor > 1 && n % candidateFactor === 0) {
         return candidateFactor;

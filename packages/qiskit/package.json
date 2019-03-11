@@ -1,6 +1,6 @@
 {
   "name": "qiskit",
-  "version": "0.6.0",
+  "version": "0.6.8",
   "description": "Quantum Information Science Kit meta-package",
   "author": {
     "name": "IBM RESEARCH",

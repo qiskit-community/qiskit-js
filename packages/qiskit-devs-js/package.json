@@ -34,8 +34,7 @@
   "dependencies": {
     "@qiskit/utils": "^0.6.0",
     "depcheck": "^0.7.2",
-    "jsqubits": "^1.0.0",
-    "module-alias": "^2.2.0"
+    "jsqubits": "^1.1.0"
   },
   "engines": {
     "node": ">=10"
@@ -43,8 +42,5 @@
   "license": "Apache-2.0",
   "publishConfig": {
     "access": "public"
-  },
-  "_moduleAliases": {
-    "@jsqubitslib": "node_modules/jsqubits/lib"
   }
 }

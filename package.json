@@ -1,5 +1,6 @@
 {
   "scripts": {
+    "start": "node packages/qiskit/bin",
     "install": "lerna bootstrap",
     "clean": "lerna clean --yes",
     "publish": "npm i && lerna publish",

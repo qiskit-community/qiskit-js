@@ -61,6 +61,7 @@ From here, depending of the nature of the project, we have specific recommendati
 https://github.com/Qiskit/qiskit-js
 cd qiskit-js
 npm i
+npm start -- --help
 ```
 
 ### Style guide
