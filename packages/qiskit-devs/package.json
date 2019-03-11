@@ -1,6 +1,6 @@
 {
   "name": "@qiskit/devs",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Quantum Information algorithms for developers",
   "author": {
     "name": "IBM RESEARCH",
@@ -33,10 +33,10 @@
     "url": "https://github.com/Qiskit/qiskit-js/issues"
   },
   "dependencies": {
-    "@qiskit/devs-anu": "^0.5.0",
-    "@qiskit/devs-ibm": "^0.5.0",
-    "@qiskit/devs-js": "^0.5.0",
-    "@qiskit/utils": "^0.5.0"
+    "@qiskit/devs-anu": "^0.6.0",
+    "@qiskit/devs-ibm": "^0.6.0",
+    "@qiskit/devs-js": "^0.6.0",
+    "@qiskit/utils": "^0.6.0"
   },
   "engines": {
     "node": ">=10"
