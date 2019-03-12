@@ -96,14 +96,14 @@ const qiskit = require('qiskit');
 console.log('True random numbers\n');
 
 qiskit.devs.random()
-  .then(rand => console.log(`- JavaScript: ${rand}`));
+  .then(rand => console.log(`JavaScript: ${rand}`));
 
 const cloud = new qiskit.Cloud();
 cloud.login('YOUR_PERSONAL_TOKEN_HERE')
   .then(() => {
     cloud.backends()
       .then(data => {
-        console.log('- IBM Backends:');
+        console.log('([BM Backends]');
         console.log(data);
       });
 
@@ -113,7 +113,7 @@ cloud.login('YOUR_PERSONAL_TOKEN_HERE')
       // default: simulator
       // engine: "ibmqx4"
     })
-      .then(rand => console.log(`- IBM Cloud: ${rand}`))
+      .then(rand => console.log(`IBM Cloud: ${rand}`))
   });
 
 qiskit.devs.random({
