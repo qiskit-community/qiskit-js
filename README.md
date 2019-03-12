@@ -78,19 +78,26 @@ qiskit.devs.random()
 const cloud = new qiskit.Cloud();
 cloud.login('YOUR_PERSONAL_TOKEN_HERE')
   .then(() => {
+    cloud.backends()
+      .then(data => {
+        console.log('- IBM Backends:');
+        console.log(data);
+      });
+
     qiskit.devs.random({
       engine: 'ibm',
       custom: cloud,
       // default: simulator
       // engine: "ibmqx4"
     })
-    .then(rand => console.log(`- IBM Cloud: ${rand}`))
+      .then(rand => console.log(`- IBM Cloud: ${rand}`))
   });
 
 qiskit.devs.random({
   engine: 'anu',
   length: 8,
-}).then(rand => console.log(`ANU Server: ${rand}`));
+})
+  .then(rand => console.log(`ANU Server: ${rand}`));
 ```
 
 ## API
