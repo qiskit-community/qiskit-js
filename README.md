@@ -70,7 +70,7 @@ qiskitjs --help
 ```js
 const qiskit = require('qiskit');
 
-console.log(`True random numbers\n')
+console.log('True random numbers\n');
 
 qiskit.devs.random()
   .then(rand => console.log(`- JavaScript: ${rand}`));
