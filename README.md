@@ -72,13 +72,10 @@ const qiskit = require('qiskit');
 
 console.log(`True random numbers\n')
 
-// JavaScript simulator
 qiskit.devs.random()
   .then(rand => console.log(`- JavaScript: ${rand}`));
 
-// IBM Cloud
 const cloud = new qiskit.Cloud();
-
 cloud.login('YOUR_PERSONAL_TOKEN_HERE')
   .then(() => {
     qiskit.devs.random({
@@ -87,14 +84,13 @@ cloud.login('YOUR_PERSONAL_TOKEN_HERE')
       // default: simulator
       // engine: "ibmqx4"
     })
-    .then(rand => console.log(`- IBM: ${rand}`))
+    .then(rand => console.log(`- IBM Cloud: ${rand}`))
   });
 
-// Autralian University Server
 qiskit.devs.random({
   engine: 'anu',
   length: 8,
-}).then(rand => console.log(`ANU: ${rand}`));
+}).then(rand => console.log(`ANU Server: ${rand}`));
 ```
 
 ## API
