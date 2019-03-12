@@ -103,7 +103,7 @@ cloud.login('YOUR_PERSONAL_TOKEN_HERE')
   .then(() => {
     cloud.backends()
       .then(data => {
-        console.log('([BM Backends]');
+        console.log('(IBM Backends');
         console.log(data);
       });
 
