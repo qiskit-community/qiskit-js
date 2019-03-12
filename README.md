@@ -19,7 +19,7 @@
 
 :bulb: I was born as a clone (in JS) of [my big brother](https://github.com/Qiskit/qiskit-sdk-py).
 
-**beta**: Until v1 breaking changes could be included.
+**Alpha**: Until v1 breaking changes could be included.
 
 ## Philosophy
 
@@ -70,8 +70,29 @@ qiskitjs --help
 ```js
 const qiskit = require('qiskit');
 
-console.log('Simulator version');
-console.log(qiskit.sim.version);
+// JavaScript simulator
+qiskit.devs.random()
+  .then(rand => console.log(`Random number (JS): ${rand}`));
+
+// IBM Cloud
+const cloud = new qiskit.Cloud();
+
+cloud.login('YOUR_PERSONAL_TOKEN_HERE')
+  .then(() => {
+    qiskit.devs.random({
+      engine: 'ibm',
+      custom: cloud,
+      // default: simulator
+      // engine: "ibmqx4"
+    })
+    .then(rand => console.log(`Random number (IBM): ${rand}`))
+  });
+
+// Autralian University server
+qiskit.devs.random({
+  engine: 'anu',
+  length: 8,
+}).then(rand => console.log(`Random number: ${rand}`));
 ```
 
 ## API
