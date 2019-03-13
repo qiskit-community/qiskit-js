@@ -1,6 +1,6 @@
 {
   "name": "@qiskit/sim",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "description": "Quantum Information Science Kit simulator",
   "author": {
     "name": "IBM RESEARCH",
@@ -35,7 +35,7 @@
     "url": "https://github.com/Qiskit/qiskit-js/issues"
   },
   "dependencies": {
-    "@qiskit/utils": "^0.6.1",
+    "@qiskit/utils": "^0.6.2",
     "mathjs": "^3.17.0"
   },
   "engines": {
