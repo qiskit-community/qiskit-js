@@ -15,10 +15,25 @@ npm i @qiskit/devs-ibm
 :pencil: You can visit the complete example [in this test](./test/functional/index.js).
 
 ```js
-const qiskit = require('@qiskit/devs-ibm');
+const Cloud = require('qiskit/cloud');
+const qiskit = require('qiskit/devs-ibm');
 
-console.log('Version');
-console.log(qiskit.version);
+const cloud = new Cloud();
+cloud.login('YOUR_PERSONAL_TOKEN_HERE')
+  .then(() => {
+    cloud.backends()
+      .then(data => {
+        console.log('Backends:');
+        console.log(data);
+      });
+
+    qiskit.random({
+      custom: cloud,
+      // default: simulator
+      // engine: "ibmqx4"
+    })
+      .then(rand => console.log(`Random: ${rand}`))
+  });
 ```
 
 ## API

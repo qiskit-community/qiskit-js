@@ -16,7 +16,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [0.6.2] - 2019-13-03
+## [0.6.2] - 2019-03-13
 
 ### ✏️ Changed
 - `qiskit`: Improve the return of backend related commands in the console client.
@@ -25,12 +25,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Tooling cleanup.
 
-## [0.6.1]
+## [0.6.1] - 2019-03-12
 
 ### ✏️ Changed
 - `@qiskit/devs-js`: Using new `jsqubits` version.
 
-## [0.6.0]
+## [0.6.0] - 2019-03-12
 
 ### ✏️ Changed
 - Node.js version update.
@@ -222,9 +222,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Change in lerna setup to allow markdown files in npm.
 - Travis badge in the main README file.
 
+<<<<<<< HEAD
 [unreleased]: https://github.com/Qiskit/qiskit-js/compare/v0.6.2...HEAD
 [0.6.2]: https://github.com/Qiskit/qiskit-js/compare/v0.6.1...v0.6.2
 [0.6.1]: https://github.com/Qiskit/qiskit-js/compare/v0.5.0...v0.5.0
+=======
+[unreleased]: https://github.com/Qiskit/qiskit-js/compare/v0.6.1...HEAD
+[0.6.1]: https://github.com/Qiskit/qiskit-js/compare/v0.6.0...v0.6.1
+>>>>>>> 135f1d01c7d8dc5b1ee6d311b097788121d461c8
 [0.6.0]: https://github.com/Qiskit/qiskit-js/compare/v0.5.0...v0.5.0
 [0.5.0]: https://github.com/Qiskit/qiskit-js/compare/v0.4.2...v0.5.0
 [0.4.2]: https://github.com/Qiskit/qiskit-js/compare/v0.4.1...v0.4.2
