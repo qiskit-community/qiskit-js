@@ -11,6 +11,7 @@
 
 const qiskit = require('../..');
 const logger = require('../lib/logger');
+const utils = require('../lib/utils');
 
 exports.command = 'backends [onlySims]';
 
@@ -33,7 +34,19 @@ exports.handler = argv => {
     .backends(argv.onlySims)
     .then(res => {
       logger.resultHead();
-      logger.chunks(res);
+
+      utils.forEach(res, data => {
+        let header = `${data.name}`;
+        if (data.chipName) {
+          header = `${header} (${data.chipName}, v${data.version})`;
+        }
+        logger.bold(`\n${header}`);
+        logger.regular(
+          `simulator: ${data.simulator} nQubits: ${data.nQubits} status: ${
+            data.status
+          }`,
+        );
+      });
     })
     .catch(err => {
       logger.error('Making the request', err);

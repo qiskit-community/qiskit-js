@@ -16,6 +16,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.6.2]
+
+### ✏️ Changed
+- `qiskit`: Improve the return of backend related commands in the console client.
+
 ## [0.6.1]
 
 ### ✏️ Changed
@@ -213,7 +218,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Change in lerna setup to allow markdown files in npm.
 - Travis badge in the main README file.
 
-[unreleased]: https://github.com/Qiskit/qiskit-js/compare/v0.6.0...HEAD
+[unreleased]: https://github.com/Qiskit/qiskit-js/compare/v0.6.2...HEAD
+[0.6.2]: https://github.com/Qiskit/qiskit-js/compare/v0.6.1...v0.6.2
+[0.6.1]: https://github.com/Qiskit/qiskit-js/compare/v0.5.0...v0.5.0
 [0.6.0]: https://github.com/Qiskit/qiskit-js/compare/v0.5.0...v0.5.0
 [0.5.0]: https://github.com/Qiskit/qiskit-js/compare/v0.4.2...v0.5.0
 [0.4.2]: https://github.com/Qiskit/qiskit-js/compare/v0.4.1...v0.4.2
