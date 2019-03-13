@@ -1,10 +1,11 @@
 # Qiskit.js
 
 [![Build Status](https://travis-ci.com/Qiskit/qiskit-js.svg?branch=master)](https://travis-ci.com/Qiskit/qiskit-js)
-[![experimental](http://badges.github.io/stability-badges/dist/experimental.svg)](http://github.com/badges/stability-badges)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+[![Downloads](https://img.shields.io/npm/dm/qiskit.svg)](https://npmjs.com/qiskit)
+[![stability-experimental](https://img.shields.io/badge/stability-experimental-orange.svg)](https://github.com/emersion/stability-badges#experimental)
 
 :atom_symbol: [Quantum Information Science Kit](https://qiskit.org) for JavaScript, I was born as a clone of [my big brother](https://github.com/Qiskit/qiskit-sdk-py).
 
