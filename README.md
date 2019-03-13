@@ -95,32 +95,27 @@ const qiskit = require('qiskit');
 
 console.log('True random numbers\n');
 
-qiskit.devs.random()
-  .then(rand => console.log(`JavaScript: ${rand}`));
+qiskit.devs.random().then(rand => console.log(`JavaScript: ${rand}`));
 
 const cloud = new qiskit.Cloud();
-cloud.login('YOUR_PERSONAL_TOKEN_HERE')
-  .then(() => {
-    cloud.backends()
-      .then(data => {
-        console.log('(IBM Backends');
-        console.log(data);
-      });
-
-    qiskit.devs.random({
-      engine: 'ibm',
-      custom: cloud,
-      // default: simulator
-      // engine: "ibmqx4"
-    })
-      .then(rand => console.log(`IBM Cloud: ${rand}`))
+cloud.login('YOUR_PERSONAL_TOKEN_HERE').then(() => {
+  cloud.backends().then(data => {
+    console.log('(IBM Backends');
+    console.log(data);
   });
+
+  qiskit.devs.random({
+    engine: 'ibm',
+    custom: cloud,
+    // default: simulator
+    // engine: "ibmqx4"
+  }).then(rand => console.log(`IBM Cloud: ${rand}`))
+});
 
 qiskit.devs.random({
   engine: 'anu',
   length: 8,
-})
-  .then(rand => console.log(`ANU Server: ${rand}`));
+}).then(rand => console.log(`ANU Server: ${rand}`));
 ```
 
 ## API
