@@ -15,7 +15,7 @@
     "url": "https://github.com/Qiskit/qiskit-js"
   },
   "scripts": {
-    "dep-check": "depcheck",
+    "deps": "depcheck",
     "test": "mocha --recursive test --timeout 20000 --color"
   },
   "keywords": [

@@ -6,8 +6,7 @@
     "publish": "npm i && lerna publish",
     "precommit": "lint-staged",
     "lint": "eslint .",
-    "dep-check": "depcheck --ignore-dirs=dist --ignores='brfs,brfs-babel,browserify-banner,mocha,nsp,husky,lint-staged,prettier' && lerna run dep-check",
-    "dep-sec": "lerna run dep-sec",
+    "deps": "depcheck --ignore-dirs=dist --ignores='mocha,lint-staged,prettier' && lerna run deps",
     "test-devs": "lerna run test --scope @qiskit/devs",
     "test-devs-js": "lerna run test --scope @qiskit/devs-js",
     "test-devs-ibm": "lerna run test --scope @qiskit/devs-ibm",
@@ -17,7 +16,7 @@
     "test-sdk": "lerna run test --scope qiskit",
     "test-sim": "lerna run test --scope @qiskit/sim",
     "test-utils": "lerna run test --scope @qiskit/utils",
-    "pretest": "npm i && npm run lint && npm run dep-check",
+    "pretest": "npm i && npm run lint && npm run deps",
     "test": "lerna run test"
   },
   "lint-staged": {
@@ -33,8 +32,7 @@
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-config-prettier": "^3.1.0",
     "eslint-plugin-import": "^2.14.0",
-    "husky": "^1.1.2",
-    "lerna": "^3.4.3",
+    "lerna": "^3.13.1",
     "lint-staged": "^7.3.0",
     "mocha": "^5.2.0",
     "prettier": "1.14.3",

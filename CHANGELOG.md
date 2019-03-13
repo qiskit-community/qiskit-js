@@ -16,10 +16,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [0.6.2]
+## [0.6.2] - 2019-13-03
 
 ### ✏️ Changed
 - `qiskit`: Improve the return of backend related commands in the console client.
+
+### ❌ Removed
+
+- Tooling cleanup.
 
 ## [0.6.1]
 

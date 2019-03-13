@@ -18,7 +18,7 @@
     "qiskitjs": "./bin/index.js"
   },
   "scripts": {
-    "dep-check": "depcheck",
+    "deps": "depcheck",
     "test": "mocha --recursive test --color"
   },
   "keywords": [
