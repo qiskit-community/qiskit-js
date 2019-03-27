@@ -36,8 +36,8 @@ function randomizeInput(nQubits) {
 
 const circuit = new sim.Circuit({ nQubits: 2 });
 
-circuit.addGate('h', 0, 0);
-circuit.addGate('cx', 1, [0, 1]);
+circuit.addGate(sim.Gate.h, 0, 0);
+circuit.addGate(sim.Gate.cx, 1, [0, 1]);
 
 console.log('\nInput randomized (as string):');
 const input = randomizeInput(circuit.nQubits);

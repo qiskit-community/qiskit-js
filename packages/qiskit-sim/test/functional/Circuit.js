@@ -11,14 +11,14 @@
 
 const assert = require('assert');
 
-const { Circuit } = require('../..');
+const { Circuit, Gate } = require('../..');
 
 const circuit = new Circuit();
 const circuitMulti = new Circuit({ nQubits: 2 });
 
-circuit.addGate('h', 0, 0);
-circuitMulti.addGate('h', 0, 0);
-circuitMulti.addGate('cx', 1, [0, 1]);
+circuit.addGate(Gate.h, 0, 0);
+circuitMulti.addGate(Gate.h, 0, 0);
+circuitMulti.addGate(Gate.cx, 1, [0, 1]);
 
 function checkValid(circ) {
   assert.equal(circ.nQubits, 1);
@@ -38,7 +38,7 @@ describe('sim:Circuit:addGate', () => {
     const circuitOther = new Circuit();
 
     circuitOther.addGate('h', 0, 0);
-    circuitOther.addGate('cx', 1, [0, 1]);
+    circuitOther.addGate(Gate.cx, 1, [0, 1]);
 
     assert.equal(circuitOther.nQubits, 2);
   });

@@ -15,7 +15,7 @@ const { gates } = require('../..');
 
 describe('sim:gates', () => {
   it('should include all supported ones', () =>
-    assert.deepEqual(Object.keys(gates), [
+    assert.deepEqual([...gates.keys()], [
       'x',
       'y',
       'z',
