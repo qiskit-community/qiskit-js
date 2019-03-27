@@ -16,7 +16,7 @@ const pkgInfo = require('../../package');
 
 describe('sim:index', () => {
   it('should include all documented root elements', () => {
-    assert.deepEqual(Object.keys(sim), ['version', 'gates', 'Circuit']);
+    assert.deepEqual(Object.keys(sim), ['version', 'gates', 'Gate', 'Circuit']);
   });
 });
 

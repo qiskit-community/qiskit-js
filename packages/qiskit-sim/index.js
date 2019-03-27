@@ -10,11 +10,12 @@
 'use strict';
 
 const { version } = require('./package');
-const gates = require('./lib/gates');
+const { Gate, gates } = require('./lib/gates');
 const Circuit = require('./lib/Circuit');
 
 module.exports = {
   version,
   gates,
+  Gate,
   Circuit,
 };

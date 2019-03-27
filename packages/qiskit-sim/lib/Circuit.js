@@ -14,7 +14,7 @@
 const math = require('mathjs');
 
 const utils = require('./utils');
-const gates = require('./gates');
+const { Gate, gates } = require('./gates');
 
 const dbg = utils.dbg(__filename);
 
@@ -58,7 +58,7 @@ function decompose(obj) {
     for (let wire = 0; wire < obj.nQubits; wire += 1) {
       const gate = obj.gates[wire][column];
 
-      if (gate && gate.connector === 0 && !gates[gate.name]) {
+      if (gate && gate.connector === 0 && !gates.get(gate.name)) {
         // eslint-disable-next-line no-use-before-define
         const tmp = new Circuit();
         const custom = obj.customGates[gate.name];
@@ -157,7 +157,7 @@ class Circuit {
     return this.gates.length ? this.gates[0].length : 0;
   }
 
-  addGate(gateName, column, wires) {
+  addGate(gate, column, wires) {
     const wireList = [];
 
     if (Array.isArray(wires)) {
@@ -192,13 +192,12 @@ class Circuit {
         }
       }
 
-      const gate = {
+
+      this.gates[wire][column] = {
         id,
-        name: gateName.toLowerCase(),
+        name: (gate instanceof Gate) ? gate.name : gate.toLowerCase(),
         connector,
       };
-
-      this.gates[wire][column] = gate;
     }
   }
 
@@ -250,7 +249,7 @@ class Circuit {
             // eslint-disable-next-line no-bitwise
             jstar |= ((j & (1 << q)) >> q) << k;
           }
-          this.T[i][j] = U[istar][jstar];
+          this.T[i][j] = U.matrix[istar][jstar];
         }
       }
     }
@@ -259,7 +258,7 @@ class Circuit {
   applyGate(gateName, wires) {
     dbg('Applying gate', { gateName, wires });
 
-    const gate = gates[gateName.toLowerCase()];
+    const gate = gates.get(gateName.toLowerCase());
 
     if (!gate) {
       throw new Error(`Unknown gate: "${gateName}"`);
@@ -320,7 +319,7 @@ class Circuit {
     if (initialValues) {
       for (let wire = 0; wire < this.nQubits; wire += 1) {
         if (initialValues[wire]) {
-          this.applyGate('x', [wire]);
+          this.applyGate(Gate.x, [wire]);
         }
       }
     }
