@@ -45,7 +45,7 @@ If you want to learn more about Quantum Computing, you're invited to visit our [
 
 ## Install
 
-:coffee: Install last [Node.js](https://nodejs.org/download) stable version (or LTS) and then:
+:coffee: Install lastest [Node.js](https://nodejs.org/download) stable version (or LTS) and then:
 
 ```sh
 npm i -g qiskit
