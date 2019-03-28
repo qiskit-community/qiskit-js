@@ -20,6 +20,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - `@qiskit/qiskit-sim`: Introduce Gate class
 
+### ✏️ Changed
+
+- Update Node.js install instruction in README.md
+
 ## [0.6.2] - 2019-03-13
 
 ### ✏️ Changed

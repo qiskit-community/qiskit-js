@@ -4,7 +4,7 @@ The [Australian National University](http://www.anu.edu.au) [Quantum Random Numb
 
 ## Install
 
-:coffee: Install [Node.js](https://nodejs.org/download) v8 and then:
+:coffee: Install lastest [Node.js](https://nodejs.org/download) stable version (or LTS) and then:
 
 ```sh
 npm i @qiskit/devs-anu

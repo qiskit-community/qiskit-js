@@ -6,7 +6,7 @@ Please visit the [main repository](https://github.com/Qiskit/qiskit-js) of the p
 
 ## Install
 
-:coffee: Install [Node.js](https://nodejs.org/download) v8 and then:
+:coffee: Install lastest [Node.js](https://nodejs.org/download) stable version (or LTS) and then:
 
 ```sh
 npm i @qiskit/qasm
