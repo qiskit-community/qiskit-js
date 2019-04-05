@@ -49,6 +49,7 @@ class Gate {
 Gate.x = new Gate('x', [[0, 1], [1, 0]]);
 Gate.y = new Gate('y', [[0, math.multiply(-1, math.i)], [math.i, 0]]);
 Gate.z = new Gate('z', [[1, 0], [0, -1]]);
+Gate.id = new Gate('id', [[1, 0], [0, 1]]);
 Gate.h = new Gate('h',
                   [[1 / math.sqrt(2), 1 / math.sqrt(2)],
                    [1 / math.sqrt(2), 0 - 1 / math.sqrt(2)]]);

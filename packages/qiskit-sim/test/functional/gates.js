@@ -19,6 +19,7 @@ describe('sim:gates', () => {
       'x',
       'y',
       'z',
+      'id',
       'h',
       'srn',
       's',
