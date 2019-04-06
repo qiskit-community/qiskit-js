@@ -199,6 +199,7 @@ class Circuit {
         connector,
       };
     }
+    return this;
   }
 
   createTransform(U, qubits) {
