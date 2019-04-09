@@ -17,8 +17,7 @@ const circuit = new Circuit();
 const circuitMulti = new Circuit({ nQubits: 2 });
 
 circuit.addGate(Gate.h, 0, 0);
-circuitMulti.addGate(Gate.h, 0, 0);
-circuitMulti.addGate(Gate.cx, 1, [0, 1]);
+circuitMulti.addGate(Gate.h, 0, 0).addGate(Gate.cx, 1, [0, 1]);
 
 function checkValid(circ) {
   assert.equal(circ.nQubits, 1);
