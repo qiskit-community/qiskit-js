@@ -372,6 +372,13 @@ class Circuit {
 
     return s;
   }
+
+  static createCircuit(qubits) {
+    if (typeof qubits !== 'number')
+      throw new TypeError('The "qubits" argument must be of type number. ' +
+                          `Received ${typeof qubits}`);
+    return new Circuit({nQubits: qubits});
+  }
 }
 
 module.exports = Circuit;
