@@ -18,30 +18,6 @@ const { Gate, gates } = require('./gates');
 
 const dbg = utils.dbg(__filename);
 
-const randomString = length => {
-  const len = length || 17;
-  let text = '';
-  // var first char to be letter
-  let charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-
-  text += charset.charAt(Math.floor(Math.random() * charset.length));
-  // other chars can be numbers
-  charset += '0123456789';
-
-  for (let i = 0; i < len; i += 1) {
-    text += charset.charAt(Math.floor(Math.random() * charset.length));
-  }
-
-  return text;
-};
-
-function formatComplex(complex) {
-  const re = math.round(complex.re, 8);
-  const im = math.round(complex.im, 8);
-
-  return `${re}${im >= 0 ? '+' : '-'}${math.abs(im)}i`;
-}
-
 function decompose(obj) {
   if (!obj.gates.length) {
     return obj;
@@ -169,7 +145,7 @@ class Circuit {
     }
 
     const numConnectors = wireList.length;
-    const id = randomString();
+    const id = utils.randomString();
     for (let connector = 0; connector < numConnectors; connector += 1) {
       const wire = wireList[connector];
 
@@ -368,7 +344,7 @@ class Circuit {
       while (bin.length < this.nQubits) {
         bin = `0${bin}`;
       }
-      s += `${formatComplex(this.state[i])}|${bin}>${m}%`;
+      s += `${utils.formatComplex(this.state[i])}|${bin}>${m}%`;
     }
 
     return s;

@@ -27,6 +27,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Update Node.js install instruction in README.md
 - Update packages links in qiskit-devs
 - `@qiskit/qiskit-sim`: Support method chaining for addGate
+- `@qiskit/qiskit-sim`: Move utility functions to utils
 
 ## [0.6.2] - 2019-03-13
 
