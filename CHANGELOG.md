@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - `@qiskit/qiskit-sim`: Introduce Gate class
 - `@qiskit/qiskit-sim`: Add the identity (id) gate
+- `@qiskit/qiskit-sim`: Add createCircuit factory function
 
 ### ✏️ Changed
 

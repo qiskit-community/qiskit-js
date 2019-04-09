@@ -99,3 +99,27 @@ describe('sim:Circuit:load', () => {
     checkValid(circuitOther);
   });
 });
+
+describe('sim:Circuit:createCircuit', () => {
+  it('should be able create Circuit using factory function', () => {
+    const c = Circuit.createCircuit(2);
+    assert.equal(c.nQubits, 2);
+  });
+
+  it('should throw a TypeError if qubit argument is not a number', () => {
+    assert.throws(() => {
+      Circuit.createCircuit('a');
+      },
+      {
+        name: 'TypeError',
+        message: 'The "qubits" argument must be of type number. Received string'
+      }
+    );
+  });
+
+  it('should throw an error if qubit argument is undefined', () => {
+    assert.throws(() => {
+      Circuit.createCircuit();
+    });
+  });
+});
