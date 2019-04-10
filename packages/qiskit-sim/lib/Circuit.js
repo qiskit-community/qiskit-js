@@ -104,14 +104,13 @@ class Circuit {
     return math.pow(2, this.nQubits);
   }
 
-  initTransform() {
+  initTransform(dimension) {
     this.resetTransform();
-    const n = math.pow(2, this.nQubits);
 
-    for (let i = 0; i < n; i += 1) {
+    for (let i = 0; i < dimension; i += 1) {
       this.T[i] = [];
 
-      for (let j = 0; j < n; j += 1) {
+      for (let j = 0; j < dimension; j += 1) {
         this.T[i][j] = 0;
       }
     }
@@ -126,7 +125,7 @@ class Circuit {
       this.state.push(math.complex(0, 0));
     }
 
-    this.initTransform();
+    this.initTransform(numAmplitudes);
   }
 
   numCols() {
@@ -179,7 +178,8 @@ class Circuit {
   }
 
   createTransform(U, qubits) {
-    this.initTransform();
+    const dimension = this.numAmplitudes();
+    this.initTransform(dimension);
 
     const qbts = [];
     // eslint-disable-next-line no-param-reassign
@@ -195,11 +195,10 @@ class Circuit {
       }
     }
 
-    const n = math.pow(2, this.nQubits);
-    let i = n;
+    let i = dimension;
     // eslint-disable-next-line no-cond-assign,no-plusplus
     while (i--) {
-      let j = n;
+      let j = dimension;
 
       // eslint-disable-next-line no-cond-assign,no-plusplus
       while (j--) {
