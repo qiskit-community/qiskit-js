@@ -16,6 +16,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.6.3] - 2019-04-12
+
 ### 🎉 Added
 
 - `@qiskit/qiskit-sim`: Introduce Gate class.
@@ -30,11 +32,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `@qiskit/qiskit-sim`: Move utility functions to utils.
 - `@qiskit/qiskit-sim`: Add dimension parameter to initTransform.
 - Using last version of all dependencies.
+- `qiskit`: Improve the return of job related commands in the command line client.
 
 ## [0.6.2] - 2019-03-13
 
 ### ✏️ Changed
-- `qiskit`: Improve the return of backend related commands in the console client.
+- `qiskit`: Improve the return of backend related commands in the command line client.
 
 ### ❌ Removed
 
@@ -237,15 +240,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Change in lerna setup to allow markdown files in npm.
 - Travis badge in the main README file.
 
-<<<<<<< HEAD
-[unreleased]: https://github.com/Qiskit/qiskit-js/compare/v0.6.2...HEAD
+[unreleased]: https://github.com/Qiskit/qiskit-js/compare/v0.6.3...HEAD
+[0.6.3]: https://github.com/Qiskit/qiskit-js/compare/v0.6.2...v0.6.3
 [0.6.2]: https://github.com/Qiskit/qiskit-js/compare/v0.6.1...v0.6.2
-[0.6.1]: https://github.com/Qiskit/qiskit-js/compare/v0.5.0...v0.5.0
-=======
-[unreleased]: https://github.com/Qiskit/qiskit-js/compare/v0.6.1...HEAD
 [0.6.1]: https://github.com/Qiskit/qiskit-js/compare/v0.6.0...v0.6.1
->>>>>>> 135f1d01c7d8dc5b1ee6d311b097788121d461c8
-[0.6.0]: https://github.com/Qiskit/qiskit-js/compare/v0.5.0...v0.5.0
+[0.6.0]: https://github.com/Qiskit/qiskit-js/compare/v0.5.0...v0.6.0
 [0.5.0]: https://github.com/Qiskit/qiskit-js/compare/v0.4.2...v0.5.0
 [0.4.2]: https://github.com/Qiskit/qiskit-js/compare/v0.4.1...v0.4.2
 [0.4.1]: https://github.com/Qiskit/qiskit-js/compare/v0.4.0...v0.4.1
