@@ -36,7 +36,7 @@
   },
   "dependencies": {
     "@qiskit/utils": "^0.6.2",
-    "mathjs": "^3.17.0"
+    "mathjs": "^5.9.0"
   },
   "engines": {
     "node": ">=10"

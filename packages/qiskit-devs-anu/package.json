@@ -32,7 +32,7 @@
   },
   "dependencies": {
     "@qiskit/utils": "^0.6.2",
-    "request-promise-native": "^1.0.5"
+    "request-promise-native": "^1.0.7"
   },
   "engines": {
     "node": ">=10"

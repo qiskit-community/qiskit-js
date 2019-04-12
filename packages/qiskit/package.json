@@ -48,13 +48,13 @@
     "@qiskit/qasm": "^0.6.2",
     "@qiskit/sim": "^0.6.2",
     "@qiskit/utils": "^0.6.2",
-    "cli-color": "^1.3.0",
+    "cli-color": "^1.4.0",
     "home-or-tmp": "^3.0.0",
-    "node-emoji": "^1.8.1",
-    "node-persist": "^3.0.1",
+    "node-emoji": "^1.10.0",
+    "node-persist": "^3.0.4",
     "prettyjson": "^1.2.1",
     "prompt": "^1.0.0",
-    "yargs": "^10.0.3"
+    "yargs": "^13.2.2"
   },
   "engines": {
     "node": ">=10"
