@@ -16,7 +16,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [0.6.3] - 2019-04-12
+## [0.7.0] - 2019-04-12
 
 ### 🎉 Added
 
@@ -240,8 +240,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Change in lerna setup to allow markdown files in npm.
 - Travis badge in the main README file.
 
-[unreleased]: https://github.com/Qiskit/qiskit-js/compare/v0.6.3...HEAD
-[0.6.3]: https://github.com/Qiskit/qiskit-js/compare/v0.6.2...v0.6.3
+[unreleased]: https://github.com/Qiskit/qiskit-js/compare/v0.7.0...HEAD
+[0.7.0]: https://github.com/Qiskit/qiskit-js/compare/v0.6.2...v0.7.0
 [0.6.2]: https://github.com/Qiskit/qiskit-js/compare/v0.6.1...v0.6.2
 [0.6.1]: https://github.com/Qiskit/qiskit-js/compare/v0.6.0...v0.6.1
 [0.6.0]: https://github.com/Qiskit/qiskit-js/compare/v0.5.0...v0.6.0
