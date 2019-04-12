@@ -1,6 +1,6 @@
 {
   "name": "@qiskit/devs-ibm",
-  "version": "0.6.3",
+  "version": "0.7.0",
   "description": "IBM Q engine for Qiskit for developers",
   "author": {
     "name": "IBM RESEARCH",
@@ -33,10 +33,10 @@
     "url": "https://github.com/Qiskit/qiskit-js/issues"
   },
   "dependencies": {
-    "@qiskit/utils": "^0.6.3"
+    "@qiskit/utils": "^0.7.0"
   },
   "devDependencies": {
-    "@qiskit/cloud": "^0.6.3"
+    "@qiskit/cloud": "^0.7.0"
   },
   "engines": {
     "node": ">=10"
