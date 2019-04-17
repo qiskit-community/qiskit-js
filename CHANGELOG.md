@@ -16,6 +16,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### ✏️ Changed
+
+- `@qiskit/qiskit-sim`: Rename qbts to unusedWires in createTransform
+
 ## [0.7.0] - 2019-04-12
 
 ### 🎉 Added

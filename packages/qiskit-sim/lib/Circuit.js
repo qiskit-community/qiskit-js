@@ -181,7 +181,6 @@ class Circuit {
     const dimension = this.numAmplitudes();
     this.initTransform(dimension);
 
-    const qbts = [];
     // eslint-disable-next-line no-param-reassign
     qubits = qubits.slice(0);
     for (let i = 0; i < qubits.length; i += 1) {
@@ -189,9 +188,10 @@ class Circuit {
       qubits[i] = this.nQubits - 1 - qubits[i];
     }
     qubits.reverse();
+    const unusedWires = [];
     for (let i = 0; i < this.nQubits; i += 1) {
       if (qubits.indexOf(i) === -1) {
-        qbts.push(i);
+        unusedWires.push(i);
       }
     }
 
@@ -203,20 +203,22 @@ class Circuit {
       // eslint-disable-next-line no-cond-assign,no-plusplus
       while (j--) {
         let bitsEqual = true;
-        let k = qbts.length;
+        let unusedCount = unusedWires.length;
 
         // eslint-disable-next-line no-cond-assign,no-plusplus
-        while (k--) {
+        while (unusedCount--) {
           // eslint-disable-next-line no-bitwise
-          if ((i & (1 << qbts[k])) !== (j & (1 << qbts[k]))) {
+          const b = 1 << unusedWires[unusedCount];
+          // eslint-disable-next-line no-bitwise
+          if ((i & b) !== (j & b)) {
             bitsEqual = false;
             break;
           }
         }
+        let k = qubits.length;
         if (bitsEqual) {
           let istar = 0;
           let jstar = 0;
-          k = qubits.length;
           // eslint-disable-next-line no-cond-assign,no-plusplus
           while (k--) {
             const q = qubits[k];
