@@ -78,6 +78,7 @@ function decompose(obj) {
 class Circuit {
   constructor(opts = {}) {
     this.nQubits = opts.nQubits || 1;
+    this.amplitudes = math.pow(2, this.nQubits);
     this.customGates = {};
     this.clear();
   }
@@ -101,7 +102,7 @@ class Circuit {
   }
 
   numAmplitudes() {
-    return math.pow(2, this.nQubits);
+    return this.amplitudes;
   }
 
   initTransform(dimension) {
@@ -150,6 +151,7 @@ class Circuit {
 
       if (wire + 1 > this.nQubits) {
         this.nQubits = wire + 1;
+        this.amplitudes = math.pow(2, this.nQubits);
       }
 
       while (this.gates.length < this.nQubits) {
@@ -261,6 +263,7 @@ class Circuit {
 
   load(obj) {
     this.nQubits = obj.nQubits || 1;
+    this.amplitudes = math.pow(2, this.nQubits);
     this.clear();
     this.gates = obj.gates;
     this.customGates = obj.customGates;
