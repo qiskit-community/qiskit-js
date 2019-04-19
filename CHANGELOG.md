@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### ✏️ Changed
 
 - `@qiskit/qiskit-sim`: Rename qbts to unusedWires in createTransform
+- `@qiskit/qiskit-sim`: Make amplitudes a member of the Circuit class
 
 ## [0.7.0] - 2019-04-12
 
