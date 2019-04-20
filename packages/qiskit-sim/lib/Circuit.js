@@ -80,7 +80,9 @@ class Circuit {
     this.nQubits = opts.nQubits || 1;
     this.amplitudes = math.pow(2, this.nQubits);
     this.customGates = {};
-    this.clear();
+    this.gates = [];
+    this.state = [];
+    this.T = [];
   }
 
   resetTransform() {
