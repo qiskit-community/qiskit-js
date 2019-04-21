@@ -90,7 +90,9 @@ class Circuit {
   }
 
   reset() {
-    this.state = [];
+    if (this.state == null) {
+      this.state = [];
+    }
     this.resetTransform();
   }
 
@@ -121,11 +123,13 @@ class Circuit {
 
   init() {
     this.reset();
-    this.state.push(math.complex(1, 0));
     const numAmplitudes = this.numAmplitudes();
 
-    for (let i = 1; i < numAmplitudes; i += 1) {
-      this.state.push(math.complex(0, 0));
+    if (this.state.length === 0) {
+      this.state.push(math.complex(1, 0));
+      for (let i = 1; i < numAmplitudes; i += 1) {
+        this.state.push(math.complex(0, 0));
+      }
     }
 
     this.initTransform(numAmplitudes);
@@ -254,6 +258,7 @@ class Circuit {
       nQubits: this.nQubits,
       gates: this.gates,
       customGates: this.customGates,
+      state: this.state
     };
 
     if (decomposed) {
@@ -269,6 +274,7 @@ class Circuit {
     this.clear();
     this.gates = obj.gates;
     this.customGates = obj.customGates;
+    this.state = obj.state;
   }
 
   getGateAt(column, wire) {

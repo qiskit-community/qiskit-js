@@ -65,6 +65,23 @@ describe('sim:Circuit:run', () => {
       { re: 0.7071067811865475, im: 0 },
     ]);
   });
+
+  it('should be possible execute the same circuit twice in a row', () => {
+    const expectedState = [
+      { re: 0.9999999999999998, im: 0 },
+      { re: 0, im: 0 }
+    ];
+
+    const twoGates = Circuit.createCircuit(1);
+    twoGates.addGate(Gate.h, 0, 0).addGate(Gate.h, 1, 0).run();
+    assert.deepEqual(twoGates.state, expectedState);
+
+    const runTwice = Circuit.createCircuit(1);
+    runTwice.addGate(Gate.h, 0, 0);
+    runTwice.run();
+    runTwice.run();
+    assert.deepEqual(runTwice.state, expectedState);
+  });
 });
 
 describe('sim:Circuit:stateToString', () => {
