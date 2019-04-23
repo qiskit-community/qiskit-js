@@ -4,7 +4,7 @@ Pure JS engine ([jsqubits](https://www.npmjs.com/package/jsqubits) based) engine
 
 ## Install
 
-:coffee: Install [Node.js](https://nodejs.org/download) v8 and then:
+:coffee: Install lastest [Node.js](https://nodejs.org/download) stable version (or LTS) and then:
 
 ```sh
 npm i @qiskit/devs-js

@@ -1,12 +1,12 @@
 # Qiskit.js simulator
 
-:atom_symbol: [Quantum Information Science Kit](https://developer.ibm.com/open/openprojects/qiskit) simulator in pure JavaScript. As a first feature it includes an unitary one, with specific support for [OpenQASM](https://github.com/IBM/qisim.js-openqasm) circuits representation.
+:atom_symbol: [Quantum Information Science Kit](https://developer.ibm.com/open/openprojects/qiskit) simulator in pure JavaScript. As a first feature it includes an unitary one, with specific support for [OpenQASM](https://github.com/Qiskit/openqasm) circuits representation.
 
 Please visit the [main repository](https://github.com/Qiskit/qiskit-js) to know more about the rest of the project tools.
 
 ## Install
 
-:coffee: Install [Node.js](https://nodejs.org/download) v8 and then:
+:coffee: Install lastest [Node.js](https://nodejs.org/download) stable version (or LTS) and then:
 
 ```sh
 npm i @qiskit/sim
@@ -36,8 +36,8 @@ function randomizeInput(nQubits) {
 
 const circuit = new sim.Circuit({ nQubits: 2 });
 
-circuit.addGate('h', 0, 0);
-circuit.addGate('cx', 1, [0, 1]);
+circuit.addGate(sim.Gate.h, 0, 0);
+circuit.addGate(sim.Gate.cx, 1, [0, 1]);
 
 console.log('\nInput randomized (as string):');
 const input = randomizeInput(circuit.nQubits);

@@ -1,6 +1,6 @@
 {
   "name": "@qiskit/devs-anu",
-  "version": "0.6.1",
+  "version": "0.7.0",
   "description": "Australia National University engine for Qiskit for developers",
   "author": {
     "name": "IBM RESEARCH",
@@ -15,7 +15,7 @@
     "url": "https://github.com/Qiskit/qiskit-js"
   },
   "scripts": {
-    "dep-check": "depcheck",
+    "deps": "depcheck",
     "test": "mocha --recursive test --timeout 20000 --color"
   },
   "keywords": [
@@ -31,8 +31,8 @@
     "url": "https://github.com/Qiskit/qiskit-js/issues"
   },
   "dependencies": {
-    "@qiskit/utils": "^0.6.1",
-    "request-promise-native": "^1.0.5"
+    "@qiskit/utils": "^0.7.0",
+    "request-promise-native": "^1.0.7"
   },
   "engines": {
     "node": ">=10"

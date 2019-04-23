@@ -16,12 +16,48 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [0.6.1]
+## [0.7.1] - 2019-04-23
+
+### ✏️ Changed
+
+- `@qiskit/qiskit-sim`: Rename qbts to unusedWires in createTransform
+- `@qiskit/qiskit-sim`: Make amplitudes a member of the Circuit class
+- `@qiskit/qiskit-sim`: Remove clear() call from Circuit constructor
+- `@qiskit/qiskit-sim`: Allow for executing the same circuit twice
+
+## [0.7.0] - 2019-04-12
+
+### 🎉 Added
+
+- `@qiskit/qiskit-sim`: Introduce Gate class.
+- `@qiskit/qiskit-sim`: Add the identity (id) gate.
+- `@qiskit/qiskit-sim`: Add createCircuit factory function.
+
+### ✏️ Changed
+
+- Update Node.js install instruction in README.md.
+- Update packages links in qiskit-devs.
+- `@qiskit/qiskit-sim`: Support method chaining for addGate.
+- `@qiskit/qiskit-sim`: Move utility functions to utils.
+- `@qiskit/qiskit-sim`: Add dimension parameter to initTransform.
+- Using last version of all dependencies.
+- `qiskit`: Improve the return of job related commands in the command line client.
+
+## [0.6.2] - 2019-03-13
+
+### ✏️ Changed
+- `qiskit`: Improve the return of backend related commands in the command line client.
+
+### ❌ Removed
+
+- Tooling cleanup.
+
+## [0.6.1] - 2019-03-12
 
 ### ✏️ Changed
 - `@qiskit/devs-js`: Using new `jsqubits` version.
 
-## [0.6.0]
+## [0.6.0] - 2019-03-12
 
 ### ✏️ Changed
 - Node.js version update.
@@ -213,9 +249,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Change in lerna setup to allow markdown files in npm.
 - Travis badge in the main README file.
 
-[unreleased]: https://github.com/Qiskit/qiskit-js/compare/v0.6.1...HEAD
+[unreleased]: https://github.com/Qiskit/qiskit-js/compare/v0.7.0...HEAD
+[0.7.0]: https://github.com/Qiskit/qiskit-js/compare/v0.6.2...v0.7.0
+[0.6.2]: https://github.com/Qiskit/qiskit-js/compare/v0.6.1...v0.6.2
 [0.6.1]: https://github.com/Qiskit/qiskit-js/compare/v0.6.0...v0.6.1
-[0.6.0]: https://github.com/Qiskit/qiskit-js/compare/v0.5.0...v0.5.0
+[0.6.0]: https://github.com/Qiskit/qiskit-js/compare/v0.5.0...v0.6.0
 [0.5.0]: https://github.com/Qiskit/qiskit-js/compare/v0.4.2...v0.5.0
 [0.4.2]: https://github.com/Qiskit/qiskit-js/compare/v0.4.1...v0.4.2
 [0.4.1]: https://github.com/Qiskit/qiskit-js/compare/v0.4.0...v0.4.1

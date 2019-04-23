@@ -11,14 +11,13 @@
 
 const assert = require('assert');
 
-const { Circuit } = require('../..');
+const { Circuit, Gate } = require('../..');
 
 const circuit = new Circuit();
 const circuitMulti = new Circuit({ nQubits: 2 });
 
-circuit.addGate('h', 0, 0);
-circuitMulti.addGate('h', 0, 0);
-circuitMulti.addGate('cx', 1, [0, 1]);
+circuit.addGate(Gate.h, 0, 0);
+circuitMulti.addGate(Gate.h, 0, 0).addGate(Gate.cx, 1, [0, 1]);
 
 function checkValid(circ) {
   assert.equal(circ.nQubits, 1);
@@ -38,7 +37,7 @@ describe('sim:Circuit:addGate', () => {
     const circuitOther = new Circuit();
 
     circuitOther.addGate('h', 0, 0);
-    circuitOther.addGate('cx', 1, [0, 1]);
+    circuitOther.addGate(Gate.cx, 1, [0, 1]);
 
     assert.equal(circuitOther.nQubits, 2);
   });
@@ -65,6 +64,23 @@ describe('sim:Circuit:run', () => {
       { re: 0, im: 0 },
       { re: 0.7071067811865475, im: 0 },
     ]);
+  });
+
+  it('should be possible execute the same circuit twice in a row', () => {
+    const expectedState = [
+      { re: 0.9999999999999998, im: 0 },
+      { re: 0, im: 0 }
+    ];
+
+    const twoGates = Circuit.createCircuit(1);
+    twoGates.addGate(Gate.h, 0, 0).addGate(Gate.h, 1, 0).run();
+    assert.deepEqual(twoGates.state, expectedState);
+
+    const runTwice = Circuit.createCircuit(1);
+    runTwice.addGate(Gate.h, 0, 0);
+    runTwice.run();
+    runTwice.run();
+    assert.deepEqual(runTwice.state, expectedState);
   });
 });
 
@@ -98,5 +114,29 @@ describe('sim:Circuit:load', () => {
     circuitOther.load(saved);
 
     checkValid(circuitOther);
+  });
+});
+
+describe('sim:Circuit:createCircuit', () => {
+  it('should be able create Circuit using factory function', () => {
+    const c = Circuit.createCircuit(2);
+    assert.equal(c.nQubits, 2);
+  });
+
+  it('should throw a TypeError if qubit argument is not a number', () => {
+    assert.throws(() => {
+      Circuit.createCircuit('a');
+      },
+      {
+        name: 'TypeError',
+        message: 'The "qubits" argument must be of type number. Received string'
+      }
+    );
+  });
+
+  it('should throw an error if qubit argument is undefined', () => {
+    assert.throws(() => {
+      Circuit.createCircuit();
+    });
   });
 });

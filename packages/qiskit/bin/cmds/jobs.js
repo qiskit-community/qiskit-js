@@ -11,6 +11,7 @@
 
 const qiskit = require('../..');
 const logger = require('../lib/logger');
+const utils = require('../lib/utils');
 
 exports.command = 'jobs [limit] [offset]';
 
@@ -37,7 +38,22 @@ exports.handler = argv => {
     .jobs(argv.limit, argv.offset)
     .then(res => {
       logger.resultHead();
-      logger.chunks(res);
+
+      utils.forEach(res, data => {
+        let header = `${data.id}`;
+        if (data.name) {
+          header = `${header} (${data.name})`;
+        }
+
+        /* eslint-disable no-param-reassign */
+        delete data.id;
+        delete data.name;
+        data.circuits = data.circuits.length;
+        /* eslint-enable no-param-reassign */
+
+        logger.bold(`\n${header}`);
+        logger.json(data);
+      });
     })
     .catch(err => {
       logger.error('Making the request', err);

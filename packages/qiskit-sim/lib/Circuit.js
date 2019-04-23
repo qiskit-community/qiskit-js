@@ -14,33 +14,9 @@
 const math = require('mathjs');
 
 const utils = require('./utils');
-const gates = require('./gates');
+const { Gate, gates } = require('./gates');
 
 const dbg = utils.dbg(__filename);
-
-const randomString = length => {
-  const len = length || 17;
-  let text = '';
-  // var first char to be letter
-  let charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-
-  text += charset.charAt(Math.floor(Math.random() * charset.length));
-  // other chars can be numbers
-  charset += '0123456789';
-
-  for (let i = 0; i < len; i += 1) {
-    text += charset.charAt(Math.floor(Math.random() * charset.length));
-  }
-
-  return text;
-};
-
-function formatComplex(complex) {
-  const re = math.round(complex.re, 8);
-  const im = math.round(complex.im, 8);
-
-  return `${re}${im >= 0 ? '+' : '-'}${math.abs(im)}i`;
-}
 
 function decompose(obj) {
   if (!obj.gates.length) {
@@ -58,7 +34,7 @@ function decompose(obj) {
     for (let wire = 0; wire < obj.nQubits; wire += 1) {
       const gate = obj.gates[wire][column];
 
-      if (gate && gate.connector === 0 && !gates[gate.name]) {
+      if (gate && gate.connector === 0 && !gates.get(gate.name)) {
         // eslint-disable-next-line no-use-before-define
         const tmp = new Circuit();
         const custom = obj.customGates[gate.name];
@@ -102,8 +78,11 @@ function decompose(obj) {
 class Circuit {
   constructor(opts = {}) {
     this.nQubits = opts.nQubits || 1;
+    this.amplitudes = math.pow(2, this.nQubits);
     this.customGates = {};
-    this.clear();
+    this.gates = [];
+    this.state = [];
+    this.T = [];
   }
 
   resetTransform() {
@@ -111,7 +90,9 @@ class Circuit {
   }
 
   reset() {
-    this.state = [];
+    if (this.state == null) {
+      this.state = [];
+    }
     this.resetTransform();
   }
 
@@ -125,17 +106,16 @@ class Circuit {
   }
 
   numAmplitudes() {
-    return math.pow(2, this.nQubits);
+    return this.amplitudes;
   }
 
-  initTransform() {
+  initTransform(dimension) {
     this.resetTransform();
-    const n = math.pow(2, this.nQubits);
 
-    for (let i = 0; i < n; i += 1) {
+    for (let i = 0; i < dimension; i += 1) {
       this.T[i] = [];
 
-      for (let j = 0; j < n; j += 1) {
+      for (let j = 0; j < dimension; j += 1) {
         this.T[i][j] = 0;
       }
     }
@@ -143,21 +123,23 @@ class Circuit {
 
   init() {
     this.reset();
-    this.state.push(math.complex(1, 0));
     const numAmplitudes = this.numAmplitudes();
 
-    for (let i = 1; i < numAmplitudes; i += 1) {
-      this.state.push(math.complex(0, 0));
+    if (this.state.length === 0) {
+      this.state.push(math.complex(1, 0));
+      for (let i = 1; i < numAmplitudes; i += 1) {
+        this.state.push(math.complex(0, 0));
+      }
     }
 
-    this.initTransform();
+    this.initTransform(numAmplitudes);
   }
 
   numCols() {
     return this.gates.length ? this.gates[0].length : 0;
   }
 
-  addGate(gateName, column, wires) {
+  addGate(gate, column, wires) {
     const wireList = [];
 
     if (Array.isArray(wires)) {
@@ -169,12 +151,13 @@ class Circuit {
     }
 
     const numConnectors = wireList.length;
-    const id = randomString();
+    const id = utils.randomString();
     for (let connector = 0; connector < numConnectors; connector += 1) {
       const wire = wireList[connector];
 
       if (wire + 1 > this.nQubits) {
         this.nQubits = wire + 1;
+        this.amplitudes = math.pow(2, this.nQubits);
       }
 
       while (this.gates.length < this.nQubits) {
@@ -192,20 +175,20 @@ class Circuit {
         }
       }
 
-      const gate = {
+
+      this.gates[wire][column] = {
         id,
-        name: gateName.toLowerCase(),
+        name: (gate instanceof Gate) ? gate.name : gate.toLowerCase(),
         connector,
       };
-
-      this.gates[wire][column] = gate;
     }
+    return this;
   }
 
   createTransform(U, qubits) {
-    this.initTransform();
+    const dimension = this.numAmplitudes();
+    this.initTransform(dimension);
 
-    const qbts = [];
     // eslint-disable-next-line no-param-reassign
     qubits = qubits.slice(0);
     for (let i = 0; i < qubits.length; i += 1) {
@@ -213,35 +196,37 @@ class Circuit {
       qubits[i] = this.nQubits - 1 - qubits[i];
     }
     qubits.reverse();
+    const unusedWires = [];
     for (let i = 0; i < this.nQubits; i += 1) {
       if (qubits.indexOf(i) === -1) {
-        qbts.push(i);
+        unusedWires.push(i);
       }
     }
 
-    const n = math.pow(2, this.nQubits);
-    let i = n;
+    let i = dimension;
     // eslint-disable-next-line no-cond-assign,no-plusplus
     while (i--) {
-      let j = n;
+      let j = dimension;
 
       // eslint-disable-next-line no-cond-assign,no-plusplus
       while (j--) {
         let bitsEqual = true;
-        let k = qbts.length;
+        let unusedCount = unusedWires.length;
 
         // eslint-disable-next-line no-cond-assign,no-plusplus
-        while (k--) {
+        while (unusedCount--) {
           // eslint-disable-next-line no-bitwise
-          if ((i & (1 << qbts[k])) !== (j & (1 << qbts[k]))) {
+          const b = 1 << unusedWires[unusedCount];
+          // eslint-disable-next-line no-bitwise
+          if ((i & b) !== (j & b)) {
             bitsEqual = false;
             break;
           }
         }
+        let k = qubits.length;
         if (bitsEqual) {
           let istar = 0;
           let jstar = 0;
-          k = qubits.length;
           // eslint-disable-next-line no-cond-assign,no-plusplus
           while (k--) {
             const q = qubits[k];
@@ -250,7 +235,7 @@ class Circuit {
             // eslint-disable-next-line no-bitwise
             jstar |= ((j & (1 << q)) >> q) << k;
           }
-          this.T[i][j] = U[istar][jstar];
+          this.T[i][j] = U.matrix[istar][jstar];
         }
       }
     }
@@ -259,7 +244,7 @@ class Circuit {
   applyGate(gateName, wires) {
     dbg('Applying gate', { gateName, wires });
 
-    const gate = gates[gateName.toLowerCase()];
+    const gate = gates.get(gateName.toLowerCase());
 
     if (!gate) {
       throw new Error(`Unknown gate: "${gateName}"`);
@@ -273,6 +258,7 @@ class Circuit {
       nQubits: this.nQubits,
       gates: this.gates,
       customGates: this.customGates,
+      state: this.state
     };
 
     if (decomposed) {
@@ -284,9 +270,11 @@ class Circuit {
 
   load(obj) {
     this.nQubits = obj.nQubits || 1;
+    this.amplitudes = math.pow(2, this.nQubits);
     this.clear();
     this.gates = obj.gates;
     this.customGates = obj.customGates;
+    this.state = obj.state;
   }
 
   getGateAt(column, wire) {
@@ -320,7 +308,7 @@ class Circuit {
     if (initialValues) {
       for (let wire = 0; wire < this.nQubits; wire += 1) {
         if (initialValues[wire]) {
-          this.applyGate('x', [wire]);
+          this.applyGate(Gate.x, [wire]);
         }
       }
     }
@@ -368,10 +356,17 @@ class Circuit {
       while (bin.length < this.nQubits) {
         bin = `0${bin}`;
       }
-      s += `${formatComplex(this.state[i])}|${bin}>${m}%`;
+      s += `${utils.formatComplex(this.state[i])}|${bin}>${m}%`;
     }
 
     return s;
+  }
+
+  static createCircuit(qubits) {
+    if (typeof qubits !== 'number')
+      throw new TypeError('The "qubits" argument must be of type number. ' +
+                          `Received ${typeof qubits}`);
+    return new Circuit({nQubits: qubits});
   }
 }
 
