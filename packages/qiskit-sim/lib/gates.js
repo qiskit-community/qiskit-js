@@ -39,6 +39,9 @@ const buildControlled = Gate => {
   return C;
 };
 
+const phaseShift = shift =>
+  [[1, 0], [0, math.pow(math.e, math.multiply(math.i, math.PI / shift))]];
+
 class Gate {
   constructor(name, matrix) {
     this.name = name;
@@ -56,18 +59,10 @@ Gate.h = new Gate('h',
 Gate.srn = new Gate('srn',
                     [[1 / math.sqrt(2), 0 - 1 / math.sqrt(2)],
                      [1 / math.sqrt(2), 1 / math.sqrt(2)]]);
-Gate.s = new Gate('s',
-                  [[1, 0],
-                   [0, math.pow(math.e, math.multiply(math.i, math.PI / 2))]]);
-Gate.r2 = new Gate('r2',
-                   [[1, 0],
-                    [0, math.pow(math.e, math.multiply(math.i, math.PI / 2))]]);
-Gate.r4 = new Gate('r4',
-                   [[1, 0],
-                    [0, math.pow(math.e, math.multiply(math.i, math.PI / 4))]]);
-Gate.r8 = new Gate('r8',
-                   [[1, 0],
-                    [0, math.pow(math.e, math.multiply(math.i, math.PI / 8))]]);
+Gate.s = new Gate('s', phaseShift(2));
+Gate.r2 = new Gate('r2', phaseShift(2));
+Gate.r4 = new Gate('r4', phaseShift(4));
+Gate.r8 = new Gate('r8', phaseShift(8));
 Gate.swap = new Gate('swap',
                      [[1, 0, 0, 0], [0, 0, 1, 0], [0, 1, 0, 0], [0, 0, 0, 1]]);
 Gate.srswap = new Gate('srswap',

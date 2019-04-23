@@ -16,6 +16,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### ✏️ Changed
+
+- `@qiskit/qiskit-sim`: Add phaseShift util function for phase gates
+
 ## [0.7.1] - 2019-04-23
 
 ### ✏️ Changed
