@@ -1,6 +1,6 @@
 {
   "name": "qiskit",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "Quantum Information Science Kit meta-package",
   "author": {
     "name": "IBM RESEARCH",
@@ -46,7 +46,7 @@
     "@qiskit/cloud": "^0.7.0",
     "@qiskit/devs": "^0.7.0",
     "@qiskit/qasm": "^0.7.0",
-    "@qiskit/sim": "^0.7.0",
+    "@qiskit/sim": "^0.7.1",
     "@qiskit/utils": "^0.7.0",
     "cli-color": "^1.4.0",
     "home-or-tmp": "^3.0.0",

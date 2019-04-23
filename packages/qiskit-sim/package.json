@@ -1,6 +1,6 @@
 {
   "name": "@qiskit/sim",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "Quantum Information Science Kit simulator",
   "author": {
     "name": "IBM RESEARCH",
