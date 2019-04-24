@@ -16,6 +16,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### 🎉 Added
+
+- `@qiskit/qiskit-sim`: Add t gate as an alias for the r4 gate
+
 ### ✏️ Changed
 
 - `@qiskit/qiskit-sim`: Add phaseShift util function for phase gates

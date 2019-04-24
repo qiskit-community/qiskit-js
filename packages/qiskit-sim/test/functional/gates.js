@@ -11,7 +11,7 @@
 
 const assert = require('assert');
 
-const { gates } = require('../..');
+const { gates, Gate } = require('../..');
 
 describe('sim:gates', () => {
   it('should include all supported ones', () =>
@@ -26,6 +26,7 @@ describe('sim:gates', () => {
       'r2',
       'r4',
       'r8',
+      't',
       'swap',
       'srswap',
       'cx',
@@ -38,4 +39,7 @@ describe('sim:gates', () => {
       'cr4',
       'cr8',
     ]));
+  it('t gate should have the same unitary matrix as the r4 gate', () => {
+    assert.deepEqual(Gate.t.matrix, Gate.r4.matrix);
+  });
 });

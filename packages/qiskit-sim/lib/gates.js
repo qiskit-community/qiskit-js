@@ -63,6 +63,7 @@ Gate.s = new Gate('s', phaseShift(2));
 Gate.r2 = new Gate('r2', phaseShift(2));
 Gate.r4 = new Gate('r4', phaseShift(4));
 Gate.r8 = new Gate('r8', phaseShift(8));
+Gate.t = new Gate('t', Gate.r4.matrix);
 Gate.swap = new Gate('swap',
                      [[1, 0, 0, 0], [0, 0, 1, 0], [0, 1, 0, 0], [0, 0, 0, 1]]);
 Gate.srswap = new Gate('srswap',
