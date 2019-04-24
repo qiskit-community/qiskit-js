@@ -308,7 +308,7 @@ class Circuit {
     if (initialValues) {
       for (let wire = 0; wire < this.nQubits; wire += 1) {
         if (initialValues[wire]) {
-          this.applyGate(Gate.x, [wire]);
+          this.applyGate(Gate.x.name, [wire]);
         }
       }
     }
