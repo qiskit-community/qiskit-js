@@ -66,6 +66,16 @@ describe('sim:Circuit:run', () => {
     ]);
   });
 
+  it('should not throw Error with initial values', () => {
+    const c = Circuit.createCircuit(2);
+    c.addGate(Gate.h, 0, 0);
+    assert.doesNotThrow( () => {
+      c.run([false, true]);
+    },
+    TypeError
+   );
+  });
+
   it('should be possible execute the same circuit twice in a row', () => {
     const expectedState = [
       { re: 0.9999999999999998, im: 0 },

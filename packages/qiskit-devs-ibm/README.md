@@ -12,7 +12,7 @@ npm i @qiskit/devs-ibm
 
 ## Use
 
-:pencil: You can visit the complete example [in this test](./test/functional/index.js).
+:pencil: You can visit the complete example [in this test](./test/functional.js).
 
 ```js
 const Cloud = require('qiskit/cloud');
