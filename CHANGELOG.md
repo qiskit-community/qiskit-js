@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### ✏️ Changed
 
 - `@qiskit/qiskit-sim`: Add phaseShift util function for phase gates
+- `@qiskit/qiskit-sim`: Make r2 gate use the matrix of the s gate
 
 ### 🐛 Fixed
 

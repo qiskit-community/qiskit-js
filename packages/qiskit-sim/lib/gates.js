@@ -60,7 +60,7 @@ Gate.srn = new Gate('srn',
                     [[1 / math.sqrt(2), 0 - 1 / math.sqrt(2)],
                      [1 / math.sqrt(2), 1 / math.sqrt(2)]]);
 Gate.s = new Gate('s', phaseShift(2));
-Gate.r2 = new Gate('r2', phaseShift(2));
+Gate.r2 = new Gate('r2', Gate.s.matrix);
 Gate.r4 = new Gate('r4', phaseShift(4));
 Gate.r8 = new Gate('r8', phaseShift(8));
 Gate.swap = new Gate('swap',
