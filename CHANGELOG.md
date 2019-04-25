@@ -16,6 +16,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.8.0] - 2019-04-25
+
 ### 🎉 Added
 
 - `@qiskit/qiskit-sim`: Add t gate as an alias for the r4 gate
@@ -262,7 +264,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Change in lerna setup to allow markdown files in npm.
 - Travis badge in the main README file.
 
-[unreleased]: https://github.com/Qiskit/qiskit-js/compare/v0.7.1...HEAD
+[unreleased]: https://github.com/Qiskit/qiskit-js/compare/v0.8.0...HEAD
+[0.8.0]: https://github.com/Qiskit/qiskit-js/compare/v0.7.1...v0.8.0
 [0.7.1]: https://github.com/Qiskit/qiskit-js/compare/v0.7.0...v0.7.1
 [0.7.0]: https://github.com/Qiskit/qiskit-js/compare/v0.6.2...v0.7.0
 [0.6.2]: https://github.com/Qiskit/qiskit-js/compare/v0.6.1...v0.6.2
