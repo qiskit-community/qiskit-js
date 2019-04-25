@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### 🎉 Added
 
 - `@qiskit/qiskit-sim`: Add t gate as an alias for the r4 gate
+- `@qiskit/qiskit-sim`: Add Gate as option to addGate API in README
 
 ### ✏️ Changed
 
