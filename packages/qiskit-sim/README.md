@@ -89,11 +89,11 @@ Gates definition.
 
 * `stateStr` (string) - Human friendly representation of the internal state.
 
-### `circuit.addGate(name, column, wires)`
+### `circuit.addGate(gate, column, wires)`
 
 Add a gate to the circuit.
 
-* `name` (string) - Name of the gate, from `gates` field.
+* `gate` (Gate|string) - Gate instance or name of the gate, from `gates` field.
 * `colum` (number) - Qubit to connect the gate.
 * `wires` (number / [number]) - Gate connections. An array is used for multi-gates.
 
