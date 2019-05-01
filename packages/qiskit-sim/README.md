@@ -94,7 +94,7 @@ Gates definition.
 Add a gate to the circuit.
 
 * `gate` (Gate|string) - Gate instance or name of the gate, from `gates` field.
-* `colum` (number) - Qubit to connect the gate.
+* `column` (number) - Qubit to connect the gate.
 * `wires` (number / [number]) - Gate connections. An array is used for multi-gates.
 
 ### `circuit.run(input)`
