@@ -180,10 +180,12 @@ class Circuit {
         id,
         name: (gate instanceof Gate) ? gate.name : gate.toLowerCase(),
         connector,
+        multiQubit: numConnectors > 1,
       };
     }
     return this;
   }
+
 
   createTransform(U, qubits) {
     const dimension = this.numAmplitudes();
@@ -360,6 +362,94 @@ class Circuit {
     }
 
     return s;
+  }
+
+  print(writable = process.stdout) {
+    const columnLen = 10;
+    const spaceLen = 4;
+    const gateLen = 4;
+
+    const connectionsMap = new Map();
+    for (let column = 0; column < this.gates[0].length; column += 1) {
+      for (let wire = 0; wire < this.nQubits; wire += 1) {
+        const gate = this.gates[wire][column];
+        if (gate && gate.multiQubit) {
+          const m = connectionsMap.has(column) ? connectionsMap.get(column) :
+            new Map();
+          let entry;
+          if (m.has(gate.id)) {
+            entry = m.get(gate.id);
+            entry.to = wire;
+          } else {
+            entry = {from: wire,
+                     fromVisited: false,
+                     to: null,
+                     toVisited: false};
+          }
+          m.set(gate.id, entry);
+          connectionsMap.set(column, m);
+        }
+      }
+    }
+
+    let columnHeader = ''.padStart(columnLen);
+    for (let i = 0; i < this.numCols(); i += 1) {
+      columnHeader += `column ${i}`.padEnd(columnLen, ' ');
+      columnHeader += ''.padEnd(spaceLen, ' ');
+    }
+    writable.write('\n');
+    writable.write(columnHeader);
+    writable.write('\n');
+
+    for (let wire = 0; wire < this.nQubits; wire += 1) {
+      writable.write(`wire ${wire} `.padEnd(columnLen, '-'));
+      let wireOutput = '';
+      let connOutput = ''.padStart(columnLen, ' ');
+      for (let column = 0; column < this.gates[wire].length; column += 1) {
+        const gate = this.getGateAt(column, wire);
+        const connections = connectionsMap.get(column);
+        if (connections) {
+          if (gate && connections.has(gate.id)) {
+            const c = connections.get(gate.id);
+            if (c.from === wire) {
+              c.fromVisited = true;
+            }
+            if (c.to === wire) {
+              c.toVisited = true;
+            }
+
+            if (c.fromVisited === true && c.toVisited === true) {
+              connections.delete(gate.id);
+              if (connections.size === 0) {
+                connectionsMap.delete(column);
+              }
+            } else {
+              connOutput += ` |`;
+            }
+          }  else {
+              connOutput += ` |`;
+          }
+        }
+
+        if (gate) {
+          if (gate.multiQubit && gate.connector !== 0) {
+            wireOutput += `[*]`.padEnd(gateLen, '-');
+          } else {
+            wireOutput += `[${gate.name}]`.padEnd(gateLen, '-');
+            connOutput += ''.padEnd(gateLen, ' ');
+          }
+        } else {
+          wireOutput += ''.padEnd(gateLen, '-');
+          connOutput += ''.padEnd(gateLen, ' ');
+        }
+        wireOutput += ''.padEnd(columnLen, '-');
+        connOutput += ''.padEnd(columnLen, ' ');
+      }
+      writable.write(wireOutput);
+      writable.write('\n');
+      writable.write(connOutput);
+      writable.write('\n');
+    }
   }
 
   static createCircuit(qubits) {
