@@ -16,6 +16,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### ✏️ Changed
+
+- `@qiskit/qiskit-sim`:   Use spread operator in addGate
+
 ### 🎉 Added
 
 - `@qiskit/qiskit-sim`: Add print circuit method

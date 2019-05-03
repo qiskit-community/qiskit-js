@@ -143,9 +143,7 @@ class Circuit {
     const wireList = [];
 
     if (Array.isArray(wires)) {
-      for (let i = 0; i < wires.length; i += 1) {
-        wireList.push(wires[i]);
-      }
+      wireList.push(...wires);
     } else {
       wireList.push(wires);
     }
