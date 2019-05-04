@@ -10,6 +10,7 @@
 'use strict';
 
 const assert = require('assert');
+const { Writable } = require('stream');
 
 const { Circuit, Gate } = require('../..');
 
@@ -149,4 +150,75 @@ describe('sim:Circuit:createCircuit', () => {
       Circuit.createCircuit();
     });
   });
+});
+
+describe('sim:Circuit:print', () => {
+  let result = '';
+  const writable = new Writable({
+    write(chunk, encoding, callback) {
+      result += chunk.toString();
+      callback();
+    }
+  });
+
+  function stripWhitespace(str) {
+    return str.replace(/\s+/g, '');
+  }
+
+  afterEach( () =>  { result = ''; } )
+
+  it('should print circuit with single hadamard gate', () => {
+    const expected = `
+                column 0
+      wire 0 ---[h]-----------`;
+
+    Circuit.createCircuit(1).addGate(Gate.h, 0, 0).print(writable);
+    assert.strictEqual(stripWhitespace(result), stripWhitespace(expected));
+  });
+
+  it('should print circuit with multiple gates', () => {
+    const expected = `
+                column 0
+      wire 0 ---[h]-----------
+
+      wire 1 ---[h]-----------`;
+
+    Circuit.createCircuit(2).addGate(Gate.h, 0, 0)
+                            .addGate(Gate.h, 0, 1)
+                            .print(writable);
+    assert.strictEqual(stripWhitespace(result), stripWhitespace(expected));
+  });
+
+  it('should print circuit with connections', () => {
+    const expected = `
+                column 0      column 1
+      wire 0 ---[x]-----------[cx]----------
+                               |
+      wire 1 -----------------[*]-----------`;
+    // Note that the star in this case represents the target qubit
+    // and the control qubit will be qubit 0.
+
+    Circuit.createCircuit(2).addGate(Gate.x, 0, 0)
+                            .addGate(Gate.cx, 1, [0, 1])
+                            .print(writable);
+    assert.strictEqual(stripWhitespace(result), stripWhitespace(expected));
+  });
+
+  it('should print circuit with connections over mutiple wires', () => {
+    const expected = `
+                column 0      column 1
+      wire 0 ---[x]-----------[cx]----------
+                               |
+      wire 1 -------------------------------
+                               |
+      wire 2 -----------------[*]-----------
+
+      wire 3 -------------------------------`;
+
+    Circuit.createCircuit(4).addGate(Gate.x, 0, 0)
+                            .addGate(Gate.cx, 1, [0, 2])
+                            .print(writable);
+    assert.strictEqual(stripWhitespace(result), stripWhitespace(expected));
+  });
+
 });
