@@ -14,7 +14,7 @@ npm i @qiskit/utils
 
 ## Use
 
-:pencil: You can visit the complete example [in this test](./test/functional/index.js).
+:pencil: You can visit the complete example [in this test](./test/functional.js).
 
 ```js
 const utils = require('@qiskit/utils');
