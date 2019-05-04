@@ -23,6 +23,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### 🎉 Added
 
 - `@qiskit/qiskit-sim`: Add print circuit method
+- `@qiskit/qiskit-sim`: Add print method to Circuit API documentation
 
 ## [0.8.0] - 2019-04-25
 

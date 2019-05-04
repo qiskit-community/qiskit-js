@@ -97,6 +97,13 @@ Add a gate to the circuit.
 * `column` (number) - Qubit to connect the gate.
 * `wires` (number / [number]) - Gate connections. An array is used for multi-gates.
 
+### `circuit.print([writable])`
+
+Prints a visual representation of the circuit to standard out (by default).
+
+* `writable` (object) - Optional [Writable](https://nodejs.org/api/stream.html#stream_writable_streams)
+object which will be written to. Defaults to process.stdout.
+
 ### `circuit.run(input)`
 
 Make the simulation.
