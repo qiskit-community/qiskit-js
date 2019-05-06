@@ -14,7 +14,7 @@ npm i @qiskit/qasm
 
 ## Use
 
-:pencil: You can visit the complete example [in this test](./test/functional/parse.js).
+:pencil: You can visit the complete example [in this test](./test/functional/).
 
 ```js
 const qasm = require('@qiskit/qasm');
