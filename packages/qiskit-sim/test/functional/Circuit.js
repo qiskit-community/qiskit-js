@@ -44,6 +44,26 @@ describe('sim:Circuit:addGate', () => {
   });
 });
 
+describe('sim:Circuit:add', () => {
+  it('should modify the circuit using add ', () => {
+    const c = Circuit.createCircuit(1);
+    c.add(Gate.h, 0, 0);
+    checkValid(circuit);
+  });
+
+  it('should only accept Gate instances ', () => {
+    const c = new Circuit();
+    assert.throws(() => {
+      c.add('h', 0, 0);
+      },
+      {
+        name: 'TypeError',
+        message: 'The "gate" argument must be of type Gate. Received string'
+      }
+    );
+  });
+});
+
 describe('sim:Circuit:run', () => {
   it('should change the internal state for a single gate circuit', () => {
     const input = [false];

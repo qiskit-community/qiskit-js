@@ -184,6 +184,14 @@ class Circuit {
     return this;
   }
 
+  add(gate, column, wire) {
+    if (!(gate instanceof Gate)) {
+      throw new TypeError('The "gate" argument must be of type Gate. ' +
+                          `Received ${typeof gate}`);
+    }
+    return this.addGate(gate, column, wire);
+  }
+
 
   createTransform(U, qubits) {
     const dimension = this.numAmplitudes();
