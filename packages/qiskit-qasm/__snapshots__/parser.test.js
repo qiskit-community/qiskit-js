@@ -54,7 +54,8 @@ exports['qasm:parse should work with "include" 1'] = [
     "number": "5"
   },
   {
-    "type": "x",
+    "type": "gate",
+    "name": "x",
     "identifiers": [
       {
         "name": "q",
@@ -105,7 +106,8 @@ exports['qasm:parse should fail with "include" 1'] = [
     "number": "1"
   },
   {
-    "type": "x",
+    "type": "gate",
+    "name": "x",
     "identifiers": [
       {
         "name": "q",

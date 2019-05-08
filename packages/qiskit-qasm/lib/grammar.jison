@@ -147,7 +147,8 @@
 
   function buildGate(name, identifiers, params, qelib, line) {
     const gate = {
-      type: name,
+      type: 'gate',
+      name: name,
       identifiers
     };
 
