@@ -407,6 +407,7 @@ class Circuit {
     writable.write(columnHeader);
     writable.write('\n');
 
+    const connStarted = Array(this.numCols()).fill(false);
     for (let wire = 0; wire < this.nQubits; wire += 1) {
       writable.write(`wire ${wire} `.padEnd(columnLen, '-'));
       let wireOutput = '';
@@ -419,9 +420,11 @@ class Circuit {
             const c = connections.get(gate.id);
             if (c.from === wire) {
               c.fromVisited = true;
+              connStarted[column] = true;
             }
             if (c.to === wire) {
               c.toVisited = true;
+              connStarted[column] = true;
             }
 
             if (c.fromVisited === true && c.toVisited === true) {
@@ -432,7 +435,7 @@ class Circuit {
             } else {
               connOutput += ` |`;
             }
-          }  else {
+          }  else if (connStarted[column]) {
               connOutput += ` |`;
           }
         }

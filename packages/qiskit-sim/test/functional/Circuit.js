@@ -241,4 +241,21 @@ describe('sim:Circuit:print', () => {
     assert.strictEqual(stripWhitespace(result), stripWhitespace(expected));
   });
 
+  it('should print circuit with connections over mutiple wires', () => {
+    const expected = `
+                column 0      column 1
+      wire 0 -------------------------------
+
+      wire 1 ---[x]-----------[cx]----------
+                               |
+      wire 2 -----------------[*]-----------
+
+      wire 3 -------------------------------`;
+
+    Circuit.createCircuit(4).addGate(Gate.x, 0, 1)
+                            .addGate(Gate.cx, 1, [1, 2])
+                            .print(writable);
+    assert.strictEqual(stripWhitespace(result), stripWhitespace(expected));
+  });
+
 });
