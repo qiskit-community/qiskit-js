@@ -12,6 +12,8 @@
 'use strict';
 
 const math = require('mathjs');
+const fs = require('fs');
+const { Parser } = require('@qiskit/qasm');
 
 const utils = require('./utils');
 const { Gate, gates } = require('./gates');
@@ -435,8 +437,8 @@ class Circuit {
             } else {
               connOutput += ` |`;
             }
-          }  else if (connStarted[column]) {
-              connOutput += ` |`;
+          } else if (connStarted[column]) {
+            connOutput += ` |`;
           }
         }
 
@@ -467,6 +469,48 @@ class Circuit {
                           `Received ${typeof qubits}`);
     return new Circuit({nQubits: qubits});
   }
-}
 
+  static fromQasm(qasm) {
+    const parser = new Parser();
+    const parsed = parser.parse(qasm);
+    let qubits = 0;
+    const wiresMap = new Map();
+    const gatesArr = [];
+
+    parsed.forEach((entry) => {
+      if (entry.type === 'qubit') {
+        wiresMap.set(entry.identifier, {offset: qubits, columnCount: 0});
+        qubits += parseInt(entry.number, 10);
+      }
+
+      if (entry.type === 'gate') {
+        gatesArr.push(entry);
+      }
+    });
+
+    const circuit = Circuit.createCircuit(qubits);
+
+    for (let i = 0; i < gatesArr.length; i += 1) {
+      const wires = [];
+      const gate = gatesArr[i];
+      let column;
+      for (let y = 0; y < gate.identifiers.length; y += 1) {
+        const id = gate.identifiers[y];
+        if (y === 0) {
+          column = wiresMap.get(id.name).columnCount;
+          wiresMap.get(id.name).columnCount += 1;
+        }
+        const { index } = id
+        const { offset } = wiresMap.get(id.name);
+        wires.push(parseInt(offset, 10) + parseInt(index, 10));
+      }
+      circuit.addGate(gate.name, column, wires);
+    }
+    return circuit;
+  }
+
+  static fromQasmFile(path) {
+    return Circuit.fromQasm(fs.readFileSync(path, {encoding:'utf8'}));
+  }
+}
 module.exports = Circuit;

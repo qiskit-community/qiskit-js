@@ -26,6 +26,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `@qiskit/qiskit-sim`: Add print method to Circuit API documentation
 - `@qiskit/qiskit-sim`: Add 'add' method to Circuit class
 - `@qiskit/qiskit-qasm`: Add name to the gate type in qasm parser
+- `@qiskit/qiskit-sim`: Add fromQasm/fromQasmFile functions to Circuit
 
 > - 🐛 **Fixed**: for any bug fixes.
 

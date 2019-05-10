@@ -11,6 +11,7 @@
 
 const assert = require('assert');
 const { Writable } = require('stream');
+const path = require('path');
 
 const { Circuit, Gate } = require('../..');
 
@@ -256,6 +257,74 @@ describe('sim:Circuit:print', () => {
                             .addGate(Gate.cx, 1, [1, 2])
                             .print(writable);
     assert.strictEqual(stripWhitespace(result), stripWhitespace(expected));
+  });
+
+});
+
+describe('sim:Circuit:circuitFromQasm', () => {
+  it('should throw if QASM file does not exist', () => {
+    assert.throws(() => {
+      Circuit.fromQasmFile(path.join(__dirname, 'missing.qasm'));
+    });
+  });
+
+  it('should parse a QASM into a Circuit instance', () => {
+    const qasm = `
+      OPENQASM 2.0;
+      include "qelib1.inc";
+
+      qreg q[2];
+      creg c[2];
+
+      x q[0];
+      cx q[0],q[1];
+      measure q[0] -> c[0];
+      measure q[1] -> c[1];
+    `;
+
+    const c = Circuit.fromQasm(qasm);
+    assert.strictEqual(c.nQubits, 2);
+    assert.strictEqual(c.gates[0][0].name, Gate.x.name);
+    assert.strictEqual(c.gates[0][0].multiQubit, false);
+    assert.strictEqual(c.gates[0][0].connector, 0);
+
+    assert.strictEqual(c.gates[0][1].name, Gate.cx.name);
+    assert.strictEqual(c.gates[0][1].multiQubit, true);
+    assert.strictEqual(c.gates[0][1].connector, 0);
+
+    assert.strictEqual(c.gates[1][1].name, Gate.cx.name);
+    assert.strictEqual(c.gates[1][1].multiQubit, true);
+    assert.strictEqual(c.gates[1][1].connector, 1);
+  });
+
+  it('should parse a QASM with multiple q regs', () => {
+    const qasm = `
+      OPENQASM 2.0;
+      include "qelib1.inc";
+
+      qreg q[2];
+      qreg q2[2];
+      creg c[2];
+
+      x q2[0];
+      cx q2[0],q[1];
+      measure q[0] -> c[0];
+      measure q[1] -> c[1];
+    `;
+
+    const c = Circuit.fromQasm(qasm);
+    assert.strictEqual(c.nQubits, 4);
+    assert.strictEqual(c.gates[1][1].name, Gate.cx.name);
+    assert.strictEqual(c.gates[1][1].multiQubit, true);
+    assert.strictEqual(c.gates[1][1].connector, 1);
+
+    assert.strictEqual(c.gates[2][0].name, Gate.x.name);
+    assert.strictEqual(c.gates[2][0].multiQubit, false);
+    assert.strictEqual(c.gates[2][0].connector, 0);
+
+    assert.strictEqual(c.gates[2][1].name, Gate.cx.name);
+    assert.strictEqual(c.gates[2][1].multiQubit, true);
+    assert.strictEqual(c.gates[2][1].connector, 0);
   });
 
 });
