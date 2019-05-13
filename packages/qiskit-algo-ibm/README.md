@@ -1,6 +1,6 @@
 # Qiskit.js algo (IBM Q)
 
-[IBM Q](https://www.research.ibm.com/ibm-q) engine (chip and remote simulator) for the [Qiskit algo package](https://github.com/Qiskit/qiskit-js/tree/master/packages/qiskit-algo).
+[IBM Q](https://www.research.ibm.com/ibm-q) engine (chip and remote simulator) for the [Qiskit algorithms package](https://github.com/Qiskit/qiskit-js/tree/master/packages/qiskit-algo).
 
 ## Install
 

@@ -1,7 +1,7 @@
 {
   "name": "@qiskit/algo-js",
   "version": "0.8.0",
-  "description": "Pure JavaScript engine for Qiskit for developers",
+  "description": "Pure JavaScript engine for Qiskit algorithms",
   "author": {
     "name": "IBM RESEARCH",
     "url": "http://research.ibm.com"

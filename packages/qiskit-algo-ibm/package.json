@@ -1,7 +1,7 @@
 {
   "name": "@qiskit/algo-ibm",
   "version": "0.8.0",
-  "description": "IBM Q engine for Qiskit for developers",
+  "description": "IBM Q engine for Qiskit algorithms",
   "author": {
     "name": "IBM RESEARCH",
     "url": "http://research.ibm.com"
