@@ -6,7 +6,7 @@
     "publish": "npm i && lerna publish",
     "precommit": "lint-staged",
     "lint": "eslint .",
-    "deps": "depcheck --ignore-dirs=dist --ignores='mocha,lint-staged,prettier' && lerna run deps",
+    "deps": "depcheck --ignore-dirs=dist --ignores='mocha,lint-staged,prettier,eslint-config-airbnb-base,eslint-config-prettier,eslint-plugin-import' && lerna run deps",
     "test-algo": "lerna run test --scope @qiskit/algo",
     "test-algo-js": "lerna run test --scope @qiskit/algo-js",
     "test-algo-ibm": "lerna run test --scope @qiskit/algo-ibm",
