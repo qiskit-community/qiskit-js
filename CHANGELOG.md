@@ -30,7 +30,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 > - 🐛 **Fixed**: for any bug fixes.
 
-- `@qiskit/qiskit-sim`: Fix connection bug in printCircuit
+- `@qiskit/qiskit-sim`: Connection bug in printCircuit
+- `@qiskit/qiskit-cloud`: Tests after last API changes
 
 ## [0.8.0] - 2019-04-25
 
