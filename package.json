@@ -42,5 +42,30 @@
   "engines": {
     "node": ">=10"
   },
-  "private": true
+  "private": true,
+  "eslintConfig": {
+    "extends": [
+      "airbnb-base",
+      "prettier"
+    ],
+    "env": {
+      "es6": true,
+      "node": true
+    },
+    "rules": {
+      "strict": [
+        "off"
+      ]
+    }
+  },
+  "eslintIgnore": [
+    "**/node_modules/*",
+    "dist",
+    "*.jison",
+    "snapshots__"
+  ],
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "all"
+  }
 }
