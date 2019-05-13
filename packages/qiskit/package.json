@@ -14,6 +14,10 @@
     "type": "git",
     "url": "https://github.com/Qiskit/qiskit-js"
   },
+  "files": [
+    "bin",
+    "index.js"
+  ],
   "bin": {
     "qiskitjs": "./bin/index.js"
   },
