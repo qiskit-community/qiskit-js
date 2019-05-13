@@ -16,7 +16,7 @@ const genHex = require('../lib/genHex');
 
 const dbg = utils.dbg(__filename);
 
-describe('devs:js:genHex', () => {
+describe('algo:js:genHex', () => {
   it('should return a hex string of the default length without options', async () => {
     const res = await genHex();
     dbg('Result', res);

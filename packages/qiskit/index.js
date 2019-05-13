@@ -13,7 +13,7 @@ const qasm = require('@qiskit/qasm');
 const sim = require('@qiskit/sim');
 const Cloud = require('@qiskit/cloud');
 const utils = require('@qiskit/utils');
-const devs = require('@qiskit/devs');
+const algo = require('@qiskit/algo');
 
 const { version } = require('./package');
 
@@ -23,5 +23,5 @@ module.exports = {
   sim,
   Cloud,
   utils,
-  devs,
+  algo,
 };

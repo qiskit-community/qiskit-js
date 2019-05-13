@@ -1,13 +1,13 @@
-# Qiskit.js devs (ANU)
+# Qiskit.js algo (ANU)
 
-The [Australian National University](http://www.anu.edu.au) [Quantum Random Numbers Server](https://qrng.anu.edu.au) engine (chip) for the [Qiskit devs package](https://github.com/Qiskit/qiskit-js/tree/master/packages/qiskit-devs).
+The [Australian National University](http://www.anu.edu.au) [Quantum Random Numbers Server](https://qrng.anu.edu.au) engine (chip) for the [Qiskit algo package](https://github.com/Qiskit/qiskit-js/tree/master/packages/qiskit-algo).
 
 ## Install
 
 :coffee: Install lastest [Node.js](https://nodejs.org/download) stable version (or LTS) and then:
 
 ```sh
-npm i @qiskit/devs-anu
+npm i @qiskit/algo-anu
 ```
 
 ## Use
@@ -15,7 +15,7 @@ npm i @qiskit/devs-anu
 :pencil: You can visit the complete example [in this test](./test/functional.js).
 
 ```js
-const qiskit = require('@qiskit/devs-anu');
+const qiskit = require('@qiskit/algo-anu');
 
 console.log('Version');
 console.log(qiskit.version);

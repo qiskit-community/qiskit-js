@@ -14,7 +14,7 @@ const assert = require('assert');
 // eslint-disable-next-line import/no-extraneous-dependencies
 const Cloud = require('@qiskit/cloud');
 
-const devs = require('..');
+const algo = require('..');
 const { version } = require('../package');
 
 const cloud = new Cloud();
@@ -25,20 +25,20 @@ function multiIncludes(text, values) {
   return values.every(val => text.includes(val));
 }
 
-describe('devs:ibm:api', () => {
+describe('algo:ibm:api', () => {
   it('should include all documented items', () => {
-    assert.ok(multiIncludes(Object.keys(devs), ['random', 'result']));
+    assert.ok(multiIncludes(Object.keys(algo), ['random', 'result']));
   });
 
   it('should return the the correct result for its methods', () =>
-    assert.equal(devs.version, version));
+    assert.equal(algo.version, version));
 });
 
-describe('devs:ibm:version', () =>
-  it('should be correct', () => assert.equal(devs.version, version)));
+describe('algo:ibm:version', () =>
+  it('should be correct', () => assert.equal(algo.version, version)));
 
 let jobId;
-describe('devs:ibm:random', () => {
+describe('algo:ibm:random', () => {
   before(async function t() {
     if (!process.env.QX_KEY) {
       cloud.token = 'notvalid';
@@ -67,7 +67,7 @@ describe('devs:ibm:random', () => {
       this.skip();
     }
 
-    const res = await devs.random({ custom: cloud });
+    const res = await algo.random({ custom: cloud });
     assert.equal(typeof res, 'string');
     assert(res.length >= 0);
 
@@ -75,13 +75,13 @@ describe('devs:ibm:random', () => {
   });
 });
 
-describe('devs:ibm:result', () => {
+describe('algo:ibm:result', () => {
   it('should return the result passing jobId', async function t() {
     if (!global.qiskit || !global.qiskit.cloud) {
       this.skip();
     }
 
-    const res = await devs.result(jobId, { custom: cloud });
+    const res = await algo.result(jobId, { custom: cloud });
 
     assert.equal(res.status, 'running');
   });

@@ -24,7 +24,7 @@ describe('qiskit:api', () => {
       'sim',
       'Cloud',
       'utils',
-      'devs',
+      'algo',
     ]));
 
   it('should return the the correct result for its methods', () =>

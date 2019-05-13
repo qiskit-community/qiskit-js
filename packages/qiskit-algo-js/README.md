@@ -1,13 +1,13 @@
-# Qiskit.js devs (pure JavaScript)
+# Qiskit.js algo (pure JavaScript)
 
-Pure JS engine ([jsqubits](https://www.npmjs.com/package/jsqubits) based) engine (simulator) for the [Qiskit algorithms package](https://github.com/Qiskit/qiskit-js/tree/master/packages/qiskit-devs).
+Pure JS engine ([jsqubits](https://www.npmjs.com/package/jsqubits) based) engine (simulator) for the [Qiskit algorithms package](https://github.com/Qiskit/qiskit-js/tree/master/packages/qiskit-algo).
 
 ## Install
 
 :coffee: Install lastest [Node.js](https://nodejs.org/download) stable version (or LTS) and then:
 
 ```sh
-npm i @qiskit/devs-js
+npm i @qiskit/algo-js
 ```
 
 ## Use
@@ -15,7 +15,7 @@ npm i @qiskit/devs-js
 :pencil: You can visit the complete example [in this test](test/functional.js).
 
 ```js
-const qiskit = require('@qiskit/devs-js');
+const qiskit = require('@qiskit/algo-js');
 
 console.log('Version');
 console.log(qiskit.version);

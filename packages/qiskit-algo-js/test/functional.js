@@ -18,7 +18,7 @@ const { version } = require('../package');
 
 const dbg = utils.dbg(__filename);
 
-describe('devs:js:api', () => {
+describe('algo:js:api', () => {
   it('should include all documented items', () => {
     assert.equal(
       utils.difference(['version', 'random', 'factor'], Object.keys(qiskit)),
@@ -27,11 +27,11 @@ describe('devs:js:api', () => {
   });
 });
 
-describe('devs:js:version', () => {
+describe('algo:js:version', () => {
   it('should be included', () => assert.equal(qiskit.version, version));
 });
 
-describe('devs:js:random', () => {
+describe('algo:js:random', () => {
   it('should return a number between 0 and 1 without options', async () => {
     const res = await qiskit.random();
     dbg('Result', res);
@@ -41,7 +41,7 @@ describe('devs:js:random', () => {
   });
 });
 
-describe('devs:js:factor', () => {
+describe('algo:js:factor', () => {
   it('should work for a small integer', async () => {
     const res = await qiskit.factor(15);
     dbg('Result', res);

@@ -44,7 +44,7 @@
   },
   "dependencies": {
     "@qiskit/cloud": "^0.8.0",
-    "@qiskit/devs": "^0.8.0",
+    "@qiskit/algo": "^0.8.0",
     "@qiskit/qasm": "^0.8.0",
     "@qiskit/sim": "^0.8.0",
     "@qiskit/utils": "^0.8.0",
@@ -54,7 +54,7 @@
     "node-persist": "^3.0.4",
     "prettyjson": "^1.2.1",
     "prompt": "^1.0.0",
-    "yargs": "^13.2.2"
+    "yargs": "^13.2.4"
   },
   "engines": {
     "node": ">=10"

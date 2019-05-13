@@ -30,7 +30,7 @@ exports.builder = {
 exports.handler = argv => {
   logger.title(qiskit.version);
 
-  qiskit.devs
+  qiskit.algo
     .result(argv.jobId, { custom: global.qiskit.cloud })
     .then(res => {
       logger.resultHead();

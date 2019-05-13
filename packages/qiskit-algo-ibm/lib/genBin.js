@@ -18,7 +18,7 @@ function buildParam(circuit) {
   return { qasm: circuit };
 }
 
-// TODO: Reuse "utils.genRandom" like in the other "qiskit-devs=*" packages.
+// TODO: Reuse "utils.genRandom" like in the other "qiskit-algo=*" packages.
 module.exports = async (cloud, opts = {}) => {
   const len = opts.length || 16;
   const backendName = opts.backend || 'simulator';

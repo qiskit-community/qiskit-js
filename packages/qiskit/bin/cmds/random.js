@@ -57,7 +57,7 @@ exports.handler = argv => {
     opts.custom = global.qiskit.cloud;
   }
 
-  qiskit.devs
+  qiskit.algo
     .random(opts)
     .then(res => {
       logger.resultHead();

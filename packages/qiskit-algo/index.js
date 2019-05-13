@@ -9,9 +9,9 @@
 
 'use strict';
 
-const engineJs = require('@qiskit/devs-js');
-const engineAnu = require('@qiskit/devs-anu');
-const engineIbm = require('@qiskit/devs-ibm');
+const engineJs = require('@qiskit/algo-js');
+const engineAnu = require('@qiskit/algo-anu');
+const engineIbm = require('@qiskit/algo-ibm');
 
 const utils = require('./lib/utils');
 const { version } = require('./package');

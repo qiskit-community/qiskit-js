@@ -18,7 +18,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### ✏️ Changed
 
-- `@qiskit/qiskit-sim`:   Use spread operator in addGate
+- `@qiskit/qiskit-sim`: Use spread operator in addGate
+- `@qiskit/qiskit-dev*`: Packages *dev* renamed to *algo*
 
 ### 🎉 Added
 

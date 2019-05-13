@@ -9,7 +9,7 @@ Please visit the [main repository](https://github.com/Qiskit/qiskit-js) of the p
 :coffee: Install lastest [Node.js](https://nodejs.org/download) stable version (or LTS) and then:
 
 ```sh
-npm i @qiskit/devs
+npm i @qiskit/algo
 ```
 
 ## Use
@@ -17,7 +17,7 @@ npm i @qiskit/devs
 :pencil: As you can see in the next section, we have to use it like in the rest of independent modules. The only difference is we need to pass the engine as any other option.
 
 ```js
-const qiskit = require('@qiskit/devs');
+const qiskit = require('@qiskit/algo');
 
 // With the default engine and length.
 qiskit.random().then(rand => console.log(`Random number(default): ${rand}`));

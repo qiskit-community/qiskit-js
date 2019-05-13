@@ -20,7 +20,7 @@ module.exports.version = version;
 module.exports.random = async (opts = {}) => {
   dbg('Passed opts:', opts);
 
-  // We use opts being required to respect the qiskit-devs methods signature.
+  // We use opts being required to respect the qiskit-algo methods signature.
   if (!opts.custom || typeof opts.custom !== 'object') {
     throw new Error(
       'The "opts.custom" option is mandatory (a "@qiskit/cloud" logged instance)',
@@ -64,7 +64,7 @@ module.exports.random = async (opts = {}) => {
 };
 
 module.exports.result = async (jobId, opts = {}) => {
-  // We use opts being required to respect the qiskit-devs methods signature.
+  // We use opts being required to respect the qiskit-algo methods signature.
   if (!opts.custom || typeof opts.custom !== 'object') {
     throw new Error(
       'The "opts.custom" option is mandatory (a "@qiskit/cloud" logged instance)',

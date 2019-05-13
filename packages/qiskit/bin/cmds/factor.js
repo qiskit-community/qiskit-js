@@ -28,7 +28,7 @@ exports.builder = {
 exports.handler = argv => {
   logger.title(qiskit.version);
 
-  qiskit.devs
+  qiskit.algo
     .factor(argv.number)
     .then(res => {
       logger.resultHead();

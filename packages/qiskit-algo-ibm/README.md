@@ -1,13 +1,13 @@
-# Qiskit.js devs (IBM Q)
+# Qiskit.js algo (IBM Q)
 
-[IBM Q](https://www.research.ibm.com/ibm-q) engine (chip and remote simulator) for the [Qiskit devs package](https://github.com/Qiskit/qiskit-js/tree/master/packages/qiskit-devs).
+[IBM Q](https://www.research.ibm.com/ibm-q) engine (chip and remote simulator) for the [Qiskit algo package](https://github.com/Qiskit/qiskit-js/tree/master/packages/qiskit-algo).
 
 ## Install
 
 :coffee: Install lastest [Node.js](https://nodejs.org/download) stable version (or LTS) and then:
 
 ```sh
-npm i @qiskit/devs-ibm
+npm i @qiskit/algo-ibm
 ```
 
 ## Use
@@ -16,7 +16,7 @@ npm i @qiskit/devs-ibm
 
 ```js
 const Cloud = require('qiskit/cloud');
-const qiskit = require('qiskit/devs-ibm');
+const qiskit = require('qiskit/algo-ibm');
 
 const cloud = new Cloud();
 cloud.login('YOUR_PERSONAL_TOKEN_HERE')

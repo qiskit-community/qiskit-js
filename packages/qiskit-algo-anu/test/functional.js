@@ -19,7 +19,7 @@ const genHex = require('../lib/genHex');
 
 const dbg = utils.debug(`${name}:test`);
 
-describe('devs:anu:api', () => {
+describe('algo:anu:api', () => {
   it('should include all documented items', () => {
     assert.equal(
       utils.difference(['version', 'random'], Object.keys(qiskit)),
@@ -28,11 +28,11 @@ describe('devs:anu:api', () => {
   });
 });
 
-describe('devs:anu:version', () => {
+describe('algo:anu:version', () => {
   it('should be included', () => assert.equal(qiskit.version, version));
 });
 
-describe('devs:anu:random', () => {
+describe('algo:anu:random', () => {
   it('should return a number between 0 and 1 without options', async function t() {
     this.retries(4);
 
@@ -44,7 +44,7 @@ describe('devs:anu:random', () => {
   });
 });
 
-describe('devs:anu:genHex', () => {
+describe('algo:anu:genHex', () => {
   it('should return a hex string of the default length without options', async function t() {
     this.retries(4);
 
@@ -55,7 +55,7 @@ describe('devs:anu:genHex', () => {
     assert.ok(res.length === 16);
   });
 
-  it('devs:anu:should return a hex string of the desired length if passed', async function t() {
+  it('algo:anu:should return a hex string of the desired length if passed', async function t() {
     this.retries(4);
 
     const len = 8;
