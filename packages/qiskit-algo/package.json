@@ -1,6 +1,6 @@
 {
   "name": "@qiskit/algo",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "description": "Quantum Information algorithms for developers",
   "author": {
     "name": "IBM RESEARCH",
@@ -38,10 +38,10 @@
     "url": "https://github.com/Qiskit/qiskit-js/issues"
   },
   "dependencies": {
-    "@qiskit/algo-anu": "^0.8.0",
-    "@qiskit/algo-ibm": "^0.8.0",
-    "@qiskit/algo-js": "^0.8.0",
-    "@qiskit/utils": "^0.8.0"
+    "@qiskit/algo-anu": "^0.9.0",
+    "@qiskit/algo-ibm": "^0.9.0",
+    "@qiskit/algo-js": "^0.9.0",
+    "@qiskit/utils": "^0.9.0"
   },
   "engines": {
     "node": ">=10"

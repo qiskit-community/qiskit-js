@@ -1,6 +1,6 @@
 {
   "name": "@qiskit/algo-anu",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "description": "Australia National University engine for Qiskit algorithms",
   "author": {
     "name": "IBM RESEARCH",
@@ -35,7 +35,7 @@
     "url": "https://github.com/Qiskit/qiskit-js/issues"
   },
   "dependencies": {
-    "@qiskit/utils": "^0.8.0",
+    "@qiskit/utils": "^0.9.0",
     "request-promise-native": "^1.0.7"
   },
   "engines": {
