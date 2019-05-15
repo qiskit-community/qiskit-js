@@ -9,37 +9,33 @@
 
 'use strict';
 
-const util = require('util');
+class QasmError extends Error {
 
-function QasmError(msg, opts = {}) {
-  Error.captureStackTrace(this, this.constructor);
+  constructor(message, opts = {}) {
+    if (!message) {
+      throw new TypeError('Required param: message');
+    }
+    super(message);
+    this.name = 'QasmError';
 
-  this.name = this.constructor.name;
-
-  if (!msg) {
-    throw new Error('Required param: msg');
+    // TODO: Review: error code, etc? If coming from jison X ours Y
+    if (opts.line) {
+      this.line = opts.line;
+    }
+    if (opts.column) {
+      this.column = opts.column;
+    }
+    if (opts.text) {
+      this.text = opts.text;
+    }
+    if (opts.token) {
+      this.token = opts.token;
+    }
+    if (opts.expected) {
+      this.expected = opts.expected;
+    }
   }
 
-  this.message = msg;
-
-  // TODO: Review: error code, etc? If coming from jison X ours Y
-  if (opts.line) {
-    this.line = opts.line;
-  }
-  if (opts.column) {
-    this.column = opts.column;
-  }
-  if (opts.text) {
-    this.text = opts.text;
-  }
-  if (opts.token) {
-    this.token = opts.token;
-  }
-  if (opts.expected) {
-    this.expected = opts.expected;
-  }
 }
-
-util.inherits(QasmError, Error);
 
 module.exports = QasmError;

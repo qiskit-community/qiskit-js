@@ -69,6 +69,6 @@ describe('qasm:QasmError', () => {
   });
 
   it('should fail without a message', () => {
-    assert.throws(() => new QasmError(), /Required param: msg/);
+    assert.throws(() => new QasmError(), /Required param: message/);
   });
 });
