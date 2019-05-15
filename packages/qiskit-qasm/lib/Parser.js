@@ -18,7 +18,7 @@ const utils = require('./utils');
 
 const dbg = utils.dbg(__filename);
 
-// const QasmError = require('./QasmError');
+const QasmError = require('./QasmError');
 
 // TODO: Do async?
 const bnf = fs.readFileSync(path.resolve(__dirname, 'grammar.jison'), 'utf8');
@@ -49,9 +49,10 @@ class Parser {
     try {
       res = parser.parse(circuit, this.qelibParsed);
     } catch (err) {
-      // TODO: Use our custom error
-      // throw new QasmError('')
-      throw err;
+      if (err instanceof QasmError) {
+        throw err;
+      }
+      throw new QasmError(err.message)
     }
 
     return res;

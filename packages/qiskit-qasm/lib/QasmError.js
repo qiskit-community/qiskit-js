@@ -21,6 +21,7 @@ class QasmError extends Error {
     // TODO: Review: error code, etc? If coming from jison X ours Y
     if (opts.line) {
       this.line = opts.line;
+      this.message += ` (line:${this.line})`;
     }
     if (opts.column) {
       this.column = opts.column;

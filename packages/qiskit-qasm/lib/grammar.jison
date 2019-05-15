@@ -66,6 +66,8 @@
 %{
   const lodash = require('lodash');
   const util = require('util');
+  // QasmError is being required from node_modules/jison/lib/jison.js
+  const QasmError = require('../../../lib/QasmError');
 
   // List of register definitionsutil
   const externalFuncs = ['sin', 'cos', 'tan', 'exp', 'ln', 'sqrt'];
@@ -74,16 +76,7 @@
   var gateDefinitions = [];
 
   function launchError(line, msg) {
-      const err = new Error('qasm:' + msg);
-      err.line = line;
-
-      // TODO: Drop, only to debug 
-      //console.log('------------------------');
-      //console.log(err);
-      //console.log('------------------------');
-
-      // TODO: Use QasmError  
-      throw err;
+      throw new QasmError(msg, {line: line});
   }
 
   function addRegister(register, line) {
@@ -329,11 +322,21 @@ GateOpList
     ;
 
 GateOp
-    : U '(' ExpList ')' Id ';' { $$ = buildGate('u', [ $Id ], $ExpList, qelibParsed); }
-    | CX Id ',' Id ';' { $$ = buildGate('cx', [$2, $4], null, qelibParsed); }
-    | Id IdList ';' { $$ = buildGate($Id, $IdList, null, qelibParsed); }
-    | Id '(' ')' IdList ';' { $$ = buildGate($Id, $IdList, null, qelibParsed); }
-    | Id '(' ExpList ')' IdList ';' { $$ = buildGate($Id, $IdList, $ExpList, qelibParsed); }
+    : U '(' ExpList ')' Id ';' {
+        $$ = buildGate('u', [ $Id ], $ExpList, qelibParsed, @1.first_line);
+      }
+    | CX Id ',' Id ';' {
+        $$ = buildGate('cx', [$2, $4], null, qelibParsed, @1.first_line);
+      }
+    | Id IdList ';' {
+        $$ = buildGate($Id, $IdList, null, qelibParsed, @1.first_line);
+      }
+    | Id '(' ')' IdList ';' {
+        $$ = buildGate($Id, $IdList, null, qelibParsed, @1.first_line);
+      }
+    | Id '(' ExpList ')' IdList ';' {
+        $$ = buildGate($Id, $IdList, $ExpList, qelibParsed, @1.first_line);
+      }
     | BARRIER IdList ';' { $$ = buildBarrier($IdList); }
     ;
 
@@ -396,11 +399,25 @@ QOperation
     ;
 
 UnitaryOperation
-    : U '(' ExprList ')' Primary ';' { $$ = buildGate('u', [ $Primary ], $ExpList, qelibParsed); }
-    | CX Primary ',' Primary { $$ = buildGate($1, [ $2, $4 ], null, qelibParsed); }
-    | Id PrimaryList { $$ = buildGate($Id, $PrimaryList, null, qelibParsed); }
-    | Id '(' ')' PrimaryList { $$ = buildGate($Id, $PrimaryList, null, qelibParsed); }
-    | Id '(' ExpressionList ')' PrimaryList { $$ = buildGate($Id, $PrimaryList, $ExpressionList, qelibParsed); }
+    : U '(' ExprList ')' Primary ';' {
+        $$ = buildGate('u', [ $Primary ], $ExpList, qelibParsed, @1.first_line);
+      }
+    | CX Primary ',' Primary {
+        $$ = buildGate($1, [ $2, $4 ], null, qelibParsed, @1.first_line);
+      }
+    | Id PrimaryList {
+        $$ = buildGate($Id, $PrimaryList, null, qelibParsed, @1.first_line);
+      }
+    | Id '(' ')' PrimaryList {
+        $$ = buildGate($Id, $PrimaryList, null, qelibParsed, @1.first_line);
+      }
+    | Id '(' ExpressionList ')' PrimaryList {
+       $$ = buildGate($Id,
+                      $PrimaryList,
+                      $ExpressionList,
+                      qelibParsed,
+                      @1.first_line);
+      }
     ;
 
 
