@@ -22,12 +22,11 @@ const QasmError = require('./QasmError');
 
 // TODO: Do async?
 const bnf = fs.readFileSync(path.resolve(__dirname, 'grammar.jison'), 'utf8');
-let parser;
 
 class Parser {
   constructor(opts = {}) {
     dbg('Starting', opts);
-    parser = new jison.Parser(bnf);
+    this.parser = new jison.Parser(bnf);
 
     if (opts.core !== false) {
       // TODO: Parse all core libraries (when we have more)
@@ -35,7 +34,7 @@ class Parser {
         path.resolve(__dirname, '../core/qelib1.inc'),
         'utf8',
       );
-      this.qelibParsed = parser.parse(qelib1);
+      this.qelibParsed = this.parser.parse(qelib1);
     }
   }
 
@@ -47,7 +46,7 @@ class Parser {
     let res;
 
     try {
-      res = parser.parse(circuit, this.qelibParsed);
+      res = this.parser.parse(circuit, this.qelibParsed);
     } catch (err) {
       if (err instanceof QasmError) {
         throw err;
