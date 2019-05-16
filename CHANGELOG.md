@@ -16,6 +16,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+> - ✏️ **Changed**: for changes in existing functionality.
+
+- `@qiskit/qiskit-qasm`: Make QasmError a class
+- `@qiskit/qiskit-qasm`: Use QasmError for jison error handling
+
 ## [0.9.0] - 2019-05-13
 
 ### ✏️ Changed
