@@ -40,7 +40,7 @@ class Parser {
 
   parse(circuit) {
     if (!circuit) {
-      throw new Error('Required param: circuit');
+      throw new TypeError('Required param: circuit');
     }
 
     let res;
