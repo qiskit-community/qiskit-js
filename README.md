@@ -6,7 +6,7 @@
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 [![Downloads](https://img.shields.io/npm/dm/qiskit.svg)](https://npmjs.com/qiskit)
 
-:atom_symbol: [Quantum Information Science Kit](https://qiskit.org) for JavaScript, I was born as a clone of [my big brother](https://github.com/Qiskit/qiskit-sdk-py).
+:atom_symbol: [Quantum Information Science Kit](https://qiskit.org) for JavaScript, I was born as a clone of [my big brother](https://github.com/Qiskit/qiskit-terra).
 
 <div align="center">
 	<p>
@@ -168,7 +168,7 @@ Original code (Python) authors [here](https://github.com/Qiskit/qiskit-sdk-py#au
 
 :school_satchel:
 
-* [Python Qiskit](https://github.com/Qiskit/qiskit-sdk-py.git>)
+* [Python Qiskit](https://github.com/Qiskit/qiskit-terra)
 * [ibmqx backend information](https://github.com/Qiskit/ibmqx-backend-information): Information about the different IBM Q experience backends.
 * [ibmqx user guide](https://github.com/Qiskit/ibmqx-user-guides): The users guides for the IBM Q experience.
 * [OpenQasm](https://github.com/Qiskit/openqasm): Examples and tools for the OpenQASM intermediate representation.
