@@ -16,13 +16,32 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+> - ✏️ **Changed**: for changes in existing functionality.
+
+- `@qiskit/qiskit-qasm`: Make QasmError a class
+- `@qiskit/qiskit-qasm`: Use QasmError for jison error handling
+- `@qiskit/qiskit-qasm`: Make parser a member of class Parser
+- `@qiskit/qiskit-qasm`: Use TypeError as error for incorrect type
+
+## [0.9.0] - 2019-05-13
+
 ### ✏️ Changed
 
-- `@qiskit/qiskit-sim`:   Use spread operator in addGate
+- `@qiskit/qiskit-sim`: Use spread operator in addGate
+- `@qiskit/qiskit-dev*`: Packages *dev* renamed to *algo*
 
 ### 🎉 Added
 
 - `@qiskit/qiskit-sim`: Add print circuit method
+- `@qiskit/qiskit-sim`: Add print method to Circuit API documentation
+- `@qiskit/qiskit-sim`: Add 'add' method to Circuit class
+- `@qiskit/qiskit-qasm`: Add name to the gate type in qasm parser
+- `@qiskit/qiskit-sim`: Add fromQasm/fromQasmFile functions to Circuit
+
+> - 🐛 **Fixed**: for any bug fixes.
+
+- `@qiskit/qiskit-sim`: Connection bug in printCircuit
+- `@qiskit/qiskit-cloud`: Tests after last API changes
 
 ## [0.8.0] - 2019-04-25
 
@@ -273,7 +292,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Change in lerna setup to allow markdown files in npm.
 - Travis badge in the main README file.
 
-[unreleased]: https://github.com/Qiskit/qiskit-js/compare/v0.8.0...HEAD
+[unreleased]: https://github.com/Qiskit/qiskit-js/compare/v0.9.0...HEAD
+[0.9.0]: https://github.com/Qiskit/qiskit-js/compare/v0.8.0...v0.9.0
 [0.8.0]: https://github.com/Qiskit/qiskit-js/compare/v0.7.1...v0.8.0
 [0.7.1]: https://github.com/Qiskit/qiskit-js/compare/v0.7.0...v0.7.1
 [0.7.0]: https://github.com/Qiskit/qiskit-js/compare/v0.6.2...v0.7.0

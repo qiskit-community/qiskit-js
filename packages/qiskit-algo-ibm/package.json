@@ -1,7 +1,7 @@
 {
-  "name": "@qiskit/sim",
+  "name": "@qiskit/algo-ibm",
   "version": "0.9.0",
-  "description": "Quantum Information Science Kit simulator",
+  "description": "IBM Q engine for Qiskit algorithms",
   "author": {
     "name": "IBM RESEARCH",
     "url": "http://research.ibm.com"
@@ -20,28 +20,27 @@
   ],
   "scripts": {
     "deps": "depcheck",
-    "test": "mocha --recursive test --color"
+    "test": "mocha --recursive test --timeout 20000 --color"
   },
   "keywords": [
     "quantum",
+    "experience",
     "computing",
     "information",
-    "qasm",
-    "openqasm",
-    "simulator",
-    "emulator",
-    "compiler",
-    "unroller",
-    "qiskit",
+    "algorithms",
+    "random",
+    "shor",
+    "factor",
     "IBM"
   ],
   "bugs": {
     "url": "https://github.com/Qiskit/qiskit-js/issues"
   },
   "dependencies": {
-    "@qiskit/qasm": "^0.9.0",
-    "@qiskit/utils": "^0.9.0",
-    "mathjs": "^5.10.0"
+    "@qiskit/utils": "^0.9.0"
+  },
+  "devDependencies": {
+    "@qiskit/cloud": "^0.9.0"
   },
   "engines": {
     "node": ">=10"

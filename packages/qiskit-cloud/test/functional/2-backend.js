@@ -125,6 +125,7 @@ const expectedKeys = [
   'specificConfiguration',
   'id',
   'topologyId',
+  'qconsole',
   'url',
   'internalId',
   'simulator',
@@ -213,7 +214,7 @@ describe('cloud:backends', () => {
     const res = await global.qiskit.cloud.backends(true);
 
     assert.equal(res.length, 1);
-    assert.equal(Object.keys(res[0]).length, 12);
+    assert.equal(Object.keys(res[0]).length, 13);
     assert.equal(res[0].name, 'ibmq_qasm_simulator');
     assert.equal(res[0].status, 'on');
     assert.equal(res[0].description, 'online qasm simulator');

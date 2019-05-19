@@ -18,6 +18,8 @@ npm i @qiskit/qasm
 
 ```js
 const qasm = require('@qiskit/qasm');
+const fs = require('fs');
+const util = require('util');
 
 console.log('Version');
 console.log(qasm.version);

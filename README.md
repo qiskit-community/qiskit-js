@@ -30,10 +30,10 @@ If you want to learn more about Quantum Computing, you're invited to visit our [
 :handbag: The components of this repository are exposed as these libraries:
 
 * [qiskit](./packages/qiskit): Meta-package, documented in this file. It also includes a command line client, which is your friend if you want to play with all these features without having to use any programming language.
-* [@qiskit/devs](./packages/qiskit-devs): High level algorithms, thought for developers.
-  * [@qiskit/devs-js](./packages/qiskit-devs-js): JavaScript engine.
-  * [@qiskit/devs-anu](./packages/qiskit-devs-anu): [Australian National University](http://www.anu.edu.au) [Quantum Random Numbers Server](https://qrng.anu.edu.au) engine.
-  * [@qiskit/devs-ibm](./packages/qiskit-devs-ibm): Quantum Experience engine.
+* [@qiskit/algo](./packages/qiskit-algo): High level algorithms, thought for developers.
+  * [@qiskit/algo-js](./packages/qiskit-algo-js): JavaScript engine.
+  * [@qiskit/algo-anu](./packages/qiskit-algo-anu): [Australian National University](http://www.anu.edu.au) [Quantum Random Numbers Server](https://qrng.anu.edu.au) engine.
+  * [@qiskit/algo-ibm](./packages/qiskit-algo-ibm): Quantum Experience engine.
 * [@qiskit/cloud](./packages/qiskit-cloud): Library to make easier the interaction with the Quantum Experience.
 * [@qiskit/utils](./packages/qiskit-utils): Helpers shared among all packages.
 * [@qiskit/qasm](./packages/qiskit-qasm): Some [OpenQASM](https://github.com/IBM/qiskit-openqasm) tools, like parser.
@@ -95,7 +95,7 @@ const qiskit = require('qiskit');
 
 console.log('True random numbers\n');
 
-qiskit.devs.random().then(rand => console.log(`JavaScript: ${rand}`));
+qiskit.algo.random().then(rand => console.log(`JavaScript: ${rand}`));
 
 const cloud = new qiskit.Cloud();
 cloud.login('YOUR_PERSONAL_TOKEN_HERE').then(() => {
@@ -104,7 +104,7 @@ cloud.login('YOUR_PERSONAL_TOKEN_HERE').then(() => {
     console.log(data);
   });
 
-  qiskit.devs.random({
+  qiskit.algo.random({
     engine: 'ibm',
     custom: cloud,
     // default: simulator
@@ -112,7 +112,7 @@ cloud.login('YOUR_PERSONAL_TOKEN_HERE').then(() => {
   }).then(rand => console.log(`IBM Cloud: ${rand}`))
 });
 
-qiskit.devs.random({
+qiskit.algo.random({
   engine: 'anu',
   length: 8,
 }).then(rand => console.log(`ANU Server: ${rand}`));
@@ -152,11 +152,11 @@ A wrapper for the [`qiskit-utils`](./packages/qiskit-utils) project.
 
 * `utils` (object) - The same object provided in the original library.
 
-### `devs`
+### `algo`
 
-A wrapper for the [`qiskit-devs`](./packages/qiskit-devs) project.
+A wrapper for the [`qiskit-algo`](./packages/qiskit-algo) project.
 
-* `devs` (object) - The same object provided in the original library.
+* `algo` (object) - The same object provided in the original library.
 
 ## Authors
 

@@ -19,7 +19,7 @@ npm i @qiskit/sim
 ```js
 const util = require('util');
 
-const sim = require('@qiskit/sim');
+const { Circuit, Gate } = require('@qiskit/sim');
 
 function randomizeInput(nQubits) {
   const input = [];
@@ -34,10 +34,11 @@ function randomizeInput(nQubits) {
   return input;
 }
 
-const circuit = new sim.Circuit({ nQubits: 2 });
+const circuit = Circuit.createCircuit(2);
 
-circuit.addGate(sim.Gate.h, 0, 0);
-circuit.addGate(sim.Gate.cx, 1, [0, 1]);
+circuit.add(Gate.h, 0, 0);
+circuit.add(Gate.cx, 1, [0, 1]);
+circuit.print();
 
 console.log('\nInput randomized (as string):');
 const input = randomizeInput(circuit.nQubits);
@@ -96,6 +97,22 @@ Add a gate to the circuit.
 * `gate` (Gate|string) - Gate instance or name of the gate, from `gates` field.
 * `column` (number) - Qubit to connect the gate.
 * `wires` (number / [number]) - Gate connections. An array is used for multi-gates.
+
+### `circuit.add(gate, column, wires)`
+
+Add a gate to the circuit. This function is identical to `addGate` but only
+accepts `Gate` instances.
+
+* `gate` (Gate) - Gate instance to add to the circuit.
+* `column` (number) - Qubit to connect the gate.
+* `wires` (number / [number]) - Gate connections. An array is used for multi-gates.
+
+### `circuit.print([writable])`
+
+Prints a visual representation of the circuit to standard out (by default).
+
+* `writable` (object) - Optional [Writable](https://nodejs.org/api/stream.html#stream_writable_streams)
+object which will be written to. Defaults to process.stdout.
 
 ### `circuit.run(input)`
 

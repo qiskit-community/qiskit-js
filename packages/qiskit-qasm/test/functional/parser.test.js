@@ -153,4 +153,37 @@ describe('qasm:parse', () => {
 
     utilsTest.shot(parser.parse(circuit));
   });
+
+  it('should throw QasmError if gate is not defined', () => {
+    parser = new Parser();
+    const circuit =
+      'OPENQASM 2.0;\n' +
+      'qreg q[1];\n' +
+      'creg c[1];\n' +
+      'a q[0];';
+
+    assert.throws(() => {
+      utilsTest.shot(parser.parse(circuit));
+    }, {
+      name: 'QasmError',
+      message: 'Gate a is not defined (line:4)'
+    });
+  });
+
+  it('should throw wrap Jison Error as a QasmError', () => {
+    parser = new Parser();
+    const circuit =
+      'OPENQASM 2.0;\n' +
+      'include "bogus";\n';
+
+    assert.throws(() => {
+      utilsTest.shot(parser.parse(circuit));
+    }, {
+      name: 'QasmError',
+      message: 'Lexical error on line 2. ' +
+               'Unrecognized text.\n' +
+               '...ENQASM 2.0;include "bogus";\n' +
+               '----------------------^'
+    });
+  });
 });

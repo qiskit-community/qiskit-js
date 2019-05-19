@@ -27,7 +27,7 @@ describe('qasm:QasmError', () => {
     const err = new QasmError(msg, opts);
 
     assert.equal(err.name, 'QasmError');
-    assert.equal(err.message, msg);
+    assert.equal(err.message, `${msg} (line:${opts.line})`);
     assert.equal(typeof err.stack, 'string');
     assert.equal(err.line, 24);
     assert.equal(err.column, 5);
@@ -46,7 +46,7 @@ describe('qasm:QasmError', () => {
 
     assert.equal(err.name, 'QasmError');
     assert.equal(typeof err.stack, 'string');
-    assert.equal(err.message, msg);
+    assert.equal(err.message, `${msg} (line:${opts.line})`);
     assert.equal(err.line, 24);
     assert.equal(err.column, undefined);
     assert.equal(err.text, undefined);
@@ -69,6 +69,6 @@ describe('qasm:QasmError', () => {
   });
 
   it('should fail without a message', () => {
-    assert.throws(() => new QasmError(), /Required param: msg/);
+    assert.throws(() => new QasmError(), /Required param: message/);
   });
 });

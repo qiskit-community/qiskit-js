@@ -6,11 +6,11 @@
     "publish": "npm i && lerna publish",
     "precommit": "lint-staged",
     "lint": "eslint .",
-    "deps": "depcheck --ignore-dirs=dist --ignores='mocha,lint-staged,prettier' && lerna run deps",
-    "test-devs": "lerna run test --scope @qiskit/devs",
-    "test-devs-js": "lerna run test --scope @qiskit/devs-js",
-    "test-devs-ibm": "lerna run test --scope @qiskit/devs-ibm",
-    "test-devs-anu": "lerna run test --scope @qiskit/devs-anu",
+    "deps": "depcheck --ignore-dirs=dist --ignores='mocha,lint-staged,prettier,eslint-config-airbnb-base,eslint-config-prettier,eslint-plugin-import' && lerna run deps",
+    "test-algo": "lerna run test --scope @qiskit/algo",
+    "test-algo-js": "lerna run test --scope @qiskit/algo-js",
+    "test-algo-ibm": "lerna run test --scope @qiskit/algo-ibm",
+    "test-algo-anu": "lerna run test --scope @qiskit/algo-anu",
     "test-qasm": "lerna run test --scope @qiskit/qasm",
     "test-cloud": "lerna run test --scope @qiskit/cloud",
     "test-sdk": "lerna run test --scope qiskit",
@@ -42,5 +42,30 @@
   "engines": {
     "node": ">=10"
   },
-  "private": true
+  "private": true,
+  "eslintConfig": {
+    "extends": [
+      "airbnb-base",
+      "prettier"
+    ],
+    "env": {
+      "es6": true,
+      "node": true
+    },
+    "rules": {
+      "strict": [
+        "off"
+      ]
+    }
+  },
+  "eslintIgnore": [
+    "**/node_modules/*",
+    "dist",
+    "*.jison",
+    "snapshots__"
+  ],
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "all"
+  }
 }

@@ -11,6 +11,7 @@
 
 const assert = require('assert');
 const { Writable } = require('stream');
+const path = require('path');
 
 const { Circuit, Gate } = require('../..');
 
@@ -41,6 +42,26 @@ describe('sim:Circuit:addGate', () => {
     circuitOther.addGate(Gate.cx, 1, [0, 1]);
 
     assert.equal(circuitOther.nQubits, 2);
+  });
+});
+
+describe('sim:Circuit:add', () => {
+  it('should modify the circuit using add ', () => {
+    const c = Circuit.createCircuit(1);
+    c.add(Gate.h, 0, 0);
+    checkValid(circuit);
+  });
+
+  it('should only accept Gate instances ', () => {
+    const c = new Circuit();
+    assert.throws(() => {
+      c.add('h', 0, 0);
+      },
+      {
+        name: 'TypeError',
+        message: 'The "gate" argument must be of type Gate. Received string'
+      }
+    );
   });
 });
 
@@ -219,6 +240,91 @@ describe('sim:Circuit:print', () => {
                             .addGate(Gate.cx, 1, [0, 2])
                             .print(writable);
     assert.strictEqual(stripWhitespace(result), stripWhitespace(expected));
+  });
+
+  it('should print circuit with connections over mutiple wires', () => {
+    const expected = `
+                column 0      column 1
+      wire 0 -------------------------------
+
+      wire 1 ---[x]-----------[cx]----------
+                               |
+      wire 2 -----------------[*]-----------
+
+      wire 3 -------------------------------`;
+
+    Circuit.createCircuit(4).addGate(Gate.x, 0, 1)
+                            .addGate(Gate.cx, 1, [1, 2])
+                            .print(writable);
+    assert.strictEqual(stripWhitespace(result), stripWhitespace(expected));
+  });
+
+});
+
+describe('sim:Circuit:circuitFromQasm', () => {
+  it('should throw if QASM file does not exist', () => {
+    assert.throws(() => {
+      Circuit.fromQasmFile(path.join(__dirname, 'missing.qasm'));
+    });
+  });
+
+  it('should parse a QASM into a Circuit instance', () => {
+    const qasm = `
+      OPENQASM 2.0;
+      include "qelib1.inc";
+
+      qreg q[2];
+      creg c[2];
+
+      x q[0];
+      cx q[0],q[1];
+      measure q[0] -> c[0];
+      measure q[1] -> c[1];
+    `;
+
+    const c = Circuit.fromQasm(qasm);
+    assert.strictEqual(c.nQubits, 2);
+    assert.strictEqual(c.gates[0][0].name, Gate.x.name);
+    assert.strictEqual(c.gates[0][0].multiQubit, false);
+    assert.strictEqual(c.gates[0][0].connector, 0);
+
+    assert.strictEqual(c.gates[0][1].name, Gate.cx.name);
+    assert.strictEqual(c.gates[0][1].multiQubit, true);
+    assert.strictEqual(c.gates[0][1].connector, 0);
+
+    assert.strictEqual(c.gates[1][1].name, Gate.cx.name);
+    assert.strictEqual(c.gates[1][1].multiQubit, true);
+    assert.strictEqual(c.gates[1][1].connector, 1);
+  });
+
+  it('should parse a QASM with multiple q regs', () => {
+    const qasm = `
+      OPENQASM 2.0;
+      include "qelib1.inc";
+
+      qreg q[2];
+      qreg q2[2];
+      creg c[2];
+
+      x q2[0];
+      cx q2[0],q[1];
+      measure q[0] -> c[0];
+      measure q[1] -> c[1];
+    `;
+
+    const c = Circuit.fromQasm(qasm);
+    assert.strictEqual(c.nQubits, 4);
+    assert.strictEqual(c.gates[1][1].name, Gate.cx.name);
+    assert.strictEqual(c.gates[1][1].multiQubit, true);
+    assert.strictEqual(c.gates[1][1].connector, 1);
+
+    assert.strictEqual(c.gates[2][0].name, Gate.x.name);
+    assert.strictEqual(c.gates[2][0].multiQubit, false);
+    assert.strictEqual(c.gates[2][0].connector, 0);
+
+    assert.strictEqual(c.gates[2][1].name, Gate.cx.name);
+    assert.strictEqual(c.gates[2][1].multiQubit, true);
+    assert.strictEqual(c.gates[2][1].connector, 0);
   });
 
 });
