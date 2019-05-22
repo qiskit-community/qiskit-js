@@ -47,6 +47,12 @@ class Gate {
     this.name = name;
     this.matrix = matrix;
   }
+
+  prettyMatrix() {
+    let str = '';
+    this.matrix.forEach( (m) => { str += `[${m.join(', ')}]\n`; } );
+    return str;
+  }
 }
 
 Gate.x = new Gate('x', [[0, 1], [1, 0]]);

@@ -42,4 +42,12 @@ describe('sim:gates', () => {
   it('t gate should have the same unitary matrix as the r4 gate', () => {
     assert.deepEqual(Gate.t.matrix, Gate.r4.matrix);
   });
+
+  it('prettyMatrix should return a pretty matrix', () => {
+    const expected = '[1, 0, 0, 0]\n' +
+                     '[0, 1, 0, 0]\n' +
+                     '[0, 0, 0, 1]\n' +
+                     '[0, 0, 1, 0]\n';
+    assert.strictEqual(Gate.cx.prettyMatrix(), expected);
+  });
 });
