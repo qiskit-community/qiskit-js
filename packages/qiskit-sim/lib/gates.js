@@ -42,10 +42,15 @@ const buildControlled = Gate => {
 const phaseShift = shift =>
   [[1, 0], [0, math.pow(math.e, math.multiply(math.i, math.PI / shift))]];
 
+const gates = new Map();
+
 class Gate {
   constructor(name, matrix) {
     this.name = name;
     this.matrix = matrix;
+    if (!gates.has(name)) {
+      gates.set(name, this);
+    }
   }
 
   prettyMatrix() {
@@ -98,8 +103,6 @@ Gate.cs = new Gate('cs', buildControlled(Gate.s));
 Gate.cr2 = new Gate('cr2', buildControlled(Gate.r2));
 Gate.cr4 = new Gate('cr4', buildControlled(Gate.r4));
 Gate.cr8 = new Gate('cr8', buildControlled(Gate.r8));
-
-const gates = new Map(Object.entries(Gate));
 
 module.exports = {
   Gate,
