@@ -23,6 +23,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `@qiskit/qiskit-qasm`: Make parser a member of class Parser
 - `@qiskit/qiskit-qasm`: Use TypeError as error for incorrect type
 - `@qiskit/qiskit-sim`: add prettyMatrix method to Gate class
+- `@qiskit/qiskit-sim`: add gates to gates map in constructor
 
 ## [0.9.0] - 2019-05-13
 

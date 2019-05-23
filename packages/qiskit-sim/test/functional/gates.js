@@ -50,4 +50,9 @@ describe('sim:gates', () => {
                      '[0, 0, 1, 0]\n';
     assert.strictEqual(Gate.cx.prettyMatrix(), expected);
   });
+
+  it('custom gate should be added to gates map', () => {
+    const custom = new Gate('custom', [[1, 0], [0, 1]]);
+    assert.ok(gates.has(custom.name));
+  });
 });
