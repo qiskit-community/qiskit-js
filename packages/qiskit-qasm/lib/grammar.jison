@@ -72,8 +72,6 @@
   // List of register definitionsutil
   const externalFuncs = ['sin', 'cos', 'tan', 'exp', 'ln', 'sqrt'];
   var registers = [];
-  // List of defined Gates
-  var gateDefinitions = [];
 
   function launchError(line, msg) {
       throw new QasmError(msg, {line: line});
@@ -159,18 +157,6 @@
     return gate;
   }
 
-  // TODO: Review this.
-  function addGate(gate, line) {
-    var equalsGates = gateDefinitions.filter(function(value) {
-      return value.name === gate.name;
-    });
-
-    if (equalsGates && equalsGates.length > 0) {
-      launchError(line, 'Gate '+ gate.name + ' is already defined ');
-    };
-
-    gateDefinitions.push(gate);
-  }
 %}
 
 
