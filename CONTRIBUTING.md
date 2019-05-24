@@ -50,8 +50,6 @@ Please follow the next rules for the commit messages:
 
 From here, depending of the nature of the project, we have specific recommendations about the code style, the debuggins engine or how to run the tests and the rest of security checks. Please visit the one regarding your project.
 
-# Node.js
-
 ## Environment
 
 * A better way to install [Node.js](https://nodejs.org) for developers is to use [nvm](https://github.com/creationix/nvm), to test different versions.
@@ -78,6 +76,9 @@ We've chosen the [Mocha](https://mochajs.org) testing engine with the core ["ass
 
 ```sh
 npm test
+
+# To include also the ones which need an API key.
+QX_KEY=your_api_key npm test
 ```
 
 This command also checks for:
