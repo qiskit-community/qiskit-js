@@ -24,6 +24,5 @@ npm-debug.log
 .jslintrc
 .editorconfig
 lerna-debug.log
-package-lock.json
 
 dist/*.js
