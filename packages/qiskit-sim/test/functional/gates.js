@@ -55,4 +55,14 @@ describe('sim:gates', () => {
     const custom = new Gate('custom', [[1, 0], [0, 1]]);
     assert.ok(gates.has(custom.name));
   });
+
+  it('custom gate should be allowed to be overwritten', () => {
+    const custom = new Gate('custom', [[1, 0], [0, 1]]);
+    const newMatrix = [[1, 0],
+                      [1, 1]];
+    const overwrite = new Gate(custom.name, newMatrix);
+    assert.ok(gates.has(overwrite.name));
+    assert.strictEqual(gates.get(custom.name).matrix, newMatrix);
+  });
+
 });
