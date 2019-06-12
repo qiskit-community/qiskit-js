@@ -74,7 +74,7 @@
   const registers = [];
 
   function launchError(line, msg) {
-      throw new QasmError(msg, {line: line});
+    throw new QasmError(msg, {line: line});
   }
 
   function addRegister(register, line) {
@@ -145,11 +145,11 @@
 
     // The first time (to parse the standard library - qelib) we dont pass it.
     if (qelib) {
-        const defined = lodash.find(qelib, { name }); 
+      const defined = lodash.find(qelib, { name });
 
-        if (!defined) {
-            launchError(line, `Gate ${name} is not defined`);
-        }
+      if (!defined) {
+        launchError(line, `Gate ${name} is not defined`);
+      }
     }
 
     if (params) { gate.params = params; }
@@ -368,7 +368,7 @@ Unary
     | Id '(' Expression ')'
       {
         if (!lodash.includes(externalFuncs, $Id)) {
-            launchError(@Id.first_line, `Illegal external function call: ${$Id}`);
+          launchError(@Id.first_line, `Illegal external function call: ${$Id}`);
         }
 
         $$ = `${$Expression}(${$Id})`;
