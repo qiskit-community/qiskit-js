@@ -26,6 +26,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `@qiskit/qiskit-sim`: add gates to gates map in constructor
 - `@qiskit/qiskit-sim`: remove unused addGate function in grammar.jison
 - `@qiskit/qiskit-sim`: allow custom gates to be overwritten
+- `@qiskit/qiskit-qasm`: make registers const in grammar.jison
 
 ## [0.9.0] - 2019-05-13
 

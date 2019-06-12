@@ -71,7 +71,7 @@
 
   // List of register definitionsutil
   const externalFuncs = ['sin', 'cos', 'tan', 'exp', 'ln', 'sqrt'];
-  var registers = [];
+  const registers = [];
 
   function launchError(line, msg) {
       throw new QasmError(msg, {line: line});
