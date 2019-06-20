@@ -17,7 +17,7 @@
 %lex
 %%
 
-"//".*                  /* skip comments */
+"//".*                  return 'LINE_COMMENT'
 \s+                     /* skip whitespace */ // ??
 [0-9]+("."[0-9]+)\b     return 'REAL'
 [-]?[0-9]+              return 'INT'
@@ -72,6 +72,7 @@
   // List of register definitionsutil
   const externalFuncs = ['sin', 'cos', 'tan', 'exp', 'ln', 'sqrt'];
   const registers = [];
+  var comments = [];
 
   function launchError(line, msg) {
     throw new QasmError(msg, {line: line});
@@ -157,6 +158,13 @@
     return gate;
   }
 
+  function buildComment(comment, line) {
+    return {
+      type: 'comment',
+      value: comment,
+      line: line
+    }
+  }
 %}
 
 
@@ -174,20 +182,45 @@ StartProgram
       {
         // console.log('qelibParsed:');
         // console.log(util.inspect(qelibParsed, { depth: null }));
+        // console.log(comments);
         
         return $1;
+      }
+    | Comments
+    ;
+
+Comments
+    : Comment { $$ = [ $1 ]; }
+    | Comments Comment {
+        $$ = $Comments;
+        $$.push($Comment);
+      }
+    ;
+
+Comment
+    : LINE_COMMENT {
+        $$ = buildComment($1, yylineno);
+        comments.push($$);
       }
     ;
 
 MainProgram
     : IbmDefinition
-    | IbmDefinition Program { $$ = $2; }
+    | IbmDefinition Program {
+        $$ = $1.concat($2);
+      }
+    | Comments IbmDefinition Program { $$ = $1.concat($2.concat($3)); }
     | Library 
+    | Comments Library { $$ = $1.concat($2); }
     ;
 
 IbmDefinition
-    : IBMQASM REAL ';' Include
-    | IBMQASM REAL ';'
+    : IBMQASM REAL ';' Comments Include Comments { $$ = $4.concat($6); }
+    | IBMQASM REAL ';' Comments Include { $$ = $4; }
+    | IBMQASM REAL ';' Include Comments { $$ = $5; }
+    | IBMQASM REAL ';' Include { $$ = []; }
+    | IBMQASM REAL ';' Comments { $$ = $4; }
+    | IBMQASM REAL ';' { $$ = []; }
     ;
 
 Include
@@ -195,35 +228,83 @@ Include
     ;
 
 Library
-    : Declaration { $$ = [ $1 ]; }
+    : Declaration { $$ = [...$1 ]; }
     | Library Declaration
       {
         $$ = $Library;
-        $$.push($Declaration);
+        if ($Declaration instanceof Array) {
+          $$.push(...$Declaration);
+        } else {
+          $$.push($Declaration);
+        }
       }
     ;
 
 Program
-    : Statement { $$ = [ $1 ]; }
+    : Statement {
+        if ($1 instanceof Array) {
+          $$ = [...$1 ];
+        } else {
+          $$ = [$1];
+        }
+    }
     | Program Statement
       {
         $$ = $Program;
-        $$.push($Statement);
+        if ($Statement instanceof Array) {
+          $$.push(...$Statement);
+        } else {
+	  $$.push($Statement);
+        }
       }
     ;
 
 Statement
-    : Declaration { addRegister($1, @1.first_line); $1; }
+    : Declaration {
+        if ($1 instanceof Array) {
+          addRegister($1[0], @1.first_line);
+        } else {
+          addRegister($1, @1.first_line);
+        }
+        $$ = $1;
+      }
     | QOperation ';'
+    | QOperation ';' Comments {
+        $$ = [$1, ...$3];
+      }
     | Magic ';'
+    | Magic ';' Comments {
+        $$ = [$1, ...$3];
+      }
     // TODO: The user can define its own gates
     // | GateDefinition { console.log('Definition: %j', $1); }
     ;
 
 Declaration
     : QRegDeclaration
+    | QRegDeclaration Comments {
+        if ($2 instanceof Array) {
+          $$ = [$1, ...$2];
+        } else {
+          $$ = [$1];
+        }
+      }
     | CRegDeclaration
+    | CRegDeclaration Comments {
+        if ($2 instanceof Array) {
+          $$ = [$1, ...$2];
+        } else {
+          $$ = [$1];
+        }
+      }
     | GateDeclaration
+    | GateDeclaration Comments {
+        if ($2 instanceof Array) {
+          $$ = [$1, ...$2];
+        } else {
+          $$ = [$1];
+        }
+      }
     ;
 
 QRegDeclaration
@@ -295,6 +376,7 @@ Bit
 
 GateBody
     : '{' GateOpList '}' { $$ = $GateOpList; }
+    | '{' Comments GateOpList '}' { $$ = $GateOpList; }
     | '{' '}'
     ;
 
