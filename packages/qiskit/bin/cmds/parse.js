@@ -38,7 +38,7 @@ exports.builder = {
 
 exports.handler = argv => {
   logger.title(qiskit.version);
-  logger.bold('\n\nWARNING: Partial implementetation for now\n\n');
+  logger.bold('\n\nWARNING: Partial implementation for now\n\n');
 
   dbg('Starting, args', argv);
 
