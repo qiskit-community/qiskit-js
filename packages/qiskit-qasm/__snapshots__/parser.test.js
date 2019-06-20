@@ -183,3 +183,21 @@ exports['qasm:parse should work with OPAQUE gate (3) 1'] = [
     ]
   }
 ]
+
+exports['qasm:parse should not ignore comments 1'] = [
+  {
+    "type": "comment",
+    "value": "// Example QASM",
+    "line": 0
+  },
+  {
+    "type": "qubit",
+    "identifier": "q",
+    "number": "1"
+  },
+  {
+    "type": "clbit",
+    "identifier": "c",
+    "number": "1"
+  }
+]

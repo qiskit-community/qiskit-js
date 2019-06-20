@@ -186,4 +186,16 @@ describe('qasm:parse', () => {
                '----------------------^'
     });
   });
+
+  it('should not ignore comments', () => {
+    parser = new Parser();
+    const circuit =
+      '// Example QASM\n' +
+      'OPENQASM 2.0;\n' +
+      'qreg q[1];\n' +
+      'creg c[1];\n';
+
+    utilsTest.shot(parser.parse(circuit));
+  });
+
 });
