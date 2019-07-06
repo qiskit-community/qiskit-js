@@ -29,6 +29,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `@qiskit/qiskit-qasm`: make registers const in grammar.jison
 - `@qiskit/qiskit-qasm`: fix indentation in grammer.jison
 - `@qiskit/qiskit-qasm`: add core director to files in package.json
+- `@qiskit/qiskit-bin`: fix minor typo in parse.js
 
 ## [0.9.0] - 2019-05-13
 
