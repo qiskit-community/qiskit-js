@@ -63,7 +63,8 @@
     "**/node_modules/*",
     "dist",
     "*.jison",
-    "snapshots__"
+    "snapshots__",
+    "examples/webpack"
   ],
   "prettier": {
     "singleQuote": true,

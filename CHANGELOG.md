@@ -16,6 +16,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+> - 🎉 **Added**: for new features.
+- `examples/webpack`: Add webpack example
+
 > - ✏️ **Changed**: for changes in existing functionality.
 
 - `@qiskit/qiskit-qasm`: Make QasmError a class
