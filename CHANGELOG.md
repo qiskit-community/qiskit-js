@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `@qiskit/qiskit-sim`: add deutsch-oracle example
 
 > - ✏️ **Changed**: for changes in existing functionality.
+- `examples/webpack`: remove init script from package.json
 
 - `@qiskit/qiskit-qasm`: Make QasmError a class
 - `@qiskit/qiskit-qasm`: Use QasmError for jison error handling

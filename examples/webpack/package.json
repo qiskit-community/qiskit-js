@@ -3,8 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "build": "webpack",
-    "init": "mkdir node_modules/@qiskit/qasm/core ; cp ../../packages/qiskit-qasm/core/qelib1.inc node_modules/@qiskit/qasm/core"
+    "build": "webpack"
   },
   "files": [
     "package.json",
@@ -22,7 +21,7 @@
     "webpack-cli": "^3.3.6"
   },
   "dependencies": {
-    "@qiskit/sim": "^0.9.0"
+    "@qiskit/sim": "^0.10.0"
   },
   "type": "module"
 }
