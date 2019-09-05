@@ -16,6 +16,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.10.0] - 2019-09-05
+
 > - 🎉 **Added**: for new features.
 - `examples/webpack`: Add webpack example
 - `@qiskit/qiskit-sim`: add deutsch-oracle example
@@ -310,7 +312,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Change in lerna setup to allow markdown files in npm.
 - Travis badge in the main README file.
 
-[unreleased]: https://github.com/Qiskit/qiskit-js/compare/v0.9.0...HEAD
+[unreleased]: https://github.com/Qiskit/qiskit-js/compare/v0.10.0...HEAD
+[0.10.0]: https://github.com/Qiskit/qiskit-js/compare/v0.9.0...v0.10.0
 [0.9.0]: https://github.com/Qiskit/qiskit-js/compare/v0.8.0...v0.9.0
 [0.8.0]: https://github.com/Qiskit/qiskit-js/compare/v0.7.1...v0.8.0
 [0.7.1]: https://github.com/Qiskit/qiskit-js/compare/v0.7.0...v0.7.1
