@@ -117,6 +117,7 @@ const expectedKeys = [
   'status',
   'serialNumber',
   'description',
+  'attributes',
   'gateSet',
   'basisGates',
   'onlineDate',
@@ -165,6 +166,7 @@ describe('cloud:backend', () => {
 
     // TODO: Cloning to fix API inconsistency.
     const expectedFix = expectedKeys.slice(0);
+    expectedFix.splice(5, 1);
     expectedFix.splice(10, 1);
 
     assert.deepEqual(Object.keys(res), expectedFix);
@@ -196,7 +198,7 @@ describe('cloud:backends', () => {
 
     const res = await global.qiskit.cloud.backends();
 
-    assert.equal(res.length, 4);
+    assert.equal(res.length, 5);
     assert.deepEqual(Object.keys(res[0]), expectedKeys);
   });
 
